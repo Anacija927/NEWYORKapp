@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bushwick — Journée à Brooklyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #C41E3A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 460px; line-height: 1.6; }
+
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); cursor: default; transition: color 0.2s; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); margin: 0; }
+
+  .stops-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .stop-block { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(200,169,110,0.2); }
+  .stop-block:last-child { border-bottom: none; }
+  .stop-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--navy); flex-shrink: 0; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .stop-desc { font-size: 15px; color: var(--text); margin-bottom: 12px; }
+  .stop-note { background: rgba(200,169,110,0.08); border-left: 3px solid var(--gold); padding: 14px 16px; margin-top: 16px; border-radius: 0 4px 4px 0; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--rust); margin-bottom: 6px; }
+  .stop-note p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+  .section-divider { text-align: center; color: var(--gold); font-size: 14px; margin: 52px 0; letter-spacing: 0.2em; }
+  .poi-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+  .poi-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .poi-card-icon { font-size: 32px; margin-bottom: 10px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-bottom: 10px; }
+  .poi-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .poi-card-note { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .infos-section { padding: 48px 0; }
+  .infos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
+  .info-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); }
+
+  .page-footer { text-align: center; padding: 60px 24px 40px; border-top: 1px solid var(--border); }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-muted); margin-bottom: 12px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .infos-grid { grid-template-columns: 1fr; }
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('brooklyn');</script>
+
+
+<section class="hero">
+  <div class="hero-meta">
+    <div class="hero-eyebrow">🎨 Quartier</div>
+    <h1 class="hero-title">Bushwick</h1>
+    <p class="hero-subtitle">Street Art Paradise — Collective, Murales & Authenticity</p>
+    <p class="hero-tagline">Bushwick Collective = PLUS GRANDE galerie street art MONDE! 200+ murales renewing 6-10 weeks. Joseph Ficalora healing mission 2012 transforme déclin industrial en galerie skyline. Ici c'est art vivant, authentique, communauté grassroots.</p>
+  </div>
+</section>
+
+<div class="timeline-bar">
+  <div class="timeline-inner">
+    <div class="tl-item"><span class="tl-dot"></span> 14:15 Jefferson</div>
+    <div class="tl-item"><span class="tl-dot"></span> 14:30 Troutman</div>
+    <div class="tl-item"><span class="tl-dot"></span> 15:00 Murales</div>
+    <div class="tl-item"><span class="tl-dot"></span> 16:00 Collective</div>
+    <div class="tl-item"><span class="tl-dot"></span> 16:30 Vintage</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:30 Dîner</div>
+    <div class="tl-item"><span class="tl-dot"></span> 19:00 Rooftop</div>
+  </div>
+</div>
+
+<main class="page-body">
+
+  <section class="intro-block">
+    <div class="section-label">Présentation</div>
+    <h2>De l'industrie déclinante à l'art monumental</h2>
+    <p>
+      Bushwick, nom provenant du néerlandais "Boswijck" (quartier des bois), a été fondé 1661 par colonistes néerlandais. XIXe siècle = centre brasserie allemande. Post-WWII = hub latino-américain portoricain-dominicain. Déclin industriel années 1970s crée espace vide urbain massif.
+    </p>
+    <p>
+      Années 2000s, artistes découvrent warehouses abandonnés. Bushwick Collective fondée 2012 Joseph Ficalora — mission HEALING après meurtre père 1991 & mort mère 2011. Transformation déclin industrie en PLUS GRANDE galerie street art MONDE! 200+ murales internationales. Artists : Blek le Rat, Reka, Li-Hill, Case. Block Party annuel juin = Ice-T, Ghostface Killah, KRS-One performances. AUTHENTIQUE communauté art vs. gentrification.
+    </p>
+    <div class="tip-box">
+      <p><strong>Timing & Stratégie :</strong> Murales changent environ 6-10 weeks. Vous verrez DIFFÉRENTES murales à chaque visite. C'est galerie vivante, pas musée permanent! Allez tôt après-midi pour meilleure lumière street art photography.</p>
+    </div>
+  </section>
+
+  <section class="stops-section">
+    <div class="section-label">Circuit Détaillé</div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">14:15</span>
+        <h3 class="stop-title">Jefferson Street L Train — Arrivée</h3>
+      </div>
+      <div class="stop-address">L train express Brooklyn</div>
+      <p class="stop-desc">Descendez Jefferson Street station — entrée directe Bushwick Collective. Métro exit → Troutman Street immédiatement. Starting point optimal street art tour. Jefferson = artère principale Bushwick nord.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📍 Localisation</div>
+        <p>Bushwick = North Brooklyn post-industriel gritty. Troutman St & St Nicholas Ave = cœur Bushwick Collective. 15-20 blocs explorablesà pied.</p>
+      </div>
+    </div>
+
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold);">
+      <div class="stop-header">
+        <span class="stop-time">14:30</span>
+        <h3 class="stop-title">Bushwick Collective — 200+ Murales Internationales 🎨</h3>
+      </div>
+      <div class="stop-address">Troutman Street & St Nicholas Avenue</div>
+      <p class="stop-desc">Fondée 2012 Joseph Ficalora — mission HEALING personnel transformée mouvement communautaire. Après meurtre père (1991) & mort mère tumeur cerveau (2011), Ficalora organise Street Party enfants tumeur cerveau. Art devient healing tool communauté! Bushwick Collective = aujourd'hui PLUS GRANDE galerie street art MONDE avec 200+ murales internationales.</p>
+      <p class="stop-desc">Murales massives couleurs explosives artistes renommés. Updated environ every 6-10 weeks avec new artists mondiaux. <strong>Block Party annuel juin</strong> = live painting, music performances (Ice-T, Ghostface Killah, KRS-One), community gathering. Artistes : <strong>Blek le Rat</strong> (stencil father), <strong>Li-Hill</strong> (freedom murals Canadian), <strong>Sipros</strong> (caricatural characters), <strong>Case</strong> (close-up hands anatomiques), <strong>Dasic</strong> (rainbow vivid).</p>
+      <p class="stop-desc">Galerie vivante, pas musée permanent! Murales changent tous 6-10 weeks = perspectives toujours fraîches. Chaque visite = discovery nouvelle. AUTHENTIQUE communauté art grassroots vs. gentrification commerciale.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎨 Joseph Ficalora Vision</div>
+        <p><strong>Healing through art:</strong> Père meurtre 1991 → Mère tumeur cerveau 2011 → Street Party enfants malades → Bushwick Collective. Art = healing pour COMMUNAUTÉ. Beautiful mission transforme déclin industrie en galerie skyline mondiale!</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">15:00</span>
+        <h3 class="stop-title">Circuit Rues Principales — Troutman & St Nicholas</h3>
+      </div>
+      <div class="stop-address">Bushwick Street Art Network</div>
+      <p class="stop-desc">Marchez sans objectif spécifique Troutman Street & St Nicholas Avenue. Rues entièrement couvertes murales monumentales. Couleurs explosives. Énergie créative maximale. Chaque coin = nouvelle surprise murale. Streets numérotées courent nord-sud — explorez systématiquement.</p>
+      <p class="stop-desc">Photographiez murales. Parlez aux artistes locaux si on les voit peindre. Découvrez galeries street indépendantes. Energy créative grassroots authentique sans gentrification touristique like DUMBO/Williamsburg.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photography Tips</div>
+        <p>Lumière tôt après-midi (14h-16h) = idéale street art colors. Allez large angle pour captures murales complètes. Drone photos interdites — respectez propriété.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">16:30</span>
+        <h3 class="stop-title">L Train Vintage — Mode Rétro Bushwick</h3>
+      </div>
+      <div class="stop-address">427 Jefferson Street</div>
+      <p class="stop-desc">Boutique mode vintage Bushwick incontournable. Treasures clothing rétro, pièces d'époque, accessoires rares. Vintage fashion discovery = partie intégrante Bushwick experience. À FAIRE!</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🛍️ Pause Shopping</div>
+        <p>Breather street art tour. Découvrez treasures vêtements vintage uniques. Support local indie shops vs. chaînes commerciales.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">17:30</span>
+        <h3 class="stop-title">Restaurants Bushwick — Authentiques & Créatifs</h3>
+      </div>
+      <div class="stop-address">Bushwick Dining Scene</div>
+      <p class="stop-desc"><strong>Roberta's</strong> (261 Moore St) — Pizza napoletana rooftop garden. Iconic Bushwick restaurant. Réservation recommandée.</p>
+      <p class="stop-desc"><strong>Bunna Café</strong> (1084 Flushing Ave) — Café ethiopienne. Plats $22. Authentic Ethiopian avec terrasse. Céremonie café experience!</p>
+      <p class="stop-desc"><strong>Sea Wolf</strong> — Fresh seafood, cocktails authentiques.</p>
+      <p class="stop-desc"><strong>Maite</strong> — Natural wines, small plates. Wine bar moderne.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💬 Conseil Dîner</div>
+        <p>Réservation Roberta's recommandée. Autres restaurants plus flexibles walk-ins. Bushwick dîner = moins cher que DUMBO/Williamsburg, moins touristique, plus authentique.</p>
+      </div>
+    </div>
+
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold);">
+      <div class="stop-header">
+        <span class="stop-time">19:00</span>
+        <h3 class="stop-title">Roberta's Rooftop — Pizza & Vues Skyline</h3>
+      </div>
+      <div class="stop-address">261 Moore Street</div>
+      <p class="stop-desc">Si vous dînez à Roberta's, montez au rooftop garden pour aperitivo/digestivo. Vues skyline Brooklyn tout en dégustant cocktails. Golden hour light illumine murales neighborhood. Moment couple romantique fin de journée.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🍸 Moment Apéro</div>
+        <p>Après dîner, montez rooftop. Observation murales depuis hauteur = perspective nouvelle. Ambiance locale vraie.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Murales Troutman & Wyckoff</div>
+        <div class="poi-card-address">Street Art Main Junction</div>
+        <p class="poi-card-desc">Rue iconique murales massives couleurs explosives. Meilleur endroit photos street art.</p>
+        <p class="poi-card-note">Photo paradise.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌊</div>
+        <div class="poi-card-name">Johnson Avenue</div>
+        <div class="poi-card-address">Fin Street Art Tour</div>
+        <p class="poi-card-desc">Fin street art tour. Murales époustouflantes partout.</p>
+        <p class="poi-card-note">Exploration finale.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍕</div>
+        <div class="poi-card-name">Union Pizza Works</div>
+        <div class="poi-card-address">428 Troutman St</div>
+        <p class="poi-card-desc">Pizza dépanneur route. Quick fuel street art exploration.</p>
+        <p class="poi-card-note">Snack rapide.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Bushwick Street Art Gallery</div>
+        <div class="poi-card-address">Independent Galleries</div>
+        <p class="poi-card-desc">Petites galeries indépendantes artistes locaux.</p>
+        <p class="poi-card-note">Underground scene.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">☕</div>
+        <div class="poi-card-name">Cafés Locaux</div>
+        <div class="poi-card-address">Various locations</div>
+        <p class="poi-card-desc">Cafés neighborhood vraiment locaux. Pas Starbucks!</p>
+        <p class="poi-card-note">Local vibes.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌿</div>
+        <div class="poi-card-name">Jefferson Street Park</div>
+        <div class="poi-card-address">Neighborhood Green</div>
+        <p class="poi-card-desc">Petit parc détente. Vrai neighborhood feeling.</p>
+        <p class="poi-card-note">Pause authentique.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transports</div>
+        <p>L train à Jefferson Street — 7 stops depuis Manhattan. Direct access. Quartier se traverse pied facilement (environ 2 km).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>14h15 → 21h+</strong>. Sans dîner, comptez jusqu'à 18h-19h. Rythme explorateur street art.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p><strong>Jeudi à dimanche</strong> — restaurants ouverts, boutiques fonctionnelles. Lundi-mercredi = certaines fermetures. Weekend = foule street art photographers.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Bushwick = gritty authentique vivant. Pas polished comme DUMBO. Soyez curieux respectueux. Communauté locale apprécie visiteurs sincères.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget</div>
+        <p>Café ~$10 · Shopping vintage ~$0–50 · Snacks ~$15 · Dîner ~$30–80 · Apéro ~$25–40. Total : ~$80–175.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Murales Troutman St · St Nicholas Ave · Johnson Avenue · L Train Vintage storefront · Roberta's rooftop vue murales.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« Bushwick is not a neighborhood, it's a living, breathing canvas. »</p>
+  <p class="footer-sub">Brooklyn · Arthur & Jade · Mai 2026</p>
+</footer>
+
+<script src="assets/nav-buttons.js" data-back-href="brooklyn-index.html" data-back-label="Brooklyn"></script>
+</body>
+</html>

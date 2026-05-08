@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooklyn Heights — Journée à Brooklyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #2d5016;
+    --sage: #5a8f3c;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 460px; line-height: 1.6; }
+
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); cursor: default; transition: color 0.2s; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); margin: 0; }
+
+  .stops-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .stop-block { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(200,169,110,0.2); }
+  .stop-block:last-child { border-bottom: none; }
+  .stop-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--navy); flex-shrink: 0; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .stop-desc { font-size: 15px; color: var(--text); margin-bottom: 12px; }
+  .stop-note { background: rgba(200,169,110,0.08); border-left: 3px solid var(--gold); padding: 14px 16px; margin-top: 16px; border-radius: 0 4px 4px 0; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--rust); margin-bottom: 6px; }
+  .stop-note p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+  .section-divider { text-align: center; color: var(--gold); font-size: 14px; margin: 52px 0; letter-spacing: 0.2em; }
+  .poi-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+  .poi-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .poi-card-icon { font-size: 32px; margin-bottom: 10px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-bottom: 10px; }
+  .poi-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .poi-card-note { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .infos-section { padding: 48px 0; }
+  .infos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
+  .info-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); }
+
+  .page-footer { text-align: center; padding: 60px 24px 40px; border-top: 1px solid var(--border); }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-muted); margin-bottom: 12px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .infos-grid { grid-template-columns: 1fr; }
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('brooklyn');</script>
+
+
+<section class="hero">
+  <div class="hero-meta">
+    <div class="hero-eyebrow">🏛️ Quartier</div>
+    <h1 class="hero-title">Brooklyn Heights</h1>
+    <p class="hero-subtitle">Historic Promenade — Abolitionism & Romantic Sunset</p>
+    <p class="hero-tagline">L'histoire profonde rencontre la romance pure. Plymouth Church = station Underground Railroad 1840s-1860s. Promenade surélevée vues Manhattan 360°. Hunts Lane chevaux vivants. Brooklyn Bridge sunset = moment couple ULTIME NYC romantique.</p>
+  </div>
+</section>
+
+<div class="timeline-bar">
+  <div class="timeline-inner">
+    <div class="tl-item"><span class="tl-dot"></span> 17:00 Borough Hall</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:10 St. Ann Church</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:30 Historical</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:50 Love Lane</div>
+    <div class="tl-item"><span class="tl-dot"></span> 18:05 Promenade</div>
+    <div class="tl-item"><span class="tl-dot"></span> 18:50 Bridge</div>
+    <div class="tl-item"><span class="tl-dot"></span> 20:00 Dîner</div>
+  </div>
+</div>
+
+<main class="page-body">
+
+  <section class="intro-block">
+    <div class="section-label">Présentation</div>
+    <h2>L'âme historique de Brooklyn</h2>
+    <p>Brooklyn Heights, premier quartier résidentiel affluent Brooklyn, a été établi années 1820 comme refuge pour riches Manhattan merchants. Au XIXe siècle, c'est devenu centre abolitionism — Plymouth Church sous Henry Ward Beecher était station Underground Railroad! Escaped slaves cachés church basement, puis envoyés Canada liberté.</p>
+    <p>L'ouverture Brooklyn Bridge 1883 transforme quartier en destination accessible Manhattan. Construction BQE années 1950 crée Promenade surélevée 1950 offrant vues 360° spectaculaires Manhattan + Statue Liberté. Aujourd'hui, Brooklyn Heights combine histoire victorienne, brownstones précieuses, accès East River waterfront unique, et MOMENT couple romantique NYC par excellence : Brooklyn Bridge sunset crossing.</p>
+    <div class="tip-box">
+      <p><strong>Timing critique pour couples :</strong> Arrivez Promenade 17h45-18h pour golden hour. Brooklyn Bridge sunset crossing 18h50-19h30 = lumière époustouflante. MOMENT à ne pas rater!</p>
+    </div>
+  </section>
+
+  <section class="stops-section">
+    <div class="section-label">Circuit Détaillé</div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">17:00</span>
+        <h3 class="stop-title">Borough Hall Station — Arrivée</h3>
+      </div>
+      <div class="stop-address">2/3 trains (Red line Brooklyn express)</div>
+      <p class="stop-desc">Descendez Borough Hall station — point central exploration Brooklyn Heights. Station 1933. Brooklyn Borough Hall 1849 architecture victorienne. Station = point départ quartier exploration. Heights = plateau élevée surplombant East River.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📍 Localisation</div>
+        <p>Promenade surélevée 1950 = point central. Rues principales : Montague St (shopping), Henry St (boutiques), Willow/Orange/Cranberry Streets (historic brownstones). Waterfront = Brooklyn Bridge Park direction sud.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">17:10</span>
+        <h3 class="stop-title">St. Ann & Holy Trinity Church</h3>
+      </div>
+      <div class="stop-address">1844-1847 Minard LaFever architect</div>
+      <p class="stop-desc">Église 1844-1847. Premiers vitraux figuratifs Amérique Nord! Spire 275 pieds. National Historic Landmark 1987. Architecture landmark importance profonde. Façade gothique beauté.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">⛪ Historique</div>
+        <p>Entrance libre pendant horaires ouverture. Montez si possible pour observer vitraux lumière fin après-midi.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">17:30</span>
+        <h3 class="stop-title">Brooklyn Historical Society & Plymouth Church — Abolitionism Powerhouse</h3>
+      </div>
+      <div class="stop-address">Brooklyn Heights Historic Core</div>
+      <p class="stop-desc"><strong>Plymouth Church of the Pilgrims (57 Orange St) :</strong> Fondée 1847 par pasteur HENRY WARD BEECHER — figure abolitionist centrale USA! Église faisait partie UNDERGROUND RAILROAD network 1840s-1860s. Esclaves fugitifs cachés church basement, puis envoyés Canada liberté. Church = "Free Church" prêchait LOUDLY against slavery. Beecher's sœur = Harriet Beecher Stowe (écrivain "Uncle Tom's Cabin"). Lincoln y assistait à sermons! Charles Dickens y faisait lectures! National Historic Landmark.</p>
+      <p class="stop-desc"><strong>Brooklyn Historical Society :</strong> Musée XIXe Brooklyn histoire. Archives, documents, photos époque. Comprendre contexte abolitionism = appreciation quartier profonde.</p>
+      <p class="stop-desc"><strong>Landmarks historiques alentours :</strong> <em>24 Middagh Street</em> — plus ancienne habitation (1820, Federal style). <em>Grace Court Alley</em> — adorable ruelle bordée maisons XIXe reconverties. <em>Grace Church</em> (1847, Richard Upjohn architect) — église rouge brique charme.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📚 Visite Recommandée</div>
+        <p>Durée Plymouth Church : 30–45 min. Visites guidées lun-ven 9h30/13h, dim 12h30. Donation $5/pers recommandée. Comprendre histoire abolitionism = soul Brooklyn Heights.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">17:50</span>
+        <h3 class="stop-title">Love Lane — Ruelle Romantique 💕</h3>
+      </div>
+      <div class="stop-address">Petite ruelle pittoresque</div>
+      <p class="stop-desc">RUELLE ROMANTIQUE HISTORIQUE! Spot photos couples par excellence! Pittoresque tree-lined street. Photo moment spécial pour Arthur & Jade! Ambiance intemporelle romantique.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💑 Photo Couple</div>
+        <p>Arrivez avant foules soirée. Shot couple main-in-hand = souvenir inoubliable.</p>
+      </div>
+    </div>
+
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold);">
+      <div class="stop-header">
+        <span class="stop-time">18:05</span>
+        <h3 class="stop-title">Promenade — Golden Hour Magic 🌅</h3>
+      </div>
+      <div class="stop-address">Surélevée années 1950 au-dessus BQE</div>
+      <p class="stop-desc"><strong>SPOT CLÉS!</strong> Promenade surélevée 1950 = point central Heights. Vues 360° inégalées : Manhattan skyline nord, Statue Liberté sud, East River, Brooklyn Bridge, governor's island. Golden hour ~18h-19h = lumière d'or illumine tout. <strong>MOMENT MAGIQUE!</strong></p>
+      <p class="stop-desc">Asseyez-vous ensemble, observez lumière change skyline. Main-in-hand moment observe coucher soleil approaching. MUST-VISIT! Promenade = lieu où histoire architecture XIXe rencontre modernité urbaine.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🌅 Golden Hour Peak</div>
+        <p><strong>17h45-18h30</strong> = meilleure lumière. Photos skyline magnifiques. Moment couple intimacy amidst urbanscape époustouflant!</p>
+      </div>
+    </div>
+
+    <div class="stop-block" style="background: rgba(45,80,22,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--sage);">
+      <div class="stop-header">
+        <span class="stop-time">18:50</span>
+        <h3 class="stop-title">Brooklyn Bridge Sunset Crossing — MOMENT ULTIME 💕</h3>
+      </div>
+      <div class="stop-address">Point accès south Heights</div>
+      <p class="stop-desc"><strong>MOMENT CLÉS COUPLE!</strong> Coucher soleil Brooklyn Bridge = romantisme NYC puissance max! Golden hour light époustouflant! Walk pont sunset hand-in-hand romantique! Statue Liberté backlit. Manhattan skyline ablaze light. <strong>ICONIC romantic moment!</strong></p>
+      <p class="stop-desc">C'est L'EXPÉRIENCE NYC romantic par excellence! Photo silhouette couple contre sunset = éternel souvenir. East River shimmer. <strong>UNFORGETTABLE moment couple creation!</strong></p>
+      <div class="stop-note">
+        <div class="stop-note-label">💑 ROMANTIC PEAK ABSOLUTE</div>
+        <p><strong>18h50-19h30</strong> = fenêtre golden hour optimale. Walk lent. Stop milieu pont. Embrassez-vous face Statue Liberté. Photo silhouette sunset. <strong>MOMENT ÉTERNEL COUPLE!</strong></p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">20:00</span>
+        <h3 class="stop-title">Dinner Montague Street — Romantic Evening</h3>
+      </div>
+      <div class="stop-address">Brooklyn Heights Dining Scene</div>
+      <p class="stop-desc"><strong>Café Buon Gusto</strong> (311 Henry St) — Italian coffee, pastries. Cozy neighborhood spot. <strong>Henry's End</strong> (72 Henry St) — Beef specialties, American cuisine. Classic restaurant Heights. Plus formal dinner option.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🍽️ Celebration Dîner</div>
+        <p>Après Brooklyn Bridge sunset moment ultime, dîner = celebration couple. Reserve table Henry's End si possible. Romantic intimate atmosphere.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🐎</div>
+        <div class="poi-card-name">Hunts Lane</div>
+        <div class="poi-card-address">Enclave exclusive équestre</div>
+        <p class="poi-card-desc">UNIQUE BROOKLYN! Ruelle pittoresque enclave équestre EXCLUSIVE! Chevaux VIVANTS! Seul endroit NYC center-ville avec chevaux!</p>
+        <p class="poi-card-note">Magical unique experience.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🏛️</div>
+        <div class="poi-card-name">Truman Capote's House</div>
+        <div class="poi-card-address">70 Willow Street</div>
+        <p class="poi-card-desc">Brownstone 1950s où Truman Capote vivait! Écrit Breakfast at Tiffany's ici! Literary history vivante brick!</p>
+        <p class="poi-card-note">Literary pilgrimage.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">Marcus Garvey Park</div>
+        <div class="poi-card-address">Neighborhood Green</div>
+        <p class="poi-card-desc">Parc caractéristique Heights. Ambiance calme locale.</p>
+        <p class="poi-card-note">Peaceful neighborhood pause.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⚓</div>
+        <div class="poi-card-name">Brooklyn Navy Yard</div>
+        <div class="poi-card-address">Cumberland Street waterfront</div>
+        <p class="poi-card-desc">Site naval militaire historique 1801-1966. Occupait toute largeur Wallabout Bay — 2 siècles chantiers navals US importants! USS Adams, USS Duluth, USS Missouri (dernier battleship lancé 1944) construits ici. Pendant WWII, Navy Yard employait 70,000+ ouvriers, fabriquait munitions, réparait navires. Aujourd'hui réhabilité en pepinière industrielle civile 2019 — 11,000 emplois, 450 sociétés high-tech, agriculture urbaine, rooftop farm. BLDG 92 = musée Navy Yard avec expositions US naval history. Expos maquettes ships, artefacts guerre, histoire ouvriers.</p>
+        <p class="poi-card-note">Visite guidée thématique disponible. Entrée payante musée BLDG 92.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍂</div>
+        <div class="poi-card-name">Squibb Park Bridge</div>
+        <div class="poi-card-address">Pont piéton moderne 2013</div>
+        <p class="poi-card-desc">Pont piéton architectural 2013. Accès Brooklyn Bridge Park sud.</p>
+        <p class="poi-card-note">Architectural curiosity.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⛪</div>
+        <div class="poi-card-name">Mother AME Zion Church</div>
+        <div class="poi-card-address">Historic NYC church</div>
+        <p class="poi-card-desc">Plus ancienne église afro-américaine NYC (1796). Frederick Douglass, Sojourner Truth, Paul Robeson all linked.</p>
+        <p class="poi-card-note">Historic significance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transports</div>
+        <p>2/3 trains à Clark Street station. Borough Hall A/C aussi disponible. Direct accès depuis Manhattan.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>17h00 → 21h30+</strong>. Brooklyn Bridge sunset = moment clé. Sans dîner, comptez jusqu'à 20h.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p><strong>Jeudi à dimanche</strong> — musées ouverts, restaurants opérants. Lundi-mercredi = certaines fermetures. Sunset magic = tous les jours!</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Brooklyn Heights = très residential. Families, professionals, artistes. Clean tree-lined streets. Moins touristique = authentique neighborhood feeling.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget</div>
+        <p>Café ~$10 · Museums ~$0–15 · Snacks ~$15 · Dîner ~$40–100 · Total : ~$65–125.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Love Lane · Promenade sunset · Brooklyn Bridge crossing golden hour · Hunts Lane horse · Truman Capote house.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« Brooklyn Heights is where history, architecture, and love collide beneath the Brooklyn Bridge at sunset. »</p>
+  <p class="footer-sub">Brooklyn · Arthur & Jade · Mai 2026</p>
+</footer>
+
+<script src="assets/nav-buttons.js" data-back-href="brooklyn-index.html" data-back-label="Brooklyn"></script>
+</body>
+</html>

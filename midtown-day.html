@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midtown — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8; --cream-dark: #EDE7D6; --navy: #1A2744; --navy-light: #243356;
+    --gold: #C8A96E; --gold-light: #E8C98A; --rust: #8B3A2A; --sage: #5A7A5A;
+    --text: #2A2018; --text-muted: #6B5D4A; --border: rgba(26,39,68,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-pattern { position: absolute; inset: 0; opacity: 0.14; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 460px; line-height: 1.6; }
+
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); cursor: default; transition: color 0.2s; text-decoration: none; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); font-style: normal; margin: 0; line-height: 1.6; }
+  .tip-box strong { color: var(--gold); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+  /* Manhattanhenge hero card */
+  .map-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .map-container { margin-top: 20px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); line-height: 0; }
+  .map-container svg { display: block; width: 100%; height: auto; }
+
+  .henge-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .henge-card { background: linear-gradient(135deg, var(--rust) 0%, #B8542A 50%, var(--gold) 100%); border-radius: 6px; padding: 32px 28px; position: relative; overflow: hidden; }
+  .henge-card::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 40%, rgba(255,220,150,0.35), transparent 60%); pointer-events: none; }
+  .henge-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 12px; position: relative; }
+  .henge-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 6.5vw, 44px); font-weight: 400; color: var(--cream); line-height: 1.08; margin-bottom: 10px; position: relative; letter-spacing: 0.02em; }
+  .henge-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--gold-light); margin-bottom: 22px; position: relative; }
+  .henge-card p { font-size: 14px; line-height: 1.7; color: rgba(255,248,230,0.92); margin-bottom: 12px; position: relative; }
+  .henge-card p:last-child { margin-bottom: 0; }
+  .henge-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0 16px; position: relative; }
+  @media (max-width: 480px) { .henge-dates { grid-template-columns: 1fr; } }
+  .henge-date { background: rgba(26,39,68,0.35); padding: 12px 14px; border-radius: 3px; border-left: 2px solid var(--gold-light); }
+  .henge-date-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px; }
+  .henge-date-value { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--cream); font-weight: 500; }
+  .henge-date-time { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,248,230,0.7); margin-top: 2px; }
+  .henge-card em { color: var(--gold-light); font-style: italic; font-weight: 400; }
+  .henge-card strong { color: var(--cream); font-weight: 500; }
+
+  /* Stop card (used for MoMA, observatoires, St Patrick, Bryant Park, NYPL, Grand Central) */
+  .stop { padding: 44px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 80px 1fr; gap: 0 28px; position: relative; }
+  .stop:last-child { border-bottom: none; }
+  .stop::before { content: ''; position: absolute; left: 39px; top: 76px; bottom: -44px; width: 1px; background: linear-gradient(to bottom, var(--border), transparent); }
+  .stop:last-child::before { display: none; }
+  .stop-time-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .stop-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cream); border: 2px solid var(--navy); flex-shrink: 0; position: relative; z-index: 1; }
+  .stop-dot.featured { background: var(--gold); border-color: var(--gold); width: 16px; height: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 8px; writing-mode: vertical-lr; transform: rotate(180deg); white-space: nowrap; }
+  .stop-category { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 5vw, 30px); font-weight: 500; color: var(--navy); line-height: 1.1; margin-bottom: 4px; }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 14px; }
+  .stop-desc { font-size: 14.5px; color: var(--text); line-height: 1.72; margin-bottom: 12px; }
+  .stop-note { background: var(--cream-dark); border: 1px solid var(--border); padding: 12px 16px; border-radius: 4px; margin-top: 14px; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 5px; }
+  .stop-note p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; font-style: italic; }
+  .stop-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 2px; }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* Architectural walk — compact cards for "just passing by" stops */
+  .walk-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .walk-intro { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 28px; line-height: 1.65; }
+  .walk-item { display: grid; grid-template-columns: 56px 1fr; gap: 0 20px; padding: 20px 0; border-bottom: 1px solid var(--border); position: relative; }
+  .walk-item:last-child { border-bottom: none; }
+  .walk-item-marker { display: flex; flex-direction: column; align-items: center; padding-top: 3px; }
+  .walk-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.1em; }
+  .walk-line { width: 1px; flex: 1; background: linear-gradient(to bottom, var(--border), transparent); margin-top: 8px; min-height: 30px; }
+  .walk-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .walk-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--navy); line-height: 1.15; margin-bottom: 3px; }
+  .walk-addr { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .walk-desc { font-size: 13.5px; color: var(--text); line-height: 1.65; margin-bottom: 6px; }
+  .walk-desc:last-child { margin-bottom: 0; }
+  .walk-tip { font-size: 12px; color: var(--rust); font-style: italic; line-height: 1.5; margin-top: 6px; }
+  .walk-title.featured { color: var(--rust); }
+
+  /* Food & POI grids — reused */
+  .food-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .food-intro { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; line-height: 1.65; }
+  .meal-block { margin-bottom: 36px; }
+  .meal-block:last-child { margin-bottom: 0; }
+  .meal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .meal-header-icon { font-size: 18px; }
+  .meal-header-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--navy); flex: 1; }
+  .meal-header-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; }
+  .resto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .resto-grid { grid-template-columns: 1fr; } }
+  .resto-card { border: 1px solid var(--border); padding: 16px; border-radius: 4px; transition: border-color 0.2s, box-shadow 0.2s; position: relative; }
+  .resto-card:hover { border-color: var(--gold); box-shadow: 0 3px 12px rgba(26,39,68,0.07); }
+  .resto-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .resto-badge { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+  .resto-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 2px; line-height: 1.2; }
+  .resto-address { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 9px; }
+  .resto-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 7px; }
+  .resto-note { font-size: 11.5px; color: var(--rust); font-style: italic; line-height: 1.5; }
+
+  .section-divider { text-align: center; padding: 36px 0 8px; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); letter-spacing: 0.3em; opacity: 0.5; }
+
+  .poi-section { padding: 44px 0 36px; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  @media (max-width: 500px) { .poi-grid { grid-template-columns: 1fr; } }
+  .poi-card { border: 1px solid var(--border); padding: 18px; border-radius: 4px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .poi-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(26,39,68,0.06); }
+  .poi-card-icon { font-size: 20px; margin-bottom: 8px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .poi-card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .poi-card-note { font-size: 11.5px; color: var(--rust); font-style: italic; margin-top: 6px; }
+
+  .infos-section { padding: 44px 0; }
+  .infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+  @media (max-width: 500px) { .infos-grid { grid-template-columns: 1fr; } }
+  .info-card { padding: 20px; background: var(--cream-dark); border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .info-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); font-weight: 500; }
+
+  .page-footer { background: var(--navy); padding: 32px 24px; text-align: center; }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--gold); font-style: italic; margin-bottom: 6px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(245,240,232,0.35); letter-spacing: 0.12em; }
+
+  .stop-expand { margin-top: 18px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
+  .stop-expand[open] { border-color: var(--gold); box-shadow: 0 2px 14px rgba(200,169,110,0.08); }
+  .stop-expand summary { list-style: none; cursor: pointer; padding: 13px 16px; background: var(--cream-dark); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: background 0.2s, color 0.2s; user-select: none; }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand summary::marker { display: none; }
+  .stop-expand summary:hover { background: rgba(200,169,110,0.18); }
+  .stop-expand[open] summary { background: var(--navy); color: var(--gold); border-bottom: 1px solid rgba(200,169,110,0.2); }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow { font-size: 9px; transition: transform 0.35s ease; display: inline-block; }
+  .stop-expand[open] .stop-expand-arrow { transform: rotate(180deg); }
+  .stop-expand-content { padding: 22px 20px 22px; background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent 80%); }
+
+  .anecdote { background: var(--rust); padding: 16px 18px; border-radius: 4px; margin: 18px 0; position: relative; }
+  .anecdote-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .anecdote-title::before { content: '❖'; font-size: 12px; }
+  .anecdote p { font-size: 13px; line-height: 1.7; color: rgba(245,240,232,0.92); margin: 0 0 9px 0; }
+  .anecdote p:last-child { margin: 0; }
+  .anecdote em, .anecdote strong { color: var(--gold-light); font-style: italic; font-weight: 400; }
+
+  .expand-section { margin: 16px 0; }
+  .expand-section:first-child { margin-top: 0; }
+  .expand-section-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--navy); margin-bottom: 8px; line-height: 1.2; }
+  .expand-section-sub { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+  .expand-section p { font-size: 13.5px; line-height: 1.7; color: var(--text); margin-bottom: 10px; }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .expand-section em { color: var(--navy); font-style: italic; font-weight: 500; }
+
+  .expand-practical { background: var(--cream-dark); border-left: 3px solid var(--gold); padding: 12px 14px; border-radius: 0 4px 4px 0; margin: 14px 0 4px; }
+  .expand-practical-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); margin-bottom: 6px; }
+  .expand-practical p { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+  .expand-practical strong { color: var(--navy); }
+
+  .romantic { background: linear-gradient(135deg, rgba(139,58,42,0.08), rgba(200,169,110,0.08)); border: 1px solid rgba(139,58,42,0.25); padding: 14px 16px; border-radius: 4px; margin-top: 14px; }
+  .romantic-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .romantic-label::before { content: '♥'; color: var(--rust); font-size: 11px; }
+  .romantic p { font-size: 13px; color: var(--text); line-height: 1.65; margin: 0; font-style: italic; }
+
+  /* Observatory choice — two-card compare layout */
+  .obs-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .obs-intro { font-size: 14.5px; color: var(--text-muted); font-style: italic; line-height: 1.65; margin-bottom: 24px; }
+  .obs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 640px) { .obs-grid { grid-template-columns: 1fr; } }
+  .obs-card { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s; }
+  .obs-card:hover { border-color: var(--gold); box-shadow: 0 6px 18px rgba(26,39,68,0.07); }
+  .obs-card-header { background: var(--navy); padding: 20px 20px 18px; }
+  .obs-card-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .obs-card-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--cream); line-height: 1.1; margin-bottom: 4px; }
+  .obs-card-sub { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; color: var(--gold-light); }
+  .obs-card-body { padding: 20px; }
+  .obs-card-body p { font-size: 13.5px; line-height: 1.65; color: var(--text); margin-bottom: 12px; }
+  .obs-card-body p:last-child { margin-bottom: 0; }
+  .obs-card-pros { background: var(--cream-dark); border-radius: 3px; padding: 12px 14px; margin: 10px 0; }
+  .obs-pros-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 6px; }
+  .obs-card-pros ul { list-style: none; padding: 0; margin: 0; }
+  .obs-card-pros li { font-size: 12.5px; color: var(--text); line-height: 1.6; padding-left: 14px; position: relative; }
+  .obs-card-pros li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: bold; }
+  .obs-card-cons { background: rgba(139,58,42,0.06); border-radius: 3px; padding: 12px 14px; }
+  .obs-cons-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 6px; }
+  .obs-card-cons ul { list-style: none; padding: 0; margin: 0; }
+  .obs-card-cons li { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; padding-left: 14px; position: relative; }
+  .obs-card-cons li::before { content: '−'; position: absolute; left: 0; color: var(--rust); font-weight: bold; }
+  .obs-practical { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 14px; }
+  .obs-practical p { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+  .obs-practical strong { color: var(--navy); font-weight: 500; }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('midtown');</script>
+
+
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="artdecoZigzag" x="0" y="0" width="60" height="18" patternUnits="userSpaceOnUse">
+        <polyline points="0,18 15,0 30,18 45,0 60,18" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      </pattern>
+      <pattern id="manhattanGrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="0" y2="50" stroke="#C8A96E" stroke-width="0.15"/>
+        <line x1="0" y1="0" x2="50" y2="0" stroke="#C8A96E" stroke-width="0.1"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#manhattanGrid)" opacity="0.5"/>
+    <rect width="100%" height="100%" fill="url(#artdecoZigzag)" opacity="0.3"/>
+    <g opacity="0.22" transform="translate(480,40)">
+      <path d="M 40 0 L 45 35 L 50 65 L 60 95 L 75 130 L 95 160 L 120 180 L 140 195 L 150 210 L 130 210 L 120 195 L 95 175 L 75 155 L 60 130 L 50 100 L 45 75 L 40 50 Z" transform="translate(-40,0)" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <path d="M 0 215 Q 25 200 50 215" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <path d="M -5 225 Q 25 208 55 225" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <path d="M -10 235 Q 25 216 60 235" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <path d="M -15 245 Q 25 224 65 245" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="-20" y="245" width="90" height="100" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+    </g>
+    <g opacity="0.18" transform="translate(180,70)">
+      <line x1="35" y1="0" x2="35" y2="30" stroke="#C8A96E" stroke-width="0.8"/>
+      <rect x="30" y="30" width="10" height="25" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="25" y="55" width="20" height="15" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="18" y="70" width="34" height="40" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <rect x="8" y="110" width="54" height="80" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <rect x="0" y="190" width="70" height="90" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+    </g>
+    <g opacity="0.12">
+      <polyline points="700,340 700,260 720,260 720,240 740,240 740,270 760,270 760,230 780,230 780,250 800,250 800,340" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <polyline points="0,340 0,280 15,280 15,250 35,250 35,265 55,265 55,230 75,230 75,260 95,260 95,340" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+    </g>
+    <line x1="0" y1="325" x2="800" y2="325" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="8 4" opacity="0.45"/>
+  </svg>
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">Midtown</h1>
+    <p class="hero-subtitle">Le cœur vertical de Manhattan</p>
+    <p class="hero-tagline">Une marche architecturale au cœur de la ville qui a inventé la verticalité — avec, en bonus cette semaine, un alignement cosmique que New York offre deux fois par an.</p>
+  </div>
+</header>
+
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#henge"><span class="tl-dot"></span>★ Manhattanhenge 29 mai</a>
+    <a class="tl-item" href="#walk"><span class="tl-dot"></span>Marche architecturale</a>
+    <a class="tl-item" href="#stop-moma"><span class="tl-dot"></span>MoMA — visite</a>
+    <a class="tl-item" href="#stop-patrick"><span class="tl-dot"></span>St Patrick</a>
+    <a class="tl-item" href="#stop-bryant"><span class="tl-dot"></span>Bryant Park &amp; NYPL</a>
+    <a class="tl-item" href="#stop-grand"><span class="tl-dot"></span>Grand Central</a>
+    <a class="tl-item" href="#obs"><span class="tl-dot"></span>Observatoire sunset</a>
+    <a class="tl-item" href="#food"><span class="tl-dot"></span>Manger</a>
+    <a class="tl-item" href="#pois"><span class="tl-dot"></span>Pépites</a>
+  </div>
+</nav>
+
+<main class="page-body">
+
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>La cité qui voulut toucher le ciel</h2>
+    <p>Midtown est l'image que le monde se fait de New York. C'est ici, entre la 34ème et la 59ème rue, que la ville a inventé la verticalité au XXe siècle — sous la pression d'une île trop étroite, d'un capitalisme en pleine ébullition et d'une course entre promoteurs et architectes pour construire le plus haut, le plus orné, le plus moderne. Le Chrysler Building (1930), l'Empire State (1931), le Rockefeller Center (1931–1939) sont tous sortis de terre en neuf années — au cœur de la Grande Dépression, comme un défi à la crise. Ils n'étaient pas des bureaux : ils étaient des <em>manifestes</em>.</p>
+    <p>Cette journée est avant tout une <em>marche architecturale</em> — un parcours éditorial entre les gratte-ciel les plus emblématiques de la ville, avec deux vraies visites (MoMA, observatoire au coucher du soleil) et trois temps forts incontournables (Bryant Park &amp; NYPL, Grand Central, St Patrick). Le reste s'admire depuis le trottoir.</p>
+    <div class="tip-box">
+      <strong>Avant de partir</strong>
+      <p>Réservez MoMA (créneau horaire via moma.org, 48h avant) et l'observatoire choisi (Top of the Rock ou Summit, 1 semaine avant pour un sunset). Le reste est accès libre.</p>
+    </div>
+  </section>
+
+  <!-- ── MANHATTANHENGE CARD ── -->
+  <section class="henge-section" id="henge">
+    <div class="section-label">Événement cosmique</div>
+    <div class="henge-card">
+      <div class="henge-eyebrow">29 mai 2026 — une fois par an</div>
+      <h2 class="henge-title">Manhattanhenge</h2>
+      <p class="henge-sub">Quand le soleil couchant s'aligne avec la grille de Manhattan</p>
+      <p>Deux fois par an, le soleil couchant tombe exactement dans l'axe des rues est-ouest de Manhattan. Les gratte-ciel se transforment en canyons qui cadrent le disque solaire comme un tableau. C'est un phénomène <em>purement new-yorkais</em>, rendu célèbre par l'astrophysicien Neil deGrasse Tyson. Et l'un des deux jours de l'année 2026 tombe pendant votre séjour.</p>
+
+      <div class="henge-dates">
+        <div class="henge-date">
+          <div class="henge-date-label">Jeudi 28 mai</div>
+          <div class="henge-date-value">Demi-soleil sur la grille</div>
+          <div class="henge-date-time">20h14 — arriver 20h00</div>
+        </div>
+        <div class="henge-date">
+          <div class="henge-date-label">Vendredi 29 mai ★</div>
+          <div class="henge-date-value">Plein soleil sur la grille</div>
+          <div class="henge-date-time">20h13 — arriver 19h45</div>
+        </div>
+      </div>
+
+      <p><strong>Meilleurs spots sur votre parcours :</strong> la <em>42ème rue</em> au niveau de Tudor City Overpass (vue plongeante, spot légendaire des photographes) · <em>Grand Central Terminal</em> côté est · <em>Bryant Park</em> · la <em>34ème rue</em> face à l'Empire State (le plus cadré) · la <em>57ème rue</em>. Se placer <strong>aussi à l'est que possible</strong>, tout en gardant vue dégagée vers l'ouest (New Jersey).</p>
+
+      <p><strong>Conseil de terrain :</strong> arrivez 30 minutes avant pour sécuriser votre position. La foule est massive — plusieurs milliers de personnes depuis que l'événement est devenu viral. Les gens se tiennent <em>au milieu des rues</em> (la police tolère, mais reste sur le trottoir si vous pouvez). Le spectacle dure à peine 10 minutes.</p>
+
+      <p><strong>⚠️ Conflit avec l'observatoire :</strong> sunset le 29 mai = 20h13. Si vous visez Manhattanhenge, vous ne pouvez <em>pas</em> faire un observatoire au coucher du soleil le même soir. Options : (1) Manhattanhenge le 29, observatoire un autre jour de la semaine, ou (2) observatoire le 29, Manhattanhenge le 28 (demi-soleil, mais beaucoup moins de monde).</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ CARTE SVG ══════════════════════════ -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 540" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte de Midtown Manhattan">
+        <!-- Fond -->
+        <rect width="740" height="540" fill="#F0EAD8"/>
+        <rect x="55" y="30" width="648" height="490" fill="#EDE5D2" rx="2"/>
+
+        <!-- Central Park (en haut-gauche, zone verte) -->
+        <rect x="55" y="30" width="290" height="35" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.5"/>
+        <text x="200" y="52" text-anchor="middle" font-size="9" fill="#62826A" font-family="Georgia,serif" font-style="italic">Central Park (sud)</text>
+
+        <!-- Bryant Park (rectangle vert mid-page) -->
+        <rect x="252" y="370" width="50" height="22" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.5" rx="1"/>
+        <text x="277" y="383" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Bryant Pk</text>
+
+        <!-- East River suggéré (bord droit) -->
+        <rect x="703" y="30" width="32" height="490" fill="#D5E0E8" opacity="0.6"/>
+        <text x="719" y="280" text-anchor="middle" font-size="7" fill="#7A9AB0" font-family="Georgia,serif" font-style="italic" transform="rotate(90 719 280)">East River</text>
+
+        <!-- Rues horizontales (numéros impairs et pairs principaux) -->
+        <!-- 59th -->
+        <line x1="55" y1="68" x2="703" y2="68" stroke="#BFB49E" stroke-width="1.1"/>
+        <!-- 57th — gold (Billionaires' Row axis) -->
+        <line x1="55" y1="100" x2="703" y2="100" stroke="#C8A96E" stroke-width="3"/>
+        <!-- 55th -->
+        <line x1="55" y1="132" x2="703" y2="132" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 53rd -->
+        <line x1="55" y1="164" x2="703" y2="164" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 51st -->
+        <line x1="55" y1="196" x2="703" y2="196" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 50th -->
+        <line x1="55" y1="212" x2="703" y2="212" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 48th -->
+        <line x1="55" y1="244" x2="703" y2="244" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 47th -->
+        <line x1="55" y1="260" x2="703" y2="260" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 45th -->
+        <line x1="55" y1="292" x2="703" y2="292" stroke="#BFB49E" stroke-width="1.1"/>
+        <!-- 42nd — gold (Manhattanhenge axis) -->
+        <line x1="55" y1="340" x2="703" y2="340" stroke="#C8A96E" stroke-width="3.5"/>
+        <!-- 40th -->
+        <line x1="55" y1="372" x2="703" y2="372" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 38th -->
+        <line x1="55" y1="404" x2="703" y2="404" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 36th -->
+        <line x1="55" y1="436" x2="703" y2="436" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- 34th -->
+        <line x1="55" y1="468" x2="703" y2="468" stroke="#BFB49E" stroke-width="1.1"/>
+        <!-- 31st -->
+        <line x1="55" y1="516" x2="703" y2="516" stroke="#D2C8B5" stroke-width="0.7"/>
+
+        <!-- Avenues verticales -->
+        <!-- 8th Ave -->
+        <line x1="80"  y1="68" x2="80"  y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- 7th Ave -->
+        <line x1="160" y1="68" x2="160" y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- 6th Ave (Avenue of the Americas) -->
+        <line x1="240" y1="68" x2="240" y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- 5th Ave -->
+        <line x1="335" y1="68" x2="335" y2="516" stroke="#BFB49E" stroke-width="1.4"/>
+        <!-- Madison Ave -->
+        <line x1="405" y1="68" x2="405" y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- Park Ave -->
+        <line x1="475" y1="68" x2="475" y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- Lexington Ave -->
+        <line x1="545" y1="68" x2="545" y2="516" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- 3rd Ave -->
+        <line x1="608" y1="68" x2="608" y2="516" stroke="#D2C8B5" stroke-width="0.8"/>
+        <!-- 2nd Ave -->
+        <line x1="654" y1="68" x2="654" y2="516" stroke="#D2C8B5" stroke-width="0.8"/>
+        <!-- 1st Ave -->
+        <line x1="690" y1="68" x2="690" y2="516" stroke="#D2C8B5" stroke-width="0.8"/>
+
+        <!-- Broadway (diagonale traversant le grid) -->
+        <line x1="335" y1="68" x2="120" y2="516" stroke="#C6BAA6" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.7"/>
+        <text x="225" y="290" font-size="7" fill="#9A8060" font-family="Georgia,serif" font-style="italic" transform="rotate(-65 225 290)">Broadway</text>
+
+        <!-- Labels rues (côté droit) -->
+        <text x="708" y="71"  font-size="7" fill="#9A8060" font-family="monospace">59th</text>
+        <text x="708" y="103" font-size="8.5" fill="#C8A96E" font-family="monospace" font-weight="bold">57th ★</text>
+        <text x="708" y="135" font-size="7" fill="#9A8060" font-family="monospace">55th</text>
+        <text x="708" y="167" font-size="7" fill="#9A8060" font-family="monospace">53rd</text>
+        <text x="708" y="199" font-size="7" fill="#9A8060" font-family="monospace">51st</text>
+        <text x="708" y="215" font-size="7" fill="#9A8060" font-family="monospace">50th</text>
+        <text x="708" y="247" font-size="7" fill="#9A8060" font-family="monospace">48th</text>
+        <text x="708" y="263" font-size="7" fill="#9A8060" font-family="monospace">47th</text>
+        <text x="708" y="295" font-size="7" fill="#9A8060" font-family="monospace">45th</text>
+        <text x="708" y="343" font-size="8.5" fill="#C8A96E" font-family="monospace" font-weight="bold">42nd ★</text>
+        <text x="708" y="375" font-size="7" fill="#9A8060" font-family="monospace">40th</text>
+        <text x="708" y="407" font-size="7" fill="#9A8060" font-family="monospace">38th</text>
+        <text x="708" y="439" font-size="7" fill="#9A8060" font-family="monospace">36th</text>
+        <text x="708" y="471" font-size="7" fill="#9A8060" font-family="monospace">34th</text>
+        <text x="708" y="519" font-size="7" fill="#9A8060" font-family="monospace">31st</text>
+
+        <!-- Labels avenues (en haut) -->
+        <text x="80"  y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">8th</text>
+        <text x="160" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">7th</text>
+        <text x="240" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">6th</text>
+        <text x="335" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">5th</text>
+        <text x="405" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Madison</text>
+        <text x="475" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Park</text>
+        <text x="545" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Lexington</text>
+        <text x="608" y="22" text-anchor="middle" font-size="7" fill="#9A8060" font-family="monospace">3rd</text>
+        <text x="654" y="22" text-anchor="middle" font-size="7" fill="#9A8060" font-family="monospace">2nd</text>
+        <text x="690" y="22" text-anchor="middle" font-size="7" fill="#9A8060" font-family="monospace">1st</text>
+
+        <!-- Ligne du parcours (1→11) -->
+        <polyline points="80,90 130,90 160,82 195,90 320,95 295,164 305,180 270,210 320,470 525,340 690,308"
+          stroke="#C8A96E" stroke-width="2.2" stroke-dasharray="7 5" fill="none" opacity="0.7" stroke-linejoin="round"/>
+
+        <!-- POIs (cercles verts, lettres minuscules) — affichés AVANT les restos pour superposition -->
+        <!-- a: Tudor City Bridge — entre 1st & 2nd / 42nd -->
+        <circle cx="672" cy="340" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="672" y="340" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <!-- b: Bryant Park Public Restroom -->
+        <circle cx="262" cy="358" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="262" y="358" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <!-- c: News Building — entre 2nd & 3rd / 42nd -->
+        <circle cx="630" cy="340" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="630" y="340" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <!-- d: Greenacre Park — entre 2nd & 3rd / 51st -->
+        <circle cx="630" cy="200" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="630" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <!-- e: Marilyn Monroe Subway Grate — Lexington / 52nd -->
+        <circle cx="545" cy="180" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="545" y="180" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">e</text>
+        <!-- f: 6½ Avenue — entre 6th & 7th / 53rd-57th -->
+        <circle cx="200" cy="120" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="200" y="120" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">f</text>
+        <!-- g: FDNY Fire Zone — 6th / 48th -->
+        <circle cx="240" cy="252" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="240" y="252" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">g</text>
+        <!-- h: Baccarat Hotel — face MoMA / 53rd -->
+        <circle cx="310" cy="158" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="310" y="158" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">h</text>
+
+        <!-- Restos (cercles rust, lettres majuscules) -->
+        <!-- A: maman — 6th / 48th (un peu décalé pour ne pas chevaucher g) -->
+        <circle cx="225" cy="240" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="225" y="240" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">A</text>
+        <!-- B: Brooklyn Diner — 6th-7th / 57th -->
+        <circle cx="215" cy="115" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="215" y="115" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">B</text>
+        <!-- C: Ess-a-Bagel — 3rd / 51st -->
+        <circle cx="608" cy="200" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="608" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <!-- D: Magnolia Bakery — 6th Rock -->
+        <circle cx="240" cy="225" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="240" y="225" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <!-- E: ALIDORO — 5th-Madison / 39th -->
+        <circle cx="370" cy="395" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="370" y="395" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <!-- F: LOS TACOS No.1 — Park / 44th -->
+        <circle cx="475" cy="312" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="475" y="312" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <!-- G: Burger Joint — 6th-7th / 56th (Parker Meridien) -->
+        <circle cx="195" cy="125" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="195" y="125" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <!-- H: Handsome Rice — 31st St (sud) -->
+        <circle cx="380" cy="500" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="380" y="500" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <!-- I: Dining Concourse Grand Central -->
+        <circle cx="475" cy="355" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="475" y="355" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <!-- J: Urbanspace 570 Lexington / 51st -->
+        <circle cx="560" cy="200" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="560" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">J</text>
+        <!-- K: Carnegie Diner — entre 7th et Broadway / 57th -->
+        <circle cx="175" cy="115" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="175" y="115" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">K</text>
+        <!-- L: PJ Clarke's — 3rd / 55th -->
+        <circle cx="608" cy="135" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="608" y="135" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">L</text>
+        <!-- M: Oyster Bar — Grand Central -->
+        <circle cx="490" cy="355" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="490" y="355" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">M</text>
+        <!-- N: Refinery Rooftop — 6th / 38th -->
+        <circle cx="240" cy="408" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="240" y="408" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">N</text>
+        <!-- O: King Cole Bar — St Regis 5th-Madison / 55th -->
+        <circle cx="370" cy="135" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="370" y="135" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">O</text>
+
+        <!-- Visites principales (carrés gold) — MoMA, St Patrick, NYPL, Grand Central, Summit -->
+        <!-- MoMA -->
+        <rect x="285" y="151" width="14" height="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="1.5" rx="1"/>
+        <text x="292" y="158" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">M</text>
+        <!-- St Patrick -->
+        <rect x="328" y="197" width="14" height="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="1.5" rx="1"/>
+        <text x="335" y="204" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">P</text>
+        <!-- NYPL -->
+        <rect x="328" y="333" width="14" height="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="1.5" rx="1"/>
+        <text x="335" y="340" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">L</text>
+        <!-- Grand Central -->
+        <rect x="468" y="333" width="14" height="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="1.5" rx="1"/>
+        <text x="475" y="340" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">G</text>
+        <!-- Summit (face Grand Central) -->
+        <rect x="450" y="333" width="14" height="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="1.5" rx="1"/>
+        <text x="457" y="340" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">S</text>
+
+        <!-- Stops architecturaux numérotés (1-11) en navy -->
+        <!-- 1: Hearst Tower — 8th / 57th -->
+        <circle cx="80" cy="100" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="80" y="100" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">1</text>
+        <rect x="62" y="78" width="36" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="80" y="87" text-anchor="middle" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Hearst</text>
+
+        <!-- 2: Central Park Tower — entre Bdwy & 7th / 57th -->
+        <circle cx="130" cy="100" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="130" y="100" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">2</text>
+        <rect x="102" y="78" width="56" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="130" y="87" text-anchor="middle" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Central Park T.</text>
+
+        <!-- 3: Alwyn Court — 7th / 58th -->
+        <circle cx="160" cy="84" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="160" y="84" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">3</text>
+        <rect x="176" y="73" width="48" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="178" y="82" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Alwyn Court</text>
+
+        <!-- 4: One57 — entre 6th & 7th / 57th -->
+        <circle cx="195" cy="100" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="195" y="100" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <rect x="211" y="106" width="32" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="213" y="115" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">One57</text>
+
+        <!-- 5: Trump Tower — 5th / 56th -->
+        <circle cx="320" cy="115" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="320" y="115" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">5</text>
+        <rect x="278" y="103" width="40" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="280" y="112" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Trump T.</text>
+
+        <!-- 6: Austrian Forum — 5th-Madison / 52nd -->
+        <circle cx="370" cy="180" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="370" y="180" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="386" y="174" width="48" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="388" y="183" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Austrian F.</text>
+
+        <!-- 7: Radio City — 6th / 50th-51st -->
+        <circle cx="240" cy="204" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="240" y="204" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">7</text>
+        <rect x="170" y="198" width="50" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="172" y="207" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Radio City</text>
+
+        <!-- 8: Rockefeller — entre 5th & 6th / 50th -->
+        <circle cx="290" cy="212" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="290" y="212" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">8</text>
+        <rect x="306" y="218" width="60" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="308" y="227" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Rockefeller ★</text>
+
+        <!-- 9: Empire State — 5th / 34th -->
+        <circle cx="320" cy="468" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="320" y="468" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">9</text>
+        <rect x="244" y="456" width="68" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="246" y="465" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Empire State ★</text>
+
+        <!-- 10: Chrysler — Lexington / 42nd -->
+        <circle cx="545" cy="340" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="545" y="340" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">10</text>
+        <rect x="514" y="318" width="44" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="516" y="327" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Chrysler</text>
+
+        <!-- 11: ONU — 1st / 45th -->
+        <circle cx="690" cy="308" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="690" y="308" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">11</text>
+        <rect x="668" y="290" width="32" height="11" fill="rgba(237,229,210,0.9)" rx="1"/>
+        <text x="684" y="299" text-anchor="middle" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">ONU</text>
+
+        <!-- Boussole nord -->
+        <g transform="translate(682,496)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Marche architecturale (passages devant)</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Hearst Tower</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Central Park Tower</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Alwyn Court</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ One57</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑤ Trump Tower</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Austrian Forum</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑦ Radio City</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑧ Rockefeller ★</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑨ Empire State ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑩ Chrysler</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑪ ONU</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);background:rgba(200,169,110,0.06);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Visites principales &amp; observatoire</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#C8A96E;color:#1A2744;border-radius:2px;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;flex-shrink:0;">M</span>MoMA <span style="opacity:0.5;">— 11 W 53rd St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#C8A96E;color:#1A2744;border-radius:2px;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;flex-shrink:0;">P</span>St Patrick's Cathedral <span style="opacity:0.5;">— 5th Ave / 50th–51st</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#C8A96E;color:#1A2744;border-radius:2px;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;flex-shrink:0;">L</span>New York Public Library <span style="opacity:0.5;">— 476 5th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#C8A96E;color:#1A2744;border-radius:2px;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;flex-shrink:0;">G</span>Grand Central Terminal <span style="opacity:0.5;">— 89 E 42nd St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#C8A96E;color:#1A2744;border-radius:2px;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:bold;flex-shrink:0;">S</span>Summit One Vanderbilt <span style="opacity:0.5;">— 45 E 42nd St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants — Petit-déj &amp; déjeuner</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">A</span>maman <span style="opacity:0.5;">— 12 W 48th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">B</span>Brooklyn Diner <span style="opacity:0.5;">— 155 W 57th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>Ess-a-Bagel <span style="opacity:0.5;">— 831 3rd Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>Magnolia Bakery <span style="opacity:0.5;">— 1240 6th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>ALIDORO <span style="opacity:0.5;">— 18 E 39th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>LOS TACOS No.1 <span style="opacity:0.5;">— 125 Park Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>Burger Joint <span style="opacity:0.5;">— 119 W 56th St (Parker Meridien)</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>Handsome Rice <span style="opacity:0.5;">— 133 E 31st St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>Dining Concourse <span style="opacity:0.5;">— Grand Central -1</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">J</span>Urbanspace 570 Lexington <span style="opacity:0.5;">— 570 Lex / 51st</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">K</span>Carnegie Diner &amp; Café <span style="opacity:0.5;">— 205 W 57th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants — Dîner &amp; bars</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">L</span>P.J. Clarke's <span style="opacity:0.5;">— 915 3rd Ave / 55th</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">M</span>Grand Central Oyster Bar <span style="opacity:0.5;">— Grand Central -1</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">N</span>Refinery Rooftop <span style="opacity:0.5;">— 63 W 38th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">O</span>King Cole Bar (St Regis) <span style="opacity:0.5;">— 2 E 55th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Pépites &amp; détours</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>Tudor City Bridge <span style="opacity:0.5;">— E 42nd / 1st–2nd Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>Bryant Park Public Restroom <span style="opacity:0.5;">— Bryant Park</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>News Building (Daily Planet) <span style="opacity:0.5;">— 220 E 42nd St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Greenacre Park <span style="opacity:0.5;">— 217 E 51st St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">e</span>Marilyn Monroe Subway Grate <span style="opacity:0.5;">— 586 Lexington</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">f</span>6½ Avenue (passage) <span style="opacity:0.5;">— 51st–57th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">g</span>FDNY Fire Zone <span style="opacity:0.5;">— 61 W 48th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">h</span>Baccarat Hotel <span style="opacity:0.5;">— 28 W 53rd St</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ MARCHE ARCHITECTURALE ══════════════════════════ -->
+  <section class="walk-section" id="walk">
+    <div class="section-label">Marche architecturale — passages devant</div>
+    <p class="walk-intro">Dix façades emblématiques à admirer depuis le trottoir en remontant de l'ouest vers l'est, du Art Déco tardif aux pencil towers contemporaines. Pas de visite intérieure — lever les yeux suffit.</p>
+
+    <!-- 01 HEARST -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">01</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">09:00 · ~15 min</div>
+        <div class="walk-title">Hearst Tower</div>
+        <div class="walk-addr">300 W 57th St · angle 8th Avenue</div>
+        <p class="walk-desc">Un gratte-ciel posé sur un vieux socle — littéralement. La base Art Déco de six étages en pierre calcaire dorée fut commandée en 1928 par le magnat de presse <em>William Randolph Hearst</em> (le modèle direct de <em>Citizen Kane</em>). La crise de 1929 stoppa net le projet, laissant la base orpheline pendant <em>78 ans</em>. En 2006, <em>Norman Foster</em> y ajouta la tour de verre et sa géométrie <em>diagrid</em> triangulaire — 20 % d'acier économisé par rapport à une ossature classique. Premier gratte-ciel certifié LEED Gold de New York.</p>
+        <p class="walk-tip">📷 Traversez la 8th Avenue côté est pour voir la tour en entier. Le lobby est accessible en semaine 7h–18h — demandez à voir <em>Icefall</em>, la cascade de trois étages de verre gelé.</p>
+      </div>
+    </div>
+
+    <!-- 02 CENTRAL PARK TOWER -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">02</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">09:15 · ~5 min</div>
+        <div class="walk-title">Central Park Tower</div>
+        <div class="walk-addr">217 W 57th St · entre Broadway &amp; 7th Ave</div>
+        <p class="walk-desc"><em>472 mètres</em> — le plus haut immeuble résidentiel au monde, achevé en 2021 (Adrian Smith + Gordon Gill). Son socle commercial abrite un Nordstrom ; au-dessus, 179 appartements dont un triplex mis sur le marché à <em>250 millions de dollars</em> (toujours à vendre). Comme ses voisins de la <em>Billionaires' Row</em>, la tour est aux deux tiers vide la plupart de l'année : résidences secondaires anonymisées via sociétés écran.</p>
+        <p class="walk-tip">📷 Pour saisir la hauteur : reculez jusqu'au milieu de la 58ème rue, regardez à 45 degrés.</p>
+      </div>
+    </div>
+
+    <!-- 03 ALWYN COURT -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">03</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">09:25 · ~10 min</div>
+        <div class="walk-title">Alwyn Court</div>
+        <div class="walk-addr">180 W 58th St · angle 7th Avenue</div>
+        <p class="walk-desc">Un château de la Loire transposé dans Manhattan. Douze étages de terre cuite crème entièrement recouverts de sculptures en relief — <em>salamandres couronnées</em> (emblème personnel de François Ier), fleurs de lys, chimères, feuillages. Construit en 1907 par Harde &amp; Short, c'est une rare interprétation américaine du style <em>François Ier</em>. La façade compte plus de <em>10 000 éléments distincts</em> en terre cuite moulée — prouesse technique du Gilded Age. À l'origine : 22 appartements de 14 pièces pour la grande bourgeoisie ; divisés en 75 unités plus petites dans les années 30.</p>
+        <p class="walk-tip">🔍 Cherchez les salamandres couronnées répétées partout sur la façade — c'est la signature personnelle du roi de France. Et le « F » stylisé au-dessus de l'entrée.</p>
+      </div>
+    </div>
+
+    <!-- 04 ONE57 -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">04</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">09:40 · ~5 min</div>
+        <div class="walk-title">One57</div>
+        <div class="walk-addr">157 W 57th St · entre 6th &amp; 7th Ave</div>
+        <p class="walk-desc"><em>306 mètres</em>, achevé en 2014 par <em>Christian de Portzamparc</em> (architecte français, Prix Pritzker 1994) — la <em>première</em> des pencil towers qui ont redessiné la skyline de la 57ème rue. Façade en courbes cobalt-et-argent, silhouette reconnaissable. Un penthouse du 89e étage s'est vendu 100,5 M$ en 2015, record absolu à l'époque. La tour a ouvert la voie à toutes les autres super-tall résidentielles qui l'ont suivie (432 Park, Central Park Tower, 111 W 57th).</p>
+      </div>
+    </div>
+
+    <!-- 05 TRUMP TOWER -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">05</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">09:50 · ~5 min</div>
+        <div class="walk-title">Trump Tower</div>
+        <div class="walk-addr">725 5th Ave · entre 56th &amp; 57th St</div>
+        <p class="walk-desc">Construite en 1983 par <em>Der Scutt</em>, ce fut le premier grand projet qui propulsa Donald Trump sur la scène new-yorkaise. L'atrium intérieur — marbre Breccia Perniche rose-orangé, laiton poli, cascade de six étages — est un spécimen révélateur d'un certain vocabulaire visuel du luxe américain des années 80. Visible depuis le trottoir à travers les parois vitrées ; entrer demande de passer un contrôle de sécurité renforcé depuis 2016.</p>
+        <p class="walk-tip">💡 À ne faire que si vous êtes curieux — rien d'autre à y voir. Sinon passez devant et continuez vers St Patrick.</p>
+      </div>
+    </div>
+
+    <!-- 06 AUSTRIAN FORUM -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">06</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">Après MoMA · ~10 min</div>
+        <div class="walk-title">Forum culturel autrichien</div>
+        <div class="walk-addr">11 E 52nd St · entre 5th &amp; Madison</div>
+        <p class="walk-desc">Une lame de verre sombre, haute de 24 étages, <em>large de seulement 7,6 mètres</em> — coincée entre deux immeubles conventionnels. Conçue par l'architecte viennois <em>Raimund Abraham</em> en 2002, la façade est inclinée en gradins stylisés évoquant une proue de navire. L'un des projets architecturaux les plus audacieux de New York dans les années 2000, dans un quartier où chaque centimètre compte.</p>
+        <p class="walk-tip">📐 Les étages en retrait permettent au soleil d'atteindre le trottoir — démonstration des règles de <em>setback</em> new-yorkaises qui imposent aux gratte-ciel de « reculer » à partir d'une certaine hauteur.</p>
+      </div>
+    </div>
+
+    <!-- 07 RADIO CITY -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">07</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">~10 min</div>
+        <div class="walk-title">Radio City Music Hall</div>
+        <div class="walk-addr">1260 6th Ave · W 50th &amp; 51st St</div>
+        <p class="walk-desc">L'un des temples Art Déco de New York. Inauguré le <em>27 décembre 1932</em> en pleine Dépression, Radio City devait être le plus grand cinéma du monde : <em>5 960 places</em>, scène à trois plateformes élévatrices, orgue à tuyaux de 32 000 pipes. La façade et son néon rouge <em>« Radio City »</em> sont un repère iconique depuis 93 ans. Aujourd'hui : concerts, Tony Awards, MTV VMAs, et les fameuses <em>Rockettes</em> en décembre — 200 représentations sold-out par saison.</p>
+        <p class="walk-tip">Si vous êtes vraiment curieux : Stage Door Tour guidé $33, 75 min, visite des coulisses et rencontre avec une Rockette. Sinon, la façade et le lobby se voient de la rue.</p>
+      </div>
+    </div>
+
+    <!-- 08 ROCKEFELLER -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">08</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">~30 min</div>
+        <div class="walk-title featured">Rockefeller Plaza</div>
+        <div class="walk-addr">30 Rockefeller Plaza · entre 5th &amp; 6th Avenues</div>
+        <p class="walk-desc">Pas un bâtiment mais un <em>complexe</em> : 19 immeubles Art Déco construits entre 1931 et 1939 par John D. Rockefeller Jr. — qui finança les 250 M$ du projet entièrement sur fonds personnels en pleine Dépression, embauchant 75 000 ouvriers sur 9 ans. La plaza centrale abrite la statue dorée de <em>Prométhée</em> (Paul Manship, 1934) et la patinoire hivernale. Au-dessus de l'entrée principale : le bas-relief <em>Wisdom</em> de Lee Lawrie (Sagesse, Son, Lumière). Sur la 6ème Avenue, l'<em>Atlas</em> de Lee Lawrie (1937) face à Saint Patrick — dialogue paganisme-christianisme volontaire.</p>
+        <p class="walk-desc">Le <em>sapin de Noël</em> s'y dresse chaque année depuis 1931 — tradition née deux ans après le krach, symbole de prospérité retrouvée. 25 m de haut, 50 000 ampoules LED, étoile Swarovski de 3 mètres au sommet. On le dresse le lundi avant Thanksgiving, on l'allume le 1er mardi de décembre.</p>
+        <div class="stop-note">
+          <div class="stop-note-label">❖ Erreur de casting</div>
+          <p>Rockefeller Jr. commanda au peintre mexicain Diego Rivera une fresque monumentale pour le hall de 30 Rock. Rivera y peignit le portrait de <em>Lénine</em>. Scandale. La famille exigea le retrait, Rivera refusa. En février 1934, la fresque fut <em>détruite au burin</em>. Rivera la repeignit ensuite à Mexico, au Palacio de Bellas Artes, où elle est encore visible.</p>
+        </div>
+        <p class="walk-tip">📷 Le spot photo signature : sur la 5ème Avenue au niveau de Channel Gardens, avec Atlas au premier plan et la flèche de St Patrick en face. Traversez pour voir les deux œuvres qui se répondent.</p>
+      </div>
+    </div>
+
+    <!-- 09 EMPIRE STATE -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">09</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">~20 min</div>
+        <div class="walk-title featured">Empire State Building</div>
+        <div class="walk-addr">20 W 34th St · angle 5th Avenue</div>
+        <p class="walk-desc"><em>381 mètres</em> (443 avec l'antenne), 102 étages, construit en <em>410 jours</em> — record pour un gratte-ciel de cette taille, jamais battu. Inauguré le 1er mai 1931 par le président Hoover, qui alluma les lumières depuis Washington par télégramme. Pendant 41 ans, jusqu'aux Tours Jumelles en 1972, ce fut <em>le plus haut bâtiment du monde</em>. Architecture de Shreve, Lamb &amp; Harmon — Art Déco pur, calcaire de l'Indiana, acier Bethlehem.</p>
+        <p class="walk-desc">Le lobby est à voir <em>même sans monter</em> — 30 secondes suffisent. Plafonds à la feuille d'or, mosaïques murales Art Déco représentant l'Empire State lui-même comme huitième merveille du monde, entouré des sept autres. Les 60 derniers mètres (le pic au-dessus du 86e étage) étaient à l'origine un <em>mât d'amarrage pour dirigeables</em> — zeppelins transatlantiques qui devaient s'y accrocher. Une seule tentative en septembre 1931, échec total (vents tourbillonnants).</p>
+        <p class="walk-tip">Choix d'observatoire → voir plus bas. Le lobby est gratuit, ouvert 8h–2h du matin.</p>
+      </div>
+    </div>
+
+    <!-- 10 CHRYSLER -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">10</div><div class="walk-line"></div></div>
+      <div>
+        <div class="walk-time">~15 min</div>
+        <div class="walk-title">Chrysler Building</div>
+        <div class="walk-addr">405 Lexington Ave · angle E 42nd St</div>
+        <p class="walk-desc">Le plus beau gratte-ciel Art Déco du monde — et pour beaucoup le plus beau gratte-ciel tout court. <em>William Van Alen</em>, 1930, 319 mètres, 77 étages. Sa couronne en acier inoxydable Nirosta — sept arches superposées percées de fenêtres triangulaires, gargouilles-aigles en aluminium inspirées des bouchons de radiateur Chrysler 1929 — est unique au monde et n'a jamais été reproduite.</p>
+        <p class="walk-desc">Le lobby (entrée par Lexington) est accessible en journée : marbre rouge du Maroc, peinture murale au plafond de 105 m² signée Edward Trumbull (la plus grande de l'époque), portes d'ascenseur marquetées toutes différentes. Pas d'observation deck — vous ne pouvez pas monter. Le Cloud Club privé des étages 66–68, créé par Walter Chrysler en 1930, est fermé depuis 1979.</p>
+        <div class="stop-note">
+          <div class="stop-note-label">❖ La flèche cachée</div>
+          <p>En 1929, Van Alen se livra une guerre secrète avec son ancien partenaire Severance (40 Wall Street, 283 m). Van Alen fit assembler <em>en cachette</em>, à l'intérieur du Chrysler, une flèche de 56 mètres en acier inoxydable. Le 23 octobre 1929, alors que 40 Wall Street se pavanait de sa victoire, Van Alen fit hisser la flèche en <em>90 minutes</em>, propulsant le Chrysler à 319 mètres. Coup de théâtre architectural resté dans l'histoire. Six mois plus tard, l'Empire State les dépassait tous les deux.</p>
+        </div>
+        <p class="walk-tip">📷 Meilleur angle : depuis la 3ème Avenue entre la 42ème et la 43ème, trottoir est. Pour la photo de nuit la plus spectaculaire : <em>Tudor City Bridge</em> (voir POIs).</p>
+      </div>
+    </div>
+
+    <!-- 11 ONU -->
+    <div class="walk-item">
+      <div class="walk-item-marker"><div class="walk-num">11</div></div>
+      <div>
+        <div class="walk-time">~15 min</div>
+        <div class="walk-title">Organisation des Nations unies</div>
+        <div class="walk-addr">405 E 45th St · 1st Avenue · territoire international</div>
+        <p class="walk-desc">Construit en 1949–1952 sur les berges de l'East River par une équipe de 11 architectes dirigée par <em>Wallace Harrison</em>, avec contributions majeures de <em>Le Corbusier</em> et <em>Oscar Niemeyer</em>. Techniquement un <em>territoire international</em> : vous n'êtes plus sur le sol américain une fois passé le portail. Le <em>Secretariat Building</em> (39 étages, entièrement vitré) fut le pionnier du <em>curtain wall</em> moderne en 1950 — modèle de tous les gratte-ciel de bureaux qui suivront. À côté, la coupole blanche incurvée de la <em>General Assembly Hall</em>, et le mât où flottent les 193 drapeaux des États membres.</p>
+        <div class="stop-note">
+          <div class="stop-note-label">❖ Pourquoi ici ?</div>
+          <p>Aucune ville n'avait été officiellement désignée en 1946 ; Londres, Paris, Genève postulaient. Ce fut finalement <em>John D. Rockefeller Jr.</em> (encore lui) qui offrit les 8,5 millions de dollars d'époque nécessaires à l'achat du terrain new-yorkais — de vieux abattoirs en bord d'East River. Le philanthrope, qui avait bâti le Rockefeller Center à 2 km, voulait ancrer définitivement la diplomatie mondiale dans sa ville.</p>
+        </div>
+        <p class="walk-tip">⏰ Les visites guidées intérieures ($26, 45 min, rideau de Chagall, salle du Conseil de Sécurité) sont <em>en semaine 9h–16h45 uniquement</em>. Si vous passez en fin de journée, vous verrez l'extérieur illuminé depuis Ralph Bunche Park — correct mais pas la vraie visite. Alternative : revenir en matinée un autre jour.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ MoMA ══════════════════════════ -->
+  <article class="stop" id="stop-moma">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">10:30</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Visite · Chef-d'œuvre du XXe</div>
+      <h3 class="stop-title">Museum of Modern Art (MoMA)</h3>
+      <div class="stop-address">11 W 53rd St · entre 5th &amp; 6th Avenues</div>
+      <p class="stop-desc">Avec le Met, c'est l'un des deux musées incontournables de New York — et pour beaucoup, <em>le 1er musée d'art moderne du monde</em>. Fondé en 1929 par trois collectionneuses audacieuses — <em>Abby Aldrich Rockefeller</em>, Lillie P. Bliss et Mary Quinn Sullivan — pour défendre un art que le Metropolitan refusait alors d'exposer (Cézanne, Van Gogh, Gauguin). Considéré comme hermétique à ses débuts, le MoMA est aujourd'hui à la pointe de la création contemporaine.</p>
+      <p class="stop-desc">Premier bâtiment en 1939, modernisé en 2004 par <em>Yoshio Taniguchi</em>, et magistralement <em>agrandi en 2019</em> par <em>Jean Nouvel</em> grâce à un don de 200 millions de dollars de la famille Rockefeller. La nouvelle aile occupe quelques étages d'une tour adjacente : espace, lumière, ouverture sur la ville. <em>2 500 œuvres</em> exposées (sur 200 000 dans la réserve), couvrant tout : peinture, sculpture, photographie, architecture, design, vidéo, cinéma.</p>
+
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>Après l'effervescence des salles, retirez-vous dans le <em>Sculpture Garden</em> au rez-de-chaussée — bassins d'eau noire, bronzes de Rodin, Maillol, Moore, platanes en rangées. Dessiné par Philip Johnson en 1953 d'après les jardins de Kyoto. Probablement le plus beau jardin intérieur de Manhattan, et l'un des plus discrets. Banc au fond à gauche : 10 minutes de silence à deux.</p>
+      </div>
+
+      <div class="stop-tags">
+        <span class="tag gold">30 $ / personne · gratuit −16 ans</span>
+        <span class="tag rust">Réservation 48h avant</span>
+        <span class="tag sage">2h30 — 4h selon appétit</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Parcours par étages &amp; anecdotes</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Comment visiter — l'astuce du Routard</div>
+            <span class="expand-section-sub">Conseil pratique</span>
+            <p>Les œuvres incontournables des collections permanentes sont aux <em>5e et 4e étages</em>. Les 6e et 3e accueillent les expositions temporaires. <em>Effectuer la visite en descendant</em> : montez direct au 5e étage, redescendez progressivement. Vous évitez la file de l'ascenseur en pleine visite et vous suivez l'ordre chronologique de l'art moderne.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">5e étage : 1880–1940</div>
+            <span class="expand-section-sub">L'âge d'or — chefs-d'œuvre absolus</span>
+            <p>L'étage le plus dense en chefs-d'œuvre. Les emblématiques <em>Demoiselles d'Avignon</em> de Picasso (1907) — l'acte de naissance du cubisme, vibrant hommage aux filles de joie de Carrer d'Avinyó à Barcelone (voir encadré « Sur le pont »). La <em>Persistance de la mémoire</em> de Dalí (les fameuses montres molles). <em>La Naissance du monde</em> de Miró. Les surréalistes : Magritte, Ernst, Man Ray, Arp. Le couple Delaunay (Sonia &amp; Robert). Picasso, Braque, Juan Gris, Léger pour le cubisme. Chagall, Klee, Kandinsky, Mondrian. <em>La Danse</em> de Matisse. Les <em>Nymphéas</em> de Monet (triptyque monumental dans une salle dédiée).</p>
+            <p>Sans oublier <em>La Nuit étoilée</em> de Van Gogh, peinte depuis la fenêtre de l'asile de Saint-Rémy-de-Provence en 1889 — l'œuvre la plus photographiée du musée. Et le <em>Douanier Rousseau</em> avec ses jungles aplaties et superposées sans perspective.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">4e étage : 1940–1970</div>
+            <span class="expand-section-sub">L'art américain prend la main</span>
+            <p>Au lendemain de la Seconde Guerre mondiale, le centre de gravité de l'art moderne bascule de Paris à New York. <em>L'expressionnisme abstrait</em> américain est ici représenté par <em>Jackson Pollock</em> et ses <em>drippings</em>, <em>Mark Rothko</em>, <em>Barnett Newman</em>, <em>Clyfford Still</em>. Puis le <em>Pop Art</em> : <em>Warhol</em> et ses 32 boîtes de soupe Campbell (1962, l'œuvre fondatrice), <em>Roy Lichtenstein</em>, <em>Rauschenberg</em>, <em>Jasper Johns</em> et son drapeau américain noir. La photographie de <em>Diane Arbus</em>. Sculptures de <em>Niki de Saint Phalle</em>, <em>Yves Klein</em>, <em>César</em>.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">3e étage : 1970 à nos jours</div>
+            <span class="expand-section-sub">Photographie, vidéo, contemporain</span>
+            <p>Photographie, vidéo, art conceptuel, installations. <em>Keith Haring</em>, <em>Jean-Michel Basquiat</em>. Salle <em>cinéma</em> incluse dans le billet, programmation éclectique (films d'auteur, rétrospectives). Et tout l'art le plus récent — souvent renouvelé.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">2e étage : design</div>
+            <span class="expand-section-sub">Une collection injustement méconnue</span>
+            <p>Une salle entière dédiée au design : <em>Bouquet de Calder</em>, <em>chèvre de Picasso</em>, <em>Oiseau lunaire</em> de Miró. Et surtout — vrai bonus pour les Français — l'<em>entrée de métro parisien 1900 signée Hector Guimard</em> en pleine salle de musée new-yorkaise. Fauves de Calder, mobilier Gaudí, Mackintosh, Wright, Le Corbusier.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Abstrait Monet ?</div>
+            <p>Boudés à leur présentation, les <em>Nymphéas</em> furent considérés comme la plus grave erreur artistique de Claude Monet. En 1955, le directeur du MoMA <em>Alfred Barr</em> fit l'acquisition d'un panneau (les autres restent au musée de l'Orangerie à Paris). Barr avait compris ce que Monet allait révolutionner pour les artistes américains : Still, Barnett Newman, Jackson Pollock, Mark Rothko sont immédiatement fascinés par ces formes estompées et dissoutes. C'est en découvrant Monet abstrait qu'ils inventèrent l'expressionnisme abstrait. Une œuvre considérée comme ratée a engendré tout un mouvement.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Sur le pont</div>
+            <p>Contrairement à ce que l'on pourrait croire, le célèbre tableau des <em>Demoiselles d'Avignon</em> (1907) — exposé au MoMA dès le lobby — n'a rien à voir avec la ville française. Picasso y rend hommage aux filles de joie d'un bordel de la <em>Carrer d'Avinyó</em> à Barcelone, vieille rue du centre-ville. L'acte de naissance du cubisme est en fait <em>un tableau de bordel</em>. Une toile si subversive à l'époque que Picasso la dissimula <em>9 ans</em> avant de la montrer publiquement.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Sens dessus dessous</div>
+            <p>En 1961, on exposa au MoMA <em>Le Bateau</em> de Matisse. Une de ses dernières œuvres, constituée de papiers découpés. Il fallut <em>47 jours</em> pour que l'on remarque que le tableau était accroché à l'envers. Plus de 100 000 personnes l'avaient ainsi admiré sans s'en rendre compte. Quand l'erreur fut signalée par un visiteur, Matisse était mort depuis 7 ans. Le musée s'excusa, le remit à l'endroit, et garda l'anecdote pour la postérité.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>30 $ / personne</strong>, gratuit −16 ans, réduction étudiants. Très conseillé : réserver son créneau horaire sur <em>moma.org</em> 48h avant. Vendredi 16h–20h : <em>UNIQLO Free Friday Nights</em> (gratuit mais file longue). Audioguide via app MoMA (gratuit, FR/EN). <em>Compter 2h30 minimum pour une visite honnête, 4h pour une visite approfondie.</em> Ouvert tlj 10h30–17h30 (vendredi jusqu'à 19h30). Vestiaire gratuit. <em>MoMA Design Store</em> en face (entrée séparée) : la plus belle boutique de musée au monde — promenez-vous au sous-sol pour le design parisien 1900 d'Hector Guimard.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════ ST PATRICK ══════════════════════════ -->
+  <article class="stop" id="stop-patrick">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">après MoMA</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Cathédrale · Néo-gothique</div>
+      <h3 class="stop-title">Cathédrale Saint Patrick</h3>
+      <div class="stop-address">5th Ave · entre 50th et 51st St · face à Atlas du Rockefeller</div>
+      <p class="stop-desc">Face à l'Atlas du Rockefeller, <em>Saint Patrick</em> dresse ses deux flèches blanches de 101 mètres — la plus grande cathédrale néo-gothique d'Amérique du Nord (1878), signée <em>James Renwick Jr.</em>. Inspirée directement de Cologne et de Notre-Dame d'Amiens. <em>100 m de long, 50 m de large</em> : ses dimensions extérieures peuvent paraître insignifiantes au milieu des gratte-ciel, mais en entrant, on prend la mesure des volumes. L'éclat du marbre blanc, à l'intérieur comme en façade, est saisissant.</p>
+      <p class="stop-desc">Dans la nef, retournez-vous pour admirer le <em>buffet d'orgue</em> (concerts gratuits le dimanche à 15h15). Vitraux de l'atelier <em>Henry Ely à Nantes</em> et <em>Nicolas Lorin à Chartres</em> — successeur direct de l'atelier qui restaurait les vitraux de Chartres. La <em>Pietà</em> en marbre blanc (trois fois plus grande que celle de Michel-Ange à Rome) au transept sud. La rosace ouest dédiée à la Vierge, 8 mètres de diamètre. Restauration de 2012–2015 (200 M$) qui a redonné au marbre son éclat crème originel.</p>
+
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>Allumez un cierge à la chapelle de Notre-Dame derrière le maître-autel. Silence absolu, odeur de cire, lumière filtrée par les vitraux. Qu'on soit croyant ou non, c'est un geste simple qui ancre un moment à deux dans un lieu qui a recueilli les prières de millions d'anonymes depuis 1879. 10 minutes suffisent.</p>
+      </div>
+
+      <div class="stop-tags">
+        <span class="tag gold">101 m · James Renwick 1878</span>
+        <span class="tag">Vitraux Chartres / Nantes</span>
+        <span class="tag sage">15–20 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 La cathédrale des Irlandais</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Contre le nativisme protestant</div>
+            <span class="expand-section-sub">Le pari de Dagger John</span>
+            <p>Au milieu du XIXe siècle, New York était majoritairement protestante et profondément anti-catholique. Les <em>Know-Nothings</em> (années 1850) menaient des pogroms contre les Irlandais. L'archevêque <em>John Hughes</em> — surnommé « Dagger John » pour la croix en forme de dague qu'il signait — décida qu'il fallait bâtir une cathédrale pour affirmer la visibilité catholique au cœur même de Manhattan. Le terrain fut acheté en 1810 à l'angle de la 5ème Avenue et de la 50ème rue — à l'époque <em>en pleine campagne</em>, à 4 km au nord du New York peuplé. Personne ne voyait l'intérêt. Hughes voyait 50 ans à l'avance.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Gratuit</strong>, ouvert tlj 6h30–20h45. Messes : semaine 7h, 8h, 12h10 ; dimanche 7h, 8h, 9h, 10h15, 12h, 13h, 16h, 17h30. Audioguide $5. Photos sans flash. Tenue correcte demandée.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════ BRYANT PARK ══════════════════════════ -->
+  <article class="stop" id="stop-bryant">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">~16h00</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Parc · Oasis urbaine</div>
+      <h3 class="stop-title">Bryant Park</h3>
+      <div class="stop-address">entre 40th &amp; 42nd St · 5th &amp; 6th Avenues</div>
+      <p class="stop-desc">Charmant petit parc bordé par une vraie collection d'architectures de toutes époques : la NYPL à l'est, le <em>Radiator Building</em> (1924, premier gratte-ciel Art Déco noir et or de l'histoire) au sud, la <em>Bank of America Tower</em> au nord (2009, dont la flèche culmine à 370 m), et la silhouette bleutée du <em>One5</em> (2013, plus fine tour de Manhattan à l'époque). Aux beaux jours, promenez-vous dans la célèbre boutique <em>« Shopping »</em> et la patinoire l'hiver, en passant devant la fontaine.</p>
+      <p class="stop-desc">À l'origine cimetière municipal (potter's field, 1823–1840 — 100 000 New-Yorkais y reposent encore sous le gazon), puis site du <em>Croton Distributing Reservoir</em> en 1842 (la NYPL fut construite sur ses fondations). Le parc actuel date de 1884. Dans les années 70–80, haut lieu du trafic de drogue, parc évité. La renaissance sous l'impulsion de <em>Daniel Biederman</em> en 1988 est devenue un cas d'école d'urbanisme citoyen — modèle copié partout dans le monde.</p>
+      <p class="stop-desc"><em>Plein d'activités au gré des saisons</em> : ping-pong, pétanque française, échecs et jeux de société, table à dispo. Tables vertes, chaises pliantes, librairie en plein air. Bryant Park se targue d'avoir <em>les toilettes publiques les plus chics de tout New York</em> — voir POI plus bas. La pelouse centrale se transforme en patinoire en hiver, en salle de cinéma en été (Bryant Park Movies, films gratuits sur grand écran).</p>
+
+      <div class="stop-note">
+        <div class="stop-note-label">☕ Pause dorée</div>
+        <p>Café au <em>Bryant Park Café</em> (intérieur) ou kiosque <em>Le Pain Quotidien</em> (terrasse ouest). 20 min sur une chaise verte, face à la NYPL — la façade illuminée à la tombée du jour est saisissante. Wi-Fi gratuit partout dans le parc.</p>
+      </div>
+      <div class="stop-tags"><span class="tag gold">Oasis · chaises vertes</span><span class="tag">Librairie en plein air</span><span class="tag sage">20–30 min</span></div>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════ NYPL ══════════════════════════ -->
+  <article class="stop" id="stop-nypl">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">~16h30</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Bibliothèque · Beaux-Arts</div>
+      <h3 class="stop-title">New York Public Library</h3>
+      <div class="stop-address">476 5th Ave · Stephen A. Schwarzman Building</div>
+      <p class="stop-desc"><em>Patience</em> et <em>Fortitude</em> — les deux lions de marbre rose sculptés en 1911 — gardent les marches de la <em>2e bibliothèque publique du pays</em> après celle du Congrès à Washington. Construite en 1902 dans le style Beaux-Arts, signée <em>Carrère &amp; Hastings</em> (les architectes avaient étudié à l'École des Beaux-Arts de Paris). Cet édifice classé <em>Monument National</em> possède plus de <em>4,5 millions de livres</em>. Entrée libre, ouverte à tous.</p>
+      <p class="stop-desc">Plusieurs salles de lecture mais surtout la <em>Rose Reading Room</em> — la plus spectaculaire. Une cathédrale laïque de 90 mètres de long, plafond à 15 mètres équivalent à 5 étages, décor d'un terrain de foot avec finitions bois, lampes cuivrées, tables d'étude lustrées. <em>Sur les vénérables tables, fini les bouquins, bonjour les ordinateurs portables !</em> Levez les yeux : le plafond, c'est surtout pour ça que vaut le détour, notamment <em>les superbes ciels nuageux encadrés d'or</em> en trompe-l'œil. Également : expos temporaires gratuites et la <em>Bill Blass Catalog Room</em> tout aussi belle.</p>
+
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>Asseyez-vous à deux à une même table de la Rose Reading Room. Parcourez un livre chacun en silence pendant 20 minutes. Levez la tête vers le plafond. C'est gratuit, c'est sublime, et c'est l'un des moments les plus calmes et les plus complices que Midtown puisse offrir. Scène culte du film <em>Breakfast at Tiffany's</em> (Audrey Hepburn, 1961) — et la bibliothèque où débute <em>Ghostbusters</em> (1984), scène d'ouverture culte du fantôme dans les rayons.</p>
+      </div>
+
+      <div class="stop-tags">
+        <span class="tag gold">Rose Reading Room</span>
+        <span class="tag">Beaux-Arts 1911</span>
+        <span class="tag sage">30–45 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Trois collectionneurs et un pari public</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">1895 — fusion philanthropique</div>
+            <span class="expand-section-sub">Modèle inédit à l'époque</span>
+            <p>La NYPL naît en 1895 de la fusion de trois bibliothèques privées : la <em>Astor Library</em> (John Jacob Astor, 1849), la <em>Lenox Library</em> (James Lenox, collectionneur fou de Bibles et premiers livres imprimés), et le <em>Tilden Trust</em> (laissé par l'ancien gouverneur Samuel Tilden, 2,4 M$ pour une bibliothèque publique gratuite). Modèle inédit à l'époque : <em>une bibliothèque privée-publique, gratuite, ouverte à tous les citoyens</em>.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Sous le parc, les livres</div>
+            <span class="expand-section-sub">41 miles de rayonnages souterrains</span>
+            <p>La NYPL abrite <em>55 millions d'items</em> dans ses collections. Les étages visibles n'en hébergent qu'une fraction. Sous le Rose Reading Room, sous le sol de Bryant Park adjacent, s'étendent <em>41 miles de rayonnages souterrains</em> — système automatisé achevé en 2014. Quand vous commandez un livre au guichet, un mini-train électrique (<em>« book train »</em>) parcourt les galeries souterraines pour le remonter — temps moyen 15 à 30 min.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Patience et Fortitude</div>
+            <p>Les deux lions furent d'abord nommés <em>Leo Astor</em> et <em>Leo Lenox</em>, puis <em>Lord Astor</em> et <em>Lady Lenox</em>. En 1931, le maire <em>Fiorello La Guardia</em> les rebaptisa <em>Patience</em> (au sud) et <em>Fortitude</em> (au nord) — « les qualités que les New-Yorkais auraient besoin de manifester pour traverser la Grande Dépression ». En décembre, ils portent des couronnes de houx ; le jour de la St-Patrick, des chapeaux verts.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Gratuit</strong>. Ouvert lun-sam 11h–18h (lun-jeu jusqu'à 19h45), dim 13h–17h. Visites guidées du bâtiment <em>gratuites</em> tlj à 11h, 13h30 et 15h (1h, départ rotonde). Photos autorisées partout, sans flash en Rose Reading Room. Boutique 250 000 $ (la plus chic de tout New York selon le Routard).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════ GRAND CENTRAL ══════════════════════════ -->
+  <article class="stop" id="stop-grand">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">~19h00</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Gare · Beaux-Arts</div>
+      <h3 class="stop-title">Grand Central Terminal</h3>
+      <div class="stop-address">89 E 42nd St · Park Avenue</div>
+      <p class="stop-desc">La plus ancienne gare ferroviaire de New York (1913) et l'un des superbes halls de style Beaux-Arts au monde, où passent <em>750 000 voyageurs par jour</em>. Levez la tête au centre du hall — au plafond turquoise de 25 mètres de haut, éclairé par des verrières latérales <em>l'horloge dorée</em> qui marque les constellations du zodiaque, brille la tête fameuse scène de <em>La Mort aux trousses</em> de Hitchcock. Marbres polis, lustres dorés. Même les guichets ont leur charme : <em>marbres polis, lustres dorés</em>.</p>
+      <p class="stop-desc">Au sous-sol, le <em>Dining Concourse</em> regroupe quelques enseignes de qualité, sans être le Grand Central Market — véritable institution new-yorkaise — qui réunit plusieurs enseignes d'épicerie fine reputées (où s'épancher si vous êtes affamés). Et excellent resto de seafood, <em>l'Oyster Bar</em> (voir « Manger » plus bas).</p>
+
+      <div class="romantic">
+        <div class="romantic-label">Moment couple — Whispering Gallery</div>
+        <p>Au sous-sol de la gare, devant l'Oyster Bar et le <em>Dining Concourse</em>, se trouve une voûte construite dans la <em>courbure céramique d'une signature de l'architecte espagnol Rafael Guastavino</em>. Pour en faire l'expérience, placez-vous en ne contre un des 4 piliers et parlez à voix basse. La personne située à l'angle <em>diagonalement opposé</em> de vous (au pilier face à vous) entendra <em>comme si vous étiez à 30 cm d'elle, plus de 100 personnes l'avaient ainsi admiré</em> ! La Whispering Gallery est un des lieux de rendez-vous à NYC, particulièrement pour les demandes en mariage ou le jour de la Saint-Valentin.</p>
+      </div>
+
+      <div class="stop-tags">
+        <span class="tag gold">Voûte céleste · 2500 étoiles</span>
+        <span class="tag">Whispering Gallery · Guastavino</span>
+        <span class="tag sage">30–45 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes — voûte à l'envers, dark patch, Jackie</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">La voûte à l'envers</div>
+            <span class="expand-section-sub">L'erreur qui n'en est pas une</span>
+            <p>La fresque céleste du Main Concourse fut peinte par <em>Paul Helleu</em> en 1913 — 2 500 étoiles dorées à la feuille d'or sur fond bleu-vert, représentant le ciel méditerranéen. <em>Mais les constellations sont inversées horizontalement</em> : l'ouest est à l'est, l'est à l'ouest. Trois versions de l'histoire : (1) Helleu s'est trompé, (2) il a délibérément représenté le ciel « vu de Dieu » depuis l'extérieur du firmament (comme dans les manuscrits médiévaux), (3) c'est une erreur d'impression du plan. Personne ne sait. La famille Vanderbilt, commanditaire, a préféré ne rien corriger.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le dark patch</div>
+            <span class="expand-section-sub">Témoin des cigarettes</span>
+            <p>Dans l'angle <em>nord-est</em> de la voûte (côté Vanderbilt Hall), cherchez un petit carré plus sombre que le reste — environ 30 cm sur 30. C'est un morceau de voûte <em>délibérément laissé non nettoyé</em> lors de la restauration de 1996, pour montrer à quoi ressemblait la fresque entière avant nettoyage : une couche brun-noir composée à 80 % de <em>nicotine et goudrons de cigarettes</em>. Dans les années 50, 20 millions de cigarettes étaient fumées chaque jour dans Grand Central.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Jackie sauve la gare</div>
+            <p>En 1968, la compagnie Penn Central annonça son intention de démolir la façade Beaux-Arts pour construire une tour de 55 étages signée Marcel Breuer. Face à l'indifférence générale, <em>Jackie Kennedy Onassis</em> rejoignit la cause en 1975, écrivit une lettre publique au maire, prit le train spécial pour Washington mener campagne devant la Cour suprême. Arrêt historique <em>Penn Central v. New York City</em> (1978) : la Cour suprême confirma le droit de la ville de protéger ses monuments — acte fondateur du <em>Historic Preservation</em> moderne américain. Plaque commémorative à l'entrée 42nd St.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Gratuit</strong>, ouvert 5h30–2h tlj. Visites guidées gratuites tous les mercredis 12h30 (rendez-vous info booth central). Toilettes au lower concourse. Restauration : voir section « Manger ».</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ OBSERVATOIRE — 2 OPTIONS ══════════════════════════ -->
+  <section class="obs-section" id="obs">
+    <div class="section-label">Observatoire au coucher du soleil</div>
+    <p class="obs-intro">Un seul observatoire sur la journée. Deux options à comparer — chacune avec ses atouts. Réservez <em>1 semaine avant</em> pour un créneau sunset (mai 2026 : ~19h45–20h15 selon la date). Si vous visez Manhattanhenge le 29 mai, <em>faites l'observatoire un autre soir de la semaine</em> pour ne pas créer de conflit.</p>
+
+    <div class="obs-grid">
+
+      <div class="obs-card">
+        <div class="obs-card-header">
+          <div class="obs-card-tag">Option A · Le classique</div>
+          <div class="obs-card-name">Top of the Rock</div>
+          <div class="obs-card-sub">30 Rockefeller Plaza · 70 étages · 259 m</div>
+        </div>
+        <div class="obs-card-body">
+          <p>L'observatoire historique de Manhattan (créé en 1933, rénové en 2005). Trois niveaux d'observation : <em>67e (vitres), 69e (vitres), 70e en plein air sans grillage</em> — le seul qui compte vraiment. Vue plongeante au sud sur l'Empire State Building en cadre, Central Park au nord, skyline financier à l'horizon. Le <em>Beam</em> au pied de l'observatoire vous permet de prendre la pose sur une poutrelle métallique, comme au temps de la construction des buildings (7 personnes max, pose payante à part).</p>
+
+          <div class="obs-card-pros">
+            <div class="obs-pros-label">Atouts</div>
+            <ul>
+              <li><em>L'</em>Empire State Building dans le cadre — la vue carte postale</li>
+              <li>Terrasse 70e <em>plein air, sans vitre ni grillage</em></li>
+              <li>Central Park à 360°, repère iconique</li>
+              <li>Plus rapide à visiter (1h–1h30)</li>
+              <li>Moins cher que Summit</li>
+            </ul>
+          </div>
+
+          <div class="obs-card-cons">
+            <div class="obs-cons-label">Limites</div>
+            <ul>
+              <li>Pure vue d'observatoire — rien d'expérientiel</li>
+              <li>Bondé en sunset, créneaux saturés</li>
+              <li>Pas de bar / cocktail au sommet</li>
+            </ul>
+          </div>
+
+          <div class="obs-practical">
+            <p><strong>$44–$56</strong> selon créneau (montée 50 min avant le coucher de soleil : tarif premium $52,25). Réservation sur <em>topoftherocknyc.com</em>. Entrée : 50 Rockefeller Plaza, côté nord. NY CityPass accepté. Tlj 9h–23h, dernière montée 22h.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obs-card">
+        <div class="obs-card-header">
+          <div class="obs-card-tag">Option B · L'expérience</div>
+          <div class="obs-card-name">Summit One Vanderbilt</div>
+          <div class="obs-card-sub">45 E 42nd St · sommet de One Vanderbilt · 427 m</div>
+        </div>
+        <div class="obs-card-body">
+          <p>Le plus récent observatoire de New York (octobre 2021), perché sur 4 niveaux entre les <em>305 et 370 mètres</em>. Pas un simple observatoire mais une <em>installation d'art immersive</em> signée Kenzo Digital : salles miroirs (sols, plafonds, murs en miroir donnant l'illusion de flotter dans le ciel), boîtes de verre <em>Levitation</em> qui s'avancent dans le vide au-dessus de Madison Avenue, terrasse plein air à 320 m avec bar à cocktails <em>Après</em>. Multisensoriel, photogénique, unique au monde.</p>
+
+          <div class="obs-card-pros">
+            <div class="obs-pros-label">Atouts</div>
+            <ul>
+              <li><em>Salles miroirs Transcendence</em> — expérience visuelle inégalée</li>
+              <li>Cocktails au 93e étage en plein air, golden hour</li>
+              <li>Plus haute terrasse en plein air de NYC</li>
+              <li>One Vanderbilt domine la skyline new-yorkaise</li>
+              <li>Plus mémorable pour un couple</li>
+            </ul>
+          </div>
+
+          <div class="obs-card-cons">
+            <div class="obs-cons-label">Limites</div>
+            <ul>
+              <li>Plus cher ($46 base, $59 avec Ascent)</li>
+              <li>Visite plus longue (2h conseillé)</li>
+              <li>Empire State <em>derrière</em> vous, pas dans le cadre</li>
+              <li>Sols miroir = chaussures plates obligatoires</li>
+              <li>Sacs à dos interdits (consigne gratuite)</li>
+            </ul>
+          </div>
+
+          <div class="obs-practical">
+            <p><strong>À partir de $43</strong> ($37 −12 ans). Billet <em>SUMMIT Experience</em> avec cocktail signature : à partir de $57. Réservation obligatoire sur <em>summitov.com</em>. Tlj 8h–22h, dernière entrée 20h30. Entrée : Main Concourse de Grand Central. <em>Pas de remboursement en cas de brouillard</em>.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ MANGER ══════════════════════════ -->
+  <section class="food-section" id="food">
+    <div class="section-label">Manger &amp; boire</div>
+    <p class="food-intro">Midtown est un quartier d'affaires : rapide et efficace le midi, plus calme le soir. Sélection des adresses fiables — du bagel à 6 $ au pub historique pour le dîner, tous à distance de marche du parcours. Files longues au déjeuner (12h–14h).</p>
+
+    <div class="meal-block">
+      <div class="meal-header"><span class="meal-header-icon">☕</span><span class="meal-header-title">Petit-déjeuner</span><span class="meal-header-time">08:00–10:00</span></div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Français</span><span class="resto-badge badge-insta">Recommandé Routard</span></div>
+          <div class="resto-name">maman</div>
+          <div class="resto-address">12 W 48th St · Rockefeller</div>
+          <p class="resto-desc">Café-boulangerie français cofondé par la chef Elisa Marshall. Décor provençal blanc-et-bleu, croissants au beurre, œufs bénédictins, leurs fameux <em>« nutty chocolate chip cookies »</em> (selon Oprah, les meilleurs cookies au monde). Terrasse intérieure lumineuse. À jumeler avec un détour chez la <em>Lego Store</em> ou le <em>FDNY Fire Zone</em> à deux pas pour faire plaisir aux kids — ou pour vous, soyons honnêtes.</p>
+          <p class="resto-note">~$15–22 / personne. Café + pâtisserie : $10.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Diner classique</span></div>
+          <div class="resto-name">Brooklyn Diner</div>
+          <div class="resto-address">155 W 57th St · entre 6th &amp; 7th Ave</div>
+          <p class="resto-desc">Diner authentique aux banquettes rouges, ouvert 24/7. Pancakes, pastrami sandwiches, eggs benedict, omelettes XXL. Petit-déj sur le chemin entre Hearst Tower et Central Park Tower. Ambiance Seinfeld classique, loin des touristes, fréquenté par les habitants du quartier et les artistes de Carnegie Hall (à 1 min).</p>
+          <p class="resto-note">~$18–25 / personne.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Bagels institution</span></div>
+          <div class="resto-name">Ess-a-Bagel</div>
+          <div class="resto-address">831 3rd Ave · 51st St</div>
+          <p class="resto-desc">Institution new-yorkaise du bagel depuis 1976. Pâte kettle-boiled, texture dense et moelleuse, plus gros que la moyenne. Cream cheese monté à la crème, lox fondant. Le <em>« whitefish salad »</em> est une spécialité locale méconnue. Sur le trajet vers Saint Regis ou GE Building.</p>
+          <p class="resto-note">~$14–18 le bagel complet. File de 10–15 min au midi.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Boulangerie</span></div>
+          <div class="resto-name">Magnolia Bakery — Rockefeller</div>
+          <div class="resto-address">1240 6th Ave · Rockefeller Center</div>
+          <p class="resto-desc">Banana pudding mythique, cupcakes vanille, cookies chauds. Vue sur la patinoire Rockefeller en hiver. Petit-déj rapide, idéal à emporter dans la plaza pour observer Atlas et Prométhée en mangeant.</p>
+          <p class="resto-note">Cupcake $4,50 · banana pudding $6.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-block">
+      <div class="meal-header"><span class="meal-header-icon">🥪</span><span class="meal-header-title">Sur le pouce</span><span class="meal-header-time">toute la journée</span></div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Italien comptoir</span><span class="resto-badge badge-insta">★ À tester</span></div>
+          <div class="resto-name">ALIDORO</div>
+          <div class="resto-address">18 E 39th St</div>
+          <p class="resto-desc">Sandwicherie italienne culte fondée à SoHo en 1986. Ingrédients importés d'Italie — prosciutto San Daniele, mozzarella di bufala, pecorino toscan, tomates séchées, pesto maison. Plus de 40 sandwichs au menu. Notre recommandation : le <em>« Pinocchio »</em> (prosciutto, mozzarella, tomate séchée, roquette, olive paste).</p>
+          <p class="resto-note">~$14–19 le sandwich. File rapide.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Tacos mexicains</span><span class="resto-badge badge-insta">★</span></div>
+          <div class="resto-name">LOS TACOS No.1</div>
+          <div class="resto-address">125 Park Ave</div>
+          <p class="resto-desc">Tacos debout au comptoir, tortillas à la minute (blé ou maïs), viande sur plancha — <em>adobada</em>, <em>carne asada</em>, <em>pollo</em>, <em>nopal</em>. Considéré par beaucoup comme les meilleurs tacos de Manhattan. Jus de pastèque pressé, horchata maison.</p>
+          <p class="resto-note">$5 le taco. 3 tacos + jus = $18. Pas de places assises.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Burger speakeasy</span><span class="resto-badge badge-insta">★ Insolite</span></div>
+          <div class="resto-name">Burger Joint</div>
+          <div class="resto-address">119 W 56th St · Le Parker Meridien Hotel</div>
+          <p class="resto-desc">Le Routard le qualifie d'<em>« inattendu »</em> et c'est peu dire : caché derrière un rideau dans le lobby ultra-luxe du Parker Meridien hotel, ce vrai pub rétro avec ses murs constellés de graffitis sert <em>l'un des meilleurs burgers de la ville</em>. Burger classique, frites maison, milk-shake, bières au pichet. Aucune signalétique : suivez les gens qui ont l'air de chercher quelque chose dans le lobby. Un secret de New-Yorkais.</p>
+          <p class="resto-note">Burger $11–14. Cash only. File mais ça avance vite.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Coréen moderne</span></div>
+          <div class="resto-name">Handsome Rice</div>
+          <div class="resto-address">133 E 31st St</div>
+          <p class="resto-desc">Comptoir coréen moderne — bols de riz chaud, bulgogi, poulet épicé, kimchi, légumes sautés. Qualité ingrédients très haute. Sauces maison (soja sucré, gochujang fermenté). Rapide et frais.</p>
+          <p class="resto-note">Bol ~$15.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-block">
+      <div class="meal-header"><span class="meal-header-icon">🍝</span><span class="meal-header-title">Déjeuner assis</span><span class="meal-header-time">12:30–14:30</span></div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Food court historique</span><span class="resto-badge badge-insta">Recommandé</span></div>
+          <div class="resto-name">Dining Concourse · Grand Central</div>
+          <div class="resto-address">89 E 42nd St · niveau -1 Grand Central</div>
+          <p class="resto-desc">Le food court de Grand Central, sous les voûtes Guastavino. 20+ comptoirs : Shake Shack, Magnolia Bakery, <em>Great Northern Food Hall</em> (cuisine scandinave de qualité), Jacques Torres (chocolat), Cafe Grumpy, Tartinery. Ambiance de gare active. Parfait si vous ne vous mettez pas d'accord sur un type de cuisine.</p>
+          <p class="resto-note">$10–25 / personne. Places assises limitées au pic de midi.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Food court chic</span></div>
+          <div class="resto-name">Urbanspace 570 Lexington</div>
+          <div class="resto-address">570 Lexington Ave · au pied du GE Building</div>
+          <p class="resto-desc">Food hall chic, plus calme que Grand Central. 12 comptoirs sélectionnés : Roberta's Pizza (pizza napolitaine), Court Street Grocers (sandwiches haut de gamme), Mighty Quinn's BBQ. Salle lumineuse, places assises confortables. Idéal après visite du Chrysler Building (5 min à pied).</p>
+          <p class="resto-note">$15–25 / personne.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Diner premium</span></div>
+          <div class="resto-name">Carnegie Diner &amp; Café</div>
+          <div class="resto-address">205 W 57th St · Carnegie Hall</div>
+          <p class="resto-desc">Au pied de Carnegie Hall, voisin de One57 et Steinway Tower. Diner classique de qualité supérieure — pastrami sur pain de seigle, cheesesteak, salades volumineuses, pancakes. Banquettes confortables, ambiance jazz feutré. Bon spot après la promenade architecturale W 57th.</p>
+          <p class="resto-note">$22–30 / personne.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-block">
+      <div class="meal-header"><span class="meal-header-icon">🍷</span><span class="meal-header-title">Dîner</span><span class="meal-header-time">19:00–22:00</span></div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Pub historique</span><span class="resto-badge badge-insta">★ Recommandé</span></div>
+          <div class="resto-name">P.J. Clarke's Third Avenue</div>
+          <div class="resto-address">915 3rd Ave · angle E 55th</div>
+          <p class="resto-desc">Pub irlandais ouvert en 1884, l'un des plus anciens de Manhattan. Façade basse en brique rouge au pied des gratte-ciel — la maison est protégée depuis 1970, les immeubles voisins ont été construits autour. Sawdust au sol, bar en acajou, ambiance littéraire — Sinatra avait sa table (table 20). Le <em>« Cadillac burger »</em> (bacon, cheese, oignon caramélisé) est mythique. Saumon fumé et huîtres remarquables.</p>
+          <p class="resto-note">~$40–55 / personne. Burger $24. Walk-in conseillé à 19h ou 21h30.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Seafood gare</span><span class="resto-badge badge-insta">Iconique</span></div>
+          <div class="resto-name">Grand Central Oyster Bar</div>
+          <div class="resto-address">89 E 42nd St · sous-sol Grand Central</div>
+          <p class="resto-desc">Institution new-yorkaise depuis 1913, juste à côté de la Whispering Gallery. Sous les voûtes Guastavino blanc-blanc, le restaurant sert des huîtres — <em>30 variétés</em> selon la saison — clams, lobster rolls, seafood platters. Atmosphere de gare des années 30, comptoir circulaire, serveurs en tablier blanc. <em>Véritable institution new-yorkaise.</em></p>
+          <p class="resto-note">$50–75 / personne. Huîtres $4–5 pièce. Réservation conseillée.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-block">
+      <div class="meal-header"><span class="meal-header-icon">🍸</span><span class="meal-header-title">Bar rooftop</span><span class="meal-header-time">à partir de 20:00</span></div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Rooftop / vue</span><span class="resto-badge badge-insta">★ Le moment</span></div>
+          <div class="resto-name">Refinery Rooftop</div>
+          <div class="resto-address">63 W 38th St · Refinery Hotel</div>
+          <p class="resto-desc">Un des meilleurs rooftops de Midtown : vue directe sur l'Empire State Building illuminé, terrasse chauffée sous verrière en cas de pluie, jardin en toiture. Cocktails soignés ($20–24), menu léger (charcuterie, petite pizza, burrata). Ambiance adulte, élégante sans être guindée.</p>
+          <p class="resto-note">Résa Resy fortement conseillée. ~$55 / personne pour 2 cocktails et snacks.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Bar Art Déco</span></div>
+          <div class="resto-name">King Cole Bar — St Regis</div>
+          <div class="resto-address">2 E 55th St · St Regis Hotel</div>
+          <p class="resto-desc">Bar de palace 1904 sous la fresque <em>Old King Cole</em> de Maxfield Parrish. C'est ici qu'a été inventé le <em>Bloody Mary</em> (1934) — alors appelé <em>Red Snapper</em>. Cocktails classiques exécutés à la perfection, ambiance feutrée, public d'habitués. Élégance intemporelle de Midtown.</p>
+          <p class="resto-note">Cocktail ~$28. Pas de dress code strict mais tenue propre.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════ POI / PÉPITES ══════════════════════════ -->
+  <section class="poi-section" id="pois">
+    <div class="section-label">Pépites &amp; détours</div>
+    <p class="food-intro">Petites curiosités à glisser entre deux étapes : photo-spots cachés, anecdotes urbaines, points secrets connus des seuls New-Yorkais. À tenter si vous avez l'énergie et la curiosité.</p>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🌉</div>
+        <div class="poi-card-name">Tudor City Bridge</div>
+        <div class="poi-card-address">E 42nd St · entre 1st &amp; 2nd Ave</div>
+        <p class="poi-card-desc">Le pont piéton qui enjambe la 42ème rue, reliant les deux moitiés de <em>Tudor City</em> (ensemble résidentiel de 1927). Vue frontale spectaculaire sur l'Empire State Building la journée et le Chrysler Building la nuit — cadré par les bâtiments néo-gothiques de Tudor City. Photo spot mythique, peu connu des touristes. <em>C'est l'un des spots officiels de Manhattanhenge.</em></p>
+        <p class="poi-card-note">Accès libre. Surtout au crépuscule.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🚻</div>
+        <div class="poi-card-name">Bryant Park Public Restroom</div>
+        <div class="poi-card-address">58 W 42nd St · Bryant Park</div>
+        <p class="poi-card-desc">Selon le Routard, <em>« les toilettes publiques les plus chics de tout New York »</em>. Bouquet de fleurs fraîches renouvelé quotidiennement, marbre, musique classique discrète, parfum d'ambiance. Entretien 24h/24. Détour Instagram pour certains voyageurs.</p>
+        <p class="poi-card-note">Gratuit. Accès 7h–22h.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🌐</div>
+        <div class="poi-card-name">News Building (Daily Planet)</div>
+        <div class="poi-card-address">220 E 42nd St · lobby public</div>
+        <p class="poi-card-desc">Ancien siège du <em>Daily News</em> (1930, Raymond Hood), Art Déco. Le lobby abrite le <em>plus grand globe terrestre intérieur au monde</em> — 3,60 m de diamètre, rotation mécanique, rose des vents sculptée au sol. Lieu de tournage du premier <em>Superman</em> (1978, le Daily Planet). Repérez la fameuse photo de Lennon réalisée en 1980 après son assassinat.</p>
+        <p class="poi-card-note">Lun-ven 7h–19h. Accès lobby uniquement.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🌿</div>
+        <div class="poi-card-name">Greenacre Park</div>
+        <div class="poi-card-address">217 E 51st St · entre 2nd &amp; 3rd</div>
+        <p class="poi-card-desc">Le plus beau « pocket park » de Midtown — 18 m de large, 40 m de long, construit autour d'une <em>cascade de 8 mètres</em> qui masque complètement le bruit de la ville. Hideo Sasaki (1971), don d'Abby Rockefeller Mauzé. Tables, chaises, buvette en saison. Paradis pour 20 min de silence après Chrysler.</p>
+        <p class="poi-card-note">Ouvert tlj 8h–19h. Gratuit.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🎬</div>
+        <div class="poi-card-name">Marilyn Monroe's Subway Grate</div>
+        <div class="poi-card-address">586 Lexington Ave · angle E 52nd</div>
+        <p class="poi-card-desc">La grille de métro au-dessus de laquelle <em>Marilyn Monroe</em> posa pour la scène mythique du <em>Sept Ans de Réflexion</em> (Billy Wilder, 1954) — robe blanche plissée soulevée par le souffle du métro. Tournée le 15 septembre 1954 à 1h du matin devant 2 000 curieux. Le mari de Marilyn, Joe DiMaggio, furieux, quitta le plateau — divorce deux semaines plus tard.</p>
+        <p class="poi-card-note">Aucun panneau. Juste une grille de métro.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🛣</div>
+        <div class="poi-card-name">6½ Avenue</div>
+        <div class="poi-card-address">Entre 51st &amp; 57th St — passage privé-public</div>
+        <p class="poi-card-desc">Une vraie « avenue » avec panneau vert officiel, qui n'existe que comme passage piéton traversant les blocs entre la 51ème et la 57ème rue. Créée en 1968 sous l'<em>incentive zoning</em> : les immeubles gagnaient des étages supplémentaires s'ils cédaient un passage public à travers leurs lobbys. Marcher cette « avenue » prend 10 min et traverse 6 blocs sans toucher un trottoir.</p>
+        <p class="poi-card-note">Accès continu, souvent désert.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🚒</div>
+        <div class="poi-card-name">FDNY Fire Zone</div>
+        <div class="poi-card-address">61 W 48th St · Rockefeller Center</div>
+        <p class="poi-card-desc">Centre de prévention et musée miniature du <em>Fire Department of New York</em>, tenu par les pompiers. Petits camions anciens, équipements, mémorial du 11 septembre (343 pompiers morts ce jour-là). 15 min pour les curieux d'histoire FDNY.</p>
+        <p class="poi-card-note">Lun-sam 10h–17h. Entrée libre, donation suggérée.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🏨</div>
+        <div class="poi-card-name">Baccarat Hotel</div>
+        <div class="poi-card-address">28 W 53rd St · face au MoMA</div>
+        <p class="poi-card-desc">L'un des plus luxueux hôtels de la ville, juste face au MoMA. Façade de panneaux de verre prismatique, hall d'entrée de <em>2 000 verres éclairés de l'intérieur</em>, bar Second Empire aux lustres imposants. <em>Ce temple de cristal Baccarat est français, môssieur !</em> dixit le Routard. Allez-y prendre un café au bar — à découvrir comme un délicat clin d'œil européen entre deux salles du MoMA.</p>
+        <p class="poi-card-note">Café au bar ~$15. Tenue correcte demandée.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ INFOS PRATIQUES ══════════════════════════ -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">★ Manhattanhenge — 29 mai</div>
+        <p>Si vous y allez, <em>arrivez 30 min avant 20h13</em>. Spots : 42ème rue (Tudor City), Bryant Park, Grand Central, 34ème rue, 57ème rue. <strong>Évitez de planifier un sunset à Top of the Rock ou Summit ce soir-là</strong> : conflit horaire. Faites l'observatoire un autre soir.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p><strong>Mardi à jeudi</strong> : tout est ouvert, file plus courte au MoMA. <strong>Évitez le mardi</strong> (MoMA fermé certains mardis — vérifier moma.org). <strong>Évitez le samedi</strong> : files Top of the Rock + Summit + Empire State doublées.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🎟 À réserver à l'avance</div>
+        <p><strong>MoMA</strong> : créneau 48h avant · <strong>Summit ou Top of the Rock</strong> : 1 semaine avant pour sunset · <strong>ONU tour intérieur</strong> : 1 semaine avant + en semaine 9h–16h45 uniquement.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">👟 Confort</div>
+        <p>Marche dense : <em>~6–8 km</em>, plat. Chaussures confortables. Midtown en mai peut être <em>venteux entre les tours</em> (effet couloir) — veste légère. Toilettes publiques : MoMA, Grand Central (-1), Bryant Park, NYPL.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Hearst Tower depuis 8th Ave · Alwyn Court façade gros plan · MoMA Sculpture Garden · Atlas + St Patrick en contre-jour · Bryant Park + NYPL derrière · <em>Rose Reading Room sans flash</em> · Grand Central depuis le balcon ouest · Chrysler depuis 3rd Ave/43rd · <em>Tudor City Bridge au crépuscule</em> · sommet de Top of the Rock ou Summit miroirs.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transport</div>
+        <p>Midtown saturé de métros. <strong>B/D/F/M</strong> à Rockefeller 47–50th · <strong>N/R/W</strong> à 5th Ave/59th · <strong>4/5/6/7/S</strong> à Grand Central–42nd · <strong>1/2/3</strong> à Times Square–42nd. Tout est accessible à pied, périmètre de 2,5 km.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« New York is the concentrate of art and commerce and sport and religion and entertainment and finance. » — E.B. White</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

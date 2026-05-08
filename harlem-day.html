@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harlem — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#F5F0E8; --cream-dark:#EDE7D6; --navy:#1A2744; --navy-light:#243356;
+    --gold:#C8A96E; --gold-light:#E8C98A; --rust:#8B3A2A; --sage:#5A7A5A;
+    --text:#2A2018; --text-muted:#6B5D4A; --border:rgba(26,39,68,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--cream);color:var(--text);font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+
+  /* ── HERO ── */
+  .hero{position:relative;background:var(--navy);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:60px 24px 48px;}
+  .hero-pattern{position:absolute;inset:0;opacity:0.12;}
+  .hero-meta{position:relative;z-index:2;text-align:center;}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,10vw,78px);font-weight:300;color:var(--cream);letter-spacing:0.04em;line-height:1;margin-bottom:10px;}
+  .hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3.5vw,22px);font-weight:300;font-style:italic;color:var(--gold-light);letter-spacing:0.06em;margin-bottom:28px;}
+  .hero-tagline{font-family:'Lora',serif;font-size:14px;color:rgba(245,240,232,0.65);max-width:420px;line-height:1.6;}
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar{background:var(--navy-light);padding:0 24px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;border-bottom:1px solid rgba(200,169,110,0.3);}
+  .timeline-bar::-webkit-scrollbar{display:none;}
+  .timeline-inner{display:inline-flex;gap:0;}
+  .tl-item{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(245,240,232,0.55);border-right:1px solid rgba(255,255,255,0.06);text-decoration:none;transition:color 0.2s;}
+  .tl-item:hover{color:var(--gold);}
+  .tl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* ── PAGE BODY ── */
+  .page-body{max-width:760px;margin:0 auto;padding:0 20px 80px;}
+
+  /* ── INTRO ── */
+  .intro-block{padding:52px 0 40px;border-bottom:1px solid var(--border);}
+  .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+  .section-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold),transparent);opacity:0.5;}
+  .intro-block h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,40px);font-weight:400;line-height:1.15;margin-bottom:20px;color:var(--navy);}
+  .intro-block p{font-size:15.5px;color:var(--text-muted);margin-bottom:14px;font-style:italic;}
+  .intro-block p:last-child{margin-bottom:0;}
+  .tip-box{background:var(--navy);border-left:3px solid var(--gold);padding:16px 20px;margin-top:24px;border-radius:0 4px 4px 0;}
+  .tip-box p{font-size:13.5px;color:rgba(245,240,232,0.8);font-style:normal;margin:0;line-height:1.6;}
+  .tip-box strong{color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:6px;}
+
+  /* ── MAP ── */
+  .map-section{padding:44px 0 0;}
+  .map-container{margin-top:20px;border-radius:6px;overflow:hidden;border:1px solid var(--border);line-height:0;}
+  .map-container svg{display:block;width:100%;height:auto;}
+
+  /* ── DIVIDER ── */
+  .section-divider{text-align:center;padding:36px 0 8px;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:0.3em;opacity:0.5;}
+
+  /* ── EXPAND-ALL ── */
+  .expand-all-bar{display:flex;justify-content:flex-end;padding:18px 0 0;margin-bottom:-12px;}
+  .expand-all-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);background:var(--cream-dark);border:1px solid var(--border);padding:10px 16px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all 0.2s;}
+  .expand-all-btn:hover{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+  .expand-all-btn-icon{font-size:11px;transition:transform 0.3s;}
+  .expand-all-btn.is-open .expand-all-btn-icon{transform:rotate(180deg);}
+
+  /* ── STOP CARD ── */
+  .stop{padding:44px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 1fr;gap:0 28px;position:relative;}
+  .stop:last-child{border-bottom:none;}
+  .stop::before{content:'';position:absolute;left:39px;top:76px;bottom:-44px;width:1px;background:linear-gradient(to bottom,var(--border),transparent);}
+  .stop:last-child::before{display:none;}
+  .stop-time-col{display:flex;flex-direction:column;align-items:center;padding-top:4px;}
+  .stop-dot{width:14px;height:14px;border-radius:50%;background:var(--cream);border:2px solid var(--navy);flex-shrink:0;position:relative;z-index:1;}
+  .stop-dot.featured{background:var(--gold);border-color:var(--gold);width:16px;height:16px;}
+  .stop-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:0.06em;margin-top:8px;writing-mode:vertical-lr;transform:rotate(180deg);white-space:nowrap;}
+  .stop-category{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .stop-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5vw,30px);font-weight:500;color:var(--navy);line-height:1.1;margin-bottom:4px;}
+  .stop-address{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:14px;}
+  .stop-desc{font-size:14.5px;color:var(--text);line-height:1.72;margin-bottom:12px;}
+  .stop-note{background:var(--cream-dark);border:1px solid var(--border);padding:12px 16px;border-radius:4px;margin-top:14px;}
+  .stop-note-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:5px;}
+  .stop-note p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0;font-style:italic;}
+  .stop-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--text-muted);border-radius:2px;}
+  .tag.gold{border-color:var(--gold);color:var(--gold);}
+  .tag.rust{border-color:var(--rust);color:var(--rust);}
+  .tag.sage{border-color:var(--sage);color:var(--sage);}
+
+  /* ── EXPAND DETAILS ── */
+  .stop-expand{margin-top:18px;}
+  .stop-expand summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;list-style:none;padding:11px 16px;background:var(--cream-dark);border:1px solid var(--border);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
+  .stop-expand summary::-webkit-details-marker{display:none;}
+  .stop-expand[open] summary{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent;color:var(--navy);}
+  .stop-expand-label{flex:1;}
+  .stop-expand-arrow{font-size:10px;transition:transform 0.25s;}
+  .stop-expand[open] .stop-expand-arrow{transform:rotate(180deg);}
+  .stop-expand-content{padding:22px 18px;border:1px solid var(--border);border-top:none;border-radius:0 0 3px 3px;background:white;}
+  .expand-section{margin-bottom:18px;}
+  .expand-section:last-child{margin-bottom:0;}
+  .expand-section-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:2px;}
+  .expand-section-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+  .expand-section p{font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:8px;}
+  .expand-section p:last-child{margin-bottom:0;}
+  .anecdote{background:var(--navy);border-radius:4px;padding:16px 18px;margin:16px 0;}
+  .anecdote-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:var(--gold);margin-bottom:8px;}
+  .anecdote p{font-size:13px;color:rgba(245,240,232,0.78);line-height:1.65;margin-bottom:7px;}
+  .anecdote p:last-child{margin-bottom:0;}
+  .expand-practical{background:var(--cream-dark);border-left:3px solid var(--gold);padding:12px 14px;border-radius:0 4px 4px 0;margin:14px 0 4px;}
+  .expand-practical-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy);margin-bottom:6px;}
+  .expand-practical p{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin:0;}
+  .expand-practical strong{color:var(--navy);}
+
+  /* ── FOOD SECTION ── */
+  .food-section{padding:44px 0;border-bottom:1px solid var(--border);}
+  .food-intro{font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:32px;line-height:1.65;}
+  .meal-block{margin-bottom:36px;}
+  .meal-block:last-child{margin-bottom:0;}
+  .meal-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .meal-header-icon{font-size:18px;}
+  .meal-header-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--navy);flex:1;}
+  .meal-header-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:0.1em;}
+  .resto-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.resto-grid{grid-template-columns:1fr;}}
+  .resto-card{border:1px solid var(--border);padding:16px;border-radius:4px;transition:border-color 0.2s,box-shadow 0.2s;}
+  .resto-card:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(26,39,68,0.07);}
+  .resto-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+  .resto-badge{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+  .badge-cheap{background:rgba(90,122,90,0.12);color:var(--sage);border:1px solid rgba(90,122,90,0.3);}
+  .badge-mid{background:rgba(200,169,110,0.12);color:var(--gold);border:1px solid rgba(200,169,110,0.3);}
+  .badge-cuisine{background:rgba(26,39,68,0.06);color:var(--text-muted);border:1px solid var(--border);}
+  .badge-insta{background:rgba(139,58,42,0.1);color:var(--rust);border:1px solid rgba(139,58,42,0.25);}
+  .resto-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:2px;line-height:1.2;}
+  .resto-address{font-family:'DM Mono',monospace;font-size:9px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:9px;}
+  .resto-desc{font-size:12.5px;color:var(--text-muted);line-height:1.6;margin-bottom:7px;}
+  .resto-note{font-size:11.5px;color:var(--rust);font-style:italic;line-height:1.5;}
+
+  /* ── POI ── */
+  .poi-section{padding:44px 0 36px;border-bottom:1px solid var(--border);}
+  .poi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+  @media(max-width:500px){.poi-grid{grid-template-columns:1fr;}}
+  .poi-card{border:1px solid var(--border);padding:18px;border-radius:4px;transition:border-color 0.2s,box-shadow 0.2s;}
+  .poi-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(26,39,68,0.06);}
+  .poi-card-icon{font-size:20px;margin-bottom:8px;}
+  .poi-card-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+  .poi-card-address{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:8px;}
+  .poi-card-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+  .poi-card-note{font-size:11.5px;color:var(--rust);font-style:italic;margin-top:6px;}
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section{padding:44px 0;}
+  .infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+  @media(max-width:500px){.infos-grid{grid-template-columns:1fr;}}
+  .info-card{padding:20px;background:var(--cream-dark);border-radius:4px;border:1px solid var(--border);}
+  .info-card-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .info-card p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0;}
+  .info-card strong{color:var(--navy);font-weight:500;}
+
+  /* ── FOOTER ── */
+  .page-footer{background:var(--navy);padding:32px 24px;text-align:center;}
+  .footer-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--gold);font-style:italic;margin-bottom:6px;}
+  .footer-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(245,240,232,0.35);letter-spacing:0.12em;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:520px){
+    .stop{grid-template-columns:60px 1fr;gap:0 16px;}
+    .stop::before{left:29px;}
+    .expand-all-btn{font-size:9px;padding:9px 12px;}
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('harlem');</script>
+
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="diamonds" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <polygon points="30,2 58,30 30,58 2,30" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+        <polygon points="30,14 46,30 30,46 14,30" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <circle cx="30" cy="30" r="2" fill="#C8A96E" opacity="0.6"/>
+      </pattern>
+      <pattern id="hLines" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="15" x2="60" y2="15" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="4 8"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#diamonds)"/>
+    <rect width="100%" height="100%" fill="url(#hLines)" opacity="0.4"/>
+    <polygon points="0,0 80,0 0,80" fill="#C8A96E" opacity="0.04"/>
+    <polygon points="800,340 720,340 800,260" fill="#C8A96E" opacity="0.04"/>
+  </svg>
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026 — Jour V</div>
+    <h1 class="hero-title">Harlem</h1>
+    <p class="hero-subtitle">La Renaissance, le Jazz & l'Âme Noire de Manhattan</p>
+    <p class="hero-tagline">D'un petit-déjeuner à la Seinfeld jusqu'au jazz live dans un brownstone du 133rd — une journée dans le quartier le plus musicalement chargé de New York.</p>
+  </div>
+</header>
+
+<!-- ── TIMELINE BAR ── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-toms"><span class="tl-dot"></span>09:00 · Tom's</a>
+    <a class="tl-item" href="#stop-hamilton"><span class="tl-dot"></span>10:15 · Hamilton Grange</a>
+    <a class="tl-item" href="#stop-gospel"><span class="tl-dot"></span>11:00 · Gospel</a>
+    <a class="tl-item" href="#stop-strivers"><span class="tl-dot"></span>12:30 · Strivers' Row</a>
+    <a class="tl-item" href="#stop-dejeuner"><span class="tl-dot"></span>13:00 · Déjeuner</a>
+    <a class="tl-item" href="#stop-schomburg"><span class="tl-dot"></span>14:30 · Schomburg</a>
+    <a class="tl-item" href="#stop-apollo"><span class="tl-dot"></span>15:30 · Apollo</a>
+    <a class="tl-item" href="#stop-studio"><span class="tl-dot"></span>16:30 · Studio Museum</a>
+    <a class="tl-item" href="#stop-125"><span class="tl-dot"></span>17:30 · 125th Street</a>
+    <a class="tl-item" href="#stop-bills"><span class="tl-dot"></span>21:00 · Bill's Place</a>
+  </div>
+</nav>
+
+<!-- ── BODY ── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Un quartier qui ne ressemble à aucun autre</h2>
+    <p>Harlem n'est pas un quartier comme les autres. C'est un état d'esprit, un chapitre entier de l'histoire américaine, un lieu où la musique a été inventée, où la résistance culturelle a été forgée, où la dignité afro-américaine s'est imposée au monde. En une journée, on ne peut qu'en effleurer la surface — mais quelle surface.</p>
+    <p>Cette journée commence au sud du quartier, remonte vers le nord historique, puis redescend le long de la 125th Street avant de finir là où tout a commencé : dans un brownstone de jazz à la nuit tombée.</p>
+    <div class="tip-box">
+      <strong>⚑ Timing crucial</strong>
+      <p>Si vous visitez un <strong>dimanche</strong>, décalez le départ à l'Abyssinian Baptist Church dès 10h30 pour la messe gospel. Bill's Place n'ouvre que <strong>vendredi et samedi</strong> — planifiez en conséquence.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- CARTE SVG -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 510" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte de Harlem">
+        <rect width="740" height="510" fill="#F0EAD8"/>
+        <rect x="55" y="30" width="648" height="468" fill="#EDE5D2" rx="2"/>
+        <rect x="552" y="322" width="84" height="56" fill="#D8E8C8" rx="2" stroke="#B0C898" stroke-width="0.5"/>
+        <text x="594" y="344" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Marcus</text>
+        <text x="594" y="354" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Garvey Pk</text>
+        <!-- Rues horizontales -->
+        <line x1="55" y1="496" x2="703" y2="496" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="468" x2="703" y2="468" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="440" x2="703" y2="440" stroke="#BFB49E" stroke-width="1.1"/>
+        <line x1="55" y1="412" x2="703" y2="412" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="384" x2="703" y2="384" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="356" x2="703" y2="356" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="328" x2="703" y2="328" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="314" x2="703" y2="314" stroke="#C8A96E" stroke-width="3.5"/>
+        <line x1="55" y1="300" x2="703" y2="300" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="272" x2="703" y2="272" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="244" x2="703" y2="244" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="216" x2="703" y2="216" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="202" x2="703" y2="202" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="174" x2="703" y2="174" stroke="#BFB49E" stroke-width="1.1"/>
+        <line x1="55" y1="132" x2="703" y2="132" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="118" x2="703" y2="118" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="90"  x2="703" y2="90"  stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="55" y1="34"  x2="703" y2="34"  stroke="#BFB49E" stroke-width="1.1"/>
+        <!-- Avenues verticales -->
+        <line x1="175" y1="34" x2="175" y2="496" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="300" y1="34" x2="300" y2="496" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="420" y1="34" x2="420" y2="496" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="540" y1="34" x2="540" y2="496" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="638" y1="34" x2="638" y2="496" stroke="#D2C8B5" stroke-width="0.8"/>
+        <line x1="68"  y1="496" x2="100" y2="34"  stroke="#C6BAA6" stroke-width="1" stroke-dasharray="3 5"/>
+        <!-- Labels rues -->
+        <text x="708" y="499" font-size="7.5" fill="#9A8060" font-family="monospace">112th</text>
+        <text x="708" y="443" font-size="7.5" fill="#9A8060" font-family="monospace">116th</text>
+        <text x="708" y="317" font-size="8.5" fill="#C8A96E" font-family="monospace" font-weight="bold">125th</text>
+        <text x="708" y="247" font-size="7.5" fill="#9A8060" font-family="monospace">130th</text>
+        <text x="708" y="177" font-size="7.5" fill="#9A8060" font-family="monospace">135th</text>
+        <text x="708" y="135" font-size="7.5" fill="#9A8060" font-family="monospace">138th</text>
+        <text x="708" y="93"  font-size="7.5" fill="#9A8060" font-family="monospace">141st</text>
+        <text x="708" y="37"  font-size="7.5" fill="#9A8060" font-family="monospace">145th</text>
+        <!-- Labels avenues -->
+        <text x="80"  y="22" text-anchor="middle" font-size="7" fill="#A09080" font-family="monospace">Bdwy</text>
+        <text x="175" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">St Nicholas</text>
+        <text x="300" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">F. Douglass</text>
+        <text x="420" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">A.C. Powell</text>
+        <text x="540" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Lenox</text>
+        <!-- Ligne de parcours -->
+        <polyline points="80,494 175,90 356,132 406,118 540,174 360,314 490,286 540,314 360,202"
+          stroke="#C8A96E" stroke-width="2.2" stroke-dasharray="7 5" fill="none" opacity="0.65" stroke-linejoin="round"/>
+        <!-- Restaurants lettrés -->
+        <circle cx="540" cy="294" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="540" y="294" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">A</text>
+        <circle cx="553" cy="282" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="553" y="282" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">B</text>
+        <circle cx="395" cy="468" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="395" y="468" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <circle cx="592" cy="314" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="592" y="314" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <circle cx="300" cy="384" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="300" y="384" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <circle cx="340" cy="326" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="340" y="326" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <circle cx="314" cy="326" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="314" y="326" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <circle cx="234" cy="36"  r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="234" y="36"  text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <circle cx="553" cy="370" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="553" y="370" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <circle cx="300" cy="412" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="300" y="412" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">J</text>
+        <circle cx="175" cy="272" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="175" y="272" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">K</text>
+        <circle cx="556" cy="265" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="556" y="265" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">L</text>
+        <circle cx="606" cy="328" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="606" y="328" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">M</text>
+        <circle cx="524" cy="378" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="524" y="378" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">N</text>
+        <circle cx="62"  cy="307" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="62"  y="307" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">O</text>
+        <!-- POI lettrés -->
+        <circle cx="520" cy="258" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="520" y="258" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <circle cx="300" cy="440" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="300" y="440" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <circle cx="420" cy="154" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="420" y="154" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <circle cx="594" cy="350" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="594" y="350" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <circle cx="540" cy="244" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="540" y="244" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">e</text>
+        <!-- Stops numérotés -->
+        <circle cx="80"  cy="494" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="80"  y="494" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">1</text>
+        <rect x="96"  y="483" width="34" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="98"  y="492" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Tom's</text>
+        <circle cx="175" cy="90"  r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="175" y="90"  text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">2</text>
+        <rect x="191" y="79" width="80" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="193" y="88" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Hamilton Grange</text>
+        <circle cx="356" cy="132" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="356" y="132" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">3</text>
+        <rect x="290" y="148" width="62" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="292" y="157" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Abyssinian</text>
+        <circle cx="406" cy="118" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="406" y="118" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <rect x="422" y="107" width="68" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="424" y="116" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Strivers' Row</text>
+        <circle cx="540" cy="174" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="540" y="174" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">5</text>
+        <rect x="556" y="163" width="60" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="558" y="172" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Schomburg</text>
+        <circle cx="360" cy="314" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="360" y="314" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="276" y="302" width="80" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="278" y="311" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Apollo Theater</text>
+        <circle cx="490" cy="286" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="490" y="286" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">7</text>
+        <rect x="506" y="275" width="72" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="508" y="284" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Studio Museum</text>
+        <circle cx="540" cy="314" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="540" y="314" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">8</text>
+        <rect x="487" y="330" width="52" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="489" y="339" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">125th St</text>
+        <circle cx="360" cy="202" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="360" y="202" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">9</text>
+        <rect x="276" y="190" width="80" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="278" y="199" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Bill's Place</text>
+        <!-- 125th label -->
+        <rect x="58" y="306" width="54" height="14" fill="#C8A96E" rx="2"/>
+        <text x="85" y="316" text-anchor="middle" font-size="7.5" fill="white" font-family="monospace" font-weight="bold">125th St ★</text>
+        <!-- Nord -->
+        <g transform="translate(682,476)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes du jour</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Tom's</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Hamilton Grange</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Abyssinian</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ Strivers' Row</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑤ Schomburg</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Apollo Theater</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑦ Studio Museum</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑧ 125th Street</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑨ Bill's Place ★</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants — Déjeuner</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">A</span>Sylvia's <span style="opacity:0.5;">— 328 Malcolm X Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>Melba's <span style="opacity:0.5;">— 300 W 114th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>Accra Express <span style="opacity:0.5;">— 63 E 125th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>Awaze Ethiopian <span style="opacity:0.5;">— 2288 F. Douglass Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>Yemeni Restaurant <span style="opacity:0.5;">— 377 W 125th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>El Tina Harlem <span style="opacity:0.5;">— 511 W 125th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">K</span>Manna's <span style="opacity:0.5;">— 320 St Nicholas Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">L</span>Jacob Restaurant <span style="opacity:0.5;">— 373 Malcolm X Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">M</span>Sisters Caribbean <span style="opacity:0.5;">— 47 E 124th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants — Dîner</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">B</span>Red Rooster <span style="opacity:0.5;">— 310 Lenox Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>The Edge Harlem <span style="opacity:0.5;">— 101 Edgecombe Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>Indian Summer <span style="opacity:0.5;">— 239 Malcolm X Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">J</span>Patisserie des Ambassades <span style="opacity:0.5;">— 2200 F. Douglass</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">N</span>Sottocasa (pizza) <span style="opacity:0.5;">— 227 Malcolm X Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">O</span>Dinosaur Bar-B-Que <span style="opacity:0.5;">— 700 W 125th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Points d'intérêt</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>National Jazz Museum <span style="opacity:0.5;">— 58 W 129th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>Levain Bakery <span style="opacity:0.5;">— 2167 F. Douglass Blvd</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>Mother AME Zion Church <span style="opacity:0.5;">— 140 W 137th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Marcus Garvey Park <span style="opacity:0.5;">— 120th–124th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">e</span>Lenox Saphire Coffee <span style="opacity:0.5;">— Lenox Ave & 128th</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="padding-top:36px;">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- EXPAND ALL -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════ ÉTAPES ══════ -->
+
+  <!-- STOP 1 : Tom's -->
+  <article class="stop" id="stop-toms">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">09:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Point de départ · Café &amp; Brunch</div>
+      <h3 class="stop-title">Tom's Restaurant</h3>
+      <div class="stop-address">2880 Broadway (angle 112th St) · Morningside Heights</div>
+      <p class="stop-desc">La façade rouge et blanche de Tom's est l'extérieur de diner le plus reconnaissable du monde — c'est ici que Jerry, George, Elaine et Kramer ont passé l'essentiel de la série <em>Seinfeld</em>. L'intérieur n'a jamais servi de décor (les scènes étaient tournées en studio), mais peu importe : le pèlerinage extérieur est incontournable.</p>
+      <p class="stop-desc">Tom's est un diner grec authentique ouvert depuis 1940. Café, pancakes, œufs brouillés — le petit-déjeuner est copieux, sans prétention, et donne le ton d'une journée délibérément ancrée dans le vrai New York.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>La façade rouge vif vaut le détour même pour une photo rapide. Vous êtes à Broadway &amp; 112th — Columbia University est à deux blocs au nord.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Seinfeld</span>
+        <span class="tag">Diner grec depuis 1940</span>
+        <span class="tag gold">Incontournable pop culture</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Seinfeld et le « Monk's Diner »</div>
+            <span class="expand-section-sub">1989–1998 · la façade la plus connue de NYC</span>
+            <p>Dans la série, le diner fictif s'appelait <em>Monk's Café</em> — mais la façade filmée était systématiquement celle de Tom's. L'intérieur, lui, était un décor de studio à Hollywood. Cette dissociation est l'une des plus célèbres de l'histoire de la télévision américaine : des millions de téléspectateurs ont cru dîner dans ce restaurant pendant neuf saisons sans jamais y avoir mis les pieds.</p>
+            <p>Le propriétaire d'origine, Tom Meros, a ouvert le restaurant en 1940. La famille n'a compris l'importance de la série qu'au moment où les pèlerins ont commencé à affluer après la diffusion. Depuis, la façade est un arrêt quasi-officiel des tours Seinfeld de la ville.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Columbia University à deux blocs</div>
+            <p>Tom's se situe dans le quartier de <em>Morningside Heights</em>, enclave académique coincée entre Harlem et le Upper West Side. L'Université Columbia (fondée en 1754 comme King's College, avant la Révolution) est à 200 mètres au nord. La librairie <em>Book Culture</em> et le café <em>Absolute Bagels</em> sur Broadway valent le détour si vous arrivez tôt. L'ambiance étudiante contraste brutalement avec l'énergie de Harlem qui commence cinq blocs plus haut.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Ouvert tlj 6h–23h</strong> (minuit le week-end) · Métro : 110th Street (lignes 1) · Petit-déj ~$12–18 · Comptoir ou tables en salle · Pas de réservation · La terrasse extérieure ouvre en mai.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 2 : Hamilton Grange -->
+  <article class="stop" id="stop-hamilton">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">10:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Histoire · Monument National</div>
+      <h3 class="stop-title">Hamilton Grange</h3>
+      <div class="stop-address">414 W 141st St · Hamilton Heights</div>
+      <p class="stop-desc">L'ancienne demeure d'Alexander Hamilton — père fondateur, premier Secrétaire au Trésor, héros de la comédie musicale de Broadway — a été déplacée deux fois avant d'être restaurée dans ce parc de Hamilton Heights. Gratuit, géré par le National Park Service, remarquablement intime.</p>
+      <p class="stop-desc">Une parenthèse courte (30–45 min) mais qui ancre la journée dans la profondeur historique de ce coin de Manhattan, longtemps aristocratique avant de devenir le cœur de la Renaissance de Harlem.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💡 Bon à savoir</div>
+        <p>Le parc St. Nicholas Park, juste à côté, est beau et calme le matin — bonne transition avant de remonter vers la 138th Street.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag sage">Entrée gratuite</span>
+        <span class="tag">Parc National</span>
+        <span class="tag">30–45 min</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Alexander Hamilton et le duel fatal</div>
+            <span class="expand-section-sub">11 juillet 1804 · Weehawken, New Jersey</span>
+            <p>Hamilton fit construire The Grange en 1802 — c'était sa première et unique maison personnelle. Il n'allait la posséder que deux ans. Le 11 juillet 1804, il mourut en duel face à Aaron Burr, vice-président des États-Unis en exercice. La dispute, vieille de plusieurs années, portait sur un commentaire de presse que Hamilton aurait fait sur le caractère de Burr. Burr l'abattit d'une balle dans le flanc droit. Hamilton mourut le lendemain à Manhattan. Il avait 49 ans. Burr, lui, ne fut jamais inculpé — les duels étaient légaux dans le New Jersey.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">La maison qui a déménagé deux fois</div>
+            <p>The Grange a été construite en 1802 dans un terrain alors vierge — Hamilton y plantait lui-même des tulipiers et des roses. À sa mort, le domaine fut vendu pour régler ses dettes. La maison a été déplacée une première fois en 1889 pour laisser place à un immeuble, puis une seconde fois en 2008 — opération spectaculaire qui a mobilisé des grues géantes — pour être réinstallée dans le parc actuel, à 500 mètres de son emplacement d'origine, dans sa configuration d'époque.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Ouvert mer–dim 9h–17h</strong> · <strong>Entrée gratuite</strong> (NPS) · nps.gov/hagr · Visites guidées gratuites en anglais, plusieurs fois par jour. Prévoir 30–45 min.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 3 : Abyssinian Baptist Church -->
+  <article class="stop" id="stop-gospel">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">11:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Expérience · Spirituel &amp; Musical</div>
+      <h3 class="stop-title">Abyssinian Baptist Church</h3>
+      <div class="stop-address">132 Odell Clark Pl (138th St) · Central Harlem</div>
+      <p class="stop-desc">Fondée en 1808, l'Abyssinian Baptist Church est l'une des plus anciennes et des plus influentes congrégations afro-américaines du pays. Sa messe gospel du dimanche matin est une expérience que les New-Yorkais eux-mêmes tiennent pour exceptionnelle : chorale à pleine voix, prêche puissant, émotion collective sincère.</p>
+      <p class="stop-desc">Il ne s'agit pas d'un spectacle touristique — c'est une vraie messe. L'église accueille les visiteurs respectueux avec une chaleur genuine. Tenue correcte exigée. Pas de shorts, pas de casquettes à l'intérieur.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">⚠️ Note importante</div>
+        <p>Uniquement le <strong>dimanche</strong>, services vers 11h. Arrivez 15 minutes en avance. En semaine, consacrez ce créneau à une promenade autour de la 138th et Strivers' Row adjacentes.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Dimanche uniquement</span>
+        <span class="tag rust">Moment fort</span>
+        <span class="tag">Depuis 1808</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Fondée par des marins qui ont dit non</div>
+            <span class="expand-section-sub">1808 · naissance d'une institution</span>
+            <p>L'Abyssinian Baptist Church a été fondée en 1808 par un groupe de marchands et de marins afro-américains qui avaient refusé de s'asseoir dans les bancs ségrégationnistes de la First Baptist Church de New York. Ils ont choisi le nom d'<em>Abyssinie</em> — l'ancien nom de l'Éthiopie, seul pays africain n'ayant jamais été colonisé — en hommage à la résistance africaine.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Adam Clayton Powell Jr.</div>
+            <span class="expand-section-sub">Pasteur, militant, congressman</span>
+            <p>Le pasteur le plus célèbre de l'Abyssinian fut <em>Adam Clayton Powell Jr.</em> (1908–1972), qui a dirigé l'église de 1937 à 1971 tout en siégeant au Congrès des États-Unis de 1945 à 1971. Il fut l'un des premiers Afro-Américains à avoir une réelle influence à Washington et a combattu les discriminations raciales avec une énergie qui lui a valu autant d'admirateurs que d'ennemis. La grand avenue qui longe Harlem à l'ouest, anciennement 7th Avenue, porte aujourd'hui son nom : <em>Adam Clayton Powell Jr. Boulevard</em>.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Harlem et la Grande Migration</div>
+            <p>Entre 1910 et 1970, environ six millions d'Afro-Américains ont quitté le Sud des États-Unis pour les villes du Nord — Chicago, Détroit, Philadelphie, et surtout New York. C'est la <em>Grande Migration</em>. Harlem en était le cœur new-yorkais : en quelques décennies, le quartier s'est transformé d'une enclave irlando-italienne en capitale culturelle noire mondiale. C'est dans ce contexte que fleurit la <em>Renaissance de Harlem</em> des années 1920 — explosion littéraire, musicale et artistique sans précédent dans l'histoire afro-américaine. Langston Hughes, Zora Neale Hurston, Duke Ellington, Louis Armstrong, Josephine Baker en étaient les figures.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 4 : Strivers' Row -->
+  <article class="stop" id="stop-strivers">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">12:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Balade</div>
+      <h3 class="stop-title">Strivers' Row</h3>
+      <div class="stop-address">138th &amp; 139th St entre A.C. Powell Jr. Blvd et Frederick Douglass Blvd</div>
+      <p class="stop-desc">L'une des plus belles rues résidentielles de tout Manhattan. Ces brownstones et townhouses aux façades Renaissance italienne et néo-géorgienne, construits à la fin du XIXe siècle, sont devenus dans les années 1920 le symbole de la middle class noire émergente — les <em>striver</em>, ceux qui s'élèvent. W.C. Handy, père du blues, y a vécu. Eubie Blake aussi.</p>
+      <p class="stop-desc">Flânez lentement dans les deux rues. Remarquez les ruelles pavées en arrière des maisons — détail rarissime à Manhattan. Peu de touristes y passent.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>Les façades en lumière de fin de matinée sont idéales. Cherchez les plaques discrètes sur les portes d'entrée — certaines indiquent les anciens résidents célèbres.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Architecture fin XIXe</span>
+        <span class="tag sage">Quartier résidentiel préservé</span>
+        <span class="tag">Ruelles pavées</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Stanford White et McKim, Mead &amp; White</div>
+            <span class="expand-section-sub">1891 · les architectes de la robber baron era</span>
+            <p>Les maisons de Strivers' Row ont été conçues entre 1891 et 1893 par trois cabinets distincts, dont le prestigieux <em>McKim, Mead &amp; White</em> — le cabinet de Stanford White, l'architecte le plus célèbre de l'Amérique de la Gilded Age, qui a également signé la première Penn Station (démolie en 1963, catastrophe urbanistique). Les maisons étaient destinées à des familles blanches bourgeoises — mais la démographie du quartier a basculé dans les années 1910-1920 avec la Grande Migration.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">« Walk Your Horses »</div>
+            <p>Sur les ruelles pavées en arrière des maisons — les seules à Manhattan avec Stone Street dans le Financial District — vous pouvez encore voir des plaques métalliques qui disent <em>« Walk Your Horses »</em>, datant de l'époque des calèches. C'était une instruction pour les cochers de ralentir dans l'allée. Ces plaques ont traversé un siècle entier de transformations urbaines sans être retirées. Ce genre de détail ne se trouve qu'ici.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Les « Strivers » : qui étaient-ils ?</div>
+            <span class="expand-section-sub">Années 1920–1940</span>
+            <p>Le surnom de Strivers' Row est apparu dans les années 1920 pour désigner l'élite noire du quartier — médecins, avocats, musiciens, entrepreneurs — qui avait réussi à s'installer dans ces maisons huppées. Le terme <em>striver</em> était parfois utilisé avec ironie par les Harlemites moins fortunés, pour railler des voisins qui « aspiraient à tout » et mettaient en scène leur réussite. Parmi les résidents célèbres : <em>W.C. Handy</em> (qui a popularisé le blues avec « St. Louis Blues »), <em>Eubie Blake</em> (pianiste de ragtime et compositeur de broadway), <em>Bill Robinson</em> (danseur et acteur, dit « Bojangles »).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- FOOD SECTION -->
+  <section class="food-section" id="stop-dejeuner">
+    <div class="section-label">Où manger à Harlem</div>
+    <p class="food-intro">Harlem est l'un des quartiers les plus riches de New York en diversité culinaire — soul food américaine, éthiopien, ghanéen, yéménite, latino, caribéen. On a volontairement multiplié les propositions pour vous laisser le choix, du typique pas cher à l'adresse plus soignée.</p>
+
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☀️</span>
+        <span class="meal-header-title">Déjeuner</span>
+        <span class="meal-header-time">vers 13h00 — après Strivers' Row</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Soul Food</span><span class="resto-badge badge-insta">Institution</span></div>
+          <div class="resto-name">Sylvia's Restaurant</div>
+          <div class="resto-address">328 Malcolm X Blvd (Lenox Ave)</div>
+          <p class="resto-desc">L'incontournable de la soul food depuis 1962. Poulet frit, mac &amp; cheese, cornbread, collard greens — portions XXL. Obama, Clinton, Jay-Z y ont mangé ; la cuisine reste honnête et généreuse.</p>
+          <p class="resto-note">Très touristique le dimanche — arrivez tôt ou attendez un peu.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Soul Food · Local</span></div>
+          <div class="resto-name">Melba's</div>
+          <div class="resto-address">300 W 114th St</div>
+          <p class="resto-desc">La soul food sans le tourisme de Sylvia's. Poulet et gaufres, côtes levées, sweet potato pie. Clientèle locale, ambiance de quartier. Plus au sud — parfait si vous venez de Tom's.</p>
+          <p class="resto-note">Notre recommandation si Sylvia's vous semble trop fréquentée.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Africain · Ghanéen</span></div>
+          <div class="resto-name">Accra Express Restaurant</div>
+          <div class="resto-address">63 E 125th St</div>
+          <p class="resto-desc">Cuisine ouest-africaine authentique — jollof rice, fufu, soupe d'arachide. Ambiance de cantine locale, prix très doux, 100% hors des circuits touristiques.</p>
+          <p class="resto-note">L'option la plus locale et la moins chère du quartier.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Éthiopien</span></div>
+          <div class="resto-name">Awaze Ethiopian Restaurant</div>
+          <div class="resto-address">2288 Frederick Douglass Blvd</div>
+          <p class="resto-desc">Injera, tibs, lentilles épicées dans une atmosphère chaleureuse. Repas partagés au centre de la table — une belle façon de déjeuner à deux.</p>
+          <p class="resto-note">Service parfois lent — ne convient pas si vous êtes pressés.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Yéménite</span></div>
+          <div class="resto-name">Yemeni Restaurant</div>
+          <div class="resto-address">377 W 125th St</div>
+          <p class="resto-desc">Mandi (riz au poulet rôti lentement), saltah, khobz. Saveurs puissantes, portions copieuses, prix de cantine. Un Harlem cosmopolite méconnu des touristes.</p>
+          <p class="resto-note">Idéal pour sortir de la soul food et découvrir un autre Harlem.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Latino · Caribéen</span></div>
+          <div class="resto-name">El Tina Harlem Restaurant</div>
+          <div class="resto-address">511 W 125th St</div>
+          <p class="resto-desc">Plats latino-américains faits maison — riz, haricots noirs, plantains, viandes braisées. Reflète la composante hispanophone de Harlem, souvent oubliée des guides.</p>
+          <p class="resto-note">Bon rapport qualité/prix, service rapide.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Soul Food · Au poids</span><span class="resto-badge badge-insta">★ Routard</span></div>
+          <div class="resto-name">Manna's</div>
+          <div class="resto-address">320 St Nicholas Ave (&amp; 126th)</div>
+          <p class="resto-desc">Soul food au poids depuis 1984 — salad bars et buffets chauds. Cafétéria populaire, clientèle 100% locale, 9–15$. L'expérience la plus authentique possible.</p>
+          <p class="resto-note">Le Routard le recommande pour son ancrage local de 40 ans.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Soul Food · Cafétéria</span><span class="resto-badge badge-insta">★ Routard</span></div>
+          <div class="resto-name">Jacob Restaurant Soul Food &amp; Salad Bar</div>
+          <div class="resto-address">373 Malcolm X Blvd (&amp; 129th)</div>
+          <p class="resto-desc">Institution depuis 2009 — buffet de salades fraîches et plats de soul food. Plats au poids, 8–14$. Le repas est gratuit pour tous le jour de Thanksgiving.</p>
+          <p class="resto-note">Format plateau flexible — parfait pour un déjeuner rapide.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Caribéen · Authentique</span><span class="resto-badge badge-insta">★ Routard</span></div>
+          <div class="resto-name">Sisters Caribbean Cuisine</div>
+          <div class="resto-address">47 E 124th St (&amp; Madison Ave)</div>
+          <p class="resto-desc">Petit restaurant caribéen authentique depuis 1995. Cuisine maison, portions copieuses, plats mijotés, 10–20$. L'adresse de quartier qui ne cherche pas à plaire aux touristes.</p>
+          <p class="resto-note">Ouvert tlj 11h–21h (20h dim).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🌙</span>
+        <span class="meal-header-title">Dîner</span>
+        <span class="meal-header-time">vers 18h30–19h30 — avant Bill's Place</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$ milieu de gamme</span><span class="resto-badge badge-cuisine">Soul Food revisitée</span><span class="resto-badge badge-insta">Référence</span></div>
+          <div class="resto-name">Red Rooster Harlem</div>
+          <div class="resto-address">310 Lenox Ave (Malcolm X Blvd)</div>
+          <p class="resto-desc">Le restaurant de Marcus Samuelsson — soul food revisitée avec influences éthiopiennes et scandinaves. Ambiance vibrante, cocktails soignés, musique live certains soirs. La référence gastronomique du Harlem contemporain.</p>
+          <p class="resto-note">Réservation obligatoire. Le bar reste accessible sans résa.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$ milieu de gamme</span><span class="resto-badge badge-cuisine">Pizza · Napolitaine</span><span class="resto-badge badge-insta">★ Routard</span></div>
+          <div class="resto-name">Sottocasa</div>
+          <div class="resto-address">227 Malcolm X Blvd</div>
+          <p class="resto-desc">Pizzeria napolitaine feu de bois, équipe italienne, 14–22$. Le meilleur restaurant du genre dans le quartier. Dépaysant total après une journée de soul food.</p>
+          <p class="resto-note">Ouvert tlj 17h (12h w-e)–22h (23h ven-sam).</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$ milieu de gamme</span><span class="resto-badge badge-cuisine">BBQ Texan</span><span class="resto-badge badge-insta">★ Routard</span></div>
+          <div class="resto-name">Dinosaur Bar-B-Que</div>
+          <div class="resto-address">700 W 125th St (&amp; 12th Ave)</div>
+          <p class="resto-desc">BBQ texan au bord de l'Hudson — travers marinés 24h, fumés dans leur sauce maison, 16–23$. Bar industriel en brique et bois, live music certains soirs.</p>
+          <p class="resto-note">Excentré (bord de l'Hudson) — prévoir un uber. Réservation conseillée.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$ pas cher</span><span class="resto-badge badge-cuisine">Sénégalais · Café</span></div>
+          <div class="resto-name">Patisserie des Ambassades</div>
+          <div class="resto-address">2200 Frederick Douglass Blvd</div>
+          <p class="resto-desc">Pâtisserie franco-sénégalaise — croissants, thiéboudienne, café touba. Ambiance parisienne inattendue, fréquentée par la diaspora africaine francophone de la ville.</p>
+          <p class="resto-note">Option rapide et peu chère avant Bill's Place.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$ milieu de gamme</span><span class="resto-badge badge-cuisine">Caribéen · Fusion</span></div>
+          <div class="resto-name">The Edge Harlem</div>
+          <div class="resto-address">101 Edgecombe Ave</div>
+          <p class="resto-desc">Café-restaurant décontracté fusionnant influences caribéennes et britanniques. Ambiance locale, cadre original — loin des restos à touristes de la 125th.</p>
+          <p class="resto-note">Option idéale pour un dîner détendu avant le jazz.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$ milieu de gamme</span><span class="resto-badge badge-cuisine">Indien</span></div>
+          <div class="resto-name">Indian Summer Harlem</div>
+          <div class="resto-address">239 Malcolm X Blvd</div>
+          <p class="resto-desc">Cuisine indienne soignée mêlant saveurs traditionnelles et plats contemporains. Une surprise bienvenue — option plus légère avant une longue soirée.</p>
+          <p class="resto-note">Bonne option si vous voulez manger léger avant Bill's.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STOP 5 : Schomburg -->
+  <article class="stop" id="stop-schomburg">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">14:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Culture · Bibliothèque &amp; Archives</div>
+      <h3 class="stop-title">Schomburg Center for Research in Black Culture</h3>
+      <div class="stop-address">515 Malcolm X Blvd · Central Harlem</div>
+      <p class="stop-desc">L'un des centres de documentation sur la culture afro-américaine les plus importants au monde, rattaché à la New York Public Library. La collection dépasse dix millions d'objets : manuscrits, partitions de jazz originales, correspondances de figures de la Renaissance de Harlem, photographies d'époque.</p>
+      <p class="stop-desc">L'entrée des expositions permanentes et temporaires est gratuite. Même un passage de 45 minutes donne une compréhension de Harlem impossible à acquérir ailleurs.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💡 Bon à savoir</div>
+        <p>Vérifiez les horaires d'ouverture (fermé certains lundis). Les expositions temporaires changent régulièrement — regardez ce qui est programmé en mai 2026 sur leur site.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag sage">Entrée gratuite</span>
+        <span class="tag">Archives uniques</span>
+        <span class="tag">45–60 min</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Arturo Schomburg, le collectionneur obsédé</div>
+            <span class="expand-section-sub">1874–1938 · Porto Rico via Harlem</span>
+            <p>Arturo Alfonso Schomburg est né à Porto Rico en 1874 d'un père allemand et d'une mère afro-caribéenne. Enfant, un instituteur lui avait dit que « les Noirs n'ont pas d'histoire, pas de héros, pas de grandes réalisations ». Schomburg a passé le reste de sa vie à prouver le contraire. Il est arrivé à New York en 1891 et a commencé à collectionner des livres, des manuscrits, des œuvres d'art, des documents — tout ce qui documentait les contributions africaines et afro-américaines à la civilisation mondiale. Sa collection personnelle, rachetée par la New York Public Library en 1926 pour 10 000 $, est le fondement de ce qui est devenu le Schomburg Center.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">La Renaissance de Harlem en un seul bâtiment</div>
+            <p>Les archives du Schomburg contiennent les manuscrits originaux de <em>Langston Hughes</em> (poète, figure centrale de la Renaissance), des partitions de <em>Duke Ellington</em>, la correspondance personnelle de <em>W.E.B. Du Bois</em> (sociologue, co-fondateur de la NAACP), des photographies de <em>James Van Der Zee</em> (le photographe officieux de la Renaissance de Harlem), et d'innombrables artefacts liés à <em>Marcus Garvey</em> (leader du mouvement Back to Africa). Tout ce que vous avez entendu sur la Renaissance de Harlem est documenté ici, dans sa version originale.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 6 : Apollo Theater -->
+  <article class="stop" id="stop-apollo">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">15:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Musique · Légende Vivante</div>
+      <h3 class="stop-title">Apollo Theater</h3>
+      <div class="stop-address">253 W 125th St · Central Harlem</div>
+      <p class="stop-desc">Ella Fitzgerald. James Brown. Billie Holiday. Stevie Wonder. Michael Jackson à 11 ans. L'Apollo Theater n'est pas seulement une salle de spectacle — c'est le lieu où la musique américaine du XXe siècle a été forgée. Son programme d'<em>Amateur Night</em>, créé en 1934, a révélé plus de talents que n'importe quelle autre scène au monde.</p>
+      <p class="stop-desc">Une visite guidée de l'intérieur est possible en journée (45 min, sur réservation). La façade illuminée et la marquise historique valent à elles seules le passage.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎭 Programme</div>
+        <p>Vérifiez le programme pour mai 2026. Si un concert ou un Amateur Night tombe pendant votre séjour, considérez-le comme une priorité absolue — même si ça réorganise la soirée.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Légende mondiale</span>
+        <span class="tag gold">Amateur Night mythique</span>
+        <span class="tag">Visites guidées disponibles</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'Amateur Night : la scène la plus cruelle du monde</div>
+            <span class="expand-section-sub">Depuis 1934 · chaque mercredi soir</span>
+            <p>L'Amateur Night de l'Apollo est la plus ancienne compétition de talents d'Amérique. La règle est simple : les artistes montent sur scène, le public décide. Si le public n'aime pas, un personnage déguisé appelé le <em>Sandman</em> sort de coulisse et chasse littéralement le candidat en dansant autour de lui. En 1934, une jeune fille timide de 17 ans est montée sur scène pour danser — mais elle a décidé au dernier moment de chanter à la place. Le public a été médusé. Elle a gagné. Elle s'appelait <em>Ella Fitzgerald</em>.</p>
+            <p><em>Billie Holiday</em>, <em>James Brown</em>, <em>Jackie Wilson</em>, <em>Luther Vandross</em>, <em>Lauryn Hill</em>, <em>H.E.R.</em> ont tous commencé ici lors de l'Amateur Night.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Michael Jackson, 11 ans, et le public de l'Apollo</div>
+            <p>En 1969, les <em>Jackson 5</em> se produisent à l'Amateur Night. Michael Jackson a 11 ans. Ils gagnent. La performance est si renversante que la légende dit que le public de l'Apollo — réputé pour être le plus exigeant du monde — s'est levé à l'unanimité. Berry Gordy, le fondateur de Motown, aurait signé leur contrat peu après. La version officielle de Motown dit que Gordy les a découverts lors d'un autre concert — mais les témoins de l'Apollo sont formels : ce soir-là, quelque chose de spécial s'est passé sur cette scène.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le Tree of Hope</div>
+            <span class="expand-section-sub">Le tronc porte-bonheur</span>
+            <p>Dans les coulisses de l'Apollo, sur la scène, il y a un morceau de tronc d'arbre verni — le <em>Tree of Hope</em>. La légende dit que toucher ce bois avant de monter sur scène porte bonheur. L'arbre original se trouvait au coin de la 131st et de la 7th Avenue, où les musiciens se réunissaient dans les années 1920 en espérant être embauchés. Quand l'arbre a été abattu pour agrandir la rue, Bill Robinson (« Bojangles ») a convaincu les autorités de lui remettre un morceau du tronc, qu'il a fait installer à l'Apollo. Les artistes touchent ce bois depuis 90 ans.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Visites guidées :</strong> lun–sam 11h, 13h, 15h · <strong>20 $</strong> · Réservation sur apollotheater.org · Amateur Night : certains mercredis soir · Programme complet sur le site.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 7 : Studio Museum -->
+  <article class="stop" id="stop-studio">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">16:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Art Contemporain · Musée</div>
+      <h3 class="stop-title">Studio Museum in Harlem</h3>
+      <div class="stop-address">429 W 127th St · Central Harlem</div>
+      <p class="stop-desc">Consacré à l'art contemporain d'artistes africains, afro-américains et de la diaspora africaine, le Studio Museum est l'un des musées les plus influents de New York — et pourtant souvent ignoré par les touristes en quête de MoMA ou Guggenheim. C'est exactement ce qui en fait un joyau.</p>
+      <p class="stop-desc">Un bâtiment flambant neuf a ouvert ses portes en 2025 après plusieurs années de travaux. Les collections et expositions mettent systématiquement en lumière des voix contemporaines puissantes.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💡 Note</div>
+        <p>Vérifiez les horaires et tarifs — le nouveau bâtiment a pu modifier la politique tarifaire. Comptez 1h à 1h30.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Nouveau bâtiment 2025</span>
+        <span class="tag sage">Art contemporain</span>
+        <span class="tag">1h–1h30</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le musée qui a refusé d'être éclipsé</div>
+            <span class="expand-section-sub">Fondé en 1968 · résistance artistique</span>
+            <p>Le Studio Museum a été fondé en 1968 — un an après les émeutes de Newark et de Detroit, deux ans avant la mort de Martin Luther King — comme un espace dédié aux artistes noirs à une époque où les grands musées américains ne les exposaient pas. Il s'est défini dès l'origine comme un lieu de travail (<em>studio</em>) autant que d'exposition — des artistes en résidence y travaillent encore aujourd'hui. Parmi les anciens résidants : <em>David Hammons</em>, <em>Kehinde Wiley</em> (qui a peint le portrait officiel de Barack Obama), <em>Mickalene Thomas</em>.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le nouveau bâtiment : pourquoi ça a pris 8 ans</div>
+            <span class="expand-section-sub">Adjaye Associates · ouverture 2025</span>
+            <p>Le nouveau bâtiment, signé par l'architecte ghanéen-britannique <em>David Adjaye</em> (également auteur du Musée National d'Histoire et de Culture Afro-Américaine à Washington), a été l'objet de batailles urbanistiques considérables avec la ville de New York. La conception finale intègre une façade en acier corten et de larges baies vitrées qui dialoguent avec la rue — un signal architectural délibéré dans un quartier en pleine transformation.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 8 : 125th Street -->
+  <article class="stop" id="stop-125">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">17:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Balade · Atmosphère de quartier</div>
+      <h3 class="stop-title">La 125th Street — l'artère de Harlem</h3>
+      <div class="stop-address">Martin Luther King Jr. Blvd · Central Harlem</div>
+      <p class="stop-desc">La 125th Street est à Harlem ce que la 5th Avenue est à Midtown — mais en version bruyante, vivante, sans filtres. Vendeurs ambulants, murales géantes, musique qui s'échappe des boutiques, enfants en vélo, prêcheurs aux coins de rue. C'est le vrai pouls de Harlem.</p>
+      <p class="stop-desc">Marchez d'est en ouest — 15 blocs environ. Cherchez le mural de Duke Ellington, les vestiges de l'architecture jazz-age entre les nouveaux immeubles, et faites une pause Levain Bakery (Frederick Douglass Blvd) pour un cookie avant la soirée.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">☕ Pause</div>
+        <p>Faites une pause café ou pâtisserie avant de rentrer vous reposer et vous préparer pour Bill's Place. La journée est longue — ménagez-vous.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Balade libre</span>
+        <span class="tag sage">Murales &amp; street art</span>
+        <span class="tag">Ambiance authentique</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">La gentrification de Harlem</div>
+            <span class="expand-section-sub">Depuis les années 2000 · tensions et transformations</span>
+            <p>La 125th Street est la ligne de front de la gentrification de Harlem — un processus qui a commencé timidement dans les années 1990 et s'est accéléré spectaculairement depuis 2010. Starbucks, Whole Foods, Gap ont remplacé certains commerces historiques. Les loyers ont triplé dans certains immeubles. Des familles afro-américaines qui habitaient le quartier depuis des décennies ont dû partir vers le Bronx ou Brooklyn. Ce phénomène, documenté par des sociologues comme <em>Lance Freeman</em>, est au cœur du débat politique local.</p>
+            <p>Mais Harlem résiste. La 125th reste profondément ancrée dans sa culture — les vendeurs de rue, les barbershops, les kirches de storefront, les prêcheurs ambulants sont toujours là. La tension entre l'ancien et le nouveau se lit dans chaque bloc.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le mural de Duke Ellington</div>
+            <p>À l'angle de la 106th Street et de la 5th Avenue — à la limite sud de Harlem — se trouve un mural monumental de <em>Duke Ellington</em> (1899–1974), pianiste, compositeur et chef d'orchestre considéré comme l'une des figures les plus importantes de l'histoire de la musique américaine. Dans le mural, il se tient debout devant un piano aux touches qui se transforment en colonnes de cathédrale. C'est l'œuvre du peintre <em>James De La Vega</em>, et elle marque symboliquement l'entrée dans Harlem depuis le nord de Central Park.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 9 : Bill's Place -->
+  <article class="stop" id="stop-bills">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">21:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Soirée · Jazz Live</div>
+      <h3 class="stop-title">Bill's Place</h3>
+      <div class="stop-address">148 W 133rd St · Central Harlem</div>
+      <p class="stop-desc">Bill's Place n'est pas un club de jazz. C'est la maison du saxophoniste Bill Saxton — un brownstone de Harlem converti en speakeasy intime où une vingtaine de personnes s'entassent chaque vendredi et samedi soir pour deux sets live à 20h et 22h. Harlem All-Stars. BYOB. Premier arrivé premier servi.</p>
+      <p class="stop-desc">C'est l'expérience la plus honnête et la plus rare du jazz à New York : une pièce basse de plafond, des musiciens à 1 mètre, pas d'amplification artificielle, pas d'entre-soi touristique. Le genre d'endroit dont les New-Yorkais parlent à voix basse pour ne pas qu'il se remplisse.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎷 Infos pratiques</div>
+        <p><strong>Vendredi &amp; samedi uniquement</strong> — sets à 20h et 22h. BYOB (apportez vos bouteilles). Réservation fortement recommandée : <strong>(212) 281-0777</strong>. Capacité très limitée — appelez tôt dans la semaine.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Vendredi &amp; samedi seulement</span>
+        <span class="tag gold">Expérience rare</span>
+        <span class="tag">BYOB · Réservation obligatoire</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">La 133rd Street — le Swing Street de Harlem</div>
+            <span class="expand-section-sub">Années 1920–1940 · la rue qui ne dormait pas</span>
+            <p>La 133rd Street s'appelait dans les années 1920 la <em>Jungle Alley</em> — une concentration de clubs, de speakeasies et de salons de jazz qui fonctionnaient toute la nuit. C'est ici que se trouvait le <em>Basement Brownies</em> où Bessie Smith chantait pour des pourboires, le <em>Tillie's Chicken Shack</em> où les musiciens venaient manger à 4h du matin, et des dizaines d'autres adresses qui n'ont pas survécu à la Prohibition et à la Grande Dépression. Bill's Place est un vestige direct de cette époque — même adresse, même format.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Minton's Playhouse et le bebop</div>
+            <span class="expand-section-sub">118th Street · 1940s · la nuit où tout a changé</span>
+            <p>À quelques blocs de là, le <em>Minton's Playhouse</em> (aujourd'hui fermé) a été le berceau du bebop dans les années 1940. C'est là que <em>Thelonious Monk</em>, <em>Charlie Parker</em>, <em>Dizzy Gillespie</em> et le jeune <em>Miles Davis</em> ont développé un nouveau langage musical lors de jam sessions nocturnes. Le bebop était délibérément complexe — des tempos impossibles, des harmonies inouïes — pour décourager les musiciens amateurs de monter sur scène et forcer les vrais à se surpasser. Ce mouvement a littéralement changé la musique du monde. Bill Saxton, le propriétaire de Bill's Place, a connu certains de ces musiciens en personne.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le seul vrai speakeasy de Harlem</div>
+            <p>Pendant la Prohibition (1920–1933), Harlem était couverte de <em>speakeasies</em> — des bars clandestins où l'on vendait de l'alcool illégalement. La plupart ont disparu. Bill's Place, dans son concept BYOB dans un brownstone privé, est souvent décrit comme le seul à avoir maintenu l'esprit du speakeasy dans Harlem — pas seulement dans son format, mais dans son refus délibéré de la mise en scène touristique. Quand vous apportez votre bouteille et vous asseyez à 1 mètre des musiciens dans une pièce qui peut contenir 20 personnes maximum, vous êtes dans la même situation que les habitués d'une cave de la 133rd Street en 1926.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- POI -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+    <p style="font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:4px;">À intégrer selon le rythme de la journée ou pour un second passage dans le quartier.</p>
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">⛪</div>
+        <div class="poi-card-name">Mother AME Zion Church</div>
+        <div class="poi-card-address">140 W 137th St</div>
+        <p class="poi-card-desc">La plus ancienne église afro-américaine de New York (1796). Frederick Douglass, Sojourner Truth et Paul Robeson y ont tous été liés. Discrète et majestueuse — souvent ignorée, toujours émouvante.</p>
+        <p class="poi-card-note">Entrée libre sur les horaires d'ouverture.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🎷</div>
+        <div class="poi-card-name">National Jazz Museum in Harlem</div>
+        <div class="poi-card-address">58 W 129th St</div>
+        <p class="poi-card-desc">Le seul musée américain entièrement consacré au jazz — archives sonores, instruments, photos d'époque, expositions. Petit mais dense. À combiner avec Bill's Place pour une journée 100% jazz.</p>
+        <p class="poi-card-note">Entrée libre ou prix suggéré. Compter 45 min.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🍪</div>
+        <div class="poi-card-name">Levain Bakery Harlem</div>
+        <div class="poi-card-address">2167 Frederick Douglass Blvd (116th St)</div>
+        <p class="poi-card-desc">L'adresse Harlem de la boulangerie new-yorkaise la plus culte — ses cookies épais, denses et fondants au cœur sont une institution. La pause goûter idéale en fin d'après-midi sur la 125th.</p>
+        <p class="poi-card-note">Prenez deux cookies. Vous avez marché toute la journée.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🌿</div>
+        <div class="poi-card-name">Marcus Garvey Park</div>
+        <div class="poi-card-address">120th–124th St, Mt Morris Park W</div>
+        <p class="poi-card-desc">Parc historique avec une tour de guet en métal du XIXe siècle — vestige unique de l'architecture de surveillance de l'époque. Ambiance calme et locale, fréquenté par les habitants du quartier.</p>
+        <p class="poi-card-note">Belle pause verte entre deux visites culturelles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transports</div>
+        <p>Depuis Midtown : lignes <strong>2, 3</strong> (express) jusqu'à 125th St — 15 min. Lignes <strong>A, B, C, D</strong> passent aussi à Harlem. Le quartier se traverse facilement à pied sur 30 blocs (2,5 km).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p>Le <strong>vendredi ou samedi</strong> sont optimaux — Bill's Place n'ouvre que ces deux soirs. Le <strong>dimanche</strong>, ajoutez le gospel à l'Abyssinian (11h). Évitez le lundi pour le Schomburg.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>9h → 23h+</strong>. Sans la soirée jazz, comptez jusqu'à 18h. Harlem se parcourt confortablement à pied — les distances entre sites sont courtes.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Harlem est un quartier vivant et habité — pas un musée. Soyez curieux, souriants, respectueux. Les habitants apprécient les visiteurs qui s'intéressent sincèrement à l'histoire plutôt que ceux qui consomment en passant.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget journée</div>
+        <p>Petit-déjeuner Tom's ~<strong>$20</strong> · Déjeuner (options $) ~<strong>$15–30</strong> · Musées ~<strong>$0–25</strong> · Dîner ($ à $$) ~<strong>$20–60</strong> · Bill's Place (BYOB) ~<strong>$15–30</strong>. Total : <strong>$70–165</strong>/personne.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Façade Tom's · Strivers' Row ruelles pavées · Marquise de l'Apollo · Murales 125th Street · Studio Museum (nouveau bâtiment) · Vue depuis Marcus Garvey Park.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« Jazz is not just music, it's a way of life. » — Nina Simone</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function(){
+    var all = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    all.forEach(function(d){ d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

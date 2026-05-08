@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DUMBO — Journée à Brooklyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #5A7C9C;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 460px; line-height: 1.6; }
+
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); cursor: default; transition: color 0.2s; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); margin: 0; }
+
+  .stops-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .stop-block { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(200,169,110,0.2); }
+  .stop-block:last-child { border-bottom: none; }
+  .stop-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--navy); flex-shrink: 0; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .stop-desc { font-size: 15px; color: var(--text); margin-bottom: 12px; }
+  .stop-note { background: rgba(200,169,110,0.08); border-left: 3px solid var(--gold); padding: 14px 16px; margin-top: 16px; border-radius: 0 4px 4px 0; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--rust); margin-bottom: 6px; }
+  .stop-note p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+  .section-divider { text-align: center; color: var(--gold); font-size: 14px; margin: 52px 0; letter-spacing: 0.2em; }
+  .poi-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+  .poi-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .poi-card-icon { font-size: 32px; margin-bottom: 10px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-bottom: 10px; }
+  .poi-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .poi-card-note { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .infos-section { padding: 48px 0; }
+  .infos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
+  .info-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); }
+
+  .page-footer { text-align: center; padding: 60px 24px 40px; border-top: 1px solid var(--border); }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-muted); margin-bottom: 12px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .infos-grid { grid-template-columns: 1fr; }
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('brooklyn');</script>
+
+
+<section class="hero">
+  <div class="hero-meta">
+    <div class="hero-eyebrow">📷 Quartier</div>
+    <h1 class="hero-title">DUMBO</h1>
+    <p class="hero-subtitle">Down Under Manhattan Bridge — Iconic Photos & Waterfront Magic</p>
+    <p class="hero-tagline">Le coin le plus photogénique de NYC. Entre histoire industrielle du café, Jane's Carousel restaurée 27 ans, vues spectaculaires Manhattan — DUMBO c'est la journée romantique parfaite. THE photo spot.</p>
+  </div>
+</section>
+
+<div class="timeline-bar">
+  <div class="timeline-inner">
+    <div class="tl-item"><span class="tl-dot"></span> 8:30 York St</div>
+    <div class="tl-item"><span class="tl-dot"></span> 8:45 Archway</div>
+    <div class="tl-item"><span class="tl-dot"></span> 9:00 THE SHOT</div>
+    <div class="tl-item"><span class="tl-dot"></span> 9:30 Empire</div>
+    <div class="tl-item"><span class="tl-dot"></span> 10:30 Carousel</div>
+    <div class="tl-item"><span class="tl-dot"></span> 11:30 Glaces</div>
+    <div class="tl-item"><span class="tl-dot"></span> 13:00 Lunch</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:00 Sunset</div>
+  </div>
+</div>
+
+<main class="page-body">
+
+  <section class="intro-block">
+    <div class="section-label">Présentation</div>
+    <h2>L'archéologie du Café</h2>
+    <p>
+      DUMBO, acronyme de "Down Under the Manhattan Bridge Overpass", est l'un des quartiers les plus charmants et photogéniques de Brooklyn. Situé entre les ponts de Manhattan et de Brooklyn, le quartier a conservé l'architecture industrielle du XIXe-XXe siècles — notamment Empire Stores, complexe de 7 entrepôts (1869-1885) qui stockaient le café des frères Arbuckle.
+    </p>
+    <p>
+      Entre Civil War et 1960s, Brooklyn entier était couvert de miles entiers de warehouses : café, sucre, tabac. NYC = centre mondial café : 86% supply USA année 1890 transitait par DUMBO! Aujourd'hui, Empire Stores est devenu mélange : Time Out Market, galleries, West Elm, Brooklyn Historical Society. Fenêtres massives briques + hoisting wheels = traces vivantes histoire.
+    </p>
+    <div class="tip-box">
+      <p><strong>Timing critique :</strong> Visitez Washington & Front Street (THE SHOT) tôt matin (7h-9h) ou fin après-midi (17h-18h) pour éviter les foules de photographes. Golden hour sunset = moment magique.</p>
+    </div>
+  </section>
+
+  <section class="stops-section">
+    <div class="section-label">Circuit Détaillé</div>
+
+    <!-- STOP 1 -->
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">8:30</span>
+        <h3 class="stop-title">York Street F Train — Arrivée</h3>
+      </div>
+      <div class="stop-address">F train (East River crossing)</div>
+      <p class="stop-desc">Descendez à York Street station — accès direct DUMBO via F train. Première station après la traversée East River. Vous émergerez dans le cœur photogénique Brooklyn. DUMBO se concentre entre York Street au nord et Bridge Street au sud.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📍 Localisation</div>
+        <p>Bordé par Manhattan Bridge (nord), Brooklyn Bridge (sud). Front Street = artère principale. Washington Street = direction arche pont, THE SHOT!</p>
+      </div>
+    </div>
+
+    <!-- STOP 2 -->
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">8:45</span>
+        <h3 class="stop-title">Archway — Manhattan Bridge View</h3>
+      </div>
+      <div class="stop-address">Washington & Front Street corner</div>
+      <p class="stop-desc">Espace voûté dynamique sous pont Manhattan. Bâtiments briques rouges s'alignent parfaitement. L'arche du pont Manhattan encadré centralement entre façades = SHOT ICONIC NYC. Image cliquée millions fois mondialement. Spot photogénique par excellence.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Timing</div>
+        <p><strong>Golden hour : tôt matin (7h-8h) ou coucher soleil (17h-18h)</strong>. Midi = contrejour. Allez vraiment tôt pour shot sans foule ou tardez après 18h.</p>
+      </div>
+    </div>
+
+    <!-- STOP 3 FEATURED -->
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold); margin-bottom: 30px;">
+      <div class="stop-header">
+        <span class="stop-time">9:00</span>
+        <h3 class="stop-title">THE SHOT — Washington & Front Street 💕</h3>
+      </div>
+      <p class="stop-desc"><strong>C'est l'image que tout couple veut capturer à DUMBO.</strong> Arche pont Manhattan délimite parfaitement entre bâtiments briques. Light golden tôt matin ou tard après-midi créé ambiance magique. Photo devient souvenir inoubliable couple NYC.</p>
+      <p class="stop-desc">Soyez patients. Si foules énormes, revenez fin après-midi. Photo couple hand-in-hand sous arche = moment intemporel NYC romance. <strong>Worth the wait!</strong></p>
+      <div class="stop-note">
+        <div class="stop-note-label">💑 Moment Couple</div>
+        <p>Arrivez tôt pour shot seuls. Demandez à autre visiteur photo couple si nécessaire. <strong>C'est MOMENT à ne pas rater!</strong></p>
+      </div>
+    </div>
+
+    <!-- STOP 4 -->
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">9:30</span>
+        <h3 class="stop-title">Empire Stores & Clocktower Building — Empire Historique</h3>
+      </div>
+      <div class="stop-address">55 Water Street (Empire Stores) · 1 Main St (Clocktower)</div>
+      <p class="stop-desc"><strong>Empire Stores :</strong> Complexe 7 entrepôts briques rouges 1869-1885. Ancien siège Arbuckle Bros — frères qui dominaient café USA (180k sacs/jour années 1890!). Région NYC = 86% supply café pays années 1890 transitait DUMBO! Hoisting wheels & coffee chutes visibles partout. Réhabilité 2013-2019. Now = Time Out Market (20+ restaurants, rooftop vues Manhattan), galleries, West Elm, Brooklyn Historical Society.</p>
+      <p class="stop-desc"><strong>Clocktower Building :</strong> Emblématique façade gravée 1915 pour fabrique Brockieville. Aujourd'hui convertie condominiums luxe. Silhouette massive briques + hoisting wheels = signature DUMBO visuelle.</p>
+      <p class="stop-desc"><strong>Tobacco Warehouse :</strong> 45 Water Street — silhouette rougeoyante spectaculaire! Construit 1870 stocker chaînes tabac. St. Ann's Warehouse (théâtre avant-garde) répute paysage culturel local. Rappelons que DUMBO = centre mondial entreposage XIXe siècle!</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🍽️ Time Out Market</div>
+        <p>20+ restaurants curated. Prix variables $15–50. Rooftop bar apéro parfait après exploration historique.</p>
+      </div>
+    </div>
+
+    <!-- STOP 5 -->
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">10:30</span>
+        <h3 class="stop-title">Jane's Carousel — Carrousel Vintage 1922</h3>
+      </div>
+      <div class="stop-address">65 Water Street (Brooklyn Bridge Park)</div>
+      <p class="stop-desc">Carrousel bois 1922 Philadelphia Toboggan Company (PTC#61). 48 chevaux carved main + 2 chariots magnifiques! Originellement Idora Park Ohio. Acheté auction 1984 Jane & David Walentas ($385k). Jane restauré 27 ans (!) hand-scraping 62 années peinture! Pavilion glass architecture Jean Nouvel 2011 (Pritzker Prize). 1200 LED lights. Rides $3.</p>
+      <p class="stop-desc">C'est ICON nostalgie + modernité. Carrousel vintage dans pavilion architecture XXIe = contraste parfait DUMBO. Moment magique couple : ride hand-in-hand sur chevaux sculptés, vues Brooklyn Bridge + Manhattan backdrop.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎠 Experience</div>
+        <p>Rides $3/personne. Worth every cent pour moment inoubliable. Allez tôt ou tard après-midi pour éviter files attente weekend.</p>
+      </div>
+    </div>
+
+    <!-- STOP 6 -->
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">11:30</span>
+        <h3 class="stop-title">Brooklyn Ice Cream Factory</h3>
+      </div>
+      <div class="stop-address">14 Old Fulton Street</div>
+      <p class="stop-desc">Glaces artisanales ICONIC DUMBO. Local institution. Parfums créatifs, ingrédients excellents, portions généreuses. À FAIRE!</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🍦 Must-do</div>
+        <p>Goûtez plusieurs saveurs avant de commander. Files d'attente = normal signe qualité. Worth the wait!</p>
+      </div>
+    </div>
+
+    <!-- STOP 7 -->
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold);">
+      <div class="stop-header">
+        <span class="stop-time">17:00</span>
+        <h3 class="stop-title">Brooklyn Bridge Park — Sunset Crossing 💕</h3>
+      </div>
+      <div class="stop-address">Pebble Beach → Brooklyn Bridge Crossing</div>
+      <p class="stop-desc">Parc 28 acres waterfront entre Manhattan & Brooklyn Bridges. Pebble Beach = petite plage galets. Vues époustouflantes skyline Manhattan + Brooklyn Bridge + East River. Moment magique = coucher soleil!</p>
+      <p class="stop-desc">Allez coucher soleil (golden hour ~18h-19h mai). Asseyez-vous Pebble Beach, observez lumière d'or illumine Manhattan. Puis traversez Brooklyn Bridge pédestre au coucher soleil final. <strong>MOMENT COUPLE ULTIME!</strong></p>
+      <div class="stop-note">
+        <div class="stop-note-label">💑 Romantic Peak</div>
+        <p>C'est le moment. Hand-in-hand walk Brooklyn Bridge. Statue Liberté backlit. Manhattan ablaze light. Photo couple silhouette contre sunset = éternel souvenir!</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🍕</div>
+        <div class="poi-card-name">Juliana's</div>
+        <div class="poi-card-address">19 Old Fulton St</div>
+        <p class="poi-card-desc">Pizza artisanale feu bois. Iconic DUMBO spot.</p>
+        <p class="poi-card-note">Meilleure pizza quartier.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🥐</div>
+        <div class="poi-card-name">Almondine Bakery</div>
+        <div class="poi-card-address">85 Water St</div>
+        <p class="poi-card-desc">Bread, pastries, bagels. Local favorite.</p>
+        <p class="poi-card-note">Pause café parfaite.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍴</div>
+        <div class="poi-card-name">Time Out Market</div>
+        <div class="poi-card-address">55 Water St</div>
+        <p class="poi-card-desc">Food hall 20+ restaurants. Rooftop bar vues Manhattan.</p>
+        <p class="poi-card-note">Curated food options.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">St. Ann's Warehouse</div>
+        <div class="poi-card-address">Front Street</div>
+        <p class="poi-card-desc">Scène théâtrale avant-garde. Concerts cutting-edge.</p>
+        <p class="poi-card-note">Culture incontournable.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌊</div>
+        <div class="poi-card-name">Pebble Beach</div>
+        <div class="poi-card-address">Brooklyn Bridge Park</div>
+        <p class="poi-card-desc">Vues skyline époustouflantes. Détente idéale.</p>
+        <p class="poi-card-note">Sunset magic spot.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌉</div>
+        <div class="poi-card-name">Brooklyn Bridge Park</div>
+        <div class="poi-card-desc">28 acres parc entre ponts. Vues inégalées NYC.</p>
+        <p class="poi-card-note">À explorer librement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transports</div>
+        <p>F train (York St) ou A/C (High St). Accès direct Manhattan. À pied = meilleur moyen explorer DUMBO.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>8h30 → 20h+</strong>. Sans dîner, comptez jusqu'à 18h-19h.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p>Toute la semaine. Vendredi-dimanche = foule maximum. Lundi-jeudi idéal pour éviter crowds.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget</div>
+        <p>Métro ~$2.75 · Café ~$10 · Lunch ~$20–35 · Carousel ~$6 · Glaces ~$8 · Dîner ~$40–100. Total : ~$85–150.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Washington & Front (ICONIC) · Jane's Carousel · Pebble Beach sunset · Brooklyn Bridge crossing · Empire Stores · Street murales.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>DUMBO = touristique mais haut de gamme. Soyez curieux. Habitants apprécient visiteurs authentiques vs. Instagram-hunters.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« DUMBO is the Instagram capital of NYC — but it's also where history, art, and love collide under the Manhattan Bridge. »</p>
+  <p class="footer-sub">Brooklyn · Arthur & Jade · Mai 2026</p>
+</footer>
+
+<script src="assets/nav-buttons.js" data-back-href="brooklyn-index.html" data-back-label="Brooklyn"></script>
+</body>
+</html>

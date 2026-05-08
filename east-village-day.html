@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>East Village — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B3A2A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-pattern { position: absolute; inset: 0; opacity: 0.12; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 440px; line-height: 1.6; }
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); text-decoration: none; transition: color 0.2s; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ── PAGE BODY ── */
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* ── INTRO ── */
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .intro-block p:last-child { margin-bottom: 0; }
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); font-style: normal; margin: 0; line-height: 1.6; }
+  .tip-box strong { color: var(--gold); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+  /* ── MAP ── */
+  .map-section { padding: 44px 0 0; }
+  .map-container { margin-top: 20px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); line-height: 0; }
+  .map-container svg { display: block; width: 100%; height: auto; }
+
+  /* ── DIVIDER ── */
+  .section-divider { text-align: center; padding: 36px 0 8px; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); letter-spacing: 0.3em; opacity: 0.5; }
+
+  /* ── EXPAND-ALL ── */
+  .expand-all-bar { display: flex; justify-content: flex-end; padding: 18px 0 0; margin-bottom: -12px; }
+  .expand-all-btn { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); background: var(--cream-dark); border: 1px solid var(--border); padding: 10px 16px; border-radius: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; }
+  .expand-all-btn:hover { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+  .expand-all-btn-icon { font-size: 11px; transition: transform 0.3s; }
+  .expand-all-btn.is-open .expand-all-btn-icon { transform: rotate(180deg); }
+
+  /* ── STOP CARD ── */
+  .stop { padding: 44px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 80px 1fr; gap: 0 28px; position: relative; }
+  .stop:last-child { border-bottom: none; }
+  .stop::before { content: ''; position: absolute; left: 39px; top: 76px; bottom: -44px; width: 1px; background: linear-gradient(to bottom, var(--border), transparent); }
+  .stop:last-child::before { display: none; }
+  .stop-time-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .stop-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cream); border: 2px solid var(--navy); flex-shrink: 0; position: relative; z-index: 1; }
+  .stop-dot.featured { background: var(--gold); border-color: var(--gold); width: 16px; height: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 8px; writing-mode: vertical-lr; transform: rotate(180deg); white-space: nowrap; }
+  .stop-category { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 5vw, 30px); font-weight: 500; color: var(--navy); line-height: 1.1; margin-bottom: 4px; }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 14px; }
+  .stop-desc { font-size: 14.5px; color: var(--text); line-height: 1.72; margin-bottom: 12px; }
+  .stop-note { background: var(--cream-dark); border: 1px solid var(--border); padding: 12px 16px; border-radius: 4px; margin-top: 14px; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rust); margin-bottom: 5px; }
+  .stop-note p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; font-style: italic; }
+  .stop-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 2px; }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* ── EXPAND DETAILS (TIROIRS) ── */
+  .stop-expand { margin-top: 18px; }
+  .stop-expand summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; padding: 11px 16px; background: var(--cream-dark); border: 1px solid var(--border); border-radius: 3px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand[open] summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; color: var(--navy); }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow { font-size: 10px; transition: transform 0.25s; }
+  .stop-expand[open] .stop-expand-arrow { transform: rotate(180deg); }
+  .stop-expand-content { padding: 22px 18px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 3px 3px; background: white; }
+  .expand-section { margin-bottom: 18px; }
+  .expand-section:last-child { margin-bottom: 0; }
+  .expand-section-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+  .expand-section-sub { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px; }
+  .expand-section p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 8px; }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .anecdote { background: var(--navy); border-radius: 4px; padding: 16px 18px; margin: 16px 0; }
+  .anecdote-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--gold); margin-bottom: 8px; }
+  .anecdote p { font-size: 13px; color: rgba(245,240,232,0.78); line-height: 1.65; margin-bottom: 7px; }
+  .anecdote p:last-child { margin-bottom: 0; }
+  .expand-practical { background: var(--cream-dark); border-left: 3px solid var(--gold); padding: 12px 14px; border-radius: 0 4px 4px 0; margin: 14px 0 4px; }
+  .expand-practical-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); margin-bottom: 6px; }
+  .expand-practical p { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+  .expand-practical strong { color: var(--navy); }
+
+  /* ── FOOD ── */
+  .food-section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .food-intro { font-size: 14px; color: var(--text-muted); font-style: italic; margin-bottom: 32px; line-height: 1.65; }
+  .meal-block { margin-bottom: 36px; }
+  .meal-block:last-child { margin-bottom: 0; }
+  .meal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .meal-header-icon { font-size: 18px; }
+  .meal-header-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--navy); flex: 1; }
+  .meal-header-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; }
+  .resto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .resto-grid { grid-template-columns: 1fr; } }
+  .resto-card { border: 1px solid var(--border); padding: 16px; border-radius: 4px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .resto-card:hover { border-color: var(--gold); box-shadow: 0 3px 12px rgba(26,39,68,0.07); }
+  .resto-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .resto-badge { font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+  .resto-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 2px; line-height: 1.2; }
+  .resto-address { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 9px; }
+  .resto-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 7px; }
+  .resto-note { font-size: 11.5px; color: var(--rust); font-style: italic; line-height: 1.5; }
+
+  /* ── POI ── */
+  .poi-section { padding: 44px 0 36px; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  @media (max-width: 500px) { .poi-grid { grid-template-columns: 1fr; } }
+  .poi-card { border: 1px solid var(--border); padding: 18px; border-radius: 4px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .poi-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(26,39,68,0.06); }
+  .poi-card-icon { font-size: 20px; margin-bottom: 8px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--text-muted); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .poi-card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .poi-card-note { font-size: 11.5px; color: var(--rust); font-style: italic; margin-top: 6px; }
+
+  /* ── INFOS ── */
+  .infos-section { padding: 44px 0; }
+  .infos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
+  @media (max-width: 500px) { .infos-grid { grid-template-columns: 1fr; } }
+  .info-card { padding: 20px; background: var(--cream-dark); border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .info-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  .page-footer { background: var(--navy); padding: 32px 24px; text-align: center; }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: var(--gold); font-style: italic; margin-bottom: 6px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(245,240,232,0.35); letter-spacing: 0.12em; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .stop { grid-template-columns: 60px 1fr; gap: 0 16px; }
+    .stop::before { left: 29px; }
+    .expand-all-btn { font-size: 9px; padding: 9px 12px; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('east-village');</script>
+
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="bricks" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
+        <rect x="1" y="1" width="28" height="13" fill="none" stroke="#C8A96E" stroke-width="0.5" rx="1"/>
+        <rect x="31" y="1" width="28" height="13" fill="none" stroke="#C8A96E" stroke-width="0.5" rx="1"/>
+        <rect x="16" y="16" width="28" height="13" fill="none" stroke="#C8A96E" stroke-width="0.5" rx="1"/>
+        <rect x="46" y="16" width="13" height="13" fill="none" stroke="#C8A96E" stroke-width="0.5" rx="1"/>
+        <rect x="0" y="16" width="14" height="13" fill="none" stroke="#C8A96E" stroke-width="0.5" rx="1"/>
+      </pattern>
+      <pattern id="escapes" x="0" y="0" width="80" height="60" patternUnits="userSpaceOnUse">
+        <line x1="20" y1="0" x2="20" y2="60" stroke="#C8A96E" stroke-width="0.3"/>
+        <line x1="60" y1="0" x2="60" y2="60" stroke="#C8A96E" stroke-width="0.3"/>
+        <rect x="12" y="10" width="16" height="3" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <rect x="52" y="35" width="16" height="3" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#bricks)"/>
+    <rect width="100%" height="100%" fill="url(#escapes)" opacity="0.4"/>
+    <circle cx="120" cy="80" r="40" fill="#C8A96E" opacity="0.03"/>
+    <circle cx="650" cy="260" r="55" fill="#C8A96E" opacity="0.025"/>
+    <line x1="0" y1="340" x2="200" y2="240" stroke="#C8A96E" stroke-width="0.4" opacity="0.15"/>
+    <line x1="600" y1="0" x2="800" y2="100" stroke="#C8A96E" stroke-width="0.4" opacity="0.15"/>
+  </svg>
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">East Village</h1>
+    <p class="hero-subtitle">L'Âme Rebelle de Manhattan</p>
+    <p class="hero-tagline">Des églises coloniales aux squats d'artistes, des brownstones de l'aristocratie hollandaise aux jardins communautaires d'Alphabet City — une journée dans le New York qui a inventé le punk, la beat generation et la contre-culture américaine.</p>
+  </div>
+</header>
+
+<!-- ── TIMELINE BAR ── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-grace"><span class="tl-dot"></span>09:30 · Grace Church</a>
+    <a class="tl-item" href="#stop-renwick"><span class="tl-dot"></span>10:00 · Stuyvesant St</a>
+    <a class="tl-item" href="#stop-stmarks"><span class="tl-dot"></span>10:20 · St Mark's</a>
+    <a class="tl-item" href="#stop-astor"><span class="tl-dot"></span>10:50 · Astor Place</a>
+    <a class="tl-item" href="#stop-lafayette"><span class="tl-dot"></span>11:20 · Lafayette St</a>
+    <a class="tl-item" href="#stop-noho"><span class="tl-dot"></span>11:50 · Bond &amp; Jones</a>
+    <a class="tl-item" href="#stop-katzs"><span class="tl-dot"></span>12:30 · Katz's Deli</a>
+    <a class="tl-item" href="#stop-mcsorleys"><span class="tl-dot"></span>14:00 · McSorley's</a>
+    <a class="tl-item" href="#stop-tompkins"><span class="tl-dot"></span>14:45 · Tompkins Sq</a>
+    <a class="tl-item" href="#stop-alphabet"><span class="tl-dot"></span>15:30 · Alphabet City</a>
+  </div>
+</nav>
+
+<!-- ── BODY ── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Le quartier qui a dit non</h2>
+    <p>L'East Village n'est pas un quartier-musée. C'est un quartier qui s'est construit contre l'ordre établi — un lieu où les immigrants allemands, ukrainiens, portoricains et juifs ont cohabité avec les beatniks, les punks et les artistes foutoirs des années 1970-80. Le CBGB était ici. Les Ramones, Blondie, Patti Smith jouaient ici. Allen Ginsberg récitait « Howl » ici. Charlie Parker est mort dans un appartement d'Avenue B.</p>
+    <p>Aujourd'hui, la gentrification a fait son œuvre — les squats sont devenus des condos, les clubs des coffee shops — mais l'ADN du quartier persiste dans ses façades de briques décrépit-chic, ses jardins communautaires surgis des décombres, et cette énergie particulière qui distingue l'East Village de tout autre endroit à Manhattan. Ce n'est pas le New York des gratte-ciel. C'est le New York à hauteur d'homme.</p>
+    <div class="tip-box">
+      <strong>🧭 Orientation</strong>
+      <p>L'East Village s'étend de la 14th Street (nord) à Houston Street (sud), de Broadway/3rd Avenue (ouest) à l'East River (est). Le parcours commence à l'extrémité ouest (Grace Church sur Broadway) et vous emmène progressivement vers l'est, jusqu'aux jardins d'Alphabet City. La journée est longue en distance mais le rythme est celui de la flânerie — chaque bloc révèle quelque chose.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- CARTE SVG -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 520" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte de l'East Village">
+        <rect width="740" height="520" fill="#F0EAD8"/>
+        <rect x="45" y="30" width="660" height="470" fill="#EDE5D2" rx="2"/>
+        <!-- Tompkins Square Park -->
+        <rect x="480" y="220" width="95" height="100" fill="#D8E8C8" rx="3" stroke="#B0C898" stroke-width="0.5"/>
+        <text x="528" y="264" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Tompkins</text>
+        <text x="528" y="274" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Square Pk</text>
+        <!-- Rues horizontales -->
+        <line x1="45" y1="100" x2="705" y2="100" stroke="#BFB49E" stroke-width="1.5"/><!-- 14th -->
+        <line x1="45" y1="160" x2="705" y2="160" stroke="#D2C8B5" stroke-width="0.7"/><!-- 12th -->
+        <line x1="45" y1="190" x2="705" y2="190" stroke="#D2C8B5" stroke-width="0.7"/><!-- 11th -->
+        <line x1="45" y1="220" x2="705" y2="220" stroke="#D2C8B5" stroke-width="0.7"/><!-- 10th -->
+        <line x1="45" y1="250" x2="705" y2="250" stroke="#D2C8B5" stroke-width="0.7"/><!-- 9th -->
+        <line x1="45" y1="280" x2="705" y2="280" stroke="#C8A96E" stroke-width="2.5"/><!-- 8th / St Mark's -->
+        <line x1="45" y1="310" x2="705" y2="310" stroke="#D2C8B5" stroke-width="0.7"/><!-- 7th -->
+        <line x1="45" y1="340" x2="705" y2="340" stroke="#D2C8B5" stroke-width="0.7"/><!-- 6th -->
+        <line x1="45" y1="380" x2="705" y2="380" stroke="#D2C8B5" stroke-width="0.7"/><!-- 4th -->
+        <line x1="45" y1="430" x2="705" y2="430" stroke="#D2C8B5" stroke-width="0.7"/><!-- Bond/Great Jones -->
+        <line x1="45" y1="465" x2="705" y2="465" stroke="#C8A96E" stroke-width="2.5"/><!-- Houston -->
+        <!-- Avenues verticales -->
+        <line x1="85" y1="100" x2="75" y2="465" stroke="#C6BAA6" stroke-width="1" stroke-dasharray="3 5"/><!-- Broadway diagonal -->
+        <line x1="140" y1="100" x2="140" y2="465" stroke="#C6BAA6" stroke-width="1"/><!-- Lafayette -->
+        <line x1="190" y1="100" x2="190" y2="465" stroke="#C6BAA6" stroke-width="0.8"/><!-- Bowery -->
+        <line x1="250" y1="100" x2="250" y2="465" stroke="#C6BAA6" stroke-width="1.2"/><!-- 3rd Ave -->
+        <line x1="340" y1="100" x2="340" y2="465" stroke="#C6BAA6" stroke-width="1.2"/><!-- 2nd Ave -->
+        <line x1="420" y1="100" x2="420" y2="465" stroke="#C6BAA6" stroke-width="1.2"/><!-- 1st Ave -->
+        <line x1="500" y1="100" x2="500" y2="465" stroke="#C6BAA6" stroke-width="1.2"/><!-- Ave A -->
+        <line x1="575" y1="100" x2="575" y2="465" stroke="#C6BAA6" stroke-width="1.2"/><!-- Ave B -->
+        <line x1="650" y1="100" x2="650" y2="465" stroke="#D2C8B5" stroke-width="0.8"/><!-- Ave C -->
+        <!-- Labels rues -->
+        <text x="710" y="104" font-size="8" fill="#C8A96E" font-family="monospace" font-weight="bold">14th</text>
+        <text x="710" y="163" font-size="7" fill="#9A8060" font-family="monospace">12th</text>
+        <text x="710" y="224" font-size="7" fill="#9A8060" font-family="monospace">10th</text>
+        <text x="710" y="283" font-size="8" fill="#C8A96E" font-family="monospace" font-weight="bold">8th</text>
+        <text x="710" y="314" font-size="7" fill="#9A8060" font-family="monospace">7th</text>
+        <text x="710" y="344" font-size="7" fill="#9A8060" font-family="monospace">6th</text>
+        <text x="710" y="384" font-size="7" fill="#9A8060" font-family="monospace">4th</text>
+        <text x="710" y="468" font-size="8" fill="#C8A96E" font-family="monospace" font-weight="bold">Houston</text>
+        <!-- Labels avenues -->
+        <text x="80" y="92" text-anchor="middle" font-size="7" fill="#A09080" font-family="monospace">Bdwy</text>
+        <text x="140" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Lafayette</text>
+        <text x="190" y="92" text-anchor="middle" font-size="6.5" fill="#A09080" font-family="monospace">Bowery</text>
+        <text x="250" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">3rd Ave</text>
+        <text x="340" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">2nd Ave</text>
+        <text x="420" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">1st Ave</text>
+        <text x="500" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Ave A</text>
+        <text x="575" y="92" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Ave B</text>
+        <text x="650" y="92" text-anchor="middle" font-size="7" fill="#A09080" font-family="monospace">Ave C</text>
+        <!-- St Mark's Place label -->
+        <rect x="278" y="272" width="70" height="14" fill="#C8A96E" rx="2"/>
+        <text x="313" y="282" text-anchor="middle" font-size="7" fill="white" font-family="monospace" font-weight="bold">St Mark's Pl</text>
+        <!-- Ligne de parcours -->
+        <polyline points="82,220 280,220 340,220 160,280 140,350 160,430 400,465 290,310 528,260 620,340"
+          stroke="#C8A96E" stroke-width="2.2" stroke-dasharray="7 5" fill="none" opacity="0.65" stroke-linejoin="round"/>
+        <!-- Restaurants lettrés -->
+        <circle cx="380" cy="250" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="380" y="250" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">A</text>
+        <circle cx="340" cy="255" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="340" y="255" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">B</text>
+        <circle cx="500" cy="240" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="500" y="240" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <circle cx="140" cy="445" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="140" y="445" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <circle cx="175" cy="280" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="175" y="280" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <circle cx="340" cy="330" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="340" y="330" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <circle cx="380" cy="190" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="380" y="190" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <circle cx="355" cy="310" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="355" y="310" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <circle cx="385" cy="380" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="385" y="380" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <!-- POI lettrés -->
+        <circle cx="190" cy="465" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="190" y="465" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <circle cx="360" cy="280" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="360" y="280" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <circle cx="575" cy="265" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="575" y="265" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <circle cx="82" cy="160" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="82" y="160" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <!-- Stops numérotés -->
+        <circle cx="82"  cy="220" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="82"  y="220" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">1</text>
+        <rect x="98" y="210" width="62" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="100" y="219" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Grace Ch.</text>
+        <circle cx="280" cy="220" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="280" y="220" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">2</text>
+        <rect x="200" y="228" width="76" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="202" y="237" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Renwick Triangle</text>
+        <circle cx="340" cy="220" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="340" y="220" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">3</text>
+        <rect x="355" y="210" width="68" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="357" y="219" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">St Mark's Ch.</text>
+        <circle cx="160" cy="280" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="160" y="280" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <rect x="96" y="288" width="60" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="98" y="297" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Astor Place</text>
+        <circle cx="140" cy="350" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="140" y="350" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">5</text>
+        <rect x="155" y="340" width="60" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="157" y="349" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Lafayette St</text>
+        <circle cx="160" cy="430" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="160" y="430" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="175" y="420" width="80" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="177" y="429" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Bond &amp; Gt Jones</text>
+        <circle cx="400" cy="465" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="400" y="465" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">7</text>
+        <rect x="415" y="455" width="42" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="417" y="464" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Katz's</text>
+        <circle cx="290" cy="310" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="290" y="310" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">8</text>
+        <rect x="220" y="318" width="65" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="222" y="327" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">McSorley's</text>
+        <circle cx="528" cy="260" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="528" y="260" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">9</text>
+        <rect x="543" y="245" width="56" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="545" y="254" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Tompkins</text>
+        <circle cx="620" cy="340" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="620" y="340" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">10</text>
+        <rect x="556" y="348" width="60" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="558" y="357" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Alphabet C.</text>
+        <!-- Nord -->
+        <g transform="translate(682,488)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes du jour</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Grace Church</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Renwick Triangle</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">③ St Mark's Ch. ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ Astor Place</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑤ Lafayette St</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Bond &amp; Gt Jones</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑦ Katz's ★</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑧ McSorley's ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑨ Tompkins Sq</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑩ Alphabet City</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">A</span>MUD <span style="opacity:0.5;">— 307 E 9th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">B</span>Veselka <span style="opacity:0.5;">— 144 2nd Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>Tompkins Sq Bagels <span style="opacity:0.5;">— 165 Ave A</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>LOS TACOS No.1 <span style="opacity:0.5;">— 340 Lafayette St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>Tim Ho Wan <span style="opacity:0.5;">— 85 4th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>San Marzano <span style="opacity:0.5;">— 117 2nd Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>Little Ruby's <span style="opacity:0.5;">— 198 E 11th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>Van Leeuwen <span style="opacity:0.5;">— 48½ E 7th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>KGB Bar <span style="opacity:0.5;">— 85 E 4th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Points d'intérêt</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>Bowery Mural <span style="opacity:0.5;">— 76 E Houston St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>St Mark's Pl &amp; Jim Power <span style="opacity:0.5;">— 8th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>Charlie Parker <span style="opacity:0.5;">— 151 Ave B</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Strand Book Store <span style="opacity:0.5;">— 828 Broadway</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="padding-top:36px;">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- EXPAND ALL -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════ ÉTAPES ══════ -->
+
+  <!-- STOP 1 : Grace Church -->
+  <article class="stop" id="stop-grace">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">09:30</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Gothic Revival</div>
+      <h3 class="stop-title">Grace Church</h3>
+      <div class="stop-address">802 Broadway · angle 10th St</div>
+      <p class="stop-desc">Un chef-d'œuvre de style Gothic Revival signé James Renwick Jr. en 1846 — il n'avait que 23 ans. C'est probablement l'œuvre de sa vie, plus accomplie encore que la cathédrale St. Patrick de Midtown qu'il réalisera plus tard. L'église est construite en marbre blanc de Sing Sing et se distingue par ses 46 vitraux remarquables et un chœur d'une finesse exceptionnelle.</p>
+      <p class="stop-desc">Grace Church marque un virage dans Broadway — littéralement. La rue oblique ici vers l'est pour contourner le terrain de l'église, un signe du poids politique de la paroisse au XIXe siècle : quand la ville voulut prolonger Broadway en ligne droite, les fidèles obtinrent que la rue courbe. Des concerts d'orgue y sont régulièrement organisés.</p>
+      <div class="stop-note"><div class="stop-note-label">📸 Photo</div><p>Le marbre patiné en gris tendre, les flèches gothiques, le jardin : c'est le genre de photo qu'on ne s'attend pas à trouver dans l'East Village.</p></div>
+      <div class="stop-tags"><span class="tag gold">Chef-d'œuvre Renwick 1846</span><span class="tag">Vitraux exceptionnels</span><span class="tag">15–20 min</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le mariage de Tom Thumb</div>
+            <span class="expand-section-sub">1863 · le scandale du siècle</span>
+            <p>Le mariage le plus scandaleux du XIXe siècle new-yorkais a eu lieu ici : en 1863, Tom Thumb (le célèbre nain de P.T. Barnum, 1 mètre de haut) épousa Lavinia Warren devant 2 000 invités. Le couple fut reçu à la Maison Blanche par Lincoln le lendemain. L'événement fit plus de bruit dans la presse que la guerre civile en cours — ce qui en dit long sur l'Amérique de l'époque.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Renwick Jr. : 23 ans et un chef-d'œuvre</div>
+            <p>James Renwick Jr. remporta le concours d'architecture pour Grace Church à 23 ans, sans avoir jamais construit de bâtiment. Son second grand projet sera la cathédrale St. Patrick de Midtown (1878) — plus grande, plus célèbre, mais moins accomplie selon de nombreux architectes. Grace Church est son œuvre la plus pure, celle d'un jeune homme qui n'avait pas encore appris le compromis.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Ouvert pour visites lun–sam</strong> · Concerts d'orgue réguliers (vérifier le programme en mai) · Entrée libre · 15–20 min suffisent.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 2 : Renwick Triangle -->
+  <article class="stop" id="stop-renwick">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">10:00</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Patrimoine · Promenade architecturale</div>
+      <h3 class="stop-title">Renwick Triangle &amp; Stuyvesant Street</h3>
+      <div class="stop-address">100-138 E 10th St · Stuyvesant St entre 2nd &amp; 3rd Ave</div>
+      <p class="stop-desc">Stuyvesant Street est la seule vraie diagonale du quadrillage de Manhattan — et ce n'est pas un hasard. Elle suit exactement l'ancienne allée qui menait à la « Bowerie » (la ferme) de Peter Stuyvesant, le dernier gouverneur hollandais de New Amsterdam. Son petit-fils fit ouvrir la rue en 1787, créant ce plan triangulaire inhabituel.</p>
+      <p class="stop-desc">Le Renwick Triangle est l'ensemble de maisons qui borde ce triangle — des rangées de townhouses du XIXe siècle avec leurs élégants perrons en pierre, leurs frontons de porte et leurs arbres alignés. C'est un instantané de ce à quoi ressemblait le quartier quand il était l'un des plus chics de Manhattan.</p>
+      <div class="stop-note"><div class="stop-note-label">🧭 Parcours</div><p>Marchez sur Stuyvesant Street d'ouest en est — c'est court (un bloc) mais chaque façade vaut un regard. En débouchant sur la 2nd Avenue, vous serez face à St. Mark's Church.</p></div>
+      <div class="stop-tags"><span class="tag">Diagonale unique de Manhattan</span><span class="tag">XIXe siècle</span><span class="tag sage">10 min de marche</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Peter Stuyvesant et la naissance de New York</div>
+            <span class="expand-section-sub">1647–1664 · du néerlandais à l'anglais</span>
+            <p>Peter Stuyvesant fut le dernier directeur-général de la Nouvelle-Amsterdam. Arrivé en 1647, il dirigea la colonie d'une main de fer — puritain, autoritaire, intolérant (il tenta d'interdire le culte quaker et l'immigration juive, mais fut rappelé à l'ordre par la Compagnie des Indes). En 1664, il dut rendre la colonie aux Anglais sans combat. Il refusa de quitter Manhattan et se retira dans sa ferme — exactement ici, dans cette « Bowerie » dont Stuyvesant Street suit le tracé. Il y mourut en 1672.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 3 : St Mark's Church -->
+  <article class="stop" id="stop-stmarks">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">10:20</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Histoire · Lieu de culte</div>
+      <h3 class="stop-title">St. Mark's Church in the Bowery</h3>
+      <div class="stop-address">131 E 10th St · angle 2nd Ave &amp; Stuyvesant St</div>
+      <p class="stop-desc">La deuxième plus ancienne église de Manhattan (1799), construite sur la propriété même de Peter Stuyvesant — dont la sépulture se trouve dans le cimetière attenant. Le bâtiment est un palimpseste architectural : le corps principal est de style géorgien tardif, le clocher Greek Revival a été ajouté en 1828, et le porche d'inspiration italienne en 1854.</p>
+      <p class="stop-desc">Mais St. Mark's n'est pas qu'une église. C'est un lieu de contre-culture depuis les années 1960 : le pasteur a ouvert ses portes aux artistes, aux danseurs, aux poètes. Le Poetry Project, fondé ici en 1966, a accueilli Allen Ginsberg, Anne Waldman, Patti Smith. Le jardin fleuri, aux beaux jours, est un havre de paix inattendu.</p>
+      <div class="stop-note"><div class="stop-note-label">📸 Photo</div><p>Le cimetière et le jardin en mai — arbres en fleur, contraste saisissant avec la 2nd Avenue. Le spot le plus photogénique du parcours dans un registre inattendu.</p></div>
+      <div class="stop-tags"><span class="tag gold">Depuis 1799</span><span class="tag">Tombe de Stuyvesant</span><span class="tag rust">Haut lieu de poésie</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le Poetry Project : 60 ans de contre-culture</div>
+            <span class="expand-section-sub">1966 · fondé dans une église</span>
+            <p>Le Poetry Project a été fondé ici en 1966, financé par un programme fédéral anti-pauvreté (le paradoxe ne manque pas de sel). Allen Ginsberg y lisait régulièrement. Patti Smith y a donné ses premières performances. Anne Waldman en a fait un lieu de résistance littéraire. Chaque Nouvel An depuis 1974, le Project organise un marathon de lecture poétique — 12 heures de poésie sans interruption. En mai, vérifiez la programmation : il y a souvent des lectures ouvertes au public.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">L'incendie de 1978</div>
+            <p>En 1978, un incendie dévasta l'intérieur de l'église. La reconstruction prit des années. Parmi les contributeurs au fonds de restauration : Keith Haring, qui réalisa une œuvre spécifiquement pour l'occasion. L'orgue actuel — splendide — date de cette reconstruction.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 4 : Astor Place & Cooper Square -->
+  <article class="stop" id="stop-astor">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">10:50</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Patrimoine · Éducation</div>
+      <h3 class="stop-title">Astor Place &amp; Cooper Square</h3>
+      <div class="stop-address">Astor Pl · 7 E 7th St (Cooper Union) · 41 Cooper Sq</div>
+      <p class="stop-desc">Trois époques de New York se télescopent sur cette place. Descendez dans la station de métro pour voir les panneaux en céramique représentant des castors, dont la fourrure fit la fortune du financier John Jacob Astor. Le <strong>Cooper Union Building</strong> (1859) est le premier immeuble construit avec des poutres métalliques, et le lieu où Lincoln prononça le discours qui contribua à son élection. Face à lui, le <strong>41 Cooper Square</strong> (2009) de Thom Mayne est son antithèse formelle — 150 ans d'écart, le même campus.</p>
+      <div class="stop-note"><div class="stop-note-label">💡 Bon à savoir</div><p>La sculpture rotative « Alamo » (le grand cube noir en acier sur la place) a été installée en 1967 comme œuvre temporaire. Elle n'est jamais partie. Poussez dessus — elle tourne vraiment sur son axe.</p></div>
+      <div class="stop-tags"><span class="tag">Lincoln a parlé ici</span><span class="tag sage">Architecture XIXe + XXIe</span><span class="tag">20 min</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le discours qui a fait un président</div>
+            <span class="expand-section-sub">27 février 1860 · « Le droit fait la force »</span>
+            <p>Le 27 février 1860, un avocat de l'Illinois relativement peu connu — Abraham Lincoln — monta sur la scène du Cooper Union pour prononcer un discours contre l'extension de l'esclavage. La salle de 1 500 places était comble. Le discours, d'une rigueur argumentative remarquable, convainquit les élites new-yorkaises que Lincoln n'était pas seulement un orateur de province mais un penseur politique de premier plan. Il se conclut par la formule « Le droit fait la force » (<em>Right makes might</em>). Trois mois plus tard, Lincoln obtenait la nomination républicaine. Il sera élu président en novembre.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">L'émeute d'Astor Place (1849)</div>
+            <p>En 1849, Astor Place fut le théâtre d'une émeute meurtrière — pas pour des raisons politiques, mais pour une dispute entre deux acteurs shakespeariens : l'Américain Edwin Forrest et le Britannique William Macready. La rivalité entre leurs fans (classe ouvrière américaine vs. élite anglophile) dégénéra. La milice tira sur la foule : 22 morts, plus de 100 blessés. C'est l'une des premières émeutes de classe de l'histoire américaine — et elle a eu lieu pour une question de théâtre.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 5 : Lafayette Street -->
+  <article class="stop" id="stop-lafayette">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">11:20</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Théâtre · Histoire</div>
+      <h3 class="stop-title">Lafayette Street</h3>
+      <div class="stop-address">De Astor Pl au sud · 425 Lafayette St (Public Theater) · 434 Lafayette St (Colonnade Row)</div>
+      <p class="stop-desc">Le <strong>Public Theater</strong> (425 Lafayette) est l'ancienne Astor Library, première grande bibliothèque publique gratuite de New York (1849). De 1921 à 1965, le bâtiment abrita la Hebrew Immigrant Aid Society, qui aida plus de 4 millions d'immigrants juifs. En 1965, Joseph Papp sauva l'édifice et y installa une scène de théâtre. C'est ici que « Hamilton » a été créé en 2015.</p>
+      <p class="stop-desc">Juste en face, <strong>Colonnade Row</strong> (434 Lafayette) : colonnades corinthiennes de 1831, adresse de prestige absolue — Astor, Vanderbilt, le grand-père de Roosevelt y ont vécu. Plus au sud, le <strong>De Vinne Press Building</strong> (393-399 Lafayette) est un élégant bâtiment de 1886 dont les arches massives étaient dimensionnées pour les chariots d'imprimerie.</p>
+      <div class="stop-tags"><span class="tag gold">Berceau de Hamilton</span><span class="tag">Colonnade Row 1831</span><span class="tag">15–20 min</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Joseph Papp et le sauvetage du Public Theater</div>
+            <span class="expand-section-sub">1965 · théâtre contre démolition</span>
+            <p>En 1965, l'Astor Library était condamnée à la démolition. Joseph Papp, producteur de théâtre new-yorkais légendaire (il avait lancé le « Shakespeare in the Park » gratuit à Central Park dix ans plus tôt), mobilisa l'opinion publique pour sauver le bâtiment. Il le racheta pour $575 000 — une bouchée de pain même à l'époque — et le transforma en un théâtre dédié aux nouvelles voix américaines. C'est au Public Theater qu'ont été créés <em>A Chorus Line</em> (1975), <em>Hair</em> (1967), et bien sûr <em>Hamilton</em> (2015) avant leurs transferts à Broadway.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">La « Côte d'Or » de Lafayette Street</div>
+            <p>Dans les années 1830-1850, Lafayette Street était surnommée <em>The Golden Coast</em> — l'adresse la plus prestigieuse de Manhattan. John Jacob Astor y avait sa résidence. Cornelius Vanderbilt aussi. Charles Dickens y séjourna lors de sa visite de 1842 (et se plaignit du bruit). La bourgeoisie finit par remonter vers Uptown, abandonnant ses hôtels particuliers — un cycle de migration qui se répétera sans fin dans l'histoire de Manhattan.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 6 : Bond & Great Jones -->
+  <article class="stop" id="stop-noho">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">11:50</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Art contemporain</div>
+      <h3 class="stop-title">Bond Street &amp; Great Jones Street</h3>
+      <div class="stop-address">Bond St &amp; Great Jones St · entre Broadway et Bowery</div>
+      <p class="stop-desc">Sur <strong>Bond Street</strong>, le n° 40 est un immeuble signé Herzog &amp; de Meuron (2007) — les architectes de la Tate Modern. Le rez-de-chaussée « gaudiesque » en fonte ondulante verte est une œuvre d'art en soi. Au n° 54, l'ancienne Bond Street Bank (1874) est un bijou en fonte de style French Second Empire.</p>
+      <p class="stop-desc">Sur <strong>Great Jones Street</strong>, au n° 42-44, une caserne de pompiers de 1898 en style French Beaux-Arts est toujours en activité. Au n° 31, les Beinecke Stables allient brique rouge et corniches noires.</p>
+      <div class="stop-note"><div class="stop-note-label">📸 Photo</div><p>Le 40 Bond Street de Herzog &amp; de Meuron est le spot photo architecturale le plus spectaculaire du parcours — peu de touristes le connaissent.</p></div>
+      <div class="stop-tags"><span class="tag">Herzog &amp; de Meuron</span><span class="tag sage">Cast-iron revisité</span><span class="tag">Caserne 1898 active</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Jean-Michel Basquiat et Great Jones Street</div>
+            <span class="expand-section-sub">57 Great Jones St · 1983–1988</span>
+            <p>Au 57 Great Jones Street, Jean-Michel Basquiat louait un loft à Andy Warhol (qui possédait le bâtiment). C'est ici que Basquiat peignit certaines de ses œuvres les plus importantes, et c'est ici qu'il mourut d'une overdose le 12 août 1988, à 27 ans. Le bâtiment ne porte aucune plaque — il faut savoir pour regarder. Warhol était mort d'une complication chirurgicale l'année précédente, en 1987. Les deux artistes les plus influents du New York des années 80, liés par un même immeuble de Great Jones Street.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 7 : Katz's -->
+  <article class="stop" id="stop-katzs">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">12:30</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Institution · Déjeuner</div>
+      <h3 class="stop-title">Katz's Delicatessen</h3>
+      <div class="stop-address">205 E Houston St · angle Ludlow St</div>
+      <p class="stop-desc">Ce n'est pas un restaurant. C'est un monument. Ouvert en 1888, Katz's est le dernier grand deli juif de New York — le survivant d'une tradition qui comptait des centaines d'établissements dans le Lower East Side. Le pastrami, fumé et tranché à la main devant vous, est considéré comme le meilleur de la ville. C'est aussi le décor de la scène de l'orgasme simulé de Meg Ryan dans « Quand Harry rencontre Sally » — la table est marquée d'un panneau au plafond.</p>
+      <p class="stop-desc">Le système : on vous remet un ticket à l'entrée, vous commandez à différents comptoirs, chaque serveur tamponne votre ticket, vous payez en sortant. <strong>Ne perdez pas ce ticket</strong> — l'amende est de $50.</p>
+      <div class="stop-note"><div class="stop-note-label">🍽 Commande</div><p>Prenez le <strong>pastrami on rye</strong>. Un sandwich suffit pour deux (~$28). Ajoutez un Dr. Brown's Cream Soda. Évitez le samedi midi — en semaine, c'est rapide.</p></div>
+      <div class="stop-tags"><span class="tag gold">Institution depuis 1888</span><span class="tag rust">Incontournable absolu</span><span class="tag">1h pause déjeuner</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">« Send a salami to your boy in the army »</div>
+            <span class="expand-section-sub">1942–1945 · le deli et la guerre</span>
+            <p>Pendant la Seconde Guerre mondiale, Katz's envoyait des colis de salami et de viande fumée aux soldats américains. Le slogan <em>« Send a salami to your boy in the army »</em> est né à cette époque et est toujours affiché dans le restaurant. Les trois fils du fondateur servaient dans l'armée. Les salamis sont toujours suspendus au plafond — ce n'est pas de la décoration, c'est un stock actif.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le dernier survivant du Lower East Side</div>
+            <p>Au début du XXe siècle, le Lower East Side comptait des centaines de delis juifs, chacun avec sa spécialité — pastrami, corned beef, knish, pickles. La plupart ont disparu avec la gentrification progressive du quartier. <em>Russ &amp; Daughters</em> (1914) survit pour le poisson fumé, <em>Yonah Schimmel</em> (1910) pour les knish, et <em>Katz's</em> (1888) pour le pastrami. Ensemble, ils forment les derniers vestiges d'un monde qui comptait un million d'immigrants juifs sur quelques blocs.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 8 : McSorley's & Deutsches Dispensary -->
+  <article class="stop" id="stop-mcsorleys">
+    <div class="stop-time-col"><div class="stop-dot featured"></div><span class="stop-time">14:00</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Bar historique · Architecture</div>
+      <h3 class="stop-title">McSorley's Old Ale House &amp; Deutsches Dispensary</h3>
+      <div class="stop-address">15 E 7th St (McSorley's) · 144 2nd Ave (Deutsches Dispensary)</div>
+      <p class="stop-desc">Deux reliques de l'East Village immigrant, à un bloc l'une de l'autre.</p>
+      <p class="stop-desc"><strong>McSorley's Old Ale House</strong> est le plus ancien bar de New York — ouvert en 1854 et inchangé depuis. Ce n'est pas une figure de style : la sciure est toujours au sol, les portraits de Lincoln et Teddy Roosevelt sont aux murs (les deux y sont venus), et la poussière sur les lustres à gaz date littéralement du XIXe siècle. Le menu est d'une simplicité brutale : deux bières seulement — light ou dark — servies par deux. Les femmes n'ont été admises qu'en 1970, après un procès.</p>
+      <p class="stop-desc">À un bloc au nord, le <strong>Deutsches Dispensary</strong> (144 2nd Ave) est un édifice remarquable de 1884. Il abritait d'un côté un dispensaire médical allemand (style Renaissance italienne) et de l'autre la première bibliothèque de prêt de Manhattan (style victorien tardif) — les deux styles sont visibles sur la même façade, cas unique à New York.</p>
+      <div class="stop-note"><div class="stop-note-label">🍺 Conseil</div><p>McSorley's est un bar, pas un musée — commandez vos deux bières ($6 les deux). L'après-midi en semaine est le meilleur moment : le lieu est presque vide, la lumière filtre par les fenêtres sales, on entend le plancher craquer. Le soir et le weekend, c'est bondé.</p></div>
+      <div class="stop-tags"><span class="tag gold">Plus vieux bar de NYC · 1854</span><span class="tag rust">Moment fort</span><span class="tag">30–45 min</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Lincoln, Roosevelt et les chats de McSorley's</div>
+            <span class="expand-section-sub">1854–aujourd'hui · 170 ans de bière</span>
+            <p>John McSorley, immigrant irlandais, ouvrit son bar en 1854 avec une règle simple : « Good Ale, Raw Onions, and No Ladies ». Abraham Lincoln y serait passé en février 1860, deux jours avant son discours au Cooper Union (à 200 mètres). Teddy Roosevelt y était un habitué. Le journaliste Joseph Mitchell écrivit un portrait célèbre du bar pour le <em>New Yorker</em> en 1940 — « McSorley's Wonderful Saloon » — qui reste l'un des plus beaux textes jamais écrits sur New York. Les chats résidents du bar sont une tradition : il y en a toujours eu au moins un.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le procès de 1970</div>
+            <p>Pendant 116 ans, McSorley's interdit l'entrée aux femmes. En 1970, deux avocates — Faith Seidenberg et Karen DeCrow — portèrent l'affaire devant les tribunaux. Elles gagnèrent. Le jour où les femmes furent admises pour la première fois, le bar était bondé de journalistes. Le propriétaire de l'époque, Matthew Maher, déclara simplement : <em>« Good luck to them. »</em></p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Kleindeutschland : l'East Village allemand</div>
+            <span class="expand-section-sub">1850–1910 · le quartier oublié</span>
+            <p>Le Deutsches Dispensary (1884) est un vestige de <em>Kleindeutschland</em> — la « Petite Allemagne » qui occupait l'East Village dans la seconde moitié du XIXe siècle. C'était la troisième plus grande concentration de germanophones au monde, après Berlin et Vienne. La communauté fut décimée par la catastrophe du <em>General Slocum</em> en 1904 : un bateau d'excursion prit feu sur l'East River, tuant 1 021 passagers — presque tous des femmes et des enfants de Kleindeutschland. C'est la plus grande catastrophe de New York avant le 11 septembre. Les survivants quittèrent le quartier, incapables de vivre dans les rues où chaque famille avait perdu quelqu'un.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 9 : Tompkins Square Park -->
+  <article class="stop" id="stop-tompkins">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">14:45</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Parc · Contre-culture · Street life</div>
+      <h3 class="stop-title">Tompkins Square Park</h3>
+      <div class="stop-address">E 7th–10th St · entre Ave A et Ave B</div>
+      <p class="stop-desc">Le cœur battant de l'East Village. Ce parc de 4 hectares a été le théâtre de certains des moments les plus turbulents de l'histoire récente de New York : les émeutes de 1988 contre l'éviction des squatteurs et des sans-abris, les rassemblements punks des années 80, les concerts improvisés. Charlie Parker vivait au 151 Avenue B, juste en face du parc — un petit buste en bronze sur le mur de son immeuble le rappelle.</p>
+      <p class="stop-desc">Aujourd'hui, le parc est pacifié mais conserve une énergie particulière. Le skatepark et le terrain de basketball au sud grouillent d'activité. En mai, les arbres centenaires sont en pleine floraison et le parc est un lieu de pique-nique idéal.</p>
+      <div class="stop-note"><div class="stop-note-label">🎵 Anecdote</div><p>Le premier Hare Krishna kirtan en Occident a été chanté dans ce parc en 1966 par Swami Prabhupada — c'est ici, dans l'East Village (pas en Inde), que le mouvement Hare Krishna a fait ses premiers pas. Allen Ginsberg était dans l'assistance.</p></div>
+      <div class="stop-tags"><span class="tag">Épicentre punk</span><span class="tag sage">Charlie Parker vécut ici</span><span class="tag">30 min de flânerie</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Les émeutes de 1988</div>
+            <span class="expand-section-sub">6 août 1988 · la bataille du parc</span>
+            <p>En 1988, Tompkins Square Park abritait une communauté de squatteurs et de sans-abris dans un campement de fortune. La mairie décida d'imposer un couvre-feu pour les en chasser. Le 6 août, la police anti-émeute chargea les manifestants et les habitants du parc dans une nuit de violences qui fit plus de 100 blessés. L'événement devint un symbole de la résistance du quartier contre la gentrification et la politique sécuritaire de la ville. Des plaques commémoratives dans le parc rappellent cet épisode.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Charlie Parker : le génie et la mort</div>
+            <p>Charlie Parker vécut ses dernières années au 151 Avenue B, juste en face du parc. C'est là qu'il mourut le 12 mars 1955, à 34 ans. Le médecin légiste qui examina son corps estima son âge entre 53 et 63 ans — le jazz, l'héroïne et l'alcool l'avaient vieilli de vingt ans. La légende dit que dans les jours qui suivirent sa mort, le graffiti <em>« Bird Lives »</em> apparut partout dans le quartier. Un petit buste en bronze sur la façade du 151 Avenue B marque aujourd'hui l'endroit.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Les Beastie Boys et Tompkins Square</div>
+            <span class="expand-section-sub">Années 1980 · avant la gloire</span>
+            <p>Adam Yauch, Mike Diamond et Adam Horovitz — les futurs Beastie Boys — étaient des adolescents de l'East Village avant de devenir des stars. Ils traînaient dans Tompkins Square Park, allaient aux concerts au CBGB (315 Bowery, aujourd'hui fermé), et faisaient du skate dans les rues du quartier. Leur premier album, <em>Licensed to Ill</em> (1986), est imprégné de l'énergie punk-hip-hop de cet East Village pré-gentrification — un monde qui n'existe plus que dans leur musique.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- STOP 10 : Alphabet City -->
+  <article class="stop" id="stop-alphabet">
+    <div class="stop-time-col"><div class="stop-dot"></div><span class="stop-time">15:30</span></div>
+    <div class="stop-content">
+      <div class="stop-category">Jardins communautaires · Neighbourhood</div>
+      <h3 class="stop-title">Alphabet City &amp; ses jardins secrets</h3>
+      <div class="stop-address">Avenues A, B, C · entre 4th St et 10th St</div>
+      <p class="stop-desc">Alphabet City — les avenues portent des lettres, pas des numéros — est le bout du bout de l'East Village. Dans les années 1980, c'était le quartier le plus dangereux de Manhattan : crack, seringues, immeubles abandonnés. Les habitants ont répondu en transformant les terrains vagues en jardins communautaires, créant un réseau de micro-paradis verts qui existe toujours. Menacés par la spéculation immobilière dans les années 2000, ces jardins ont été rachetés par des organismes de protection de l'environnement — une victoire rare du collectif contre le béton à Manhattan.</p>
+      <p class="stop-desc">Le <strong>6BC Botanical Garden</strong> (624 E 6th St, entre Ave B et C) est le joyau caché de la balade. Son nom vient de « 6 » pour la 6e Rue, « B » pour Botanical, « C » pour Community. Ouvert d'avril à octobre, il possède une collection de plantes rares, un bassin à koï, une bibliothèque horticole, des installations solaires — et une treehouse, une cabane perchée dans un arbre, improbable et magique.</p>
+      <p class="stop-desc">Juste à côté, le <strong>Creative Little Garden</strong> (530 E 6th St) offre une oasis de sérénité depuis 1982 — cascade miniature, banc en fer forgé, parcelle de jardinage ouverte à tous. Les gens du quartier s'y retrouvent pour discuter ou lire des poésies.</p>
+      <div class="stop-note"><div class="stop-note-label">🌿 Conseil</div><p>Les jardins communautaires ont des horaires variables — la plupart sont ouverts le week-end et les après-midis en semaine de mai à octobre. Si un portail est fermé, ne forcez pas — essayez le jardin suivant. Il y en a des dizaines.</p></div>
+      <div class="stop-tags"><span class="tag sage">Jardins communautaires</span><span class="tag">Né des ruines</span><span class="tag">30–45 min</span></div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">📚 Anecdotes &amp; histoire</span><span class="stop-expand-arrow">▼</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Des décombres aux jardins : la résistance verte</div>
+            <span class="expand-section-sub">Années 1970–1980 · quand les habitants ont dit non</span>
+            <p>Dans les années 1970, New York était au bord de la faillite. L'East Village et Alphabet City furent parmi les quartiers les plus touchés : propriétaires qui incendiaient leurs immeubles pour toucher l'assurance, immeubles abandonnés qui s'effondraient, terrains vagues envahis par les déchets et les seringues. Des habitants décidèrent de transformer ces ruines en jardins communautaires — souvent illégalement, en forçant les clôtures et en plantant sans autorisation. Le mouvement prit une telle ampleur que la ville finit par le légitimer. Aujourd'hui, plus de 50 jardins communautaires existent dans l'East Village et Alphabet City.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le 6BC Botanical Garden : une treehouse dans Manhattan</div>
+            <p>Le 6BC Garden possède une curiosité unique à Manhattan : une <em>treehouse</em> — une cabane construite dans un arbre, accessible par un petit escalier. C'est probablement la seule cabane dans un arbre de toute l'île de Manhattan. Le jardin abrite aussi un bassin à koï, une bibliothèque horticole en plein air, et des panneaux solaires installés par les bénévoles. Les gens du quartier s'y retrouvent pour lire des poésies, discuter et jardiner — un rituel qui résume l'esprit de l'East Village.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════ RESTAURANTS ══════ -->
+  <section class="food-section">
+    <div class="section-label">Où manger</div>
+    <p class="food-intro">L'East Village est un des quartiers les plus denses de Manhattan en matière de restauration — et surtout en adresses abordables. C'est le quartier des petits restaurants ethniques sans prétention, des comptoirs à emporter et des institutions centenaires.</p>
+
+    <!-- PETIT-DÉJ -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☕</span>
+        <span class="meal-header-title">Café &amp; petit-déjeuner</span>
+        <span class="meal-header-time">08:00–11:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Café indépendant</span></div>
+          <div class="resto-name">MUD</div>
+          <div class="resto-address">307 E 9th St</div>
+          <p class="resto-desc">Coffee shop de quartier, sans afféterie — le genre d'endroit où les habitués ont leur tasse. Espresso solide, pâtisseries simples, ambiance détendue.</p>
+          <p class="resto-note">Petit espace. Si la file déborde, prenez à emporter et marchez.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Bagels</span><span class="resto-badge badge-insta">Recommandé</span></div>
+          <div class="resto-name">Tompkins Square Bagels</div>
+          <div class="resto-address">165 Avenue A</div>
+          <p class="resto-desc">Parmi les meilleurs bagels de New York. Bouillis puis cuits au four. Le « everything bagel » avec cream cheese et lox est un classique absolu. Régulièrement classé dans le top 5 de la ville.</p>
+          <p class="resto-note">File fréquente le week-end matin. En semaine, c'est rapide. ~$8–12.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÉJEUNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍽</span>
+        <span class="meal-header-title">Déjeuner</span>
+        <span class="meal-header-time">12:00–14:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Ukrainien</span><span class="resto-badge badge-insta">À faire !</span></div>
+          <div class="resto-name">Veselka</div>
+          <div class="resto-address">144 2nd Ave</div>
+          <p class="resto-desc">Institution ukrainienne depuis 1954, ouverte 24h/24. Pierogi, borscht, blintzes. L'endroit incarne l'héritage slave du quartier — quand l'East Village s'appelait « Little Ukraine ».</p>
+          <p class="resto-note">Ouvert 24h/24. ~$15–22 par personne.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Italien</span></div>
+          <div class="resto-name">San Marzano</div>
+          <div class="resto-address">117 2nd Ave</div>
+          <p class="resto-desc">Trattoria italo-américaine sans prétention avec des pâtes fraîches à prix doux. Portions généreuses, sauce tomate maison, ambiance old-school.</p>
+          <p class="resto-note">Cash only (distributeur à côté). Pâtes à partir de $12.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-mid">$$</span><span class="resto-badge badge-cuisine">Dim Sum</span></div>
+          <div class="resto-name">Tim Ho Wan</div>
+          <div class="resto-address">85 4th Ave</div>
+          <p class="resto-desc">La chaîne de dim sum la plus étoilée au monde. Les baked buns au porc BBQ sont leur signature — croûte croustillante et sucrée, farce fondante. Har gow et siu mai aussi fiables qu'à Hong Kong.</p>
+          <p class="resto-note">~$18–25/pers.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Burgers</span></div>
+          <div class="resto-name">Little Ruby's East Village</div>
+          <div class="resto-address">198 E 11th St</div>
+          <p class="resto-desc">Comptoir australien. Le Bronte Burger est leur tube — smash patty, cheddar, pickles, sauce maison. Adresse de quartier que les touristes ne connaissent pas.</p>
+          <p class="resto-note">Petit, souvent complet le midi. Avant 12h ou après 14h.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUR LE POUCE -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🥡</span>
+        <span class="meal-header-title">Sur le pouce</span>
+        <span class="meal-header-time">Toute la journée</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Tacos</span><span class="resto-badge badge-insta">Recommandé</span></div>
+          <div class="resto-name">LOS TACOS No.1</div>
+          <div class="resto-address">340 Lafayette St</div>
+          <p class="resto-desc">Tacos al pastor, carne asada, pollo — tortilla faite minute, viande grillée devant vous. Ce point de vente sur Lafayette est moins bondé que l'original de Chelsea Market.</p>
+          <p class="resto-note">3 tacos suffisent (~$12). La salsa verde fait la différence.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Deli juif</span><span class="resto-badge badge-insta">Institution</span></div>
+          <div class="resto-name">Katz's Delicatessen</div>
+          <div class="resto-address">205 E Houston St</div>
+          <p class="resto-desc">Voir l'étape 7 — le pastrami on rye est un pèlerinage culinaire. Un sandwich peut être partagé à deux.</p>
+          <p class="resto-note">~$28 le sandwich. Ne perdez pas le ticket.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOUCEURS & BOISSONS -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍦</span>
+        <span class="meal-header-title">Douceurs &amp; boissons</span>
+        <span class="meal-header-time">Après-midi / Soir</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cheap">$</span><span class="resto-badge badge-cuisine">Glace artisanale</span></div>
+          <div class="resto-name">Van Leeuwen Ice Cream</div>
+          <div class="resto-address">48 ½ E 7th St</div>
+          <p class="resto-desc">Glaces artisanales haut de gamme — ingrédients bio, parfums inventifs (honeycomb, earl grey, brown sugar chunk). La version vegan (base lait de cajou) est étonnamment bonne.</p>
+          <p class="resto-note">~$7-9 la boule. Prenez deux parfums.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cuisine">Bar historique</span></div>
+          <div class="resto-name">McSorley's Old Ale House</div>
+          <div class="resto-address">15 E 7th St</div>
+          <p class="resto-desc">Voir l'étape 8 — le plus vieux bar de New York (1854). Deux bières : light ou dark, servies par deux. Arrêt obligatoire.</p>
+          <p class="resto-note">$6 les deux bières. Cash only.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges"><span class="resto-badge badge-cuisine">Bar littéraire</span><span class="resto-badge badge-insta">Secret</span></div>
+          <div class="resto-name">KGB Bar</div>
+          <div class="resto-address">85 E 4th St</div>
+          <p class="resto-desc">Bar clandestin au premier étage d'un ancien siège du Parti socialiste ukrainien — le décor soviétique est d'origine. Bar littéraire avec lectures publiques plusieurs soirs par semaine. Ambiance intime, sombre, hors du temps.</p>
+          <p class="resto-note">Montez l'escalier étroit sans enseigne. Vérifiez le programme des lectures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- POI -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+    <p style="font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:4px;">À intégrer selon le rythme et l'envie — ou simplement à remarquer en passant.</p>
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Bowery Mural</div>
+        <div class="poi-card-address">76 E Houston St · angle Bowery</div>
+        <p class="poi-card-desc">Grande fresque murale régulièrement repeinte par des artistes de street art. Hommage continu à Keith Haring, qui peignit le premier mural ici en 1982. L'œuvre change tous les quelques mois.</p>
+        <p class="poi-card-note">En passant entre Great Jones St et Katz's — impossible de le manquer.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🎭</div>
+        <div class="poi-card-name">St. Mark's Place</div>
+        <div class="poi-card-address">St Mark's Pl (8th St) · entre 3rd Ave et Ave A</div>
+        <p class="poi-card-desc">LA rue emblématique de l'East Village — trois blocs. Le n° 96-98 abritait les « Electric Circus » et « The Dom », où Andy Warhol organisait les soirées « Exploding Plastic Inevitable » avec le Velvet Underground. Observez les mosaïques de Jim Power sur les lampadaires.</p>
+        <p class="poi-card-note">Traversez-la en sortant de McSorley's — un bloc au nord.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Les mosaïques de Jim Power</div>
+        <div class="poi-card-address">St Mark's Place &amp; alentours</div>
+        <p class="poi-card-desc">L'œuvre de Jim Power, ancien sans-abri devenu artiste emblématique du quartier. Plus de 30 ans de travail, près de 80 œuvres en mosaïque sur lampadaires, poteaux et bancs, rendant hommage aux travailleurs et héros ordinaires de New York. Menacées par les rénovations urbaines.</p>
+        <p class="poi-card-note">Ouvrez l'œil sur les poteaux de St Mark's Place.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🎵</div>
+        <div class="poi-card-name">Charlie Parker Residence</div>
+        <div class="poi-card-address">151 Avenue B · face à Tompkins Sq Park</div>
+        <p class="poi-card-desc">L'appartement où le génie du bebop a vécu ses dernières années et où il est mort en 1955, à 34 ans. Un petit buste en bronze sur la façade marque l'endroit.</p>
+        <p class="poi-card-note">En face du côté est de Tompkins Square Park.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🏛</div>
+        <div class="poi-card-name">Colonnade Row</div>
+        <div class="poi-card-address">434 Lafayette St</div>
+        <p class="poi-card-desc">Colonnades corinthiennes de 1831 — parmi les plus anciennes structures résidentielles préservées de Manhattan. Quatre des neuf maisons originales subsistent.</p>
+        <p class="poi-card-note">Visible en passant sur Lafayette Street.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">🧱</div>
+        <div class="poi-card-name">De Vinne Press Building</div>
+        <div class="poi-card-address">393-399 Lafayette St</div>
+        <p class="poi-card-desc">Bâtiment en briques de 1886, style Romanesque Revival. Les arches massives de la façade étaient dimensionnées pour les chariots de papier de l'imprimerie.</p>
+        <p class="poi-card-note">Sur le chemin entre Astor Place et Bond Street — levez les yeux.</p>
+      </div>
+      <div class="poi-card">
+        <div class="poi-card-icon">📚</div>
+        <div class="poi-card-name">Strand Book Store</div>
+        <div class="poi-card-address">828 Broadway · angle 12th St</div>
+        <p class="poi-card-desc">La librairie indépendante la plus célèbre de New York — « 18 miles of books » depuis 1927. Le rayon des livres à $1 sur le trottoir est un classique absolu.</p>
+        <p class="poi-card-note">Accessible en remontant Broadway depuis Grace Church.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFOS PRATIQUES -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur moment</div>
+        <p>L'East Village se vit de préférence en <strong>semaine</strong> — McSorley's et Katz's sont bien moins bondés. Le week-end, Tompkins Square et les jardins communautaires sont plus animés. Évitez le samedi midi pour Katz's. Jardins ouverts d'<strong>avril à octobre</strong>.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Le quartier le plus décontracté de Manhattan. Pas de dress code. Baskets, jean, t-shirt — vous serez dans le ton. C'est un quartier de marcheurs : tout se fait à pied, les rues sont étroites, les trottoirs sont vivants.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Jardin de St. Mark's Church en fleur · Façade du 40 Bond Street (Herzog &amp; de Meuron) · Caserne de Great Jones St · Katz's néon la nuit · Tompkins Square sous les arbres · Jardins d'Alphabet City · McSorley's intérieur (lumière d'après-midi) · Fire escapes sur les avenues A et B.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Accès</div>
+        <p>Stations : <strong>Astor Place</strong> (ligne 6), <strong>8th St-NYU</strong> (N/R/W), <strong>2nd Ave</strong> (F). Le parcours est entièrement piéton — environ 4 km de marche totale.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget journée</div>
+        <p>Café/bagel ~<strong>$10</strong> · Katz's (1 sandwich pour 2) ~<strong>$15/pers</strong> · McSorley's ~<strong>$6</strong> · Glace ~<strong>$8</strong> · KGB Bar ~<strong>$15</strong>. Total : <strong>$50–80</strong>/personne sans dîner.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>9h30 → 17h</strong>. Avec un dîner dans le quartier et le KGB Bar, comptez jusqu'à 21h. L'itinéraire est modulable — coupez Bond/Great Jones si vous préférez allonger Tompkins Square.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« I am living in the future. I feel wonderful. » — Allen Ginsberg, East Village, 1956</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function(){
+    var all = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    all.forEach(function(d){ d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

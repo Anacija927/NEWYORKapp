@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratique — Outils Utiles</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FAF7F2;
+  --navy: #1B2A4A;
+  --navy-light: #2A3D66;
+  --gold: #C8A96E;
+  --gold-light: #E8D5B0;
+  --text: #2C2C2C;
+  --text-muted: #6B6B6B;
+  --border: #E8E2D8;
+  --card-bg: #FFFFFF;
+  --rose: #B85C5C;
+  --green: #5C8A6E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Lora', serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.page-header {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 2.5rem 1.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(200,169,110,0.06) 8px, rgba(200,169,110,0.06) 9px);
+}
+.page-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+.page-header p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.4rem;
+  position: relative;
+}
+.tabs {
+  display: flex;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto;
+  padding: 0.85rem 1.1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.tab.active {
+  color: var(--navy);
+  border-bottom-color: var(--gold);
+}
+.section { display: none; padding: 1.5rem; }
+.section.active { display: block; }
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+.card-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+.size-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.5rem 0.6rem;
+  text-align: center;
+  border-bottom: 2px solid var(--navy);
+}
+.size-table td {
+  padding: 0.45rem 0.6rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+}
+.size-table tr:nth-child(even) td { background: rgba(200,169,110,0.06); }
+.size-table .letter { color: var(--gold); }
+.tip-calc { display: flex; flex-direction: column; gap: 1rem; }
+.tip-input-group { display: flex; align-items: center; gap: 0.75rem; }
+.tip-input-group label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 70px;
+}
+.tip-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
+  background: var(--cream);
+  color: var(--navy);
+  outline: none;
+}
+.tip-input:focus { border-color: var(--gold); }
+.tip-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tip-btn {
+  flex: 1;
+  min-width: 48px;
+  padding: 0.7rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text);
+}
+.tip-btn.active {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+.tip-result {
+  background: var(--navy);
+  color: var(--cream);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+.tip-result .amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+.tip-result .breakdown {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(250,247,242,0.6);
+  margin-top: 0.3rem;
+}
+.info-block {
+  display: flex;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.info-block:last-child { border-bottom: none; }
+.info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+.info-content { flex: 1; }
+.info-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.info-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-top: 0.1rem;
+}
+.info-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+.tip-rule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.tip-rule:last-child { border-bottom: none; }
+.tip-rule-label { font-size: 0.9rem; }
+.tip-rule-pct {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--navy);
+  background: rgba(200,169,110,0.15);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.converter-display { text-align: center; padding: 1rem 0; }
+.converter-display .rate {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.converter-display .rate-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+.converter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.converter-row .flag { font-size: 1.5rem; flex-shrink: 0; }
+.converter-row input {
+  flex: 1;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  background: var(--cream);
+  color: var(--navy);
+  outline: none;
+}
+.converter-row input:focus { border-color: var(--gold); }
+.converter-row .currency {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.quick-ref {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.quick-ref-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.7rem;
+  background: rgba(200,169,110,0.08);
+  border-radius: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+}
+.quick-ref-item .eur { color: var(--text-muted); }
+.quick-ref-item .usd { color: var(--navy); }
+.phone-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+.badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+.badge-red { background: rgba(184,92,92,0.12); color: var(--rose); }
+.badge-green { background: rgba(92,138,110,0.12); color: var(--green); }
+.size-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.size-cat-btn {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card-bg);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+}
+.size-cat-btn.active {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+.size-category { display: none; }
+.size-category.active { display: block; }
+.conv-panel { display: none; }
+.conv-panel.active { display: block; }
+.gender-toggle {
+  display: flex;
+  background: var(--cream);
+  border-radius: 6px;
+  padding: 3px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+.gender-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.gender-btn.active {
+  background: var(--card-bg);
+  color: var(--navy);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.gender-section { display: none; }
+.gender-section.active { display: block; }
+.copy-block {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  padding-right: 4.5rem;
+  position: relative;
+  margin: 0.75rem 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--navy);
+}
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card-bg);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+.copy-btn.copied {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-icon {
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  color: var(--gold);
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <p>New York City — Mai 2026</p>
+  <h1>Outils Pratiques</h1>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="pourboires">Pourboires</button>
+  <button class="tab" data-tab="conversion">Conversion</button>
+  <button class="tab" data-tab="tailles">Tailles</button>
+  <button class="tab" data-tab="urgences">Urgences</button>
+  <button class="tab" data-tab="douane">Douane</button>
+</div>
+
+<!-- ═══════════════════ POURBOIRES ═══════════════════ -->
+<div class="section active" id="pourboires">
+  <div class="card">
+    <div class="card-title">Calculateur de pourboire</div>
+    <div class="tip-calc">
+      <div class="tip-input-group">
+        <label>Addition</label>
+        <input type="number" class="tip-input" id="tipAmount" placeholder="0.00" inputmode="decimal">
+      </div>
+      <div class="tip-buttons">
+        <button class="tip-btn" data-pct="5">5%</button>
+        <button class="tip-btn" data-pct="10">10%</button>
+        <button class="tip-btn" data-pct="15">15%</button>
+        <button class="tip-btn active" data-pct="18">18%</button>
+        <button class="tip-btn" data-pct="20">20%</button>
+        <button class="tip-btn" data-pct="25">25%</button>
+        <button class="tip-btn" id="customTipBtn">—%</button>
+      </div>
+      <div class="tip-input-group" id="customTipRow" style="display:none;">
+        <label>Custom</label>
+        <input type="number" class="tip-input" id="customTipPct" placeholder="12" inputmode="decimal" min="0" max="100">
+        <span style="font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--text-muted);">%</span>
+      </div>
+      <div class="tip-result">
+        <div class="breakdown">Pourboire</div>
+        <div class="amount" id="tipDisplay">$0.00</div>
+        <div class="breakdown" id="tipTotal">Total : $0.00</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Guide des pourboires</div>
+    <div class="card-subtitle">Obligatoire partout — ce n'est pas optionnel !</div>
+    <div class="tip-rule"><span class="tip-rule-label">Restaurant (table)</span><span class="tip-rule-pct">18 – 20%</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Bar (par verre)</span><span class="tip-rule-pct">$1 – $2</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Café / Counter</span><span class="tip-rule-pct">$1 – $2</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Taxi / Uber</span><span class="tip-rule-pct">15 – 20%</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Livraison</span><span class="tip-rule-pct">15 – 20%</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Hôtel (bagages)</span><span class="tip-rule-pct">$2 / bagage</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Hôtel (ménage)</span><span class="tip-rule-pct">$3 – $5 / nuit</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Coiffeur</span><span class="tip-rule-pct">15 – 20%</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CONVERSION ═══════════════════ -->
+<div class="section" id="conversion">
+  <div class="size-selector">
+    <button class="size-cat-btn active" data-conv="conv-devises">Devises</button>
+    <button class="size-cat-btn" data-conv="conv-temp">Température</button>
+    <button class="size-cat-btn" data-conv="conv-dist">Distances</button>
+  </div>
+  <div class="conv-panel active" id="conv-devises">
+    <div class="card">
+      <div class="card-title">Convertisseur € → $</div>
+      <div class="converter-display">
+        <div class="rate">1 € ≈ 1,08 $</div>
+        <div class="rate-note">Taux indicatif — vérifier le jour J</div>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🇫🇷</span>
+        <input type="number" id="eurInput" placeholder="0" inputmode="decimal">
+        <span class="currency">EUR</span>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🇺🇸</span>
+        <input type="number" id="usdInput" placeholder="0" inputmode="decimal">
+        <span class="currency">USD</span>
+      </div>
+      <div class="quick-ref">
+        <div class="quick-ref-item"><span class="eur">10 €</span><span class="usd">≈ $10,80</span></div>
+        <div class="quick-ref-item"><span class="eur">20 €</span><span class="usd">≈ $21,60</span></div>
+        <div class="quick-ref-item"><span class="eur">50 €</span><span class="usd">≈ $54</span></div>
+        <div class="quick-ref-item"><span class="eur">100 €</span><span class="usd">≈ $108</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Taxes à connaître</div>
+      <div class="card-subtitle">Les prix affichés sont HORS taxes</div>
+      <div class="tip-rule"><span class="tip-rule-label">Taxe de vente (NYC)</span><span class="tip-rule-pct">8,875%</span></div>
+      <div class="tip-rule"><span class="tip-rule-label">Vêtements &lt; $110</span><span class="tip-rule-pct">0%</span></div>
+      <div class="tip-rule"><span class="tip-rule-label">Vêtements ≥ $110</span><span class="tip-rule-pct">4,5%</span></div>
+      <div class="info-note" style="padding:0.75rem 0 0;font-size:0.8rem;color:var(--text-muted);">
+        Bonne nouvelle pour le shopping : les vêtements et chaussures à moins de $110 pièce sont exonérés de taxe à New York.
+      </div>
+    </div>
+  </div>
+  <div class="conv-panel" id="conv-temp">
+    <div class="card">
+      <div class="card-title">°C ↔ °F</div>
+      <div class="converter-row">
+        <span class="flag">🌡️</span>
+        <input type="number" id="celsiusInput" placeholder="0" inputmode="decimal">
+        <span class="currency">°C</span>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🌡️</span>
+        <input type="number" id="fahrenheitInput" placeholder="0" inputmode="decimal">
+        <span class="currency">°F</span>
+      </div>
+      <div class="quick-ref">
+        <div class="quick-ref-item"><span class="eur">0°C</span><span class="usd">32°F</span></div>
+        <div class="quick-ref-item"><span class="eur">10°C</span><span class="usd">50°F</span></div>
+        <div class="quick-ref-item"><span class="eur">15°C</span><span class="usd">59°F</span></div>
+        <div class="quick-ref-item"><span class="eur">20°C</span><span class="usd">68°F</span></div>
+        <div class="quick-ref-item"><span class="eur">25°C</span><span class="usd">77°F</span></div>
+        <div class="quick-ref-item"><span class="eur">30°C</span><span class="usd">86°F</span></div>
+        <div class="quick-ref-item"><span class="eur">35°C</span><span class="usd">95°F</span></div>
+        <div class="quick-ref-item"><span class="eur">40°C</span><span class="usd">104°F</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-subtitle">Astuce rapide</div>
+      <div class="info-note" style="font-size:0.85rem;color:var(--text);">
+        Pour convertir vite dans sa tête : soustraire 30, puis diviser par 2.<br>
+        Exemple : 77°F → (77 − 30) ÷ 2 ≈ 23°C (réel : 25°C). Pas parfait, mais suffisant.
+      </div>
+    </div>
+  </div>
+  <div class="conv-panel" id="conv-dist">
+    <div class="card">
+      <div class="card-title">km ↔ miles</div>
+      <div class="converter-row">
+        <span class="flag">🇫🇷</span>
+        <input type="number" id="kmInput" placeholder="0" inputmode="decimal">
+        <span class="currency">km</span>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🇺🇸</span>
+        <input type="number" id="milesInput" placeholder="0" inputmode="decimal">
+        <span class="currency">mi</span>
+      </div>
+      <div class="quick-ref">
+        <div class="quick-ref-item"><span class="eur">1 km</span><span class="usd">0,62 mi</span></div>
+        <div class="quick-ref-item"><span class="eur">5 km</span><span class="usd">3,1 mi</span></div>
+        <div class="quick-ref-item"><span class="eur">10 km</span><span class="usd">6,2 mi</span></div>
+        <div class="quick-ref-item"><span class="eur">1 mi</span><span class="usd">1,61 km</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Pieds & pouces</div>
+      <div class="converter-row">
+        <span class="flag">🇫🇷</span>
+        <input type="number" id="cmInput" placeholder="0" inputmode="decimal">
+        <span class="currency">cm</span>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🇺🇸</span>
+        <input type="text" id="ftInput" placeholder="5'10&quot;" readonly style="background:var(--cream);">
+        <span class="currency">ft/in</span>
+      </div>
+      <div class="quick-ref">
+        <div class="quick-ref-item"><span class="eur">150 cm</span><span class="usd">4'11"</span></div>
+        <div class="quick-ref-item"><span class="eur">160 cm</span><span class="usd">5'3"</span></div>
+        <div class="quick-ref-item"><span class="eur">170 cm</span><span class="usd">5'7"</span></div>
+        <div class="quick-ref-item"><span class="eur">175 cm</span><span class="usd">5'9"</span></div>
+        <div class="quick-ref-item"><span class="eur">180 cm</span><span class="usd">5'11"</span></div>
+        <div class="quick-ref-item"><span class="eur">185 cm</span><span class="usd">6'1"</span></div>
+        <div class="quick-ref-item"><span class="eur">190 cm</span><span class="usd">6'3"</span></div>
+        <div class="quick-ref-item"><span class="eur">195 cm</span><span class="usd">6'5"</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Poids</div>
+      <div class="converter-row">
+        <span class="flag">🇫🇷</span>
+        <input type="number" id="kgInput" placeholder="0" inputmode="decimal">
+        <span class="currency">kg</span>
+      </div>
+      <div class="converter-row">
+        <span class="flag">🇺🇸</span>
+        <input type="number" id="lbsInput" placeholder="0" inputmode="decimal">
+        <span class="currency">lbs</span>
+      </div>
+      <div class="quick-ref">
+        <div class="quick-ref-item"><span class="eur">50 kg</span><span class="usd">110 lbs</span></div>
+        <div class="quick-ref-item"><span class="eur">60 kg</span><span class="usd">132 lbs</span></div>
+        <div class="quick-ref-item"><span class="eur">70 kg</span><span class="usd">154 lbs</span></div>
+        <div class="quick-ref-item"><span class="eur">80 kg</span><span class="usd">176 lbs</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ TAILLES ═══════════════════ -->
+<div class="section" id="tailles">
+  <div class="gender-toggle">
+    <button class="gender-btn active" data-gender="femme">Femme</button>
+    <button class="gender-btn" data-gender="homme">Homme</button>
+  </div>
+  <div class="gender-section active" id="gender-femme">
+    <div class="size-selector">
+      <button class="size-cat-btn active" data-cat="f-vetements">Vêtements</button>
+      <button class="size-cat-btn" data-cat="f-chaussures">Chaussures</button>
+      <button class="size-cat-btn" data-cat="f-soutien">Soutien-gorge</button>
+    </div>
+    <div class="size-category active" id="f-vetements">
+      <div class="card">
+        <div class="card-subtitle">Pantalon / Jupe / Robe</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th><th></th></tr>
+          <tr><td>34</td><td>2</td><td class="letter">XS</td></tr>
+          <tr><td>36</td><td>4</td><td class="letter">S</td></tr>
+          <tr><td>38</td><td>6</td><td class="letter"></td></tr>
+          <tr><td>40</td><td>8</td><td class="letter">M</td></tr>
+          <tr><td>42</td><td>10</td><td class="letter"></td></tr>
+          <tr><td>43</td><td>11</td><td class="letter"></td></tr>
+          <tr><td>44</td><td>12</td><td class="letter">L</td></tr>
+          <tr><td>46</td><td>14</td><td class="letter"></td></tr>
+          <tr><td>48</td><td>16</td><td class="letter">XL</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-subtitle">Chemise / Top</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th><th></th></tr>
+          <tr><td>34</td><td>2</td><td class="letter">XS</td></tr>
+          <tr><td>36</td><td>4</td><td class="letter">S</td></tr>
+          <tr><td>38</td><td>6</td><td class="letter">M</td></tr>
+          <tr><td>40</td><td>8</td><td class="letter">L</td></tr>
+          <tr><td>42</td><td>10</td><td class="letter">XL</td></tr>
+          <tr><td>44</td><td>12</td><td class="letter">XXL</td></tr>
+          <tr><td>46</td><td>14</td><td class="letter"></td></tr>
+          <tr><td>48</td><td>16</td><td class="letter"></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="size-category" id="f-chaussures">
+      <div class="card">
+        <div class="card-subtitle">Chaussures Femme</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th></tr>
+          <tr><td>35</td><td>4</td></tr><tr><td>35,5</td><td>4,5</td></tr>
+          <tr><td>36</td><td>5</td></tr><tr><td>36,5</td><td>5,5</td></tr>
+          <tr><td>37</td><td>5,5</td></tr><tr><td>37,5</td><td>6</td></tr>
+          <tr><td>38</td><td>6,5</td></tr><tr><td>38,5</td><td>7</td></tr>
+          <tr><td>39</td><td>7,5</td></tr><tr><td>39,5</td><td>7,5</td></tr>
+          <tr><td>40</td><td>8</td></tr><tr><td>40,5</td><td>8,5</td></tr>
+          <tr><td>41</td><td>9</td></tr><tr><td>41,5</td><td>9,5</td></tr>
+          <tr><td>42</td><td>9,5</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="size-category" id="f-soutien">
+      <div class="card">
+        <div class="card-subtitle">Soutien-gorge</div>
+        <table class="size-table">
+          <tr><th>FR</th><th>US</th><th>FR</th><th>US</th></tr>
+          <tr><td>85A</td><td>32A</td><td>95B</td><td>36B</td></tr>
+          <tr><td>85B</td><td>32B</td><td>95C</td><td>36C</td></tr>
+          <tr><td>85C</td><td>32C</td><td>95D</td><td>36D</td></tr>
+          <tr><td>85D</td><td>32D</td><td>95E</td><td>36DD</td></tr>
+          <tr><td>90A</td><td>34A</td><td>95F</td><td>36E</td></tr>
+          <tr><td>90B</td><td>34B</td><td>100A</td><td>38A</td></tr>
+          <tr><td>90C</td><td>34C</td><td>100B</td><td>38B</td></tr>
+          <tr><td>90D</td><td>34D</td><td>100C</td><td>38C</td></tr>
+          <tr><td>90E</td><td>34DD</td><td>100D</td><td>38D</td></tr>
+          <tr><td>90F</td><td>34E</td><td>100E</td><td>38DD</td></tr>
+          <tr><td>95A</td><td>36A</td><td>100F</td><td>38E</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="gender-section" id="gender-homme">
+    <div class="size-selector">
+      <button class="size-cat-btn active" data-cat="h-pantalon">Pantalon</button>
+      <button class="size-cat-btn" data-cat="h-chemise">Chemise</button>
+      <button class="size-cat-btn" data-cat="h-chaussures">Chaussures</button>
+    </div>
+    <div class="size-category active" id="h-pantalon">
+      <div class="card">
+        <div class="card-subtitle">Pantalon Homme</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th><th></th></tr>
+          <tr><td>34</td><td>24</td><td class="letter">XS</td></tr>
+          <tr><td>36</td><td>26</td><td class="letter"></td></tr>
+          <tr><td>37</td><td>27</td><td class="letter">S</td></tr>
+          <tr><td>38</td><td>28</td><td class="letter"></td></tr>
+          <tr><td>40</td><td>30</td><td class="letter">M</td></tr>
+          <tr><td>42</td><td>32</td><td class="letter"></td></tr>
+          <tr><td>43</td><td>33</td><td class="letter">L</td></tr>
+          <tr><td>44</td><td>34</td><td class="letter"></td></tr>
+          <tr><td>46</td><td>36</td><td class="letter">XL</td></tr>
+          <tr><td>48</td><td>38</td><td class="letter"></td></tr>
+          <tr><td>49</td><td>39</td><td class="letter">XXL</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="size-category" id="h-chemise">
+      <div class="card">
+        <div class="card-subtitle">Chemise Homme</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th><th></th></tr>
+          <tr><td>36</td><td>26</td><td class="letter">XS</td></tr>
+          <tr><td>38</td><td>28</td><td class="letter"></td></tr>
+          <tr><td>40</td><td>30</td><td class="letter">S</td></tr>
+          <tr><td>42</td><td>32</td><td class="letter"></td></tr>
+          <tr><td>44</td><td>34</td><td class="letter"></td></tr>
+          <tr><td>46</td><td>36</td><td class="letter">M</td></tr>
+          <tr><td>48</td><td>38</td><td class="letter"></td></tr>
+          <tr><td>50</td><td>40</td><td class="letter">L</td></tr>
+          <tr><td>52</td><td>42</td><td class="letter"></td></tr>
+          <tr><td>54</td><td>44</td><td class="letter">XL</td></tr>
+          <tr><td>56</td><td>46</td><td class="letter">XXL</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="size-category" id="h-chaussures">
+      <div class="card">
+        <div class="card-subtitle">Chaussures Homme</div>
+        <table class="size-table">
+          <tr><th>France</th><th>USA</th></tr>
+          <tr><td>39</td><td>6</td></tr><tr><td>39,5</td><td>6,5</td></tr>
+          <tr><td>40</td><td>7</td></tr><tr><td>40,5</td><td>7,5</td></tr>
+          <tr><td>41</td><td>8</td></tr><tr><td>41,5</td><td>8,5</td></tr>
+          <tr><td>42</td><td>9</td></tr><tr><td>43</td><td>9,5</td></tr>
+          <tr><td>44</td><td>10</td></tr><tr><td>45</td><td>10,5</td></tr>
+          <tr><td>46</td><td>11</td></tr><tr><td>47</td><td>12</td></tr>
+          <tr><td>48</td><td>13</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ URGENCES ═══════════════════ -->
+<div class="section" id="urgences">
+  <div class="card">
+    <div class="card-title">Numéros d'urgence</div>
+    <div class="info-block">
+      <div class="info-icon">🚨</div>
+      <div class="info-content">
+        <div class="info-label">Urgences (police, pompiers, ambulance)</div>
+        <a href="tel:911" class="phone-number">911</a>
+        <span class="badge badge-red">Gratuit</span>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">🏥</div>
+      <div class="info-content">
+        <div class="info-label">Urgences non vitales</div>
+        <a href="tel:311" class="phone-number">311</a>
+        <div class="info-note">Infos ville, plaintes, services municipaux</div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">🇫🇷</div>
+      <div class="info-content">
+        <div class="info-label">Consulat de France à New York</div>
+        <a href="tel:+12125350100" class="phone-number">+1 (212) 535-0100</a>
+        <div class="info-note">934 Fifth Avenue (entre 74th & 75th St)</div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">🛡️</div>
+      <div class="info-content">
+        <div class="info-label">Assistance assurance voyage</div>
+        <div class="info-note">Vérifier le numéro sur votre contrat avant le départ</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Santé</div>
+    <div class="info-block">
+      <div class="info-icon">💊</div>
+      <div class="info-content">
+        <div class="info-label">Pharmacie 24h/24</div>
+        <div class="info-value">Duane Reade / Walgreens</div>
+        <div class="info-note">Plusieurs adresses ouvertes la nuit à Manhattan</div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">⚕️</div>
+      <div class="info-content">
+        <div class="info-label">Soins sans RDV</div>
+        <div class="info-value">CityMD Urgent Care</div>
+        <div class="info-note">Cliniques sans rendez-vous, présentes partout. Coût ~$200-400 sans assurance US.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ DOUANE ═══════════════════ -->
+<div class="section" id="douane">
+  <div class="card">
+    <div class="card-title">Adresse de l'hôtel</div>
+    <div class="card-subtitle">À indiquer sur le formulaire I-94 / déclaration de douane</div>
+    <div class="copy-block" id="hotelBlock">
+      <button class="copy-btn" data-target="hotelBlock">Copier</button>
+      <strong>Moxy NYC Times Square</strong><br>
+      485 7th Avenue (at 36th St)<br>
+      New York, NY 10018<br>
+      USA<br>
+      Tel: +1 (212) 967-6699
+    </div>
+    <div class="info-note" style="margin-top:0.5rem;">
+      L'agent d'immigration demandera votre adresse de séjour aux USA. Avoir cette info sous la main accélère le passage.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">ESTA</div>
+    <div class="card-subtitle">Autorisation de voyage obligatoire</div>
+    <div class="checklist-item"><span class="checklist-icon">✓</span><span>Vérifier la validité de votre ESTA <strong>avant</strong> le départ</span></div>
+    <div class="checklist-item"><span class="checklist-icon">✓</span><span>L'ESTA est valide 2 ans ou jusqu'à expiration du passeport</span></div>
+    <div class="checklist-item"><span class="checklist-icon">✓</span><span>Site officiel uniquement : <strong>esta.cbp.dhs.gov</strong></span></div>
+    <div class="checklist-item"><span class="checklist-icon">⚠</span><span>Éviter les sites tiers qui surfacturent (~$80 au lieu de $21)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Documents à avoir sur soi</div>
+    <div class="checklist-item"><span class="checklist-icon">🛂</span><span>Passeport biométrique valide</span></div>
+    <div class="checklist-item"><span class="checklist-icon">📋</span><span>ESTA approuvé (imprimé ou screenshot)</span></div>
+    <div class="checklist-item"><span class="checklist-icon">🏨</span><span>Adresse de l'hôtel (ci-dessus)</span></div>
+    <div class="checklist-item"><span class="checklist-icon">✈️</span><span>Billet retour (preuve de sortie du territoire)</span></div>
+    <div class="checklist-item"><span class="checklist-icon">🛡️</span><span>Attestation assurance voyage</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Déclaration de douane</div>
+    <div class="card-subtitle">Ce qu'il faut savoir</div>
+    <div class="tip-rule"><span class="tip-rule-label">Nourriture, fruits, viande</span><span class="tip-rule-pct">Interdit</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Alcool</span><span class="tip-rule-pct">1 L / pers.</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Cigarettes</span><span class="tip-rule-pct">200 / pers.</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Espèces à déclarer si &gt;</span><span class="tip-rule-pct">$10 000</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Cadeaux / achats (franchise)</span><span class="tip-rule-pct">$100</span></div>
+    <div class="info-note" style="margin-top:0.75rem;">
+      En cas de doute, toujours déclarer. Les agents préfèrent la transparence. Ne jamais plaisanter avec la sécurité.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Questions fréquentes de l'agent</div>
+    <div class="card-subtitle">Répondre simplement et calmement</div>
+    <div class="tip-rule"><span class="tip-rule-label">Purpose of your visit?</span><span class="tip-rule-pct">Tourism</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">How long are you staying?</span><span class="tip-rule-pct">7 nights</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Where are you staying?</span><span class="tip-rule-pct">Moxy, 485 7th Ave</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Do you have a return ticket?</span><span class="tip-rule-pct">Yes, May 31</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Are you carrying over $10,000?</span><span class="tip-rule-pct">No</span></div>
+    <div class="tip-rule"><span class="tip-rule-label">Any food or agriculture items?</span><span class="tip-rule-pct">No</span></div>
+  </div>
+</div>
+
+<script>
+// Tab navigation
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Gender toggle
+document.querySelectorAll('.gender-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.gender-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('gender-' + btn.dataset.gender).classList.add('active');
+    const section = document.getElementById('gender-' + btn.dataset.gender);
+    section.querySelectorAll('.size-cat-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+    section.querySelectorAll('.size-category').forEach((c, i) => c.classList.toggle('active', i === 0));
+  });
+});
+
+// Size category selector
+document.querySelectorAll('.size-cat-btn[data-cat]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.gender-section');
+    parent.querySelectorAll('.size-cat-btn').forEach(b => b.classList.remove('active'));
+    parent.querySelectorAll('.size-category').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.cat).classList.add('active');
+  });
+});
+
+// Conversion sub-tabs
+document.querySelectorAll('[data-conv]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.section');
+    parent.querySelectorAll('[data-conv]').forEach(b => b.classList.remove('active'));
+    parent.querySelectorAll('.conv-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.conv).classList.add('active');
+  });
+});
+
+// Tip calculator
+const tipBtns = document.querySelectorAll('.tip-btn[data-pct]');
+const customBtn = document.getElementById('customTipBtn');
+const customRow = document.getElementById('customTipRow');
+const customPctInput = document.getElementById('customTipPct');
+let currentPct = 18;
+
+tipBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tipBtns.forEach(b => b.classList.remove('active'));
+    customBtn.classList.remove('active');
+    customBtn.textContent = '—%';
+    customRow.style.display = 'none';
+    btn.classList.add('active');
+    currentPct = parseInt(btn.dataset.pct);
+    calcTip();
+  });
+});
+
+customBtn.addEventListener('click', () => {
+  tipBtns.forEach(b => b.classList.remove('active'));
+  customBtn.classList.add('active');
+  customRow.style.display = 'flex';
+  customPctInput.focus();
+  const v = parseFloat(customPctInput.value);
+  if (!isNaN(v)) { currentPct = v; customBtn.textContent = v + '%'; }
+  calcTip();
+});
+
+customPctInput.addEventListener('input', () => {
+  const v = parseFloat(customPctInput.value);
+  if (!isNaN(v)) { currentPct = v; customBtn.textContent = v + '%'; } else { currentPct = 0; customBtn.textContent = '—%'; }
+  calcTip();
+});
+
+document.getElementById('tipAmount').addEventListener('input', calcTip);
+function calcTip() {
+  const amount = parseFloat(document.getElementById('tipAmount').value) || 0;
+  const tip = amount * currentPct / 100;
+  document.getElementById('tipDisplay').textContent = '$' + tip.toFixed(2);
+  document.getElementById('tipTotal').textContent = 'Total : $' + (amount + tip).toFixed(2);
+}
+
+// Currency
+const RATE = 1.08;
+document.getElementById('eurInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('usdInput').value = isNaN(v) ? '' : (v * RATE).toFixed(2);
+});
+document.getElementById('usdInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('eurInput').value = isNaN(v) ? '' : (v / RATE).toFixed(2);
+});
+
+// Temperature
+document.getElementById('celsiusInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('fahrenheitInput').value = isNaN(v) ? '' : (v * 9/5 + 32).toFixed(1);
+});
+document.getElementById('fahrenheitInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('celsiusInput').value = isNaN(v) ? '' : ((v - 32) * 5/9).toFixed(1);
+});
+
+// km/miles
+document.getElementById('kmInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('milesInput').value = isNaN(v) ? '' : (v * 0.621371).toFixed(2);
+});
+document.getElementById('milesInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('kmInput').value = isNaN(v) ? '' : (v / 0.621371).toFixed(2);
+});
+
+// cm → ft/in
+document.getElementById('cmInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  if (isNaN(v)) { document.getElementById('ftInput').value = ''; return; }
+  const ti = v / 2.54, ft = Math.floor(ti / 12), inch = Math.round(ti % 12);
+  document.getElementById('ftInput').value = ft + "'" + inch + '"';
+});
+
+// kg/lbs
+document.getElementById('kgInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('lbsInput').value = isNaN(v) ? '' : (v * 2.20462).toFixed(1);
+});
+document.getElementById('lbsInput').addEventListener('input', function() {
+  const v = parseFloat(this.value);
+  document.getElementById('kgInput').value = isNaN(v) ? '' : (v / 2.20462).toFixed(1);
+});
+
+// Copy button
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const block = document.getElementById(btn.dataset.target);
+    const text = block.innerText.replace('Copier', '').replace('Copié !', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copié !';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+});
+</script>
+<script src="assets/nav-buttons.js" data-mode="utile"></script>
+</body>
+</html>

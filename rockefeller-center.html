@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rockefeller Center — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:#F5F0E8; --cream-dark:#EDE7D6; --navy:#1A2744; --navy-light:#243356;
+    --gold:#C8A96E; --gold-light:#E8C98A; --rust:#8B3A2A; --sage:#5A7A5A;
+    --text:#2A2018; --text-muted:#6B5D4A; --border:rgba(26,39,68,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--cream);color:var(--text);font-family:'Lora',Georgia,serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+
+  /* ── HERO ── */
+  .hero{position:relative;background:var(--navy);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:60px 24px 48px;}
+  .hero-pattern{position:absolute;inset:0;opacity:0.12;}
+  .hero-meta{position:relative;z-index:2;text-align:center;}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,10vw,78px);font-weight:300;color:var(--cream);letter-spacing:0.04em;line-height:1;margin-bottom:10px;}
+  .hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3.5vw,22px);font-weight:300;font-style:italic;color:var(--gold-light);letter-spacing:0.06em;margin-bottom:28px;}
+  .hero-tagline{font-family:'Lora',serif;font-size:14px;color:rgba(245,240,232,0.65);max-width:420px;line-height:1.6;}
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar{background:var(--navy-light);padding:0 24px;overflow-x:auto;scrollbar-width:none;white-space:nowrap;border-bottom:1px solid rgba(200,169,110,0.3);}
+  .timeline-bar::-webkit-scrollbar{display:none;}
+  .timeline-inner{display:inline-flex;gap:0;}
+  .tl-item{display:inline-flex;align-items:center;gap:8px;padding:14px 18px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(245,240,232,0.55);border-right:1px solid rgba(255,255,255,0.06);text-decoration:none;transition:color 0.2s;}
+  .tl-item:hover{color:var(--gold);}
+  .tl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* ── PAGE BODY ── */
+  .page-body{max-width:760px;margin:0 auto;padding:0 20px 80px;}
+
+  /* ── INTRO ── */
+  .intro-block{padding:52px 0 40px;border-bottom:1px solid var(--border);}
+  .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+  .section-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold),transparent);opacity:0.5;}
+  .intro-block h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,40px);font-weight:400;line-height:1.15;margin-bottom:20px;color:var(--navy);}
+  .intro-block p{font-size:15.5px;color:var(--text-muted);margin-bottom:14px;font-style:italic;}
+  .intro-block p:last-child{margin-bottom:0;}
+  .tip-box{background:var(--navy);border-left:3px solid var(--gold);padding:16px 20px;margin-top:24px;border-radius:0 4px 4px 0;}
+  .tip-box p{font-size:13.5px;color:rgba(245,240,232,0.8);font-style:normal;margin:0;line-height:1.6;}
+  .tip-box strong{color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:6px;}
+
+  /* ── MAP ── */
+  .map-section{padding:44px 0 0;}
+  .map-container{margin-top:20px;border-radius:6px;overflow:hidden;border:1px solid var(--border);line-height:0;}
+  .map-container svg{display:block;width:100%;height:auto;}
+
+  /* ── DIVIDER ── */
+  .section-divider{text-align:center;padding:36px 0 8px;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:0.3em;opacity:0.5;}
+
+  /* ── EXPAND-ALL ── */
+  .expand-all-bar{display:flex;justify-content:flex-end;padding:18px 0 0;margin-bottom:-12px;}
+  .expand-all-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);background:var(--cream-dark);border:1px solid var(--border);padding:10px 16px;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all 0.2s;}
+  .expand-all-btn:hover{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+  .expand-all-btn-icon{font-size:11px;transition:transform 0.3s;}
+  .expand-all-btn.is-open .expand-all-btn-icon{transform:rotate(180deg);}
+
+  /* ── STOP CARD ── */
+  .stop{padding:44px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 1fr;gap:0 28px;position:relative;}
+  .stop:last-child{border-bottom:none;}
+  .stop::before{content:'';position:absolute;left:39px;top:76px;bottom:-44px;width:1px;background:linear-gradient(to bottom,var(--border),transparent);}
+  .stop:last-child::before{display:none;}
+  .stop-time-col{display:flex;flex-direction:column;align-items:center;padding-top:4px;}
+  .stop-dot{width:14px;height:14px;border-radius:50%;background:var(--cream);border:2px solid var(--navy);flex-shrink:0;position:relative;z-index:1;}
+  .stop-dot.featured{background:var(--gold);border-color:var(--gold);width:16px;height:16px;}
+  .stop-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:0.06em;margin-top:8px;writing-mode:vertical-lr;transform:rotate(180deg);white-space:nowrap;}
+  .stop-category{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .stop-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5vw,30px);font-weight:500;color:var(--navy);line-height:1.1;margin-bottom:4px;}
+  .stop-address{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:14px;}
+  .stop-desc{font-size:14.5px;color:var(--text);line-height:1.72;margin-bottom:12px;}
+  .stop-note{background:var(--cream-dark);border:1px solid var(--border);padding:12px 16px;border-radius:4px;margin-top:14px;}
+  .stop-note-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:5px;}
+  .stop-note p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0;font-style:italic;}
+  .stop-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+  .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--text-muted);border-radius:2px;}
+  .tag.gold{border-color:var(--gold);color:var(--gold);}
+  .tag.rust{border-color:var(--rust);color:var(--rust);}
+  .tag.sage{border-color:var(--sage);color:var(--sage);}
+
+  /* ── EXPAND DETAILS ── */
+  .stop-expand{margin-top:18px;}
+  .stop-expand summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;list-style:none;padding:11px 16px;background:var(--cream-dark);border:1px solid var(--border);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
+  .stop-expand summary::-webkit-details-marker{display:none;}
+  .stop-expand[open] summary{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent;color:var(--navy);}
+  .stop-expand-label{flex:1;}
+  .stop-expand-arrow{font-size:10px;transition:transform 0.25s;}
+  .stop-expand[open] .stop-expand-arrow{transform:rotate(180deg);}
+  .stop-expand-content{padding:22px 18px;border:1px solid var(--border);border-top:none;border-radius:0 0 3px 3px;background:white;}
+  .expand-section{margin-bottom:18px;}
+  .expand-section:last-child{margin-bottom:0;}
+  .expand-section-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:2px;}
+  .expand-section-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+  .expand-section p{font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:8px;}
+  .expand-section p:last-child{margin-bottom:0;}
+  .anecdote{background:var(--navy);border-radius:4px;padding:16px 18px;margin:16px 0;}
+  .anecdote-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;color:var(--gold);margin-bottom:8px;}
+  .anecdote p{font-size:13px;color:rgba(245,240,232,0.78);line-height:1.65;margin-bottom:7px;}
+  .anecdote p:last-child{margin-bottom:0;}
+  .expand-practical{background:var(--cream-dark);border-left:3px solid var(--gold);padding:12px 14px;border-radius:0 4px 4px 0;margin:14px 0 4px;}
+  .expand-practical-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--navy);margin-bottom:6px;}
+  .expand-practical p{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin:0;}
+  .expand-practical strong{color:var(--navy);}
+
+  /* ── POI ── */
+  .poi-section{padding:44px 0 36px;border-bottom:1px solid var(--border);}
+  .poi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+  @media(max-width:500px){.poi-grid{grid-template-columns:1fr;}}
+  .poi-card{border:1px solid var(--border);padding:18px;border-radius:4px;transition:border-color 0.2s,box-shadow 0.2s;}
+  .poi-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(26,39,68,0.06);}
+  .poi-card-icon{font-size:20px;margin-bottom:8px;}
+  .poi-card-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+  .poi-card-address{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:8px;}
+  .poi-card-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+  .poi-card-note{font-size:11.5px;color:var(--rust);font-style:italic;margin-top:6px;}
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section{padding:44px 0;}
+  .infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+  @media(max-width:500px){.infos-grid{grid-template-columns:1fr;}}
+  .info-card{padding:20px;background:var(--cream-dark);border-radius:4px;border:1px solid var(--border);}
+  .info-card-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .info-card p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0;}
+  .info-card strong{color:var(--navy);font-weight:500;}
+
+  /* ── FOOTER ── */
+  .page-footer{background:var(--navy);padding:32px 24px;text-align:center;}
+  .footer-title{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--gold);font-style:italic;margin-bottom:6px;}
+  .footer-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(245,240,232,0.35);letter-spacing:0.12em;}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:520px){
+    .stop{grid-template-columns:60px 1fr;gap:0 16px;}
+    .stop::before{left:29px;}
+    .expand-all-btn{font-size:9px;padding:9px 12px;}
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('rockefeller');</script>
+
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="rays" patternUnits="userSpaceOnUse" width="80" height="80">
+        <line x1="40" y1="0" x2="40" y2="80" stroke="#C8A96E" stroke-width="0.5"/>
+        <line x1="0" y1="40" x2="80" y2="40" stroke="#C8A96E" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="800" height="400" fill="url(#rays)"/>
+    <g transform="translate(400,200)" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.6">
+      <circle r="60"/><circle r="110"/><circle r="160"/>
+    </g>
+  </svg>
+  <div class="hero-meta">
+    <div class="hero-eyebrow">Midtown Manhattan · Art Déco</div>
+    <h1 class="hero-title">Rockefeller Center</h1>
+    <p class="hero-subtitle">une cité dans la cité · 22 acres d'art et de pierre</p>
+    <p class="hero-tagline">19 bâtiments, plus de 200 œuvres d'art, une plaza centrale et l'un des panoramas les plus iconiques de New York. À explorer salle par salle.</p>
+  </div>
+</header>
+
+<!-- ── TIMELINE BAR ── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-1"><span class="tl-dot"></span>5th Ave · Channel Gardens</a>
+    <a class="tl-item" href="#stop-2"><span class="tl-dot"></span>Atlas · International Bldg</a>
+    <a class="tl-item" href="#stop-3"><span class="tl-dot"></span>Lower Plaza · Prometheus</a>
+    <a class="tl-item" href="#stop-4"><span class="tl-dot"></span>30 Rock · Lobby</a>
+    <a class="tl-item" href="#stop-5"><span class="tl-dot"></span>Top of the Rock ★</a>
+    <a class="tl-item" href="#stop-6"><span class="tl-dot"></span>Radio City Music Hall</a>
+    <a class="tl-item" href="#stop-7"><span class="tl-dot"></span>Underground Concourse</a>
+    <a class="tl-item" href="#stop-8"><span class="tl-dot"></span>Rainbow Room · Soir</a>
+  </div>
+</nav>
+
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Un complexe, une vision</div>
+    <h2>Quand un milliardaire a décidé de construire une cathédrale du XXᵉ siècle.</h2>
+    <p>Octobre 1929. John D. Rockefeller Jr. vient de signer un bail de 24 ans à 91 millions de dollars sur 22 acres de Midtown — pour y construire un nouveau Metropolitan Opera House. Trois semaines plus tard, le krach boursier réduit son projet en cendres. Plutôt que d'abandonner, Rockefeller décide seul, en pleine Grande Dépression, de construire le plus grand complexe privé jamais entrepris en zone urbaine. Quatorze bâtiments Art déco, 75 000 ouvriers, 10 millions de rivets. Le dernier rivet — en argent — est planté par Rockefeller lui-même en 1939.</p>
+    <p>Ce qu'il a laissé n'est pas qu'un quartier d'affaires. C'est un manifeste : l'idée qu'un espace commercial puisse aussi être beau, civique, et élever ceux qui le traversent. Plus de 200 œuvres d'art commandées à plus de 50 artistes (Lee Lawrie, Paul Manship, Isamu Noguchi, José Maria Sert, Diego Rivera — dont la fresque a été détruite à coups de marteau pour avoir représenté Lénine). Des jardins suspendus prévus dès les plans originaux. Un dédale souterrain de 3 km. Une patinoire hivernale, un sapin de Noël devenu rituel national, et un observatoire qui regarde Central Park droit dans les yeux.</p>
+    <p>En mai, le complexe se révèle dans sa version la plus apaisée : Channel Gardens en pleine floraison, Lower Plaza convertie en terrasse à ciel ouvert, soleil tardif sur Top of the Rock jusqu'à 20h passées. Pas de foules de Noël, pas de patineurs — mais une ville qui respire.</p>
+    <div class="tip-box">
+      <strong>À savoir avant d'arriver</strong>
+      <p>Le Rockefeller Center se traverse à pied en 15 minutes — mais il se contemple en 4 à 6 heures. Levez les yeux : tout l'intérêt du lieu est dans les détails. Sculptures au-dessus des entrées, mosaïques de plafond, motifs de bronze sur les portes, jardins sur les toits qu'on devine en levant la tête. C'est une chasse au trésor déguisée en visite touristique.</p>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="map-section">
+    <div class="section-label">Repères du complexe</div>
+    <div class="map-container">
+      <svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" style="background:#EDE5D2;">
+        <!-- Fond -->
+        <rect width="720" height="520" fill="#EDE5D2"/>
+
+        <!-- Rues (avenues verticales, streets horizontales) -->
+        <!-- 5th Avenue (à droite, est) -->
+        <rect x="610" y="0" width="60" height="520" fill="#D9D0BC"/>
+        <text x="640" y="260" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" transform="rotate(-90 640 260)" letter-spacing="2">FIFTH AVENUE</text>
+        <!-- 6th Avenue (à gauche, ouest) -->
+        <rect x="50" y="0" width="60" height="520" fill="#D9D0BC"/>
+        <text x="80" y="260" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" transform="rotate(-90 80 260)" letter-spacing="2">SIXTH AVE — AVE OF THE AMERICAS</text>
+
+        <!-- Streets horizontales -->
+        <rect x="0" y="60" width="720" height="22" fill="#D9D0BC"/>
+        <text x="360" y="74" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" letter-spacing="2">WEST 51ST STREET</text>
+        <rect x="0" y="195" width="720" height="22" fill="#D9D0BC"/>
+        <text x="360" y="209" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" letter-spacing="2">WEST 50TH STREET</text>
+        <rect x="0" y="330" width="720" height="22" fill="#D9D0BC"/>
+        <text x="360" y="344" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" letter-spacing="2">WEST 49TH STREET</text>
+        <rect x="0" y="465" width="720" height="22" fill="#D9D0BC"/>
+        <text x="360" y="479" text-anchor="middle" font-size="9" fill="#1A2744" font-family="monospace" letter-spacing="2">WEST 48TH STREET</text>
+
+        <!-- Rockefeller Plaza (rue privée verticale au centre) -->
+        <rect x="345" y="0" width="36" height="520" fill="#E8DFC8" stroke="#C6BAA6" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <text x="363" y="510" text-anchor="middle" font-size="7" fill="#6B5D4A" font-family="monospace" transform="rotate(-90 363 510)" letter-spacing="1">ROCKEFELLER PLAZA</text>
+
+        <!-- Bâtiments -->
+        <!-- 30 Rockefeller Plaza (bâtiment central — 30 Rock / Comcast) -->
+        <rect x="120" y="217" width="225" height="113" fill="#1A2744" stroke="#C8A96E" stroke-width="1.5"/>
+        <text x="232" y="270" text-anchor="middle" font-size="11" fill="#C8A96E" font-family="serif" font-weight="bold">30 Rockefeller Plaza</text>
+        <text x="232" y="284" text-anchor="middle" font-size="8" fill="rgba(245,240,232,0.7)" font-family="serif" font-style="italic">Comcast Building · 30 Rock</text>
+        <text x="232" y="298" text-anchor="middle" font-size="7" fill="rgba(245,240,232,0.5)" font-family="monospace">66 floors · 850 ft</text>
+
+        <!-- Lower Plaza (devant 30 Rock, côté est) -->
+        <rect x="345" y="217" width="80" height="113" fill="#C8A96E" opacity="0.25" stroke="#C8A96E" stroke-width="1"/>
+        <text x="385" y="265" text-anchor="middle" font-size="9" fill="#1A2744" font-family="serif" font-weight="bold">Lower Plaza</text>
+        <text x="385" y="278" text-anchor="middle" font-size="7" fill="#6B5D4A" font-family="serif" font-style="italic">Prometheus</text>
+        <text x="385" y="291" text-anchor="middle" font-size="6.5" fill="#6B5D4A" font-family="monospace">Summer Garden (mai)</text>
+
+        <!-- 50 Rockefeller Plaza (Bank of America, ex-Associated Press) -->
+        <rect x="120" y="82" width="225" height="113" fill="#5A6478" stroke="#C8A96E" stroke-width="1"/>
+        <text x="232" y="135" text-anchor="middle" font-size="10" fill="#F5F0E8" font-family="serif" font-weight="bold">50 Rockefeller Plaza</text>
+        <text x="232" y="149" text-anchor="middle" font-size="7.5" fill="rgba(245,240,232,0.7)" font-family="serif" font-style="italic">News (Noguchi) au-dessus de l'entrée</text>
+
+        <!-- Radio City Music Hall (côté 6th Ave / 50th St) -->
+        <rect x="110" y="82" width="10" height="113" fill="#C8A96E" opacity="0.3"/>
+        <rect x="50" y="82" width="60" height="113" fill="#8B3A2A" stroke="#C8A96E" stroke-width="1.5"/>
+        <text x="80" y="135" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">Radio City</text>
+        <text x="80" y="149" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">Music Hall</text>
+
+        <!-- 1230 Avenue of the Americas (côté 6th Ave / 49th St) -->
+        <rect x="50" y="217" width="60" height="113" fill="#7A6A55" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="80" y="270" text-anchor="middle" font-size="8" fill="#F5F0E8" font-family="serif">1230 AoA</text>
+        <text x="80" y="282" text-anchor="middle" font-size="6.5" fill="rgba(245,240,232,0.7)" font-family="serif" font-style="italic">Simon &amp; Schuster</text>
+
+        <!-- 1270 Avenue of the Americas (côté 6th Ave / 51st-50th) -->
+        <rect x="50" y="217" width="60" height="113" fill="none"/>
+
+        <!-- 1 Rockefeller Plaza (sud) -->
+        <rect x="120" y="352" width="100" height="113" fill="#5A6478" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="170" y="405" text-anchor="middle" font-size="8.5" fill="#F5F0E8" font-family="serif" font-weight="bold">1 Rockefeller Pl.</text>
+
+        <!-- 10 Rockefeller Plaza (Today Show) -->
+        <rect x="225" y="352" width="120" height="113" fill="#5A6478" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="285" y="400" text-anchor="middle" font-size="8.5" fill="#F5F0E8" font-family="serif" font-weight="bold">10 Rockefeller Pl.</text>
+        <text x="285" y="412" text-anchor="middle" font-size="7" fill="rgba(245,240,232,0.75)" font-family="serif" font-style="italic">TODAY Show plaza</text>
+        <text x="285" y="424" text-anchor="middle" font-size="6.5" fill="rgba(245,240,232,0.55)" font-family="monospace">Studio 1A</text>
+
+        <!-- International Building (entre 50th et 51st sur 5th Ave) -->
+        <rect x="425" y="82" width="185" height="113" fill="#1A2744" stroke="#C8A96E" stroke-width="1.2"/>
+        <text x="517" y="130" text-anchor="middle" font-size="10" fill="#C8A96E" font-family="serif" font-weight="bold">International Building</text>
+        <text x="517" y="144" text-anchor="middle" font-size="7.5" fill="rgba(245,240,232,0.7)" font-family="serif" font-style="italic">630 5th Ave · 41 étages</text>
+        <text x="517" y="157" text-anchor="middle" font-size="7" fill="rgba(245,240,232,0.55)" font-family="monospace">ATLAS au pied de l'entrée</text>
+
+        <!-- La Maison Française (sud du Channel Gardens, sur 5th Ave / 49th-50th) -->
+        <rect x="425" y="217" width="90" height="113" fill="#7A4A3A" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="470" y="265" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">La Maison</text>
+        <text x="470" y="278" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">Française</text>
+        <text x="470" y="293" text-anchor="middle" font-size="6.5" fill="rgba(245,240,232,0.7)" font-family="monospace">610 5th</text>
+
+        <!-- British Empire Building (nord du Channel Gardens) -->
+        <rect x="515" y="217" width="95" height="113" fill="#5A4A3A" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="562" y="265" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">British Empire</text>
+        <text x="562" y="278" text-anchor="middle" font-size="9" fill="#F5F0E8" font-family="serif" font-weight="bold">Building</text>
+        <text x="562" y="293" text-anchor="middle" font-size="6.5" fill="rgba(245,240,232,0.7)" font-family="monospace">620 5th</text>
+
+        <!-- Channel Gardens (entre les deux, traverse de 5th vers Lower Plaza) -->
+        <rect x="425" y="289" width="185" height="22" fill="#5A7A5A" opacity="0.6"/>
+        <text x="517" y="304" text-anchor="middle" font-size="8" fill="#F5F0E8" font-family="serif" font-style="italic" font-weight="bold">Channel Gardens →</text>
+
+        <!-- 600 Fifth Ave (sud du complexe) -->
+        <rect x="425" y="352" width="185" height="113" fill="#7A6A55" stroke="#C8A96E" stroke-width="0.8"/>
+        <text x="517" y="405" text-anchor="middle" font-size="8.5" fill="#F5F0E8" font-family="serif" font-weight="bold">600 Fifth Avenue</text>
+        <text x="517" y="418" text-anchor="middle" font-size="7" fill="rgba(245,240,232,0.7)" font-family="serif" font-style="italic">ex-Sinclair Oil</text>
+
+        <!-- St. Patrick's (en face, marque de référence) -->
+        <rect x="612" y="92" width="42" height="50" fill="rgba(139,58,42,0.15)" stroke="#8B3A2A" stroke-width="0.6" stroke-dasharray="2 2"/>
+        <text x="633" y="120" text-anchor="middle" font-size="7" fill="#8B3A2A" font-family="serif" font-style="italic">St-Patrick's</text>
+        <text x="633" y="131" text-anchor="middle" font-size="6.5" fill="#8B3A2A" font-family="serif" font-style="italic">Cathedral</text>
+
+        <!-- Saks (en face, marque de référence) -->
+        <rect x="612" y="225" width="42" height="100" fill="rgba(139,58,42,0.12)" stroke="#8B3A2A" stroke-width="0.5" stroke-dasharray="2 2"/>
+        <text x="633" y="278" text-anchor="middle" font-size="7" fill="#8B3A2A" font-family="serif" font-style="italic">Saks</text>
+
+        <!-- Stops numérotés -->
+        <!-- 1 — Channel Gardens entrée 5th Ave -->
+        <circle cx="608" cy="300" r="13" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="608" y="300" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">1</text>
+
+        <!-- 2 — Atlas / International Building -->
+        <circle cx="608" cy="160" r="13" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="608" y="160" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">2</text>
+
+        <!-- 3 — Lower Plaza / Prometheus -->
+        <circle cx="385" cy="280" r="13" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="385" y="280" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">3</text>
+
+        <!-- 4 — Lobby de 30 Rock -->
+        <circle cx="232" cy="305" r="13" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="232" y="305" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">4</text>
+
+        <!-- 5 — Top of the Rock (étoile / featured) -->
+        <circle cx="232" cy="240" r="14" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.8"/>
+        <text x="232" y="240" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#1A2744" font-weight="bold" font-family="monospace">5</text>
+        <text x="232" y="222" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">★ TOP OF THE ROCK</text>
+
+        <!-- 6 — Radio City Music Hall -->
+        <circle cx="80" cy="140" r="13" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="80" y="140" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">6</text>
+
+        <!-- 7 — Underground Concourse (sous Lower Plaza) -->
+        <circle cx="385" cy="395" r="13" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="385" y="395" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">7</text>
+        <text x="385" y="378" text-anchor="middle" font-size="6.5" fill="#5A7A5A" font-family="monospace" font-weight="bold">↓ CONCOURSE</text>
+
+        <!-- 8 — Rainbow Room (au sommet du 30 Rock, marqué symboliquement) -->
+        <circle cx="170" cy="240" r="13" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="2.5"/>
+        <text x="170" y="240" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="white" font-weight="bold" font-family="monospace">8</text>
+        <text x="170" y="222" text-anchor="middle" font-size="6.5" fill="#8B3A2A" font-family="monospace" font-weight="bold">RAINBOW · 65th fl.</text>
+
+        <!-- POI lettrés -->
+        <!-- a — Holdouts (Magnolia / Pebble) -->
+        <circle cx="120" cy="345" r="9" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/>
+        <text x="120" y="345" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <!-- b — Le Point d'Interrogation -->
+        <circle cx="470" cy="290" r="9" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/>
+        <text x="470" y="290" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <!-- c — TODAY Show Plaza -->
+        <circle cx="285" cy="450" r="9" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/>
+        <text x="285" y="450" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <!-- d — Wisdom (au-dessus de l'entrée principale 30 Rock) -->
+        <circle cx="345" cy="270" r="9" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/>
+        <text x="345" y="270" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <!-- e — Intelligence Awakening Mankind (mosaïque entrée 6th Ave) -->
+        <circle cx="120" cy="280" r="9" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/>
+        <text x="120" y="280" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="white" font-weight="bold" font-family="monospace">e</text>
+
+        <!-- Boussole Nord -->
+        <g transform="translate(680,30)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes principales</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Channel Gardens</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Atlas</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Lower Plaza</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ Lobby 30 Rock</span>
+          <span style="font-size:11px;color:#C8A96E;font-family:'DM Mono',monospace;font-weight:bold;">⑤ Top of the Rock ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Radio City</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑦ Concourse</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑧ Rainbow Room</span>
+        </div>
+      </div>
+      <div style="background:var(--cream-dark);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Détours confidentiels</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">a · Holdouts (Magnolia &amp; Pebble Bar)</span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">b · Le Point d'Interrogation</span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">c · TODAY Plaza</span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">d · Wisdom de Lawrie</span>
+          <span style="font-size:11px;color:var(--text-muted);font-family:'DM Mono',monospace;">e · Mosaïque Faulkner</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- Bouton Tout déplier -->
+  <div class="expand-all-bar">
+    <button id="expandAllBtn" class="expand-all-btn" type="button" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▾</span>
+    </button>
+  </div>
+
+  <!-- ─────────────── STOP 1 — CHANNEL GARDENS ─────────────── -->
+  <article id="stop-1" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">5th Ave Entry</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 1 · Approche</div>
+      <h3 class="stop-title">Channel Gardens</h3>
+      <div class="stop-address">5th Ave entre 49th &amp; 50th St · accès libre</div>
+      <p class="stop-desc">L'entrée la plus théâtrale du complexe. Cette promenade de 60 mètres pente doucement vers la Lower Plaza, encadrée par <em>La Maison Française</em> au sud (610 5th Ave) et le <em>British Empire Building</em> au nord (620 5th Ave). Le nom n'est pas botanique : il fait référence à la Manche — la « channel » qui sépare l'Angleterre de la France — et l'allée trace symboliquement cette mer entre les deux pavillons nationaux. Six bassins de granit alignés au centre, six fontaines de bronze (les <em>Fountainheads</em> de René Paul Chambellan, 1935 : Triton, Néréide, Léandre, Acis, Galatée, Hippocampe), et quatre rotations florales saisonnières par an. En mai, c'est la grande floraison printanière — tulipes tardives, azalées, plantations méditerranéennes.</p>
+      <div class="stop-tags">
+        <span class="tag">Plein air</span>
+        <span class="tag gold">Photo</span>
+        <span class="tag sage">Floraison mai</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Histoire, anecdotes &amp; conseils</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le coup de génie scénographique de Raymond Hood</div>
+            <span class="expand-section-sub">1935 · architecture &amp; perspective forcée</span>
+            <p>Raymond Hood, l'architecte en chef, avait un problème : 30 Rock se tient en plein milieu du complexe, à 200 mètres de la 5ᵉ Avenue. Comment forcer le regard à venir le chercher ? Sa solution : creuser une perspective. La pente descendante, le rétrécissement progressif des bassins, l'alignement des arbres bas — tout converge optiquement vers la statue dorée de Prométhée et la silhouette de la tour. C'est un faux <em>vista</em> baroque dans une grille new-yorkaise. Un truc de paysagiste italien transposé sur Manhattan.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Les pavillons nationaux qui n'en sont plus</div>
+            <span class="expand-section-sub">La Maison Française · British Empire Building</span>
+            <p>Inaugurés en 1933, les deux <em>low-rise</em> (6 étages chacun) devaient héberger les consulats, les commerces et les organismes culturels français et britanniques — un projet pré-guerre de coopération transatlantique. Aujourd'hui, ils accueillent commerces et bureaux. Mais regardez bien les bas-reliefs au-dessus des entrées sur 5th Ave : <em>Friendship between America and France</em> (Alfred Janniot, doré à la feuille) côté français, et <em>Industries of the British Commonwealth</em> (Lee Lawrie) côté britannique. Deux monuments diplomatiques en miniature.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le terrain qui était autrefois un jardin botanique</div>
+            <p>Avant que Rockefeller n'achète le bail à Columbia University, ce sol portait l'<em>Elgin Botanic Garden</em> — le premier jardin botanique public d'Amérique, ouvert en 1801 par le médecin David Hosack. Hosack soignait Alexander Hamilton et a accouru à Weehawken après son duel fatal avec Aaron Burr en 1804. Quand vous descendez Channel Gardens, vous marchez littéralement sur l'emplacement du premier conservatoire botanique du pays. C'est presque une renaissance.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Conseil de timing</div>
+            <p>Approchez par <strong>5ᵉ Avenue côté est</strong> (en face de Saks). La photo iconique : se placer au début des Channel Gardens, descendre lentement vers le bas, et regarder le <strong>Prométhée doré</strong> apparaître au fur et à mesure que la perspective s'ouvre sur 30 Rock. Cette mise en scène est faite pour ça. <strong>Tôt le matin</strong> (avant 9h) ou <strong>en fin d'après-midi</strong> pour la lumière dorée et moins de monde.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 2 — ATLAS / INTERNATIONAL BUILDING ─────────────── -->
+  <article id="stop-2" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">Fifth Ave</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 2 · Sculpture monumentale</div>
+      <h3 class="stop-title">Atlas &amp; l'International Building</h3>
+      <div class="stop-address">630 5th Avenue · entre 50th &amp; 51st St</div>
+      <p class="stop-desc">Juste au nord des Channel Gardens, plantée devant l'entrée du <em>International Building</em>, une sculpture de bronze de 4,5 tonnes : <em>Atlas</em>, par Lee Lawrie et Rene Chambellan (1937). Sept mètres de haut sur un piédestal de trois — total : dix mètres. Le titan porte une sphère armillaire en fer forgé, alignée sur l'<em>étoile polaire</em>. C'est l'une des sculptures Art déco les plus reproduites au monde, et son alignement avec la flèche de la cathédrale Saint-Patrick juste en face produit l'une des juxtapositions photo les plus surchargées symboliquement de New York : un titan païen face à une basilique catholique. L'<em>International Building</em> derrière (41 étages, 1935) fut le bâtiment construit le plus rapidement du complexe : <em>136 jours</em> entre la pose de la première pierre et l'ouverture.</p>
+      <div class="stop-tags">
+        <span class="tag">Art déco</span>
+        <span class="tag gold">Photo</span>
+        <span class="tag rust">Polémique</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Histoire, anecdotes &amp; conseils</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'Atlas qui ressemblait (trop) à Mussolini</div>
+            <span class="expand-section-sub">1936 · le scandale</span>
+            <p>À l'inauguration en 1937, des manifestants ont défilé devant la statue. Pour eux, le profil musculeux et la mâchoire carrée de l'<em>Atlas</em> rappelaient — délibérément ou non — le dictateur fasciste italien Benito Mussolini. La controverse a été d'autant plus piquante que l'aile sud du bâtiment, le <em>Palazzo d'Italia</em>, abritait initialement des entreprises et organismes italiens, et que Mussolini avait personnellement contribué de la marbre pour la décoration intérieure. Lee Lawrie a toujours nié l'inspiration. Aujourd'hui, plus personne ne fait ce rapprochement — mais l'écho était assez fort à l'époque pour qu'on en parle dans <em>Time Magazine</em>.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le bâtiment qui devait s'appeler « Deutsches Haus »</div>
+            <span class="expand-section-sub">1939 · l'aile nord et la guerre qui change tout</span>
+            <p>L'<em>International Building North</em> (l'aile nord, sur 51st St) avait été planifié pour héberger les entreprises allemandes. Avant 1939, il devait être rebaptisé <em>Deutsches Haus</em>. La déclaration de guerre a tout fait tomber. Le bâtiment a été repris par les services britanniques de renseignement : la chambre 3603 est devenue le QG du <em>British Security Coordination</em>, dirigé par le Canadien William Stephenson — alias « Intrepid ». C'est de cette pièce qu'a été coordonné l'effort de contre-espionnage allié sur le sol américain pendant toute la guerre, des années avant Pearl Harbor. Allen Dulles, futur directeur de la CIA, y a tenu son bureau.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le hall : un miracle d'illusion d'optique</div>
+            <span class="expand-section-sub">Lobby · marbre vert italien</span>
+            <p>Entrez dans le hall du 630 5th Ave (gratuit, ouvert aux heures de bureau). Les architectes ont conçu un lobby de quatre étages de hauteur avec d'immenses piliers de marbre vert veiné, des escaliers roulants en bronze nickelé, et un plafond percé d'une étoile dorée. Le hall a été inspiré de la lobby triangulaire du Chrysler Building et de l'<em>Empire State</em>. C'est bien plus impressionnant que les façades extérieures ne le laissent deviner. L'un des hall les plus sous-côtés de Manhattan.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Comment l'astronome Atlas s'aligne sur Polaris</div>
+            <p>La sphère armillaire au-dessus des épaules d'Atlas n'est pas une décoration générique. Lawrie l'a construite avec un axe de rotation incliné de 41° — la latitude de New York. Cet axe pointe directement vers <em>l'étoile Polaris</em>. Si vous regardez la sculpture par une nuit dégagée et qu'un astronome est à côté de vous, il pourra confirmer : Atlas, dans Manhattan, est en ce moment précis aligné sur le pôle céleste nord. Très peu de gens le savent. C'est de la science cachée dans de l'art.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Le shot photo</div>
+            <p>Postez-vous sur le trottoir <strong>est de la 5ᵉ Avenue</strong> (côté Saint-Patrick), entre 50th et 51st. Vous aurez Atlas au premier plan, l'International Building qui monte derrière, et la <strong>cathédrale St-Patrick</strong> en contre-champ si vous tournez la tête. C'est une composition new-yorkaise classique. Lumière idéale : matin (soleil de l'est éclairant Atlas) ou fin d'après-midi (façade dorée).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 3 — LOWER PLAZA / PROMETHEUS ─────────────── -->
+  <article id="stop-3" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">Lower Plaza</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 3 · Cœur du complexe</div>
+      <h3 class="stop-title">Lower Plaza &amp; Prométhée</h3>
+      <div class="stop-address">Rockefeller Plaza · au pied de 30 Rock</div>
+      <p class="stop-desc">Le centre de gravité visuel du complexe. La <em>Sunken Plaza</em> est creusée à 5 mètres sous le niveau de la rue — un coup de génie urbanistique : elle force les passants à s'arrêter, à se pencher, et à découvrir un théâtre en contrebas. Au fond, la statue dorée de <em>Prométhée</em> par Paul Manship (1934), 8 tonnes de bronze recouvert de feuilles d'or 18 carats, dans un bassin alimenté par une cascade. La sculpture a été commandée pour décorer l'arrière de la patinoire (qui n'existait pas encore) et est l'œuvre la plus photographiée du complexe — peut-être de tout New York. <strong>En mai, la patinoire est démontée</strong> : la plaza accueille le <em>Summer Garden &amp; Bar</em>, terrasse à ciel ouvert avec les services de Jupiter, NARO et Le Rock. Drapeaux des 193 nations de l'ONU flottent autour.</p>
+      <div class="stop-tags">
+        <span class="tag">Art déco</span>
+        <span class="tag gold">Iconique</span>
+        <span class="tag sage">Mai = terrasse</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Histoire, anecdotes &amp; conseils</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Prométhée, voleur de feu — et accident commercial</div>
+            <span class="expand-section-sub">Paul Manship · 1934</span>
+            <p>L'inscription gravée sur le mur derrière la statue est un fragment d'<em>Eschyle</em> : « Prometheus, teacher in every art, brought the fire that hath proved to mortals a means to mighty ends. » Le titan tient une boule de feu — symbole de la connaissance qu'il a volée à Zeus pour la donner aux humains. Le placement n'est pas innocent : Rockefeller voulait l'allégorie de la <em>connaissance offerte par le capitalisme américain</em>, en miroir des thèmes industriels et scientifiques décorant les murs du 30 Rock. Mais à l'inauguration, des critiques se sont moqués : la statue ressemblait à un « Léa qui descend du toit » plus qu'à un titan tragique. Manship a été dévasté. Aujourd'hui c'est l'œuvre la plus reconnaissable du complexe.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Les deux figures qu'on remarque rarement</div>
+            <span class="expand-section-sub">Maïa &amp; Mnemosyne, sur les murs latéraux</span>
+            <p>Posez-vous au bord du bassin et regardez les deux murs latéraux qui flanquent Prométhée. Vous y trouvez deux bas-reliefs en bronze, plus petits, plus discrets, par le même Paul Manship : <em>Maïa</em> à droite (la mère de Mercure et personnification du printemps) et <em>Mnemosyne</em> à gauche (la titanide de la mémoire, mère des Muses). Ces figures ont été ajoutées en 1935 et déplacées dans les années 1980 pendant les rénovations. La plupart des visiteurs passent devant sans les voir.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Hiver vs Été : deux mondes différents</div>
+            <p>L'idée de patinoire publique au centre du complexe n'était <em>pas</em> au plan original. Elle est apparue à l'hiver 1936 par hasard : un patineur professionnel a sollicité Rockefeller pour utiliser la plaza congelée comme terrain d'exhibition pour vendre des patins. Le succès fut immédiat. La patinoire est devenue rituel hivernal new-yorkaise. <strong>En mai, c'est l'inverse :</strong> la dalle est convertie en terrasse paysagée, avec les tables des trois restaurants étoilés (Jupiter, Le Rock, NARO) qui débordent au pied de Prométhée. Avantage : pas de file d'attente pour le sirop d'érable et un vrai moment de calme méditerranéen.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pour la photo &amp; le moment couple</div>
+            <p>Le <strong>balustrade haute</strong> côté Channel Gardens donne le cadrage classique : Prométhée au centre, drapeaux dans le vent, façade Art déco du 30 Rock en arrière-plan, ciel découpé. <strong>Descendre dans la plaza</strong> change la perspective : Prométhée est alors à hauteur d'œil et la cascade en bruit de fond. <strong>Pour un moment plus doux</strong> en couple : posez-vous à la terrasse de Le Rock, commandez deux verres de Champagne, regardez les passants depuis le bas — c'est un théâtre inversé.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 4 — LOBBY 30 ROCK ─────────────── -->
+  <article id="stop-4" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">30 Rock Lobby</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 4 · Cathédrale d'entreprise</div>
+      <h3 class="stop-title">Le hall de 30 Rockefeller Plaza</h3>
+      <div class="stop-address">30 Rockefeller Plaza · entrée libre aux heures de bureau</div>
+      <p class="stop-desc">66 étages, 850 pieds, achevé en 1933. Le bâtiment-totem du complexe — d'abord <em>RCA Building</em>, puis <em>GE Building</em> en 1988, puis <em>Comcast Building</em> depuis 2015 — mais tout le monde dit <strong>30 Rock</strong>. Au-dessus de l'entrée principale côté Lower Plaza : <em>Wisdom</em> de Lee Lawrie (1933), figure barbue tenant un compas au-dessus d'un panneau de verre teinté. À l'intérieur : la fresque qui occupe tout le mur du fond du grand hall, <em>American Progress</em> de José Maria Sert (1937, 5m de haut sur 12,5m de large) — l'œuvre de remplacement, après que Rockefeller a fait <strong>littéralement détruire</strong> la fresque que Diego Rivera y avait peinte. Toute l'histoire de l'art du XXᵉ siècle se joue dans ce hall.</p>
+      <div class="stop-tags">
+        <span class="tag">Art déco</span>
+        <span class="tag rust">Histoire censurée</span>
+        <span class="tag gold">À voir absolument</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Histoire, anecdotes &amp; conseils</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'affaire Diego Rivera : la fresque détruite au marteau</div>
+            <span class="expand-section-sub">1932-1934 · l'un des plus grands scandales de l'art américain</span>
+            <p>En 1932, Abby Aldrich Rockefeller — épouse de John Jr., grande mécène, cofondatrice du MoMA — convainc son mari de commander la fresque centrale du hall à <em>Diego Rivera</em>, le muraliste mexicain le plus célèbre du moment. Le contrat stipule un thème : « L'homme à la croisée des chemins regardant avec espoir et grande vision le choix d'un nouveau et meilleur futur. » Rivera commence à peindre <em>Man at the Crossroads</em> en mars 1933. Mais en avril, le <em>New York World-Telegram</em> publie un article scandalisé : la fresque représente la science contrôlée par les ouvriers, des soldats casqués portant des masques à gaz, et — au centre — un portrait de <strong>Lénine</strong> tendant la main à un ouvrier blanc, un soldat noir et un fermier asiatique.</p>
+            <p>Nelson Rockefeller, alors directeur du complexe à 25 ans, demande à Rivera de retirer Lénine. Rivera refuse, propose en compromis d'ajouter Lincoln à droite. Refus. Le 9 mai 1933, des gardes interrompent Rivera en plein travail et le paient pour solde de tout compte. La fresque est cachée derrière des panneaux de bois. Le 10 février 1934, en pleine nuit, des ouvriers la pulvérisent au marteau. Il n'en reste qu'une série de photos en noir et blanc que l'assistant de Rivera avait pris en cachette. Rivera la repeindra à Mexico, au Palacio de Bellas Artes, en y ajoutant le portrait de <em>Rockefeller en train de boire du champagne</em>. C'est cette version qu'on peut voir aujourd'hui.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">American Progress : la réponse de Sert</div>
+            <span class="expand-section-sub">José Maria Sert · 1937</span>
+            <p>Pour remplacer Rivera, les Rockefeller font appel à <em>José Maria Sert</em>, un muraliste catalan formé à Paris, qui avait déjà peint la salle à manger du Waldorf Astoria et les fresques du Palais de la Société des Nations à Genève. Sa fresque, <em>American Progress</em>, montre l'union de l'<strong>intelligence</strong> (les Trois Grâces) et de la <strong>force</strong> (les titans et ouvriers) — avec Abraham Lincoln et Ralph Waldo Emerson en figures de proue. Politiquement irréprochable. Ironiquement, Sert deviendra plus tard ouvertement franquiste — et c'est probablement pour cela qu'il a été oublié de l'histoire de l'art. Sa fresque a été restaurée en 2010 après trois ans de nettoyage : elle a retrouvé ses couleurs originales que des décennies de fumée de cigarette avaient assombries.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le plafond qu'on oublie de regarder</div>
+            <span class="expand-section-sub">Time · l'allégorie qu'on rate</span>
+            <p>Levez la tête. Au-dessus du hall principal, Sert a peint un autre mural plafonnier — <em>Time</em> — représentant le passé, le présent et le futur. La plupart des visiteurs sortent du hall sans avoir levé les yeux. Si vous êtes pilote ou aviateur amateur, le couloir adjacent contient également le mural <em>Aviation</em> dédié à l'âge d'or de l'aéronautique : c'est l'un des secrets les moins connus du complexe.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Wisdom, Light, Sound — l'extérieur</div>
+            <span class="expand-section-sub">Lee Lawrie · au-dessus de l'entrée principale</span>
+            <p>Avant d'entrer dans le hall, levez les yeux : la composition tripartite de Lawrie surplombe l'entrée. <em>Wisdom</em> au centre — figure barbue, le compas dans la main, regard fixé vers le bas — encadrée par <em>Light</em> à droite et <em>Sound</em> à gauche. La citation gravée vient d'Isaïe : « <em>Wisdom and knowledge shall be the stability of thy times.</em> » Le panneau de verre teinté en dessous, avec ses motifs géométriques, est l'un des seuls vitraux Art déco intégrés à une façade commerciale aux États-Unis.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Studio 8H : le studio où nait Saturday Night Live</div>
+            <p>À l'intérieur du 30 Rock, au 8ᵉ étage, se trouve le <em>Studio 8H</em> — la salle de production où est filmé <em>Saturday Night Live</em> chaque samedi soir depuis 1975. À sa construction en 1933, c'était le plus grand studio de radio du monde, conçu pour accueillir 1 200 spectateurs et un orchestre symphonique complet. Aujourd'hui, c'est un studio TV de taille modeste — mais tout le monde sait que c'est là. Le tour <em>The Tour at NBC Studios</em> (~75 minutes, depuis le shop au rez-de-chaussée côté 6ᵉ Ave) y donne accès quand il n'y a pas de répétition.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Mode d'emploi du hall</div>
+            <p>Entrée par <strong>50 Rockefeller Plaza</strong> (entrée principale, sous Wisdom) ou <strong>côté 6ᵉ Avenue</strong> (entrée NBC, où vous verrez aussi la mosaïque <em>Intelligence Awakening Mankind</em>). Le hall est <strong>gratuit, ouvert au public en semaine 6h-23h, week-end 7h-23h</strong>. Pour bien voir <em>American Progress</em>, postez-vous au fond du hall, dos au comptoir d'accueil. Pas de flash autorisé, mais photos OK.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 5 — TOP OF THE ROCK ─────────────── -->
+  <article id="stop-5" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <div class="stop-time">★ 67th-70th Floor</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 5 · Le clou du spectacle</div>
+      <h3 class="stop-title">Top of the Rock</h3>
+      <div class="stop-address">50 W 50th St · entrée dédiée · 8h-minuit (dernière entrée 23h10)</div>
+      <p class="stop-desc">Le meilleur observatoire de New York. Pas le plus haut (le One World Observatory est plus élevé), pas le plus jeune (Edge et Summit One Vanderbilt sont plus récents) — mais le mieux placé : c'est le <strong>seul</strong> où vous voyez <em>Central Park au nord et l'Empire State au sud dans un même balayage de regard</em>. Et l'avantage clé : depuis Top of the Rock, vous voyez l'Empire State Building. Depuis l'Empire State, vous ne voyez pas Top of the Rock. Une rénovation totale 2023-2024 a tout transformé : <em>Welcome Gallery</em> avec un théâtre immersif, attraction <strong>The Beam</strong> (recréation de la photo de 1932), et la nouvelle <strong>Skylift</strong> qui vous élève à 270 mètres au-dessus du sol sur une plateforme rotative à ciel ouvert.</p>
+      <div class="stop-tags">
+        <span class="tag gold">Étape star</span>
+        <span class="tag">Réservation conseillée</span>
+        <span class="tag sage">Mai = coucher tardif</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Tout ce qu'il faut savoir : étages, attractions, billets</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+
+          <div class="expand-section">
+            <div class="expand-section-title">Welcome Gallery (mezzanine, 2024)</div>
+            <span class="expand-section-sub">L'introduction qui n'existait pas avant</span>
+            <p>Avant de monter, on traverse une galerie d'accueil ouverte en été 2024 : maquette projetée en 3D du Rockefeller Center (10 pieds de haut, animation projection-mapping de 6 minutes racontant la construction, l'art, les saisons), puis un théâtre multi-sensoriel de 5 minutes intitulé « Spark of Imagination, The Story of Rockefeller Center ». C'est très bien fait — pas pédant, pas insipide. Conseil : ne le sautez pas, c'est inclus dans le billet.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">67ᵉ étage — observation intérieure</div>
+            <span class="expand-section-sub">Indoor · vitres + Radiance Wall</span>
+            <p>Premier niveau d'observation : entièrement vitré, climatisé. À l'entrée, une installation <em>Radiance Wall</em> en cristal Swarovski et fibres optiques sert de spot photo. Bonus rarement signalé : <strong>Le Weather Room Café &amp; Bar</strong> est sur ce niveau (9h-minuit) — vous pouvez y prendre un verre, des plats légers (mezze, sandwichs) avec vue panoramique. Bien moins cher que monter au Bar SixtyFive, et accessible avec votre billet.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">69ᵉ étage — terrasse + The Beam</div>
+            <span class="expand-section-sub">Plein air · vitres frameless</span>
+            <p>Niveau intermédiaire : terrasse extérieure avec garde-corps en verre sans cadre — la photo y est nette, sans grilles. C'est aussi ici qu'est installée <strong>The Beam</strong>, ouverte en décembre 2023 : on s'attache sur une réplique de la poutre en acier de la photo iconique de 1932, on est levé à 12 pieds (3,6 m) au-dessus du sol, on tourne à 180° pendant 3-4 minutes, et on repart avec la photo qui recrée <em>Lunch atop a Skyscraper</em>. Supplément $25 par personne, à ajouter au billet de base.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">70ᵉ étage — la terrasse à ciel ouvert</div>
+            <span class="expand-section-sub">Aucune vitre · 259 m / 850 pieds</span>
+            <p>Le sommet. Pas de vitre, pas de grille, juste un parapet bas en pierre. La vue est à <em>360°</em> : Central Park au nord, l'Empire State au sud, l'East River et le Chrysler Building à l'est, le Hudson, Hudson Yards et The Edge à l'ouest. Par temps très clair : <strong>Statue de la Liberté</strong> visible à l'horizon sud. C'est ici que se passent les coups de cœur : levers de soleil, couchers de soleil, vues nocturnes de Manhattan illuminée.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">SKYLIFT — la nouvelle attraction de 2024</div>
+            <span class="expand-section-sub">70ᵉ étage ouest · ouverte oct. 2024</span>
+            <p>Sur la pointe ouest du 70ᵉ étage, une plateforme rotative ouverte qui s'élève de 9 mètres au-dessus du toit — soit ~880 pieds (268 m) au-dessus du trottoir. Capacité : ~14 personnes. Durée : 3,5 minutes. La plateforme tourne lentement à 360°, et au coucher du soleil, ses 96 « pixel flutes » LED s'allument pour un show lumineux visible depuis la skyline. Supplément $35 par personne. <strong>Ne se réserve pas seule</strong> — il faut un billet Top of the Rock standard et l'ajouter sur place ou en ligne.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Lunch atop a Skyscraper, 1932 : la photo qui a inventé New York</div>
+            <p>Le 20 septembre 1932, un photographe (longtemps attribué à Charles Ebbets, attribution contestée par les archives) a photographié 11 ouvriers déjeunant sur une poutre d'acier au 69ᵉ étage de la RCA Building en construction. Pas de filet, pas de harnais. La photo a été publiée par le <em>New York Herald Tribune</em> trois semaines plus tard pour promouvoir la fin imminente du chantier. <strong>Elle était mise en scène</strong> : les ouvriers étaient bien des vrais ouvriers du chantier, mais la pose et le moment ont été orchestrés par le département marketing de Rockefeller Center. Cela n'a rien enlevé à la puissance de l'image. Quand vous montez sur The Beam, vous êtes au 69ᵉ étage. <em>L'étage exact</em>. C'est ce qui rend l'attraction émouvante au-delà du gimmick.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Tarification 2026 (à vérifier au moment de la résa)</div>
+            <span class="expand-section-sub">Approximations · variations possibles</span>
+            <p>· <strong>General Admission</strong> : à partir de $45 par personne — accès aux 3 niveaux + Welcome Gallery.<br>
+            · <strong>+ The Beam</strong> : +$25/personne.<br>
+            · <strong>+ Skylift</strong> : +$35/personne.<br>
+            · <strong>VIP Pass</strong> : ~$90+ — file prioritaire, guide privé, Beam privé, Skylift inclus, coupe de champagne au Weather Room.<br>
+            · <strong>RockMoMA combo</strong> : Top of the Rock + entrée MoMA, ~$73 (économie 14%). Les deux sont à 7 minutes à pied.<br>
+            Enfants -5 ans gratuits.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Le timing parfait pour mai 2026</div>
+            <p>Coucher du soleil à NYC fin mai : <strong>~20h15-20h25</strong>. Pour avoir <em>jour + golden hour + nuit</em> en une visite, réservez créneau <strong>~19h00</strong>. Vous montez en plein jour, vous voyez la lumière dorée tomber sur Manhattan vers 20h, puis vous restez assister à l'allumage progressif de la skyline (la fameuse <em>blue hour</em>). C'est le créneau le plus demandé — réservez plusieurs semaines à l'avance. Pour Skylift : faites-le au moment du coucher pour le show lumineux.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Conseil photo</div>
+            <p>Sur le 70ᵉ étage, les meilleurs angles : <strong>face nord</strong> pour Central Park (mai = arbres en feuilles bien verts) ; <strong>face sud-est</strong> pour avoir Empire State + Chrysler dans le même cadre ; <strong>face sud-ouest</strong> au coucher pour le contre-jour sur l'Empire State. Évitez les zones immédiatement face aux escaliers (foule constante).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 6 — RADIO CITY MUSIC HALL ─────────────── -->
+  <article id="stop-6" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">Radio City</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 6 · Cathédrale de l'entertainment</div>
+      <h3 class="stop-title">Radio City Music Hall</h3>
+      <div class="stop-address">1260 6th Avenue (entre 50th &amp; 51st)</div>
+      <p class="stop-desc">Le plus grand théâtre couvert du monde à son ouverture en décembre 1932 — et le chef-d'œuvre Art déco le plus pur des États-Unis. 5 933 places, scène de 43 mètres de large, plafond de 24 mètres en demi-coupole inspirée d'un coucher de soleil tropical. Conçu par <em>Edward Durell Stone</em> (architecture) et <em>Donald Deskey</em> (intérieurs) — un designer alors quasi inconnu qui a remporté le concours et inventé un langage visuel resté inégalé. Ouvert à l'origine comme un palais populaire de variété et de cinéma à prix abordable, il est aujourd'hui célèbre mondialement pour le <em>Christmas Spectacular</em> des Rockettes (depuis 1933) et les concerts/cérémonies (Tony Awards, MTV VMAs, Grammys). On peut le visiter sans assister à un show grâce au <em>Stage Door Tour</em> de 75 minutes.</p>
+      <div class="stop-tags">
+        <span class="tag">Art déco</span>
+        <span class="tag gold">Chef-d'œuvre</span>
+        <span class="tag">Visite guidée</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Histoire, salles secrètes &amp; conseils</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'histoire : un opéra qui a accouché d'une salle de cinéma</div>
+            <span class="expand-section-sub">1928-1932 · Roxy Rothafel</span>
+            <p>Comme tout le complexe, Radio City est né de la chute du projet Met Opera. Quand Rockefeller s'est tourné vers RCA et NBC pour sauver son investissement, le directeur de RCA, <em>David Sarnoff</em>, lui a présenté un homme : Samuel <strong>« Roxy »</strong> Rothafel, l'imprésario qui avait révolutionné le cinéma avec son Roxy Theatre à Times Square (qui sera démoli en 1960). Roxy avait une vision : un palais populaire, magnifique, abordable. Il appelait ça « le théâtre du peuple ». Le résultat : une salle de 6 000 places, des billets à 25 cents, des programmes mêlant films, vaudeville, ballet et orchestre symphonique. Première soirée le 27 décembre 1932 : un fiasco artistique (le programme durait 4 heures, les critiques se sont moqués). Roxy a réorienté en pivot complet vers le cinéma + Rockettes en quelques semaines. Sauvé.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les Rockettes — 100 ans en 2025</div>
+            <span class="expand-section-sub">la troupe de danseuses la plus célèbre du monde</span>
+            <p>Les Rockettes (« Roxyettes » à l'origine) ont été fondées à St. Louis en 1925 par Russell Markert. Roxy les a importées à Radio City en 1932. Leur signature : la <em>eye-high kick</em> — un coup de pied à hauteur d'œil parfaitement synchronisé entre les 36 danseuses alignées en ligne. Le critère de sélection est militaire : taille entre 5'6" et 5'10½" (1m68-1m79), maîtrise du tap, ballet, jazz, plus l'<em>endurance</em>. Pendant le <em>Christmas Spectacular</em>, elles enchaînent jusqu'à 6 shows par jour pendant 8 semaines, soit ~200 performances par saison. Leur tour de poignet et leurs articulations doivent passer un check médical mensuel. Le centième anniversaire en 2025 a été marqué par une expo permanente intégrée au Stage Door Tour.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le Grand Foyer — l'un des plus beaux espaces déco au monde</div>
+            <span class="expand-section-sub">60 pieds de haut · 18 mètres</span>
+            <p>Avant même d'entrer dans la salle, vous traversez le <em>Grand Foyer</em> : un hall de 60 pieds de hauteur (18 m), recouvert de feuilles d'or, dominé par un escalier monumental et la fresque <em>Fountain of Youth</em> d'Ezra Winter (1932) — une allégorie de 18 mètres de long peinte sur le mur ouest. Donald Deskey a personnellement dessiné les meubles, les tapis, les rampes, la signalétique, jusqu'aux détails de la robinetterie des toilettes. Il a mêlé matériaux nobles (marbre, feuille d'or, miroirs) et matériaux <em>industriels</em> (Bakelite, aluminium, liège, permatex) — une révolution à l'époque, où mélanger le luxe et l'usine relevait du blasphème.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'appartement secret de Roxy</div>
+            <span class="expand-section-sub">la Roxy Suite · cachée à l'intérieur du théâtre</span>
+            <p>Cadeau secret de Stone et Deskey à Roxy en 1932 : un <strong>appartement privé caché à l'intérieur de Radio City</strong>. Salon, salle à manger, chambre, le tout en feuilles d'or, miroirs et marqueterie de bois précieux. Roxy y recevait l'élite hollywoodienne — Charlie Chaplin, Joan Crawford, les Marx Brothers — sans avoir à quitter le bâtiment. Roxy n'y a vécu que trois mois (il a été évincé en 1933 après l'échec du programme d'ouverture). L'appartement a été conservé tel quel et a longtemps été inaccessible au public. <strong>Le Stage Door Tour y donne accès.</strong> C'est l'un des secrets les mieux gardés de New York.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les hydraulics — un secret militaire</div>
+            <span class="expand-section-sub">la Hydraulic Room · sous-scène</span>
+            <p>Sous la <em>Great Stage</em>, un système hydraulique permet à la scène de se diviser en trois sections élévatrices et un orchestra pit qui peut monter ou descendre. À sa construction en 1932, l'ingénierie était si en avance sur son temps que pendant la <em>Seconde Guerre mondiale</em>, la marine américaine a classé les plans techniques de Radio City comme <strong>secret militaire</strong> : les ingénieurs craignaient que les principes hydrauliques puissent être adaptés pour des porte-avions ennemis. Aujourd'hui, le Stage Door Tour montre cette pièce.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Sauvé de la démolition en 1978</div>
+            <span class="expand-section-sub">L'année où Radio City a failli disparaître</span>
+            <p>Dans les années 70, Radio City était au bord de la faillite. La direction a annoncé sa démolition en avril 1978. Une mobilisation populaire — anciennes Rockettes, architectes, urbanistes, simples New-Yorkais — a forcé un classement d'urgence en <em>New York City Landmark</em> en mars 1978, juste à temps. Une grande restauration a suivi, et le théâtre a retrouvé sa splendeur originale. Ce qui rend sa visite encore plus précieuse aujourd'hui : c'est un miracle qu'il existe encore.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Les toilettes pour femmes : oui, vous avez bien lu</div>
+            <p>Donald Deskey a accordé un soin maniaque aux <em>powder rooms</em> du théâtre. Celles des femmes au sous-sol sont une vision rose-or-cuivre digne d'un set hollywoodien : miroirs ovales, lavabos sculptés, lampes en cristal, fauteuils tapissés. Celles des hommes contiennent un mural intitulé <em>Men Without Women</em> (Stuart Davis, 1932) — un des grands murals modernistes américains, qui a passé 90 ans dans des toilettes. Le Stage Door Tour vous emmène dans les deux. Oui, c'est une expérience.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visiter le théâtre</div>
+            <p><strong>Stage Door Tour</strong> : ~75 minutes, $35-40, départ depuis l'entrée 1260 6th Avenue, sept jours sur sept. Inclus : Grand Foyer, salle (depuis le balcon), Roxy Suite, Hydraulic Room, rencontre avec une Rockette en chair et en os (Q&amp;A). Photos OK partout sauf dans la salle pendant les répétitions.<br>
+            <strong>Spectacle</strong> : entre mai et début juin, peu de programmation Rockettes (saison concert : artistes solos, comédiens, parfois MTV-related). Vérifiez le calendrier sur msg.com.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 7 — UNDERGROUND CONCOURSE ─────────────── -->
+  <article id="stop-7" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">Sous le sol</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 7 · Le complexe caché</div>
+      <h3 class="stop-title">Underground Concourse</h3>
+      <div class="stop-address">Rink Level · accès depuis tous les bâtiments</div>
+      <p class="stop-desc">Sous le complexe court un réseau souterrain de plus de 3 kilomètres de couloirs <em>climatisés</em>, qui relie les 19 bâtiments entre eux et descend jusqu'à la station de métro <em>47-50 Sts–Rockefeller Center</em>. Conçu dès le plan original de 1931, il a été activement étendu — dans les années 2000, des passages ont été creusés vers la 7ᵉ Avenue, jusqu'à la station <em>49 St</em> du métro N/Q/R/W. Vous pouvez théoriquement traverser de la 5ᵉ Avenue à la 7ᵉ Avenue, et de la 47ᵉ à la 51ᵉ rue, <strong>sans jamais sortir au grand air</strong>. C'est un secret bien gardé des New-Yorkais qui circulent l'hiver. La récente rénovation 2022-2024 par INC Architecture a réouvert les colonnes d'origine, redonné lumière aux verrières historiques, et installé une nouvelle vague de boutiques et restaurants au <em>Rink Level</em> (Lodi, NARO take-away, McNally Jackson, N.Peal, Rough Trade pour les disques, Todd Snyder…).</p>
+      <div class="stop-tags">
+        <span class="tag">Confidentiel</span>
+        <span class="tag sage">Tout temps</span>
+        <span class="tag">Shopping</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Le réseau, l'art, et comment l'utiliser</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'idée originale : une cité résistante à la météo</div>
+            <span class="expand-section-sub">1931 · le plan oublié</span>
+            <p>Raymond Hood et son équipe avaient prévu dès 1931 un système souterrain « entièrement climatisé, bordé de boutiques » qui devait s'étendre sur 1,2 km. Au-dessous : un réseau routier à quatre voies pour les livraisons, avec une zone de chargement centrale 10 mètres sous le sol. Le réseau routier a été construit. Les couloirs piétons ont suivi par phases. L'idée d'un <em>people mover</em> (sorte de tapis roulant) a été abandonnée. Mais le résultat est qu'aujourd'hui encore, par jour de tempête de neige ou de canicule, des milliers d'employés de Midtown traversent leur journée entière en passant d'un immeuble à l'autre sans mettre le nez dehors.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">L'art souterrain qu'on rate</div>
+            <span class="expand-section-sub">mosaïques · mosaïques · mosaïques</span>
+            <p>Les couloirs ne sont pas que fonctionnels. Plusieurs mosaïques et fresques ont été commandées dans les années 30 pour décorer les passages. La plus impressionnante : <em>Intelligence Awakening Mankind</em> de <strong>Barry Faulkner</strong>, au-dessus de l'entrée 6ᵉ Avenue du 30 Rock — une mosaïque composée d'<em>environ 1 million de tesselles de verre coloré</em>, représentant l'allégorie de la connaissance. Elle est techniquement à l'extérieur, mais juste au-dessus de l'escalier qui descend au concourse. Levez la tête en sortant.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Le Today Show desk au shop NBC</div>
+            <span class="expand-section-sub">à voir si vous ne faites pas le tour</span>
+            <p>Au rez-de-chaussée du 30 Rock côté 6ᵉ Avenue, <em>The Shop at NBC Studios</em> contient — à part le merchandising classique — l'ancien bureau du <em>TODAY Show</em> retiré du studio, où l'on peut s'asseoir et faire la photo. Plus loin, un fauteuil identique à celui de <em>The Voice</em> (sans la rotation, hélas), et un <em>step-and-repeat</em> aux logos NBC pour des selfies. Gratuit, sans billet. Bon plan pour les fans.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le tunnel jusqu'à Times Square</div>
+            <p>Entrez par <strong>630 5th Avenue</strong> (sous Atlas), descendez au concourse, suivez les panneaux vers la 6ᵉ Avenue, traversez la station de métro 47-50 Sts, sortez côté ouest dans le couloir qui passe sous 1251 et 745 7th Avenue. Vous ressortez à <em>49ᵉ Rue / 7ᵉ Avenue</em>, c'est-à-dire à <strong>3 minutes à pied de Times Square</strong>. Vous avez traversé Manhattan d'une avenue à l'autre par-dessous — le plus long tunnel piéton intérieur de la ville. Mais ⚠️ : certaines portions ne sont pas ouvertes 24/7 (fermeture en soirée et week-end pour certaines sections privées). Mieux vaut le faire en semaine, en journée.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Restos &amp; boutiques sous-terre</div>
+            <p>Profitez du concourse pour : <strong>Lodi</strong> (café-pâtisserie italienne d'Ignacio Mattos, Estela), <strong>NARO take-away</strong> (cuisine coréenne moderne, équipe d'Atomix), <strong>Blue Bottle Cafe</strong> (à 1 Rockefeller Plaza, à trouver), <strong>McNally Jackson</strong> (excellente librairie indépendante new-yorkaise), <strong>Rough Trade</strong> (disquaire culte), <strong>Todd Snyder</strong> (mode masculine américaine).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ─────────────── STOP 8 — RAINBOW ROOM (SOIRÉE) ─────────────── -->
+  <article id="stop-8" class="stop">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <div class="stop-time">65th Floor · Soir</div>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Étape 8 · Soirée · Cocktail</div>
+      <h3 class="stop-title">Rainbow Room &amp; Bar SixtyFive</h3>
+      <div class="stop-address">30 Rockefeller Plaza · 65ᵉ étage</div>
+      <p class="stop-desc">Le <em>Rainbow Room</em> ouvre en octobre 1934 — un an après la fin de la Prohibition — comme club privé pour l'élite new-yorkaise. 65ᵉ étage du RCA Building, 5 étages sous l'observatoire. Piste de danse <em>tournante</em> (oui, le sol bouge), grand band en live, fenêtres panoramiques, lustre de cristal monumental. C'est ici que Frank Sinatra, Liza Minnelli, Tony Bennett ont tous chanté. <strong>Note honnête :</strong> depuis 2019-2020, le Rainbow Room et son bar attenant <em>Bar SixtyFive</em> ont basculé en mode quasi exclusivement <strong>événements privés</strong>. Le brunch dominical et certaines soirées « Dinner &amp; Dancing » publiques existent encore mais sont rares, sur réservation uniquement, et coûtent autour de $125-200 par personne. Vérifiez le calendrier sur rainbowroom.com avant le voyage.</p>
+      <div class="stop-tags">
+        <span class="tag rust">Accès limité</span>
+        <span class="tag gold">Vue panoramique</span>
+        <span class="tag">Dress code</span>
+      </div>
+      <details class="stop-expand">
+        <summary><span class="stop-expand-label">Comment y accéder · alternatives · histoire</span><span class="stop-expand-arrow">▾</span></summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'histoire courte d'un lieu mythique</div>
+            <span class="expand-section-sub">1934 · 1974 · 2014 · 2019</span>
+            <p>Ouvert en 1934, le Rainbow Room devient le club new-yorkais par excellence. En 1974, David Rockefeller pilote une rénovation à $25 millions (équivalent ~$140M aujourd'hui). Pendant les années 80-90, le restaurant est confié à <em>Cipriani</em> (la famille du Harry's Bar de Venise). Fermé en 2009, restauré pendant 5 ans, réouvert en octobre 2014 dans toute sa splendeur — avec <em>Bar SixtyFive</em>, terrasse à ciel ouvert sur la même 65ᵉ étage : à l'époque le plus haut bar-terrasse en plein air de New York. Mais l'opération financière publique n'a jamais retrouvé sa rentabilité. Les propriétaires (Tishman Speyer) ont privatisé l'usage à partir de 2019-2020. Aujourd'hui le lieu sert principalement : mariages, événements corporate, lancements de mode.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Les rares créneaux publics</div>
+            <span class="expand-section-sub">Brunch · Dinner &amp; Dancing · soirées spéciales</span>
+            <p>· <strong>Brunch dominical</strong> (occasionnel) : buffet luxueux avec stations chefs (raw bar, viandes tranchées, dim sum, pâtisserie), $125 + taxe + 20% service ≈ $162 final. À réserver jusqu'à 2 mois à l'avance. Pas tous les dimanches — calendrier irrégulier.<br>
+            · <strong>Dinner &amp; Dancing</strong> : soirées rares (1-2 par mois), repas + grand band en live + danse. Tenue requise (jacket pour les hommes).<br>
+            · <strong>Soirées thématiques</strong> : Saint-Valentin, Nouvel An, parfois soirées événementielles ouvertes au public.<br>
+            <em>Vérifiez systématiquement</em> le calendrier sur rainbowroom.com avant de partir.</p>
+          </div>
+          <div class="anecdote">
+            <div class="anecdote-title">Le sol qui tourne</div>
+            <p>La piste de danse circulaire du Rainbow Room mesure environ 6 mètres de diamètre et tourne à environ 1 tour par minute — assez lent pour danser sans se rendre compte qu'on bouge, assez perceptible pour qu'on s'en aperçoive si on regarde fixement les fenêtres pendant 30 secondes. Le mécanisme date de 1934, modernisé en 1987 et en 2014. Très peu de pistes de danse au monde sont rotatives. C'est l'un des derniers vestiges de la grande époque des supper clubs hollywoodiens.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Plan B si pas d'accès</div>
+            <span class="expand-section-sub">le Weather Room Café — 67ᵉ étage</span>
+            <p>Au 67ᵉ étage de Top of the Rock (donc inclus avec votre billet d'observatoire), le <strong>Weather Room Café &amp; Bar</strong> (9h-minuit) sert cocktails et plats légers avec la même vue. Pas le glamour décadent du Rainbow Room, mais la même vue à $0 supplémentaire si vous êtes déjà au sommet. L'option pragmatique.</p>
+          </div>
+          <div class="expand-section">
+            <div class="expand-section-title">Plan B+ : Pebble Bar</div>
+            <span class="expand-section-sub">à la base du 30 Rock · 6ᵉ Avenue</span>
+            <p>Dans l'un des deux bâtiments « holdouts » (les townhouses du XIXᵉ siècle qui ont refusé de vendre à Rockefeller), <strong>Pebble Bar</strong> a ouvert en 2022 sur trois étages, dans l'ancien Hurley's. Cocktail bar, propriété célèbre (Justin Theroux, Aaron Dessner du groupe The National, Pete Davidson y sont impliqués). Ambiance speakeasy luxe. Drinks comme le « Night Train » (rye, Cynar, bitters), shrimp cocktails, foule éclectique : workers en costume, célébrités après un événement au Rainbow Room, jeunes journalistes des médias voisins. <em>Plus accessible</em> que le Rainbow Room, et un secret de New-Yorkais.</p>
+          </div>
+          <div class="expand-practical">
+            <div class="expand-practical-label">Si vous obtenez une réservation</div>
+            <p>· <strong>Tenue</strong> : « Neat &amp; refined ». Jacket bienvenu pour les hommes, robe ou tenue habillée pour les femmes. Pas de baskets, pas de jeans déchirés.<br>
+            · <strong>Entrée</strong> : 49ᵉ Rue, sous le marquise NBC/Rainbow Room (entre 5ᵉ et 6ᵉ Av). Escalator au 2ᵉ, hôte d'accueil, vestiaire, ascenseur dédié au 65ᵉ. Émerveillement progressif.<br>
+            · <strong>Réservation</strong> : 212.632.5000 ou rainbowroom.com — jusqu'à 2 mois à l'avance.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ─────────────── POI ─────────────── -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires &amp; secrets</div>
+    <p style="font-size:14px;color:var(--text-muted);font-style:italic;margin-bottom:4px;">Détails à intégrer entre les étapes pour les curieux. Du peu connu au quasi-confidentiel.</p>
+    <div class="poi-grid">
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🏛</div>
+        <div class="poi-card-name">Les Holdouts (Magnolia Bakery &amp; Pebble Bar)</div>
+        <div class="poi-card-address">6th Ave / 49th &amp; 50th St</div>
+        <p class="poi-card-desc">Deux petits immeubles de 3-4 étages du XIXᵉ siècle <em>encastrés</em> dans la base du 30 Rock. Leurs propriétaires ont refusé de vendre à Rockefeller dans les années 30 — l'un était <em>Hurley's</em>, un saloon irlandais avec un speakeasy à l'étage pendant la Prohibition. Aujourd'hui : <em>Magnolia Bakery</em> au sud (cupcakes & banana pudding) et <em>Pebble Bar</em> au nord. L'autre côté est devenu un Warby Parker.</p>
+        <p class="poi-card-note">Citation d'un des frères Hurley : « J'ai vu des sonofabitchin' Rockefellers arriver, j'en verrai partir, et aucun sonofabitchin' Rockefeller ne démolira mon bar. »</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">✈</div>
+        <div class="poi-card-name">Le Point d'Interrogation</div>
+        <div class="poi-card-address">Lobby du 610 5th Ave (La Maison Française)</div>
+        <p class="poi-card-desc">Posée sur un piédestal de marbre dans le hall de La Maison Française : une réplique miniature en argent sterling, fabriquée par les orfèvres Cartier de Paris en 1933, de l'avion <em>Le Point d'Interrogation</em>. C'est l'avion avec lequel les aviateurs français Costes et Bellonte ont fait la première traversée Paris–New York sans escale en 1930 — le voyage inverse de Lindbergh. Cadeau du gouvernement français à Rockefeller Center. L'un des objets les plus poétiques du complexe.</p>
+        <p class="poi-card-note">Hall ouvert aux heures de bureau. Personne n'y va, prenez votre temps.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">📰</div>
+        <div class="poi-card-name">News par Isamu Noguchi</div>
+        <div class="poi-card-address">50 Rockefeller Plaza · entrée principale</div>
+        <p class="poi-card-desc">Au-dessus de l'entrée du Bank of America Building (ex-Associated Press Building) sur Rockefeller Plaza : un bas-relief monumental en acier inoxydable de <em>Isamu Noguchi</em> (1940), 9 tonnes, 6×5 mètres, représentant cinq journalistes au travail (téléphone, appareil photo, machine à écrire, dépêche, carnet). C'est l'un des premiers grands chefs-d'œuvre publics du sculpteur nippo-américain. Souvent oublié, parce que le bâtiment est moins emblématique que 30 Rock.</p>
+        <p class="poi-card-note">Levez la tête en passant — il est immédiatement au-dessus de l'entrée.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎭</div>
+        <div class="poi-card-name">TODAY Show Plaza</div>
+        <div class="poi-card-address">Rockefeller Plaza près de 35 W 48th St</div>
+        <p class="poi-card-desc">Studio 1A est en façade : le show <em>TODAY</em> est tourné en direct chaque matin de 7h à 9h, et le public peut se masser sur la plaza extérieure pour faire signe à la caméra. Arriver à 6h15 avec une pancarte (« Hi from France! »). Ouvert à tous, gratuit, premier arrivé premier servi. Vous risquez d'apparaître à la TV nationale.</p>
+        <p class="poi-card-note">Pas le matin où vous voulez bruncher tranquille. Mais une fois dans la vie.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">Radio Park (rooftop garden)</div>
+        <div class="poi-card-address">Toit de Radio City Music Hall</div>
+        <p class="poi-card-desc">Inauguré en 2021 : un jardin paysagé de 24 000 sq ft sur le toit de Radio City — bouleaux, cerisiers à fleurs blanches, gradins, sentiers. C'est l'aboutissement d'une idée originale de Raymond Hood (1932) qui n'avait jamais été construite. <em>Privé</em> : réservé aux locataires du complexe et à leurs invités. Pas accessible au public sauf pendant des événements ouverts annoncés.</p>
+        <p class="poi-card-note">Un fantôme de jardin suspendu, à imaginer en levant les yeux du Channel Gardens.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Intelligence Awakening Mankind</div>
+        <div class="poi-card-address">30 Rock · entrée 6th Ave (1250 Avenue of the Americas)</div>
+        <p class="poi-card-desc">L'autre grande œuvre du complexe que personne ne regarde : une mosaïque de <em>Barry Faulkner</em> (1933) au-dessus de l'entrée ouest du 30 Rock, composée d'<em>environ 1 million de tesselles de verre coloré</em>. Allégorie de la connaissance et de la pensée éveillant l'humanité. Il faut traverser la rue et reculer pour la voir d'ensemble.</p>
+        <p class="poi-card-note">Photo du lever de soleil : la mosaïque est éclairée plein est, couleurs intenses au matin.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍷</div>
+        <div class="poi-card-name">Le Rock</div>
+        <div class="poi-card-address">45 Rockefeller Plaza · Rink Level</div>
+        <p class="poi-card-desc">Restaurant brasserie française des fondateurs de <em>Frenchette</em> (Lee Hanson + Riad Nasr). 3 étoiles au New York Times en 2022. Cuisine française classique modernisée — escargots, tarte flambée, steak frites, ris de veau — dans un décor signé Workstead, mêlant Art déco contemporain et chaleur. La meilleure adresse food du complexe.</p>
+        <p class="poi-card-note">Réservez 3-4 semaines à l'avance pour le dîner. Le déjeuner est plus accessible.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍝</div>
+        <div class="poi-card-name">Jupiter</div>
+        <div class="poi-card-address">30 Rockefeller Plaza · Rink Level</div>
+        <p class="poi-card-desc">Trattoria italienne de l'équipe de <em>King</em> (Soho), ouverte sur la Lower Plaza. Pâtes maison (production en sous-sol), vins italiens pointus, ambiance bruyante et joyeuse. Vue directe sur la plaza et Prométhée. En mai = terrasse extérieure. Ambiance plus festive que Le Rock.</p>
+        <p class="poi-card-note">Bien pour un déjeuner long entre deux étapes. Réserver tôt.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🥢</div>
+        <div class="poi-card-name">NARO</div>
+        <div class="poi-card-address">10 Rockefeller Plaza · Rink Level</div>
+        <p class="poi-card-desc">Cuisine coréenne moderne par l'équipe d'<em>Atomix</em> (2 étoiles Michelin). Salle à manger principale = menu dégustation tasting ($195), terrasse rink-side = prix fixe ($50 déjeuner / $85 dîner). Vue sur la plaza et Prométhée. Une des grandes nouvelles du complexe.</p>
+        <p class="poi-card-note">Pour un grand dîner : tasting menu, à réserver longtemps à l'avance.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">📚</div>
+        <div class="poi-card-name">McNally Jackson + Rough Trade</div>
+        <div class="poi-card-address">Concourse Level · 30 Rockefeller Plaza</div>
+        <p class="poi-card-desc">Deux institutions indépendantes new-yorkaises qui ont ouvert leurs antennes Rockefeller en 2022-2023 : <em>McNally Jackson</em> (la meilleure librairie indépendante de NY) et <em>Rough Trade</em> (disquaire culte d'origine londonienne, vinyles + concerts in-store). Un combo curieusement dépaysant au milieu du Midtown corporatif.</p>
+        <p class="poi-card-note">Idéal pour 30 minutes de calme entre deux visites.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── INFOS PRATIQUES ─────────────── -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+    <div class="infos-grid">
+
+      <div class="info-card">
+        <div class="info-card-label">🚇 Accès</div>
+        <p>Métro le plus direct : station <strong>47-50 Sts–Rockefeller Center</strong> (lignes B, D, F, M) — sortie directement au concourse. Sinon : <strong>49 St</strong> (N, Q, R, W) ou <strong>5 Av/53 St</strong> (E, M). Depuis Midtown, c'est 5-10 min à pied. Le complexe se fait entièrement en marchant.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">📅 Mai 2026 spécifique</div>
+        <p><strong>Patinoire fermée</strong> (saisonnière, oct-avril) — remplacée par le <em>Summer Garden &amp; Bar</em>. <strong>Pas de sapin</strong> de Noël (oct-jan). En revanche : Channel Gardens en pleine floraison, plaza extérieure animée, terrasses ouvertes, soleil tardif (~20h25 fin mai).</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée recommandée</div>
+        <p>Pour faire toutes les étapes principales : <strong>4 à 6 heures</strong>. Top of the Rock seul = 1h30 minimum (avec Welcome Gallery, Beam, Skylift). Radio City Stage Door Tour = 75 min. Les 4 stops extérieurs (Channel Gardens, Atlas, Lower Plaza, lobbies) = 1h30-2h.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">🎟 Réservations à anticiper</div>
+        <p><strong>Top of the Rock</strong> : créneau coucher du soleil = à réserver 3-4 semaines à l'avance. <strong>Radio City Stage Door</strong> : tickets souples, OK 2-3 jours avant. <strong>Le Rock / NARO / Jupiter</strong> : 2-4 semaines avant. <strong>Rainbow Room brunch</strong> : jusqu'à 2 mois avant (et calendrier irrégulier — vérifier).</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget journée à 2</div>
+        <p>Top of the Rock standard : 2× $45 = $90. Avec Beam + Skylift : ~$210. Radio City tour : 2× $40 = $80. Lunch Le Rock/Jupiter : ~$120 à 2. Cocktail Pebble Bar (2) : ~$45. <strong>Total raisonnable à 2 : $350-450</strong>. Avec Rainbow Room dinner-dancing : +$300-400.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo couple</div>
+        <p>Top des Channel Gardens (perspective 5th Ave → Prométhée) · pied de Atlas avec St-Patrick en fond · balcon Lower Plaza avec Prométhée + drapeaux · 70ᵉ étage Top of the Rock face Empire State au coucher · The Beam (recréation 1932) · Grand Foyer Radio City. Le shot iconique reste : <strong>la perspective Channel Gardens vers 30 Rock au coucher du soleil</strong>.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">💡 Astuces locales</div>
+        <p>· Allez aux toilettes du <strong>concourse</strong> (gratuites, propres, climatisées) plutôt qu'à Top of the Rock (longues files).<br>· <strong>Wi-Fi public gratuit</strong> partout dans le complexe.<br>· La <strong>statue de Prométhée</strong> est la plus belle au crépuscule, quand l'éclairage doré s'allume.<br>· Évitez le complexe le <strong>mercredi soir</strong> (matinée Rockettes parfois).</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-label">⚠ Pièges à éviter</div>
+        <p>Ne payez pas pour un <strong>tour audioguidé</strong> du Rockefeller Center : tout est gratuit en walk-around, et l'app officielle <em>RockCenterApp</em> donne plus d'infos que la plupart des tours. Les <strong>boutiques de souvenirs</strong> du concourse sont plus chères que dans le reste de Manhattan. Évitez les restos non-réservés sur Rockefeller Plaza : touristes pris au piège. Préférez Le Rock, Jupiter, NARO ou Lodi.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« I believe in the dignity of labor, whether with head or hand. » — John D. Rockefeller Jr., gravé au pied du complexe</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function(){
+    var all = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    all.forEach(function(d){ d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Williamsburg — Journée à Brooklyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B5A3C;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background-color: var(--cream); color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  .hero { position: relative; background: var(--navy); min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 60px 24px 48px; }
+  .hero-meta { position: relative; z-index: 2; text-align: center; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 9vw, 70px); font-weight: 300; color: var(--cream); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 10px; }
+  .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--gold-light); letter-spacing: 0.06em; margin-bottom: 28px; }
+  .hero-tagline { font-family: 'Lora', serif; font-size: 14px; color: rgba(245,240,232,0.65); max-width: 460px; line-height: 1.6; }
+
+  .timeline-bar { background: var(--navy-light); padding: 0 24px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; border-bottom: 1px solid rgba(200,169,110,0.3); }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+  .timeline-inner { display: inline-flex; gap: 0; }
+  .tl-item { display: inline-flex; align-items: center; gap: 8px; padding: 14px 18px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(245,240,232,0.55); border-right: 1px solid rgba(255,255,255,0.06); cursor: default; transition: color 0.2s; }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  .page-body { max-width: 760px; margin: 0 auto; padding: 0 20px 80px; }
+  .intro-block { padding: 52px 0 40px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.5; }
+  .intro-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; line-height: 1.15; margin-bottom: 20px; color: var(--navy); }
+  .intro-block p { font-size: 15.5px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; }
+  .tip-box { background: var(--navy); border-left: 3px solid var(--gold); padding: 16px 20px; margin-top: 24px; border-radius: 0 4px 4px 0; }
+  .tip-box p { font-size: 13.5px; color: rgba(245,240,232,0.8); margin: 0; }
+
+  .stops-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .stop-block { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(200,169,110,0.2); }
+  .stop-block:last-child { border-bottom: none; }
+  .stop-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .stop-time { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--navy); flex-shrink: 0; }
+  .stop-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
+  .stop-address { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.05em; }
+  .stop-desc { font-size: 15px; color: var(--text); margin-bottom: 12px; }
+  .stop-note { background: rgba(200,169,110,0.08); border-left: 3px solid var(--gold); padding: 14px 16px; margin-top: 16px; border-radius: 0 4px 4px 0; }
+  .stop-note-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--rust); margin-bottom: 6px; }
+  .stop-note p { font-size: 13.5px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+  .section-divider { text-align: center; color: var(--gold); font-size: 14px; margin: 52px 0; letter-spacing: 0.2em; }
+  .poi-section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .poi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 32px; }
+  .poi-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .poi-card-icon { font-size: 32px; margin-bottom: 10px; }
+  .poi-card-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+  .poi-card-address { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); margin-bottom: 10px; }
+  .poi-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .poi-card-note { font-size: 12px; color: var(--gold); font-style: italic; }
+
+  .infos-section { padding: 48px 0; }
+  .infos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
+  .info-card { background: var(--cream-dark); padding: 20px; border-radius: 4px; border: 1px solid var(--border); }
+  .info-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--navy); margin-bottom: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .info-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .info-card strong { color: var(--navy); }
+
+  .page-footer { text-align: center; padding: 60px 24px 40px; border-top: 1px solid var(--border); }
+  .footer-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-muted); margin-bottom: 12px; }
+  .footer-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+  @media (max-width: 640px) {
+    .infos-grid { grid-template-columns: 1fr; }
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('brooklyn');</script>
+
+
+<section class="hero">
+  <div class="hero-meta">
+    <div class="hero-eyebrow">🎨 Quartier</div>
+    <h1 class="hero-title">Williamsburg</h1>
+    <p class="hero-subtitle">Street Art, Indie Culture & Gentrification</p>
+    <p class="hero-tagline">Du cœur batailleur du street art à la haute couture, Williamsburg incarne la contradiction Brooklyn : bohème authentique vs. commercialisation. Une journée dans le vrai village créatif de NYC.</p>
+  </div>
+</section>
+
+<div class="timeline-bar">
+  <div class="timeline-inner">
+    <div class="tl-item"><span class="tl-dot"></span> 10:50 Bedford</div>
+    <div class="tl-item"><span class="tl-dot"></span> 11:15 Kobra</div>
+    <div class="tl-item"><span class="tl-dot"></span> 11:45 Street Art</div>
+    <div class="tl-item"><span class="tl-dot"></span> 12:30 Domino</div>
+    <div class="tl-item"><span class="tl-dot"></span> 13:00 Déjeuner</div>
+    <div class="tl-item"><span class="tl-dot"></span> 15:00 Shopping</div>
+    <div class="tl-item"><span class="tl-dot"></span> 17:00 Rooftop</div>
+    <div class="tl-item"><span class="tl-dot"></span> 19:00 Dîner</div>
+  </div>
+</div>
+
+<main class="page-body">
+
+  <section class="intro-block">
+    <div class="section-label">Présentation</div>
+    <h2>Un quartier de paradoxes</h2>
+    <p>Williamsburg, nommé après l'ingénieur Jonathan Williams, fut annexé à Brooklyn en 1855. Le XIXe siècle transforme la région en centre industriel majeur — notamment l'usine de sucre Domino (1882-2004), la PLUS GRANDE raffinerie sucre MONDE à l'époque! Usine massive employait 70,000+ ouvriers dans l'économie Brooklyn années 1960.</p>
+    <p>L'ouverture du Williamsburg Bridge en 1903 crée vague massive immigration : Allemands (brasseries), Polonais, Italiens, et surtout <strong>communauté juive orthodoxe</strong> (toujours présente, très active). Pont transforme Williamsburg en destination accessible Manhattan — population explosa rapidement.</p>
+    <p>Après déclin années 1970, artistes découvrent entrepôts abandonnés années 1990. Renaissance créative rapide = gentrification explosive. Domino Park (2013, réhabilitation site usine sucre) = symbole: parc moderne dominant East River, ancienne raffinerie résiduelle silhouette monumentale en background. Aujourd'hui, Williamsburg = mélange volatile : galeries luxe vs. boutiques vintage, chaînes vs. cafés locaux, bohème authentique vs. commercialisation touristique. Vrai cœur bohème s'est déplacé Bushwick, mais Williamsburg reste MUST-VISIT comprendre transformation Brooklyn.</p>
+    <div class="tip-box">
+      <p><strong>Conseil :</strong> Explorez le quartier à pied le matin quand Bedford Avenue est moins bondée (avant 11h). L'après-midi, rue devient galerie commerciale touristique. Les vraies galeries indépendantes sont cachées dans courées intérieures — soyez curieux!</p>
+    </div>
+  </section>
+
+  <section class="stops-section">
+    <div class="section-label">Circuit Détaillé</div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">10:50</span>
+        <h3 class="stop-title">Bedford Avenue Station — Arrivée</h3>
+      </div>
+      <div class="stop-address">L train (East River crossing)</div>
+      <p class="stop-desc">Depuis Manhattan, prendre la ligne L et descendre à Bedford Avenue — première station après la traversée de l'East River. Vous émergerez dans le cœur pulsant de Williamsburg. Bedford Avenue s'étend nord-sud, c'est la colonne vertébrale du quartier.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📍 Localisation</div>
+        <p>Axes principaux : Bedford Avenue, Kent Avenue, Wythe Avenue. Allez vers l'East River pour découvrir les vestiges industriels du Williamsburg ancien.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">11:15</span>
+        <h3 class="stop-title">Fresque Kobra — « Fight for Street Art »</h3>
+      </div>
+      <div class="stop-address">9th Street & Kent Avenue</div>
+      <p class="stop-desc">Une impressionnante fresque murale du maître brésilien Kobra occupant un angle de bâtiment. Le travail célèbre le pouvoir de l'art urbain — visages stylisés, couleurs explosives, énergie pure. C'est l'une des fresques les plus reconnaissables de Williamsburg.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>Meilleure lumière : midi ou en fin d'après-midi pour éviter le contrejour. Arrivez tôt si vous voulez une photo sans foule.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">11:45</span>
+        <h3 class="stop-title">Parcours Street Art — Bedford & Wythe Avenue</h3>
+      </div>
+      <div class="stop-address">Williamsburg Arts District</div>
+      <p class="stop-desc">Flânez sans objectif spécifique. Bedford Avenue concentre les plus grandes galeries indépendantes, boutiques vintage et cafés branchés. Wythe Avenue, en direction de l'East River, révèle les murs industriels couverts de murales contemporaines moins touristiques. Vous découvrirez les vestiges du Williamsburg artiste — avant la gentrification complète.</p>
+      <p class="stop-desc">Parmi les incontournables : <em>Rough Trade Vinyl</em> (disquaire-concert depuis 2006), <em>Supreme</em> (skate bowl géant), <em>Catbird</em> (bijouterie-café), sans oublier les petites friperies vintage sur Driggs Avenue et Guernsey Street.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎨 Galeries</div>
+        <p>Les galeries sérieuses ferment le lundi et mardi. Allez-y mercredi-dimanche. Beaucoup demandent à entrer sur rendez-vous — ne soyez pas intimidé, sonnez simplement.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">12:30</span>
+        <h3 class="stop-title">Domino Park — Usine Sucre Transformée en Galerie Moderne</h3>
+      </div>
+      <div class="stop-address">River Street (entre S 5th & Grand Street)</div>
+      <p class="stop-desc"><strong>Histoire :</strong> Ancien site PLUS GRANDE raffinerie sucre MONDE (opéré 1882-2004). Domino Sugar Factory employait 70,000+ ouvriers dans économie Brooklyn années 1960. Fondateurs Arbuckle Bros (même famille café Empire Stores!) dominaient industrie sucre USA. Site massif couvert 6 blocs — usine, warehouses, docks, infrastructure portuaire.</p>
+      <p class="stop-desc"><strong>Aujourd'hui :</strong> Domino Park (2013, réhabilité) = parc moderne 2 hectares dominant East River avec vues spectaculaires Manhattan + Williamsburg Bridge. Silhouette monumentale raffinerie résiduelle = backdrop architectural époustouflant. Ancien bâtiment numéroté maintenu : vestiges vivants histoire industrielle. Tables pique-nique, pelouses, vues inégalées. En fin après-midi, parc devient spot détente idéal — vendeurs informels proposen boissons fraîches, food trucks stationnent alentours. Énergie calme locale — rarement envahie touristes.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo Spots</div>
+        <p>Silhouette usine résiduelle contre skyline Manhattan = iconic shot. Coucher soleil particulièrement magique. Williamsburg Bridge encadre compositions parfaitement.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">13:00</span>
+        <h3 class="stop-title">Où Manger — Options Variées</h3>
+      </div>
+      <div class="stop-address">Bedford Avenue & Alentours</div>
+      <p class="stop-desc"><strong>Partners Coffee Roasters</strong> (125 N 6th St) — Beau volume façon loft, café torréfié sur place, ambiance chic-casual. <strong>Radegast Hall & Biergarten</strong> — Bière allemande authentique, cuisine classique. <strong>Smorgasburg Williamsburg</strong> (90 Kent Ave, weekends avr-oct) — Marché de street food local. Dozens stands artisanaux, excellente ambiance.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💬 Conseil</div>
+        <p>Évitez les gros restaurants sur Bedford Avenue — trop touristiques. Préférez les petits spots locaux que vous découvrez en explorant les rues adjacentes.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">15:00</span>
+        <h3 class="stop-title">Circuit Vintage & Indie Shops</h3>
+      </div>
+      <div class="stop-address">Bedford, Driggs, Guernsey Streets</div>
+      <p class="stop-desc"><strong>Rough Trade Vinyl</strong> — Disquaire-concert emblématique. Albums tous genres, concerts live. <strong>Supreme</strong> — Skate wear juggernaut. Space industriel géant avec skate bowl central. <strong>Beacon's Closet & Monk Vintage</strong> — Friperies classiques. <strong>Catbird</strong> — Jewelry shop avec charm bar et micro-café. Pièces artisanales, ambiance bohème authentique.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">🛍️ Timing</div>
+        <p>Les boutiques ouvrent rarement avant 11h. Mercredi-dimanche, la plupart sont ouvertes jusqu'à 19h ou 20h. Lundi-mardi = beaucoup fermetures.</p>
+      </div>
+    </div>
+
+    <div class="stop-block" style="background: rgba(200,169,110,0.08); padding: 20px; border-radius: 4px; border-left: 4px solid var(--gold);">
+      <div class="stop-header">
+        <span class="stop-time">17:00</span>
+        <h3 class="stop-title">Westlight Rooftop — Apéro Sunset 🌅</h3>
+      </div>
+      <div class="stop-address">111 N 12th Street, 22e étage</div>
+      <p class="stop-desc">L'un des seuls rooftops Brooklyn acceptant tous les âges avant 21h. Vue dégagée sur Manhattan, design industriel revisité vintage. Cocktails 18 $/pièce. C'est le moment idéal pour observer le coucher soleil sur Manhattan depuis Brooklyn. Westlight capture l'essence du Williamsburg branché.</p>
+      <p class="stop-desc">Ambiance cool mais pas prétentieuse. Beaucoup de résidents y passent du temps, pas juste des touristes. <strong>Golden hour optimal : 18h-19h. Attendez-vous à une file d'attente en fin d'après-midi.</strong></p>
+      <div class="stop-note">
+        <div class="stop-note-label">🍸 Info Pratique</div>
+        <p>Réservation groupe de 4+ recommandée. Arrivez tôt ou tardez après 20h pour éviter la foule.</p>
+      </div>
+    </div>
+
+    <div class="stop-block">
+      <div class="stop-header">
+        <span class="stop-time">19:00</span>
+        <h3 class="stop-title">Dîner — Fine Dining Options</h3>
+      </div>
+      <div class="stop-address">Williamsburg</div>
+      <p class="stop-desc"><strong>Four Horsemen</strong> — Michelin-starred fine dining. Réservation essentielle. Menu créatif, vins naturels. <strong>Maison Premiere</strong> (298 Bedford Ave) — Bar à huîtres vintage Great Gatsby + absinthe + New Orleans vibes. <strong>Lilia</strong> — Restaurant italien moderne. Pâtes artisanales, ingrédients locaux créatifs.</p>
+      <div class="stop-note">
+        <div class="stop-note-label">💬 Réservation</div>
+        <p>Ne comptez pas juste vous présenter chez Four Horsemen ou Lilia — réservez 1-2 semaines avant. Maison Premiere accepte plus facilement les walk-ins.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">☕</div>
+        <div class="poi-card-name">Devoción</div>
+        <div class="poi-card-address">69 Grand St</div>
+        <p class="poi-card-desc">Enseigne locale coffee roasters, circuit court privilégiant saveurs authentiques. Ambiance industrielle, terrasse.</p>
+        <p class="poi-card-note">À visiter pour le café inégalé.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🥐</div>
+        <div class="poi-card-name">Bakeri</div>
+        <div class="poi-card-address">150 Wythe Ave</div>
+        <p class="poi-card-desc">Boulangerie-pâtisserie artisanale. Carrelages rétro, comptoir marbre-bois. Pâtisseries maison exquises.</p>
+        <p class="poi-card-note">Pause café parfaite.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🧁</div>
+        <div class="poi-card-name">Martha's Country Bakery</div>
+        <div class="poi-card-address">263 Bedford Ave</div>
+        <p class="poi-card-desc">Depuis 1972, paradis gourmands. Cheesecakes, pies, cupcakes US style. Atmosphère vintage authentique.</p>
+        <p class="poi-card-note">Dessert ultime Williamsburg.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍦</div>
+        <div class="poi-card-name">Van Leeuwen</div>
+        <div class="poi-card-address">204 Wythe Ave</div>
+        <p class="poi-card-desc">Glacier artisanal. Ingrédients excellents, options vegan, milkshakes créatifs.</p>
+        <p class="poi-card-note">Rafraîchissement ideal.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎨</div>
+        <div class="poi-card-name">Warby Parker Store</div>
+        <div class="poi-card-address">6th & Berry St</div>
+        <p class="poi-card-desc">Façade peinte. Optical store + design concept incontournable Williamsburg.</p>
+        <p class="poi-card-note">Photo moment street art.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🚴</div>
+        <div class="poi-card-name">Brooklyn Brewery</div>
+        <div class="poi-card-address">79 N 11th St</div>
+        <p class="poi-card-desc">Bières « made in Brooklyn » depuis 1987. Tasting room, visite guided dégustation.</p>
+        <p class="poi-card-note">Beer lovers must-visit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transports</div>
+        <p>Ligne <strong>L</strong> (Brooklyn-Manhattan express) jusqu'à Bedford Ave — accès direct depuis Manhattan. Quartier se traverse à pied facilement (environ 2 km d'est en ouest).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">⏱ Durée totale</div>
+        <p>Journée complète : <strong>10h50 → 21h+</strong>. Sans dîner upscale, comptez jusqu'à 18h-19h. Rythme confortable, nombreuses pauses café-shopping.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p><strong>Mercredi à dimanche</strong> — galeries ouvertes, boutiques opérantes. Lundi-mardi = beaucoup fermetures. Weekend = foule maximum. Jeudi-vendredi idéal (balance parfaite).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Williamsburg est cool mais pas snob. Soyez curieux, approchez les galeries, parlez aux shopkeepers. La communauté locale apprécie les visiteurs authentiques vs. photos Instagram.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💰 Budget journée</div>
+        <p>Café ~$15 · Déjeuner ~$20–35 · Shopping (optionnel) ~$0–100 · Rooftop ~$30–50 · Dîner ($$) ~$60–150. Total : ~$125–350.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Fresque Kobra · Murales Wythe Avenue · Bedford Avenue storefronts · Domino Park skyline · Westlight sunset · L Train Vintage.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <p class="footer-title">« Williamsburg is not a neighborhood, it's a state of mind constantly reinventing itself. »</p>
+  <p class="footer-sub">Brooklyn · Arthur & Jade · Mai 2026</p>
+</footer>
+
+<script src="assets/nav-buttons.js" data-back-href="brooklyn-index.html" data-back-label="Brooklyn"></script>
+</body>
+</html>

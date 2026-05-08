@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upper West Side — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B3A2A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 24px 48px;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+  }
+
+  .hero-meta {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 70px);
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(245,240,232,0.65);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar {
+    background: var(--navy-light);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+
+  .timeline-inner {
+    display: inline-flex;
+    gap: 0;
+  }
+
+  .tl-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.55);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    cursor: default;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── BODY WRAPPER ── */
+  .page-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── INTRO EDITO ── */
+  .intro-block {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .intro-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--navy);
+  }
+
+  .intro-block p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip-box p {
+    font-size: 13.5px;
+    color: rgba(245,240,232,0.8);
+    font-style: normal;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .tip-box strong {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── STOP CARD ── */
+  .stop {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 28px;
+    position: relative;
+  }
+
+  .stop:last-child { border-bottom: none; }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: 39px;
+    top: 76px;
+    bottom: -44px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border), transparent);
+  }
+  .stop:last-child::before { display: none; }
+
+  .stop-time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .stop-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .stop-dot.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+    width: 16px;
+    height: 16px;
+  }
+
+  .stop-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .stop-content {}
+
+  .stop-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .stop-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stop-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .stop-desc {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 12px;
+  }
+
+  .stop-note {
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 14px;
+  }
+  .stop-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 5px;
+  }
+  .stop-note p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .stop-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 2px;
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* ── FOOD SECTION ── */
+  .food-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .food-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+
+  .meal-block {
+    margin-bottom: 36px;
+  }
+  .meal-block:last-child { margin-bottom: 0; }
+
+  .meal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .meal-header-icon {
+    font-size: 18px;
+  }
+  .meal-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+  }
+  .meal-header-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .resto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .resto-grid { grid-template-columns: 1fr; }
+  }
+
+  .resto-card {
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .resto-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 3px 12px rgba(26,39,68,0.07);
+  }
+
+  .resto-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .resto-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+
+  .resto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .resto-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 9px;
+  }
+  .resto-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+  .resto-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    text-align: center;
+    padding: 36px 0 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  /* ── POI GRID ── */
+  .poi-section {
+    padding: 44px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+
+  .poi-card {
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .poi-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.06);
+  }
+  .poi-card-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .poi-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .poi-card-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .poi-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .poi-card-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section {
+    padding: 44px 0;
+  }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .infos-grid { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    padding: 20px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .info-card strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--navy);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── EXPAND / DÉTAILS ── */
+  .stop-expand {
+    margin-top: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .stop-expand[open] {
+    border-color: var(--gold);
+    box-shadow: 0 2px 14px rgba(200,169,110,0.08);
+  }
+  .stop-expand summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    background: var(--cream-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+  }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand summary::marker { display: none; }
+  .stop-expand summary:hover {
+    background: rgba(200,169,110,0.18);
+  }
+  .stop-expand[open] summary {
+    background: var(--navy);
+    color: var(--gold);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow {
+    font-size: 9px;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .stop-expand[open] .stop-expand-arrow {
+    transform: rotate(180deg);
+  }
+  .stop-expand-content {
+    padding: 22px 20px 22px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent 80%);
+  }
+
+  /* ── GUIDE-STYLE ANECDOTE BOX ── */
+  .anecdote {
+    background: var(--rust);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .anecdote-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .anecdote-title::before {
+    content: '❖';
+    font-size: 12px;
+  }
+  .anecdote p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.92);
+    margin: 0 0 9px 0;
+  }
+  .anecdote p:last-child { margin: 0; }
+  .anecdote em, .anecdote strong {
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Couple-flagged moment box */
+  .couple-moment {
+    background: linear-gradient(135deg, rgba(200,169,110,0.12), rgba(139,58,42,0.08));
+    border: 1px solid rgba(200,169,110,0.4);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+  }
+  .couple-moment-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 9px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .couple-moment-title::before {
+    content: '♡';
+    font-size: 14px;
+    color: var(--rust);
+  }
+  .couple-moment p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+    font-style: italic;
+  }
+  .couple-moment em, .couple-moment strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── EXPAND SUB-SECTION ── */
+  .expand-section { margin: 16px 0; }
+  .expand-section:first-child { margin-top: 0; }
+  .expand-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .expand-section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .expand-section p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .expand-section em { color: var(--navy); font-style: italic; font-weight: 500; }
+
+  .expand-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 22px 0;
+  }
+
+  /* Practical info inside expand */
+  .expand-practical {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    margin: 14px 0 4px;
+  }
+  .expand-practical-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .expand-practical p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .expand-practical strong { color: var(--navy); }
+
+  /* ── EXPAND-ALL TOGGLE ── */
+  .expand-all-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 0 0;
+    margin-bottom: -12px;
+  }
+  .expand-all-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .expand-all-btn:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
+  .expand-all-btn-icon {
+    font-size: 11px;
+    transition: transform 0.3s;
+  }
+  .expand-all-btn.is-open .expand-all-btn-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Hall directory grid (inside AMNH stop) */
+  .hall-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0 6px;
+  }
+  @media (max-width: 520px) { .hall-grid { grid-template-columns: 1fr; } }
+  .hall-cell {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 3px;
+    background: rgba(245,240,232,0.5);
+  }
+  .hall-cell-floor {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .hall-cell-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .stop {
+      grid-template-columns: 60px 1fr;
+      gap: 0 16px;
+    }
+    .stop::before { left: 29px; }
+    .stop-expand summary { font-size: 9px; padding: 12px 14px; }
+    .stop-expand-content { padding: 18px 14px; }
+    .anecdote, .couple-moment { padding: 14px 15px; }
+    .expand-all-btn { font-size: 9px; padding: 9px 12px; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('upper-west-side');</script>
+
+
+<!-- ──────────────────────────── HERO ──────────────────────────── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Pattern inspired by Upper West Side: planetarium spheres, Central Park trees, constellations, AMNH facade verticality -->
+    <defs>
+      <!-- Constellation field -->
+      <pattern id="stars" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+        <circle cx="12" cy="20" r="0.6" fill="#C8A96E" opacity="0.7"/>
+        <circle cx="48" cy="38" r="0.5" fill="#C8A96E" opacity="0.5"/>
+        <circle cx="68" cy="14" r="0.7" fill="#C8A96E" opacity="0.8"/>
+        <circle cx="22" cy="55" r="0.4" fill="#C8A96E" opacity="0.5"/>
+        <circle cx="60" cy="68" r="0.6" fill="#C8A96E" opacity="0.7"/>
+        <circle cx="36" cy="74" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="6" cy="42" r="0.45" fill="#C8A96E" opacity="0.5"/>
+        <!-- Faint constellation lines -->
+        <line x1="12" y1="20" x2="48" y2="38" stroke="#C8A96E" stroke-width="0.15" opacity="0.4"/>
+        <line x1="48" y1="38" x2="68" y2="14" stroke="#C8A96E" stroke-width="0.15" opacity="0.4"/>
+        <line x1="22" y1="55" x2="60" y2="68" stroke="#C8A96E" stroke-width="0.15" opacity="0.35"/>
+      </pattern>
+      <!-- Tree silhouettes (Central Park) -->
+      <pattern id="trees" x="0" y="240" width="50" height="100" patternUnits="userSpaceOnUse">
+        <path d="M 12 100 L 12 80 M 8 85 L 12 78 L 16 85 M 6 90 L 12 82 L 18 90" stroke="#C8A96E" stroke-width="0.5" fill="none" opacity="0.5"/>
+        <path d="M 36 100 L 36 75 M 31 82 L 36 73 L 41 82 M 28 88 L 36 78 L 44 88" stroke="#C8A96E" stroke-width="0.5" fill="none" opacity="0.45"/>
+      </pattern>
+    </defs>
+
+    <!-- Star/constellation field -->
+    <rect width="100%" height="240" fill="url(#stars)"/>
+    <!-- Tree line at bottom (Central Park) -->
+    <rect width="100%" height="100" y="240" fill="url(#trees)"/>
+
+    <!-- Hayden Sphere — concentric circles, left -->
+    <g opacity="0.16">
+      <circle cx="130" cy="160" r="58" fill="none" stroke="#C8A96E" stroke-width="1"/>
+      <circle cx="130" cy="160" r="44" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <circle cx="130" cy="160" r="30" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+      <circle cx="130" cy="160" r="16" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <!-- Cube around the sphere (Rose Center) -->
+      <rect x="60" y="90" width="140" height="140" fill="none" stroke="#C8A96E" stroke-width="0.4" opacity="0.7"/>
+    </g>
+
+    <!-- Right: dinosaur-rib silhouette (suggesting fossil hall) -->
+    <g opacity="0.12" transform="translate(560, 140)">
+      <path d="M 0 0 Q 60 -20 130 -10" fill="none" stroke="#C8A96E" stroke-width="1.2"/>
+      <line x1="20" y1="-7" x2="22" y2="20" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="40" y1="-12" x2="44" y2="22" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="60" y1="-16" x2="66" y2="24" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="80" y1="-17" x2="86" y2="24" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="100" y1="-15" x2="105" y2="22" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="118" y1="-12" x2="121" y2="18" stroke="#C8A96E" stroke-width="0.6"/>
+      <!-- Spine continuation -->
+      <path d="M 130 -10 Q 145 0 140 30" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+    </g>
+
+    <!-- Subtle museum-facade columns at top center -->
+    <g opacity="0.1">
+      <line x1="340" y1="40" x2="340" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="365" y1="40" x2="365" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="390" y1="40" x2="390" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="415" y1="40" x2="415" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="440" y1="40" x2="440" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <line x1="465" y1="40" x2="465" y2="120" stroke="#C8A96E" stroke-width="0.6"/>
+      <!-- Pediment hint -->
+      <path d="M 330 40 L 405 18 L 480 40" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+    </g>
+
+    <!-- Horizon line -->
+    <line x1="0" y1="240" x2="800" y2="240" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="6 4" opacity="0.4"/>
+  </svg>
+
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">Upper West Side</h1>
+    <p class="hero-subtitle">Sous la baleine et les étoiles</p>
+    <p class="hero-tagline">Une journée dans le plus grand musée d'histoire naturelle du monde — dinosaures, baleine bleue, météorites et planétarium — puis une remontée tendre vers Strawberry Fields, le Dakota et l'élégance silencieuse de Central Park West.</p>
+  </div>
+</header>
+
+<!-- ──────────────────────────── TIMELINE BAR ──────────────────────────── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-petitdej"><span class="tl-dot"></span>09:00 · Petit-déj</a>
+    <a class="tl-item" href="#stop-amnh"><span class="tl-dot"></span>10:00 · AMNH</a>
+    <a class="tl-item" href="#stop-strawberry"><span class="tl-dot"></span>16:00 · Strawberry Fields</a>
+    <a class="tl-item" href="#stop-dakota"><span class="tl-dot"></span>16:30 · The Dakota</a>
+    <a class="tl-item" href="#stop-cpw"><span class="tl-dot"></span>17:00 · Central Park W.</a>
+    <a class="tl-item" href="#stop-columbus"><span class="tl-dot"></span>18:00 · Columbus Circle</a>
+  </div>
+</nav>
+
+<!-- ──────────────────────────── BODY ──────────────────────────── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Le quartier des écrivains, le musée du monde</h2>
+    <p>L'Upper West Side, c'est New York à voix basse. Ici pas de gratte-ciel d'affaires, pas de néon, pas de tumulte : des immeubles cossus d'avant-guerre alignés le long de Central Park, des terrasses fleuries, des librairies poussiéreuses, et surtout un certain art de vivre — celui des intellectuels, des musiciens du Lincoln Center, des familles d'avocats juifs qui peuplent les pages de Philip Roth et de Saul Bellow. Woody Allen y a posé sa caméra plus que partout ailleurs.</p>
+    <p>Cette journée a un cœur unique et démesuré : <em>l'American Museum of Natural History</em>. Un musée-univers fondé en 1869, étendu sur quatre pâtés de maisons, où l'on entre le matin et dont on ressort changé. Puis l'après-midi, on remonte vers la lumière : Strawberry Fields, le Dakota, et la longue diagonale de Central Park West jusqu'à Columbus Circle. Une journée qui traverse 4,5 milliards d'années avant de se boucler en une heure de promenade.</p>
+    <div class="tip-box">
+      <strong>Avant de partir</strong>
+      <p>Réservez votre billet AMNH <em>en ligne</em> avec un créneau horodaté (10h ou 10h30) — la file d'attente sans réservation peut atteindre 45 min en mai. Pour le <em>Hayden Planetarium</em>, prendre le billet « Space Show » au moment de la réservation, à un horaire de l'après-midi (14h ou 15h). Aucune autre étape de cette journée ne nécessite de réservation.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- Expand-all toggle -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════ ÉTAPES ══════════════════════════ -->
+
+  <!-- ── STOP 1 : PETIT-DÉJ ── -->
+  <article class="stop" id="stop-petitdej">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">09:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Petit-déjeuner · Avant le musée</div>
+      <h3 class="stop-title">Petit-déjeuner sur l'Upper West</h3>
+      <div class="stop-address">Selon votre humeur · 5 à 10 min de marche du musée</div>
+      <p class="stop-desc">
+        Avant d'attaquer une journée de musée, mieux vaut se caler solidement. Deux options à deux pas du musée, deux genres très différents : le diner américain à l'ancienne ou la boulangerie new-yorkaise classique. Voir la section <em>Où manger</em> pour les détails — choisissez selon l'humeur du matin, en sachant que les deux ouvrent vers 7h–8h.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">⏱ Calage horaire</div>
+        <p>Petit-déj 8h30–9h15, marche jusqu'au musée 10–15 min, arrivée à l'ouverture (10h). Ne traînez pas — chaque demi-heure d'avance vaut de l'or à AMNH, surtout dans les halls les plus fréquentés (dinosaures, baleine).</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Diner</span>
+        <span class="tag">Boulangerie</span>
+        <span class="tag sage">Léger</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 2 : AMNH (LE GROS) ── -->
+  <article class="stop" id="stop-amnh">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">10:00 → 15:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Musée majeur · Cœur de la journée</div>
+      <h3 class="stop-title">American Museum of Natural History</h3>
+      <div class="stop-address">200 Central Park West · entrée principale au coin de la 79e Rue</div>
+      <p class="stop-desc">
+        Fondé en 1869 par un groupe de savants new-yorkais — dont Albert Smith Bickmore, ancien élève d'Agassiz à Harvard — l'AMNH est l'un des plus grands musées d'histoire naturelle du monde. <em>45 halls d'exposition permanente</em>, <em>34 millions de spécimens</em>, <em>un personnel scientifique de plus de 200 chercheurs</em>, et désormais cinq bâtiments imbriqués sur quatre pâtés de maisons. C'est moins un musée qu'une encyclopédie habitée — un lieu où la science se vit autant qu'elle s'apprend.
+      </p>
+      <p class="stop-desc">
+        Le bâtiment originel, néo-roman en grès rose, donne sur la 77e Rue. La façade monumentale qui ouvre sur Central Park West, elle, est plus récente (1936) : un mémorial à <em>Theodore Roosevelt</em>, gouverneur de New York puis 26e président des États-Unis, dont le père fut l'un des fondateurs du musée. Plus à l'ouest, la masse de verre cubique du <em>Rose Center for Earth and Space</em> (Polshek, 2000) abrite la fameuse sphère du Hayden Planetarium. Et à l'extrême ouest, la silhouette en grès clair sculpté du <em>Richard Gilder Center for Science, Education and Innovation</em> (Studio Gang / Jeanne Gang, 2023) — la dernière addition, une caverne de calcaire blanc digne d'un canyon du Sud-Ouest américain.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Billets &amp; horaires</div>
+        <p><strong>Ouvert tlj 10h–17h30 (dernière admission 1h30 avant), fermé Thanksgiving et Noël. Résa en ligne obligatoire</strong> sur amnh.org. Trois formules : <em>General Admission</em> (30 $ adulte / 18 $ enfant 3–12 ans) — accès à tous les halls permanents ; <em>+ 1 activité</em> (36 $ / 22 $) — ajoute le Space Show, une expo temporaire OU le film IMAX ; <em>All-Inclusive</em> (41 $ / 26 $) — tout inclus. Pour cette journée : optez pour le <em>All-Inclusive</em>, vous voudrez le Space Show <em>et</em> au moins un IMAX.</p>
+      </div>
+      <div class="stop-note">
+        <div class="stop-note-label">🗺 Sur place</div>
+        <p><strong>Plan du musée disponible en français à l'accueil</strong> (à demander, ils ne le donnent pas spontanément). Visites guidées et audio-guide en anglais <em>gratuits</em>, ou téléchargez l'application <em>Museum Highlights Self Tours</em> sur smartphone — gratuite, parcours thématiques en anglais. Vestiaire gratuit, Wi-Fi public dans tout le musée.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Fondé en 1869</span>
+        <span class="tag">45 halls · 34M spécimens</span>
+        <span class="tag rust">5 à 6 heures sur place</span>
+        <span class="tag sage">Réservation obligatoire</span>
+      </div>
+
+      <div class="couple-moment">
+        <div class="couple-moment-title">Moment à deux</div>
+        <p>Le <em>Hall of Ocean Life</em> est l'un des espaces les plus magiques du musée — une salle entière baignée d'une lumière bleutée, dominée par la maquette grandeur nature d'une baleine bleue de 28 m suspendue au plafond. Bancs disposés au centre, ambiance d'aquarium géant. Asseyez-vous quelques minutes, têtes levées. C'est l'un de ces endroits new-yorkais où l'on se tait sans le vouloir.</p>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Plan du musée &amp; halls incontournables</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+
+          <div class="expand-section">
+            <div class="expand-section-title">Stratégie de visite</div>
+            <span class="expand-section-sub">Comment ne pas s'épuiser</span>
+            <p>L'AMNH est trop grand pour être « fait » entièrement en une journée — c'est une vérité que personne ne dit assez. Tenter de tout voir, c'est sortir lessivé sans rien avoir regardé. Choisissez quatre à cinq halls majeurs et donnez-vous le temps de <em>vraiment</em> les regarder. Voici la sélection que nous recommandons pour ce parcours :</p>
+            <div class="hall-grid">
+              <div class="hall-cell"><div class="hall-cell-floor">4e étage</div><div class="hall-cell-name">Halls de Dinosaures</div></div>
+              <div class="hall-cell"><div class="hall-cell-floor">1er étage</div><div class="hall-cell-name">Hall of Ocean Life</div></div>
+              <div class="hall-cell"><div class="hall-cell-floor">2e étage</div><div class="hall-cell-name">Mammifères africains</div></div>
+              <div class="hall-cell"><div class="hall-cell-floor">1er étage</div><div class="hall-cell-name">Météorites &amp; Pierres</div></div>
+              <div class="hall-cell"><div class="hall-cell-floor">Rose Center</div><div class="hall-cell-name">Hayden Planetarium</div></div>
+              <div class="hall-cell"><div class="hall-cell-floor">Gilder Center</div><div class="hall-cell-name">Insectarium &amp; Papillons</div></div>
+            </div>
+            <p>Plan recommandé : commencez par le 4e étage (dinosaures) avant que la foule ne s'y agglutine, redescendez à 12h pour la baleine bleue, déjeunez vers 12h30, puis attaquez l'après-midi avec les mammifères africains, le Rose Center pour le Space Show vers 14h, et terminez par le Gilder Center.</p>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Theodore Roosevelt Rotunda</div>
+            <span class="expand-section-sub">Entrée principale · 1er étage</span>
+            <p>Vous y entrerez par la façade Central Park West. La rotonde dédiée à Theodore Roosevelt est dominée par un <em>Barosaurus</em> de 16 m de haut dressé sur ses pattes arrière pour défendre son petit contre un Allosaure — la plus haute exposition libre de squelette de dinosaure au monde. Levez la tête : le plafond peint évoque l'expansion américaine. C'est ici qu'a été tournée une scène célèbre de <em>Night at the Museum</em> (2006), où le Barosaurus se réveille la nuit.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">À noter</div>
+              <p>La statue équestre de Roosevelt qui flanquait la façade extérieure depuis 1940 — flanquée d'un Amérindien et d'un Africain à pied, hiérarchie raciale gênante — a été retirée en 2022 et envoyée au <em>Theodore Roosevelt Presidential Library</em> du Dakota du Nord. Le socle de granit est resté.</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Halls de Dinosaures</div>
+            <span class="expand-section-sub">4e étage · Saurischiens &amp; Ornithischiens</span>
+            <p>L'une des plus importantes collections de fossiles au monde — l'AMNH a découvert et nommé une part considérable des dinosaures connus, grâce aux expéditions Andrews en Mongolie dans les années 1920. Deux halls principaux séparent les <em>saurischiens</em> (dinosaures à bassin de lézard, dont le redoutable T-Rex et l'Apatosaurus de 27 m) des <em>ornithischiens</em> (à bassin d'oiseau, dont le Stegosaurus armé de plaques et le Triceratops à trois cornes).</p>
+            <p>Particularité méconnue : <em>83 % des squelettes exposés contiennent au moins quelques os fossiles authentiques</em>, le reste étant moulé. C'est très rare dans le monde des musées — ailleurs, on expose surtout des moulages. Cherchez les petits cartouches en bas des vitrines : les os authentiques y sont marqués.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">⏱ 60–75 min</div>
+              <p>Foule maximale entre 11h et 14h. <strong>Premier hall à visiter en arrivant à 10h.</strong> Le <em>Tyrannosaurus rex</em> — squelette de 1908, l'un des plus complets connus à l'époque — est le clou du spectacle. Ne ratez pas la chambre des œufs de dinosaures (Mongolie) ni la momie de hadrosaure découverte au Wyoming en 1908.</p>
+            </div>
+            <div class="anecdote">
+              <div class="anecdote-title">Pourquoi « jurassique » ?</div>
+              <p>Le mot <em>jurassique</em> — qui désigne la deuxième période de l'ère des dinosaures, de –201 à –145 millions d'années — vient du <em>massif du Jura</em>, à la frontière franco-suisse. C'est le géologue allemand <em>Alexander von Humboldt</em> qui forge le terme en 1795, après avoir étudié les couches calcaires caractéristiques de cette région. Le naturaliste français <em>Alexandre Brongniart</em> le formalise scientifiquement en 1829.</p>
+              <p>Autrement dit : quand vous regardez un Apatosaurus ou un Stegosaurus, vous regardez un animal d'une période géologique qui doit son nom à <em>une chaîne de montagnes française</em>. Spielberg n'a jamais expliqué cela dans <em>Jurassic Park</em> (1993) — mais le titre du film, et tout l'imaginaire qu'il a créé, contient un petit hommage géologique à un coin paisible de l'Est de la France.</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Hall of Ocean Life</div>
+            <span class="expand-section-sub">1er étage · Milstein Hall · l'icône</span>
+            <p>Construit en 1969, entièrement rénové en 2003. Une grande salle elliptique baignée de bleu, ponctuée de dioramas immersifs représentant les écosystèmes marins (récif corallien des Bahamas, banquise antarctique, abysses…), et dominée par une <em>maquette de baleine bleue de 28 m</em> suspendue au plafond — la véritable vedette du musée, plus connue des New-Yorkais que la statue de Roosevelt.</p>
+            <p>Construite en 1969, mise à jour en 2003 pour coller aux connaissances actuelles : couleur ajustée (gris-bleu plutôt que noir), nombril ajouté, queue redressée. La maquette pèse 9 tonnes et a été suspendue par 4 câbles d'acier. Les bancs sous la baleine font de cet endroit l'un des plus aimés des écoliers new-yorkais — beaucoup de couples y reviennent aussi pour le calme particulier qui s'y installe.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">⏱ 30–45 min</div>
+              <p>Idéal vers <strong>11h45–12h30</strong> avant la pause déjeuner. Lumière bleue tamisée, bancs au centre, dioramas magnifiques. Si vous deviez ne voir qu'une seule chose au musée, ce serait celle-là.</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Mammifères africains &amp; nord-américains</div>
+            <span class="expand-section-sub">2e &amp; 3e étages · l'art du diorama</span>
+            <p>Le <em>Akeley Hall of African Mammals</em> est l'œuvre d'une vie — celle de <em>Carl Akeley</em>, taxidermiste, sculpteur, naturaliste, qui passa près de vingt ans à concevoir ce hall avant de mourir au pied du mont Mikeno (Congo) en 1926, lors d'une expédition de collecte. Au centre : un troupeau de huit éléphants en marche, position qu'il avait observée des heures durant. Tout autour : 28 dioramas représentant chacun un écosystème africain à un moment précis du jour, peints à partir de croquis pris in situ. C'est l'apogée de l'art du diorama — méthode de pédagogie aujourd'hui considérée comme datée mais d'une beauté sidérante.</p>
+            <p>Le <em>Hall of North American Mammals</em>, plus modeste, suit le même principe : ours, bisons, élans, cougars, dans des paysages allant des forêts du Maine aux déserts de l'Arizona. Tous deux sont des chefs-d'œuvre d'éclairage et de mise en scène à l'ancienne — peintures de fond d'une précision photographique, lumière simulant l'aube ou le crépuscule.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">⏱ 45 min</div>
+              <p>Moins fréquentés que les dinosaures. Très calmes, très contemplatifs. Bonne option d'après-midi (13h30–14h15).</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Hall of Meteorites &amp; Hall of Gems and Minerals</div>
+            <span class="expand-section-sub">1er étage · Allison &amp; Roberto Mignone Halls</span>
+            <p>Le hall des météorites est dominé par <em>Ahnighito</em>, fragment de la météorite du Cap York tombée au Groenland il y a environ 10 000 ans : <em>34 tonnes</em>, le plus grand morceau de météorite jamais exposé au public. Le sol du musée a dû être renforcé pour le supporter — il repose en fait sur les fondations directes du bâtiment, descendues jusqu'au socle rocheux. À côté, des fragments de la météorite de Willamette (Oregon) et de la météorite de Lune ramenée par Apollo 12.</p>
+            <p>Le hall des pierres et minéraux a été entièrement rénové en 2021 — l'un des plus beaux espaces du musée aujourd'hui : éclairage théâtral, vitrines de cristal, présentations claires. Pièces majeures : <em>l'Étoile d'Inde</em>, saphir étoilé de 563 carats, l'un des plus grands au monde ; le <em>Patricia Emerald</em> (632 carats) ; et un cristal d'amazonite géant venu du Colorado.</p>
+            <div class="anecdote">
+              <div class="anecdote-title">Le braquage du siècle</div>
+              <p>En octobre 1964, deux jeunes cambrioleurs de Floride — surnommés ensuite <em>Murph the Surf</em> et son complice — escaladèrent la façade arrière du musée par une fenêtre laissée entrouverte, neutralisèrent l'alarme (les batteries n'avaient pas été remplacées depuis des années), et repartirent avec <em>l'Étoile d'Inde</em>, le <em>Midnight Star</em>, le <em>De Long Star Ruby</em> et 19 autres pierres précieuses. Le butin fut estimé à 410 000 $ de l'époque — un record. Tous furent arrêtés en moins de 48 heures grâce à un informateur. La plupart des pierres furent récupérées dans une consigne d'autobus de Miami. C'est depuis ce vol que l'AMNH a investi dans la sécurité moderne. L'Étoile d'Inde est revenue au hall, derrière une vitrine renforcée — celle que vous regarderez aujourd'hui.</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Rose Center for Earth and Space</div>
+            <span class="expand-section-sub">Aile ouest · planétarium &amp; cosmos</span>
+            <p>Inauguré en février 2000, conçu par <em>James Stewart Polshek</em>. Un cube de verre transparent de 28 m de côté qui abrite, suspendue, une <em>sphère blanche de 27 m de diamètre</em> — fascinante de jour, encore plus de nuit quand elle s'illumine et flotte derrière la verrière comme une lune captive.</p>
+            <p>La sphère est divisée en deux : moitié supérieure, le <em>Hayden Planetarium</em> proprement dit, salle de projection sphérique pour les Space Shows, narrés successivement par Tom Hanks, Whoopi Goldberg, Robert Redford et — depuis 2014 — par <em>Neil deGrasse Tyson</em>, l'astrophysicien-vedette qui dirige le centre. Moitié inférieure, le <em>Big Bang Theater</em>, expérience immersive de 4 minutes sur l'origine de l'univers.</p>
+            <p>Tout autour, des expositions sur l'échelle cosmique (le <em>Scales of the Universe Walkway</em>, où la taille de la sphère sert de référence pour comparer les tailles relatives de tout, du proton à l'amas galactique), une chronologie de l'univers de 110 m, et une présentation des planètes du système solaire.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">🎬 Space Show</div>
+              <p>Le Space Show actuel, narré par Pedro Pascal, dure environ 25 min. Réservez votre créneau au moment d'acheter le billet, idéalement <strong>vers 14h ou 15h</strong>. Si vous deviez sacrifier un seul élément du musée, ce ne serait pas celui-là — c'est un des plus beaux planétariums au monde.</p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Richard Gilder Center for Science, Education and Innovation</div>
+            <span class="expand-section-sub">Aile ouest extrême · ouvert mai 2023</span>
+            <p>L'addition la plus récente du musée : <em>21 000 m²</em>, conçus par <em>Jeanne Gang / Studio Gang</em> et inaugurés en mai 2023. Un atrium central sculpté en grès clair, traversé de ponts, de balcons, d'ouvertures inattendues — l'architecte a explicitement cité l'érosion des canyons américains comme inspiration. Effet « caverne lumineuse » très réussi.</p>
+            <p>Trois lieux phares : le <em>Davis Family Butterfly Vivarium</em> — serre tropicale traversée par 80 espèces de papillons en vol libre ; l'<em>Susan and Peter J. Solomon Family Insectarium</em> — hommage aux insectes, avec une fourmilière géante en activité (colonie de fourmis champignonnistes) ; et l'<em>Invisible Worlds Immersive Experience</em>, projection à 360° sur les écosystèmes invisibles à l'œil nu.</p>
+            <div class="expand-practical">
+              <div class="expand-practical-label">⏱ 45 min</div>
+              <p>Excellent dernier arrêt avant de sortir (vers 15h–15h30) : changement total d'ambiance, lumineux, plus léger après la densité du reste du musée. <strong>Le Vivarium aux papillons demande parfois un billet horodaté supplémentaire — vérifiez à l'entrée.</strong></p>
+            </div>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">À sauter sans culpabilité</div>
+            <span class="expand-section-sub">Pour une journée raisonnable</span>
+            <p>Le <em>Hall of Asian Peoples</em> et le <em>Hall of Pacific Peoples</em> (Margaret Mead) sont historiquement importants mais lourds et datés dans leur muséographie. Le <em>Hall of Northwest Coast Indians</em> contient le canoë haïda de 19 m mais souffre d'un éclairage faible. Le <em>Hall of Birds of the World</em> est joli mais répétitif. À sauter aussi sans regret : la plupart des halls de biologie du 4e étage (vertébrés primitifs, etc.), réservés aux passionnés.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Theodore Roosevelt, l'enfant du musée</div>
+            <p>L'AMNH n'a pas simplement été baptisé en l'honneur de Roosevelt — il en est le produit direct. <em>Theodore Roosevelt père</em>, riche philanthrope new-yorkais, était l'un des fondateurs originels du musée en 1869. Son fils Theodore Jr., l'enfant fragile et asthmatique qui grandirait pour devenir président, passa une partie de son enfance à étudier la taxidermie dans le grenier familial — il avait monté son propre musée d'enfant qu'il appelait le <em>Roosevelt Museum of Natural History</em>. À 19 ans, il publia son premier ouvrage scientifique sur les oiseaux des Adirondacks. La Rotonde qui porte son nom est l'aboutissement logique de cette boucle : le fils élevé dans la passion de la nature finit par hanter le bâtiment que son père a co-fondé.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">L'origine du « Teddy Bear »</div>
+            <p>En novembre 1902, le président Theodore Roosevelt — chasseur passionné — part en partie de chasse à l'ours dans le Mississippi. Après plusieurs jours sans gibier, ses guides finissent par capturer un vieil ours noir épuisé, qu'ils attachent à un arbre pour que le président puisse l'abattre. Roosevelt refuse net : tirer une bête sans défense serait <em>contraire à l'éthique sportive</em>. L'épisode fait la une des journaux, immortalisé par une caricature du <em>Washington Post</em> signée Clifford Berryman.</p>
+            <p>Un commerçant de Brooklyn, <em>Morris Michtom</em>, voit la caricature et fabrique avec sa femme un petit ours en peluche qu'il baptise — après avoir demandé l'autorisation au président — <em>« Teddy's Bear »</em>. Le succès est immédiat. Michtom fonde la <em>Ideal Toy Company</em>, l'une des plus grandes fabriques de jouets du XXe siècle. L'ours en peluche moderne est né — d'un acte de fair-play présidentiel et d'une caricature de presse. La prochaine fois que vous croisez un teddy bear dans une vitrine, pensez à Roosevelt.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Au cinéma : <em>Night at the Museum</em></div>
+            <span class="expand-section-sub">Et autres apparitions hollywoodiennes</span>
+            <p>L'AMNH a une carrière cinématographique solide. La trilogie <em>Night at the Museum</em> (2006–2014) avec Ben Stiller s'y déroule entièrement (extérieurs réels, intérieurs reconstitués en studio à Vancouver — sauf la Rotonde, vraiment filmée sur place). Le squelette de T-Rex a été dupliqué pour le tournage. <em>Le Cygne noir</em> (Aronofsky, 2010) y a quelques scènes. Et <em>Manhattan</em> (Woody Allen, 1979) a une scène mémorable d'Allen et Diane Keaton se promenant dans le Hall of Ocean Life.</p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 3 : STRAWBERRY FIELDS ── -->
+  <article class="stop" id="stop-strawberry">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">16:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Mémorial · Central Park</div>
+      <h3 class="stop-title">Strawberry Fields</h3>
+      <div class="stop-address">Central Park · entrée à l'angle de W 72nd St &amp; Central Park West</div>
+      <p class="stop-desc">
+        Vous sortez de l'AMNH par la 77e Rue, vous traversez Central Park West, et vous entrez dans le parc. Cinq minutes de marche vers le sud, à hauteur de la 72e, et vous arrivez à <em>Strawberry Fields</em> : un triangle de 1 hectare de jardin paysager dédié à la mémoire de <em>John Lennon</em>, mort assassiné juste en face, à l'entrée du Dakota, le 8 décembre 1980.
+      </p>
+      <p class="stop-desc">
+        Au centre du jardin, sertie dans le pavé, une <em>mosaïque circulaire en marbre noir et blanc</em> portant un seul mot — <em>« Imagine »</em>. Elle est encadrée par 161 plaques végétales offertes par 121 pays du monde en 1985 lors de l'inauguration du mémorial. Yoko Ono — qui vit toujours au Dakota — a personnellement supervisé la conception du jardin avec le paysagiste Bruce Kelly. Il y a presque toujours un guitariste qui chante <em>Imagine</em> ou <em>Let It Be</em>, des fleurs fraîches déposées sur la mosaïque, des touristes silencieux. Le 8 décembre et le 9 octobre (date de naissance de Lennon), le rassemblement devient une vigile.
+      </p>
+      <div class="couple-moment">
+        <div class="couple-moment-title">Moment à deux</div>
+        <p>Restez quelques minutes — laissez la guitare jouer, regardez la mosaïque, levez les yeux vers le Dakota qui se dresse de l'autre côté de Central Park West. C'est l'un des rares lieux de pèlerinage discrets de New York. Pas de file, pas de barrière, pas de billet — juste un mot dans le pavé.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Mémorial Lennon 1985</span>
+        <span class="tag gold">Mosaïque « Imagine »</span>
+        <span class="tag sage">15–20 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 4 : DAKOTA ── -->
+  <article class="stop" id="stop-dakota">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">16:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Histoire</div>
+      <h3 class="stop-title">The Dakota</h3>
+      <div class="stop-address">1 West 72nd Street · angle de Central Park West</div>
+      <p class="stop-desc">
+        Vous traversez Central Park West et vous voilà devant le <em>Dakota</em>, immeuble en grès jaune de neuf étages bâti entre 1880 et 1884 par <em>Henry Janeway Hardenbergh</em> — l'architecte qui construirait ensuite le Plaza Hotel. Inspiration Renaissance allemande, hauts pignons, gargouilles, balcons en fer forgé, frontons sculptés. Le porche cocher en fer noir et grilles d'or ouvre sur une cour intérieure pavée de granit, fermée au public.
+      </p>
+      <p class="stop-desc">
+        D'où le nom <em>Dakota</em> ? Quand l'immeuble fut construit, il était <em>au milieu de nulle part</em> — Central Park n'était pas encore aménagé sur ce flanc, l'Upper West Side n'était qu'une succession de fermes et de cabanes. On disait à l'époque que c'était « aussi loin que le Dakota Territory ». Le promoteur Edward Clark, héritier de Singer (machines à coudre), assuma le surnom et le grava dans la pierre en flèche, avec un buste d'Indien sioux à l'entrée que l'on aperçoit toujours aujourd'hui.
+      </p>
+      <p class="stop-desc">
+        Le Dakota est devenu, au fil du XXe siècle, l'adresse la plus mythique de l'Upper West. Ont vécu ou habitent ici : <em>Lauren Bacall</em>, <em>Leonard Bernstein</em>, <em>Boris Karloff</em> (qui hanterait toujours les couloirs, dit-on), <em>Judy Garland</em>, <em>Roberta Flack</em>, <em>Roman Polanski</em> — qui y a tourné <em>Rosemary's Baby</em> en 1968 — et bien sûr <em>John Lennon</em> et <em>Yoko Ono</em>, qui y avaient sept appartements. C'est sous le porche cocher en fer forgé, là, devant vos yeux, que Lennon a été abattu le 8 décembre 1980 vers 22h50. Yoko Ono y vit toujours.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>La meilleure vue d'ensemble se prend depuis le trottoir nord-est de la 72e &amp; CPW, ou depuis l'intérieur de Central Park près de Strawberry Fields. <strong>Évitez d'approcher trop près du porche</strong> — c'est une copropriété privée, les résidents n'apprécient pas. Restez sur le trottoir public.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">1880–1884 · Hardenbergh</span>
+        <span class="tag rust">8 décembre 1980</span>
+        <span class="tag">Renaissance allemande</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes &amp; histoire du Dakota</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le luxe précurseur</div>
+            <span class="expand-section-sub">L'invention de l'immeuble bourgeois à New York</span>
+            <p>À l'époque où le Dakota fut construit, vivre en appartement passait pour vulgaire à New York — les bourgeois habitaient des maisons individuelles (<em>brownstones</em>). Edward Clark voulut prouver le contraire en construisant un immeuble si luxueux qu'il deviendrait désirable d'y habiter. Réussi : ascenseurs (rares à l'époque), électricité dès 1884, plomberie centrale, hauteur sous plafond de 4,30 m, parquets en bois de Madagascar, salles de bal communes, salle à manger commune, cuisine commune dirigée par un chef. Il fit le pari du luxe collectif. Ce modèle d'<em>apartment building</em> haut de gamme se répandit ensuite dans tout New York.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Rosemary's Baby (1968)</div>
+            <span class="expand-section-sub">Roman Polanski tourne le Dakota</span>
+            <p>Polanski a obtenu l'autorisation exceptionnelle de filmer les extérieurs (intérieurs reconstitués en studio à Hollywood, donc inversés en miroir). Le film fait du Dakota une porte d'entrée vers le mal. Treize ans plus tard, c'est exactement sous ce porche que Lennon mourait. Coïncidence troublante qui a alimenté toute une mythologie noire autour de l'immeuble. Pour mémoire, Polanski lui-même perdit sa femme Sharon Tate l'année suivante, assassinée par la « famille » Manson.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Le 8 décembre 1980</div>
+            <p>Lennon et Yoko rentrent en limousine d'une session d'enregistrement aux Hit Factory Studios. Il est 22h50. Mark David Chapman, 25 ans, qui les attendait depuis l'après-midi, fait quatre pas, sort un revolver Charter Arms calibre 38 et tire cinq coups dans le dos de Lennon. Lennon dit deux mots — « <em>I'm shot</em> » — puis s'effondre dans le hall d'entrée. Le concierge José Perdomo désarme Chapman, qui s'assoit calmement sur le trottoir et lit <em>L'Attrape-cœurs</em> en attendant la police. Lennon est transporté au Roosevelt Hospital où il est déclaré mort à 23h07. Il avait 40 ans. Le pavé a été nettoyé, la grille a été réparée, mais le souvenir n'a jamais quitté l'immeuble.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Vivre au Dakota</div>
+            <span class="expand-section-sub">Le co-op le plus secret de New York</span>
+            <p>Le Dakota est aujourd'hui une <em>cooperative</em> (immeuble géré par un conseil de copropriétaires qui contrôle qui peut acheter). Le board est célèbre pour son sélectivité — il a refusé Madonna, Cher, Antonio Banderas, Melanie Griffith, Carly Simon. Officiellement par souci de discrétion. Officieusement, on dit que le board veut surtout protéger Yoko Ono. Les appartements vont aujourd'hui de 4 à 30 millions de dollars selon la taille (les plus grands font 800 m² avec 14 pièces).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 5 : CENTRAL PARK WEST ── -->
+  <article class="stop" id="stop-cpw">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">17:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Promenade · Architecture</div>
+      <h3 class="stop-title">Promenade sur Central Park West</h3>
+      <div class="stop-address">Central Park West · de la 72e à la 60e Rue</div>
+      <p class="stop-desc">
+        En descendant Central Park West vers le sud depuis le Dakota, vous longez l'une des plus belles successions d'immeubles d'avant-guerre de New York. Côté ouest, la pierre dorée et les corniches sculptées ; côté est, la verdure de Central Park qui change de visage à chaque pas. C'est la promenade favorite des New-Yorkais le dimanche matin.
+      </p>
+      <p class="stop-desc">
+        À deux pas du Dakota, l'<em>Majestic</em> (115 CPW, 1931) — l'une des silhouettes les plus identifiables de Manhattan, deux tours jumelles Art Déco couronnées de lanternes. Conçu par Irwin Chanin, il forme avec le San Remo, l'Eldorado et le Century les quatre <em>twin-towered apartments</em> qui dessinent la skyline de l'Upper West vue de Central Park. Plus bas, vous passerez devant le <em>Langham</em> (135 CPW, 1907), beaux-arts solennel, et le <em>Prasada</em> (50 CPW). Tous étaient des immeubles de petits bourgeois quand ils ont été construits. Tous valent désormais plusieurs millions par appartement.
+      </p>
+      <p class="stop-desc">
+        À mi-chemin, vous pouvez bifurquer dans Central Park au niveau de la 67e pour apercevoir <em>Tavern on the Green</em>, ancien <em>sheepfold</em> construit en 1870 (oui, les moutons broutaient dans Central Park jusqu'en 1934) reconverti en restaurant illuminé de guirlandes, qui a connu son heure de gloire dans les années 1980 — souvent sur les tournages, jamais vraiment recommandé pour la cuisine, mais toujours photogénique au crépuscule.
+      </p>
+      <div class="stop-tags">
+        <span class="tag">Art Déco · 1920s–30s</span>
+        <span class="tag gold">Skyline iconique</span>
+        <span class="tag sage">25 min de promenade</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 6 : COLUMBUS CIRCLE ── -->
+  <article class="stop" id="stop-columbus">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">18:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Place · Fin de journée</div>
+      <h3 class="stop-title">Columbus Circle</h3>
+      <div class="stop-address">Intersection Broadway, 8th Avenue, Central Park South &amp; Central Park West</div>
+      <p class="stop-desc">
+        Le rond-point qui clôt la journée. Au centre, sur une colonne corinthienne de 21 m, la statue de <em>Christophe Colomb</em> sculptée par Gaetano Russo en 1892 — célébration tardive du quatrième centenaire de la découverte des Amériques, financée par les commerçants italiens de New York en compensation de la vague d'antiitalianisme qui suivit le lynchage de onze Italiens à La Nouvelle-Orléans en 1891. C'est, géodésiquement parlant, le <em>kilomètre zéro</em> de New York : toutes les distances officielles depuis Manhattan sont mesurées depuis ici.
+      </p>
+      <p class="stop-desc">
+        La place a été entièrement redessinée en 2005 par Olin Partnership : fontaines circulaires, plantations en cercle, bancs courbes. Elle marque la limite sud de l'Upper West Side et l'entrée sud-ouest de Central Park. Vous y trouverez aussi : le <em>Time Warner Center</em> (deux tours jumelles de verre, shopping mall + restaurants gastronomiques en hauteur), le <em>Trump International Hotel</em> (immeuble noir adjacent), et la <em>statue de USS Maine Memorial</em> à l'entrée du parc — mémorial doré aux marins du cuirassé coulé à La Havane en 1898 (le casus belli de la guerre hispano-américaine).
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🚇 Fin de parcours</div>
+        <p>La station de métro <strong>59 St – Columbus Circle</strong> donne directement sous la place : lignes <strong>1, A, B, C, D</strong>. Vous êtes à 5 stations de Times Square, 10 de Wall Street, ou directement reliés à votre logement selon le quartier. Si la soirée est belle, redescendez plutôt par le sud de Central Park à pied jusqu'à l'hôtel.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Kilomètre zéro de NYC</span>
+        <span class="tag">Colomb 1892</span>
+        <span class="tag rust">Redesign 2005</span>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ RESTAURANTS ══════════════════════════ -->
+  <section class="food-section">
+    <div class="section-label">Où manger</div>
+    <p class="food-intro">
+      L'Upper West est un quartier qui mange en famille et en sandwich — beaucoup de delis classiques, peu de grandes tables. La logique pour cette journée : un petit-déj qui tient, un déjeuner rapide pour ne pas couper le rythme du musée, et garder la grande sortie gastronomique pour un autre soir. Le quartier compte deux institutions juives séculaires (Zabar's, Barney Greengrass) qui valent à elles seules le détour.
+    </p>
+
+    <!-- PETIT-DÉJ -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☕</span>
+        <span class="meal-header-title">Petit-déjeuner</span>
+        <span class="meal-header-time">07:30–10:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Diner</span>
+          </div>
+          <div class="resto-name">Old John's Luncheonette</div>
+          <div class="resto-address">148 W 67th St</div>
+          <p class="resto-desc">Diner classique des années 1960, banquettes en skaï, comptoir et tabourets, café qui se ressert sans qu'on le demande. Pancakes moelleux, eggs benedict, BLT, hash browns. Atmosphère hors du temps, clientèle d'habitués qui lit le NY Times à voix basse. À deux blocs du Lincoln Center, à 10 min à pied du musée.</p>
+          <p class="resto-note">$15–22 le petit-déj. Ouvert dès 7h30. Pas de réservation, peu d'attente le matin.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Boulangerie</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Orwashers Bakery</div>
+          <div class="resto-address">440 Amsterdam Ave</div>
+          <p class="resto-desc">Boulangerie fondée en 1916 par Abraham Orwasher, immigré de Hongrie. Pains levés au levain, challah du vendredi, bagels mais surtout pâtisseries — beignets jelly-doughnut faits à la commande, chaussons aux pommes, brioches à la cannelle. Petite salle pour s'asseoir, café honnête. À 8 min à pied du musée.</p>
+          <p class="resto-note">$8–14. Beignets remplis sur place — la spécialité maison. Ouvert dès 7h.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUR LE POUCE -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🥪</span>
+        <span class="meal-header-title">Sur le pouce</span>
+        <span class="meal-header-time">tout au long de la journée</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Épicerie fine</span>
+            <span class="resto-badge badge-insta">Institution</span>
+          </div>
+          <div class="resto-name">Zabar's</div>
+          <div class="resto-address">2245 Broadway · angle 80th St</div>
+          <p class="resto-desc">L'institution juive de l'Upper West, fondée en 1934 par Louis Zabar. Saumon fumé tranché à la main par des messieurs en blouse blanche depuis 80 ans, fromages de tous horizons, olives, caviar, blinis, café, halva, ustensiles de cuisine au 2e étage. Comptoir café-traiteur côté 80e Rue : sandwiches, bagels-lox, knish, kugel à emporter, prix raisonnables. Le ventre de l'Upper West.</p>
+          <p class="resto-note">À 3 min à pied du musée. Idéal pour bagel + saumon avant ou après. $10–18.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Hot dog</span>
+            <span class="resto-badge badge-insta">NYC classique</span>
+          </div>
+          <div class="resto-name">Gray's Papaya</div>
+          <div class="resto-address">2090 Broadway · angle 72nd St</div>
+          <p class="resto-desc">Comptoir debout ouvert 24h/24 depuis 1973. Hot dogs grillés à la moutarde et oignons frits, jus de papaye glacé en gobelet. C'est sale, c'est rapide, c'est délicieux, c'est new-yorkais à 100 %. Le « Recession Special » (deux hot dogs + boisson) à moins de 9 $ existe depuis les années 1970.</p>
+          <p class="resto-note">2 hot dogs + jus = 9 $. Apparaît dans <em>Sex and the City</em>, <em>You've Got Mail</em>, <em>Manhattan</em>.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Épicerie</span>
+          </div>
+          <div class="resto-name">Trader Joe's</div>
+          <div class="resto-address">2073 Broadway · angle 72nd St</div>
+          <p class="resto-desc">Chaîne d'épiceries américaine très aimée — produits maison à prix imbattables, ambiance vacances californiennes (chemises hawaïennes des employés), excellente rangée de snacks à emporter (sushis, sandwiches, salades, fruits coupés). Idéal pour faire des courses si vous avez un Airbnb avec frigo, ou pour un pique-nique improvisé à Central Park.</p>
+          <p class="resto-note">Snacks à $4–8. File parfois longue à la caisse — c'est le sport new-yorkais.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÉJEUNER / DÎNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍽</span>
+        <span class="meal-header-title">Déjeuner — autour de $</span>
+        <span class="meal-header-time">12:00–14:30</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Hamburger</span>
+          </div>
+          <div class="resto-name">Shake Shack Upper West Side</div>
+          <div class="resto-address">366 Columbus Ave · angle 77th St</div>
+          <p class="resto-desc">L'antenne UWS de la chaîne fondée par Danny Meyer à Madison Square Park en 2004 — meilleur burger fast-food de New York. Buns moelleux, viande Pat LaFrieda, ShackSauce maison, frites crinkle, milkshakes. Cette adresse est <em>juste en face de la sortie 77e du musée</em>. Pour un déjeuner express en 25 min, c'est imbattable.</p>
+          <p class="resto-note">Burger + frites + boisson = $15–18. Commandez sur l'app pour gagner du temps.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Salade</span>
+          </div>
+          <div class="resto-name">sweetgreen</div>
+          <div class="resto-address">311 Amsterdam Ave</div>
+          <p class="resto-desc">Chaîne de salades bio californiennes lancée à Georgetown en 2007 — légumes frais, grains entiers, protéines, sauces maison, formule à composer ou bowls signatures. Plus léger qu'un Shake Shack, idéal si l'AMNH vous attend pour cinq heures supplémentaires. Service rapide à la chaîne.</p>
+          <p class="resto-note">Bowl à $13–17. Commande via app pour passer la file.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Bagel · Brunch</span>
+            <span class="resto-badge badge-insta">Institution 1908</span>
+          </div>
+          <div class="resto-name">Barney Greengrass</div>
+          <div class="resto-address">541 Amsterdam Ave</div>
+          <p class="resto-desc">« The Sturgeon King » — fondé en 1908 par Barney Greengrass, immigré juif de l'Empire austro-hongrois. Trois générations plus tard, c'est toujours la même famille. Saumon fumé d'Écosse, esturgeon fumé maison, cream cheese, bagels, omelettes au lox-onion-eggs. Décor inchangé depuis 1929 : papier peint à motifs des dunes du Nil, néons jaunes. Brunch new-yorkais authentique, sans esbroufe.</p>
+          <p class="resto-note">Plat $20–32. Affluence le dimanche brunch — venir tôt ou en semaine. Cash-friendly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ POI COMPLÉMENTAIRES ══════════════════════════ -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+    <p style="font-size:14px; color:var(--text-muted); font-style:italic; margin-bottom:4px;">À glisser dans la journée si l'AMNH vous laisse du temps, ou à garder pour un retour dans le quartier.</p>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🏙</div>
+        <div class="poi-card-name">The Majestic</div>
+        <div class="poi-card-address">115 Central Park West · angle 72nd St</div>
+        <p class="poi-card-desc">Immeuble Art Déco aux deux tours jumelles couronnées de lanternes, conçu par Irwin Chanin en 1931. L'une des silhouettes les plus reconnaissables du skyline de l'Upper West vu depuis Central Park. Ne se visite pas (résidentiel privé), mais sa façade côté CPW vaut un arrêt en levant les yeux. Voisin direct du Dakota.</p>
+        <p class="poi-card-note">À regarder en remontant CPW depuis le Dakota.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🍽</div>
+        <div class="poi-card-name">Tavern on the Green</div>
+        <div class="poi-card-address">Central Park · W 67th St</div>
+        <p class="poi-card-desc">Ancien <em>sheepfold</em> de Central Park (les moutons paissaient ici jusqu'en 1934) reconverti en restaurant. Galerie illuminée de guirlandes, terrasse arborée, ambiance de fête perpétuelle. Très photogénique au crépuscule. La cuisine est correcte sans plus — l'endroit prime sur l'assiette. À voir en passant si vous coupez par le parc.</p>
+        <p class="poi-card-note">Plus joli en photo qu'à table. Bar extérieur agréable pour un verre rapide.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">📚</div>
+        <div class="poi-card-name">Westsider Rare &amp; Used Books</div>
+        <div class="poi-card-address">2246 Broadway · entre 80th &amp; 81st</div>
+        <p class="poi-card-desc">Librairie d'occasion indépendante depuis 1984, l'une des dernières du quartier. Trois étages bas de plafond, escaliers grinçants, livres empilés du sol au plafond. Spécialisée en littérature, philosophie, beaux-arts, musique classique. A failli fermer en 2019, sauvée par une campagne de financement participatif. À deux pas de Zabar's : un cliché new-yorkais qui résiste.</p>
+        <p class="poi-card-note">Idéal pour une demi-heure de flânerie après les hot dogs de Gray's. Ouvert 11h–22h.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">Septuagesimo Uno</div>
+        <div class="poi-card-address">W 71st St &amp; West End Ave</div>
+        <p class="poi-card-desc">L'un des plus petits parcs publics de New York — <em>Septuagesimo Uno</em> en latin signifie « 71e » — moins de 10 m de large, coincé entre deux immeubles d'habitation. Banc, arbres, parterre. Conçu en 1969, sauvé d'un projet immobilier dans les années 1980. Quasi personne n'y vient : c'est le secret le mieux gardé de l'Upper West. Parfait pour s'asseoir cinq minutes en silence.</p>
+        <p class="poi-card-note">Curiosité d'<em>Atlas Obscura</em>. Ne pas chercher de signe : il y est à peine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INFOS PRATIQUES ── -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p>Un <strong>mardi ou mercredi</strong> est idéal : le musée est moins envahi qu'en week-end, les écoles new-yorkaises ne s'y rendent pas en groupe avant 11h. <strong>Éviter le samedi</strong> en haute saison (mai, juin, juillet) — files d'attente et halls bondés. Le musée est ouvert <strong>tous les jours sauf Thanksgiving et Noël</strong>.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🎟 À réserver à l'avance</div>
+        <p><strong>AMNH</strong> via amnh.org (3–7 jours d'avance) : optez pour le billet <em>All-Inclusive</em> avec créneau de 10h ou 10h30 et un Space Show à 14h. Aucune autre étape de cette journée ne nécessite de réservation. <strong>Les pierres précieuses et météorites sont parfois sujettes à entrée régulée pendant les pics — vérifiez à l'accueil.</strong></p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">👟 Confort</div>
+        <p>5 à 6 heures de marche dans le musée plus 3 km de promenade extérieure. <strong>Chaussures plates obligatoires</strong> — les sols du musée sont durs, vos pieds vous remercieront. Vestiaire gratuit à l'accueil pour déposer manteaux et sacs lourds. Petit en-cas autorisé dans les sacs (à manger sur les bancs des halls les moins fragiles).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Façade Roosevelt depuis CPW · Barosaurus dans la Rotonde · Baleine bleue depuis le balcon supérieur · Sphère du Hayden depuis l'extérieur (côté ouest, en fin d'après-midi) · Atrium du Gilder Center · Mosaïque <em>Imagine</em> à Strawberry Fields · Façade du Dakota depuis le trottoir nord-est · Skyline du Majestic depuis Central Park.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transport</div>
+        <p>Accès AMNH : ligne <strong>B/C</strong> (81st St – Museum of Natural History), ligne <strong>1</strong> (79th St). Fin de journée : Columbus Circle (lignes <strong>1, A, B, C, D</strong>). Si vous logez au sud, descendre à pied par le Lincoln Center est une jolie variante — 25 min de promenade nocturne.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>L'Upper West est un quartier <em>résidentiel et littéraire</em> — pas un quartier d'attractions. L'énergie est plus douce qu'à Midtown ou dans le Village : on y croise plus de poussettes, plus de chiens, plus d'écoliers que de touristes. Tenue libre, décontractée. Le musée est familial, vous serez à l'aise avec n'importe quoi (chaussures plates exceptées).</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ──────────────────────────── FOOTER ──────────────────────────── -->
+<footer class="page-footer">
+  <p class="footer-title">« I get up every morning determined both to change the world and to have one hell of a good time. Sometimes this makes planning the day difficult. » — E. B. White, <em>Here is New York</em></p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function() {
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function() {
+    var allDetails = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    allDetails.forEach(function(d) { d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

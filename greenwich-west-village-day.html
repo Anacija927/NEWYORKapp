@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenwich & West Village — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B3A2A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 24px 48px;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+  }
+
+  .hero-meta {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 70px);
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(245,240,232,0.65);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar {
+    background: var(--navy-light);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+
+  .timeline-inner {
+    display: inline-flex;
+    gap: 0;
+  }
+
+  .tl-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.55);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    cursor: default;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── BODY WRAPPER ── */
+  .page-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── INTRO EDITO ── */
+  .intro-block {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .intro-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--navy);
+  }
+
+  .intro-block p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip-box p {
+    font-size: 13.5px;
+    color: rgba(245,240,232,0.8);
+    font-style: normal;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .tip-box strong {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── MAP ── */
+  .map-section { padding: 8px 0 0; }
+  .map-container { margin-top: 20px; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); line-height: 0; }
+  .map-container svg { display: block; width: 100%; height: auto; }
+
+  /* ── STOP CARD ── */
+  .stop {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 28px;
+    position: relative;
+  }
+
+  .stop:last-child { border-bottom: none; }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: 39px;
+    top: 76px;
+    bottom: -44px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border), transparent);
+  }
+  .stop:last-child::before { display: none; }
+
+  .stop-time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .stop-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .stop-dot.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+    width: 16px;
+    height: 16px;
+  }
+
+  .stop-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .stop-content {}
+
+  .stop-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .stop-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stop-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .stop-desc {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 12px;
+  }
+
+  .stop-note {
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 14px;
+  }
+  .stop-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 5px;
+  }
+  .stop-note p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .stop-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 2px;
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* ── FOOD SECTION ── */
+  .food-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .food-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+
+  .meal-block {
+    margin-bottom: 36px;
+  }
+  .meal-block:last-child { margin-bottom: 0; }
+
+  .meal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .meal-header-icon {
+    font-size: 18px;
+  }
+  .meal-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+  }
+  .meal-header-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .resto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .resto-grid { grid-template-columns: 1fr; }
+  }
+
+  .resto-card {
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .resto-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 3px 12px rgba(26,39,68,0.07);
+  }
+
+  .resto-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .resto-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+
+  .resto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .resto-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 9px;
+  }
+  .resto-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+  .resto-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    text-align: center;
+    padding: 36px 0 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  /* ── POI GRID ── */
+  .poi-section {
+    padding: 44px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+
+  .poi-card {
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .poi-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.06);
+  }
+  .poi-card-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .poi-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .poi-card-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .poi-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .poi-card-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section {
+    padding: 44px 0;
+  }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .infos-grid { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    padding: 20px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .info-card strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--navy);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── EXPAND / DÉTAILS ── */
+  .stop-expand {
+    margin-top: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .stop-expand[open] {
+    border-color: var(--gold);
+    box-shadow: 0 2px 14px rgba(200,169,110,0.08);
+  }
+  .stop-expand summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    background: var(--cream-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+  }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand summary::marker { display: none; }
+  .stop-expand summary:hover {
+    background: rgba(200,169,110,0.18);
+  }
+  .stop-expand[open] summary {
+    background: var(--navy);
+    color: var(--gold);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow {
+    font-size: 9px;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .stop-expand[open] .stop-expand-arrow {
+    transform: rotate(180deg);
+  }
+  .stop-expand-content {
+    padding: 22px 20px 22px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent 80%);
+  }
+
+  /* ── GUIDE-STYLE ANECDOTE BOX ── */
+  .anecdote {
+    background: var(--rust);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .anecdote-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .anecdote-title::before {
+    content: '❖';
+    font-size: 12px;
+  }
+  .anecdote p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.92);
+    margin: 0 0 9px 0;
+  }
+  .anecdote p:last-child { margin: 0; }
+  .anecdote em, .anecdote strong {
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ── EXPAND SUB-SECTION ── */
+  .expand-section { margin: 16px 0; }
+  .expand-section:first-child { margin-top: 0; }
+  .expand-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .expand-section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .expand-section p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .expand-section em { color: var(--navy); font-style: italic; font-weight: 500; }
+
+  .expand-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 22px 0;
+  }
+
+  /* Practical info inside expand */
+  .expand-practical {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    margin: 14px 0 4px;
+  }
+  .expand-practical-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .expand-practical p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .expand-practical strong { color: var(--navy); }
+
+  /* ── EXPAND-ALL TOGGLE ── */
+  .expand-all-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 0 0;
+    margin-bottom: -12px;
+  }
+  .expand-all-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .expand-all-btn:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
+  .expand-all-btn-icon {
+    font-size: 11px;
+    transition: transform 0.3s;
+  }
+  .expand-all-btn.is-open .expand-all-btn-icon {
+    transform: rotate(180deg);
+  }
+
+  /* ── ROMANTIC HIGHLIGHT BOX ── */
+  .romantic {
+    background: linear-gradient(135deg, rgba(139,58,42,0.08), rgba(200,169,110,0.08));
+    border: 1px solid rgba(139,58,42,0.25);
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin-top: 14px;
+  }
+  .romantic-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .romantic-label::before {
+    content: '♥';
+    color: var(--rust);
+    font-size: 11px;
+  }
+  .romantic p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+    font-style: italic;
+  }
+
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('greenwich');</script>
+
+
+<!-- ──────────────────────────── HERO ──────────────────────────── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- Brownstone window pattern -->
+      <pattern id="brownstone" x="0" y="0" width="50" height="65" patternUnits="userSpaceOnUse">
+        <rect x="6" y="6" width="14" height="22" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <rect x="28" y="6" width="14" height="22" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <rect x="6" y="34" width="14" height="22" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <rect x="28" y="34" width="14" height="22" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="13" y1="6" x2="13" y2="28" stroke="#C8A96E" stroke-width="0.2"/>
+        <line x1="35" y1="6" x2="35" y2="28" stroke="#C8A96E" stroke-width="0.2"/>
+      </pattern>
+      <!-- Triangle grid (Village pre-1811 streets) -->
+      <pattern id="triangleGrid" x="0" y="0" width="80" height="70" patternUnits="userSpaceOnUse">
+        <polyline points="0,70 40,0 80,70" fill="none" stroke="#C8A96E" stroke-width="0.15"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#brownstone)" opacity="0.55"/>
+    <rect width="100%" height="100%" fill="url(#triangleGrid)" opacity="0.35"/>
+
+    <!-- Washington Square Arch in center -->
+    <g opacity="0.22" transform="translate(310,55)">
+      <!-- Cornice / attic -->
+      <rect x="-8" y="0" width="196" height="22" fill="none" stroke="#C8A96E" stroke-width="1"/>
+      <rect x="-12" y="22" width="204" height="6" fill="none" stroke="#C8A96E" stroke-width="0.8"/>
+      <!-- Piers -->
+      <rect x="0" y="28" width="40" height="200" fill="none" stroke="#C8A96E" stroke-width="1.2"/>
+      <rect x="140" y="28" width="40" height="200" fill="none" stroke="#C8A96E" stroke-width="1.2"/>
+      <!-- Inner arch curve -->
+      <path d="M 40 228 L 40 110 Q 40 60 90 60 Q 140 60 140 110 L 140 228" fill="none" stroke="#C8A96E" stroke-width="0.9"/>
+      <!-- Decorative pilasters on piers -->
+      <line x1="10" y1="28" x2="10" y2="228" stroke="#C8A96E" stroke-width="0.4"/>
+      <line x1="30" y1="28" x2="30" y2="228" stroke="#C8A96E" stroke-width="0.4"/>
+      <line x1="150" y1="28" x2="150" y2="228" stroke="#C8A96E" stroke-width="0.4"/>
+      <line x1="170" y1="28" x2="170" y2="228" stroke="#C8A96E" stroke-width="0.4"/>
+      <!-- Frieze details -->
+      <line x1="-8" y1="14" x2="188" y2="14" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="4 3"/>
+      <!-- Pier base -->
+      <rect x="-4" y="220" width="48" height="10" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <rect x="136" y="220" width="48" height="10" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+    </g>
+
+    <!-- Tree branches in corners (London plane trees of Washington Square) -->
+    <g opacity="0.12">
+      <path d="M 0 0 Q 50 25 90 55 Q 130 85 170 80" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <path d="M 30 0 Q 60 35 100 70" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <circle cx="55" cy="18" r="3" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <circle cx="100" cy="48" r="4" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <circle cx="140" cy="72" r="3" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+
+      <path d="M 800 0 Q 750 25 710 55 Q 670 85 630 80" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <path d="M 770 0 Q 740 35 700 70" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <circle cx="745" cy="18" r="3" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <circle cx="700" cy="48" r="4" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <circle cx="660" cy="72" r="3" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+    </g>
+
+    <!-- Subtle horizon line -->
+    <line x1="0" y1="318" x2="800" y2="318" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="8 4" opacity="0.45"/>
+  </svg>
+
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">Greenwich &amp; West Village</h1>
+    <p class="hero-subtitle">L'âme bohème de Manhattan</p>
+    <p class="hero-tagline">Du tracé pré-grille hollandais aux maisons étroites de Bedford Street, des arches de Washington Square aux pavés de Stonewall — une journée dans le quartier le plus libre, le plus écrit et le plus romantique de New York.</p>
+  </div>
+</header>
+
+<!-- ──────────────────────────── TIMELINE BAR ──────────────────────────── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-wsp"><span class="tl-dot"></span>09:00 · Washington Sq</a>
+    <a class="tl-item" href="#stop-mews"><span class="tl-dot"></span>09:45 · Washington Mews</a>
+    <a class="tl-item" href="#stop-lockwood"><span class="tl-dot"></span>10:15 · Lockwood House</a>
+    <a class="tl-item" href="#stop-presby"><span class="tl-dot"></span>10:45 · First Presbyterian</a>
+    <a class="tl-item" href="#stop-haring"><span class="tl-dot"></span>11:15 · Keith Haring</a>
+    <a class="tl-item" href="#stop-jefferson"><span class="tl-dot"></span>11:45 · Jefferson Library</a>
+    <a class="tl-item" href="#stop-patchin"><span class="tl-dot"></span>12:15 · Patchin Place</a>
+    <a class="tl-item" href="#stop-dejeuner"><span class="tl-dot"></span>13:00 · Déjeuner</a>
+    <a class="tl-item" href="#stop-sheridan"><span class="tl-dot"></span>14:15 · Sheridan &amp; Stonewall</a>
+    <a class="tl-item" href="#stop-gay"><span class="tl-dot"></span>15:00 · Gay Street</a>
+    <a class="tl-item" href="#stop-bedford"><span class="tl-dot"></span>15:30 · Bedford Trio</a>
+    <a class="tl-item" href="#stop-hess"><span class="tl-dot"></span>16:30 · Triangle de Hess</a>
+    <a class="tl-item" href="#stop-bleecker"><span class="tl-dot"></span>16:45 · Bleecker Street</a>
+    <a class="tl-item" href="#stop-cage"><span class="tl-dot"></span>17:30 · The Cage</a>
+    <a class="tl-item" href="#stop-sunset"><span class="tl-dot"></span>18:00 · WSP — Golden Hour</a>
+    <a class="tl-item" href="#stop-marie"><span class="tl-dot"></span>21:00 · Marie's Crisis</a>
+  </div>
+</nav>
+
+<!-- ──────────────────────────── BODY ──────────────────────────── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Le quartier qui a refusé la grille</h2>
+    <p>Greenwich Village est la seule partie de Manhattan où les rues ne marchent pas droit. Quand le Commissioners' Plan de 1811 imposa le quadrillage rectangulaire à toute l'île, le Village — alors village de campagne perché sur une colline à l'écart de la ville — refusa. Trop de propriétaires en place, trop d'allées plantées qui suivaient le cours de Minetta Brook, trop de fermes hollandaises et de jardins de Quakers. Résultat : West 4th Street croise West 10th, Waverly Place croise Waverly Place, et l'on s'y perd avec délice.</p>
+    <p>De ce refus est né, à travers deux siècles, le quartier le plus créatif de New York. <em>Mark Twain</em> et <em>Edgar Allan Poe</em> y vécurent au XIXe ; Henry James et Edith Wharton y posèrent le décor de leurs romans ; Edna St. Vincent Millay et e.e. cummings y écrivirent ; Jackson Pollock et Edward Hopper y peignirent ; <em>Norman Mailer</em> y fonda en 1955 <em>The Village Voice</em>, feuille de chou devenue la voix contre-culturelle de l'Amérique ; Bob Dylan y joua sa première chanson chez Café Wha? en 1961 ; et la nuit du 28 juin 1969, devant un bar nommé le Stonewall Inn, l'histoire des droits LGBT bascula. Marcher dans le Village, c'est marcher sur tout cela à la fois.</p>
+    <div class="tip-box">
+      <strong>Avant de partir</strong>
+      <p>Aucune réservation indispensable pour la journée elle-même. Mais réservez une table chez <em>Rosemary's</em> ou <em>Tacombi</em> pour le dîner (Resy, 3–7 jours), et notez que <em>Marie's Crisis Café</em> n'accepte ni réservation ni carte bancaire — cash et patience à l'entrée à partir de 21h.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ CARTE SVG ══════════════════════════ -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 510" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte de Greenwich &amp; West Village">
+        <!-- Fond -->
+        <rect width="740" height="510" fill="#F0EAD8"/>
+        <rect x="55" y="30" width="648" height="468" fill="#EDE5D2" rx="2"/>
+
+        <!-- Hudson River à l'ouest -->
+        <rect x="55" y="30" width="42" height="468" fill="#DCE5E8" opacity="0.55"/>
+        <text x="76" y="265" text-anchor="middle" font-size="8.5" fill="#7090A0" font-family="Georgia,serif" font-style="italic" transform="rotate(-90, 76, 265)">Hudson River</text>
+
+        <!-- Washington Square Park au cœur -->
+        <rect x="395" y="285" width="135" height="80" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.6" rx="3"/>
+        <text x="462" y="320" text-anchor="middle" font-size="7.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Washington</text>
+        <text x="462" y="332" text-anchor="middle" font-size="7.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Square Park</text>
+
+        <!-- ──── Grid orthogonal au nord (Greenwich Village structuré) ──── -->
+        <!-- Rues horizontales -->
+        <line x1="100" y1="50"  x2="700" y2="50"  stroke="#BFB49E" stroke-width="1.1"/>
+        <line x1="100" y1="85"  x2="700" y2="85"  stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="100" y1="115" x2="700" y2="115" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="100" y1="148" x2="700" y2="148" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="100" y1="180" x2="700" y2="180" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="115" y1="215" x2="700" y2="215" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="125" y1="250" x2="700" y2="250" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- Avenues verticales (orthogonales) -->
+        <line x1="120" y1="50"  x2="120" y2="280" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="370" y1="50"  x2="370" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="475" y1="50"  x2="475" y2="285" stroke="#C6BAA6" stroke-width="1.2"/>
+        <line x1="540" y1="50"  x2="540" y2="285" stroke="#D2C8B5" stroke-width="0.8"/>
+        <line x1="610" y1="50"  x2="610" y2="498" stroke="#D2C8B5" stroke-width="0.8"/>
+
+        <!-- ──── Diagonales du West Village (rues qui ont refusé le grid de 1811) ──── -->
+        <!-- 7th Avenue South : descend en biais -->
+        <line x1="280" y1="50" x2="170" y2="498" stroke="#BFB49E" stroke-width="1.3"/>
+        <!-- Christopher St : oblique vers Hudson -->
+        <line x1="320" y1="225" x2="105" y2="335" stroke="#D2C8B5" stroke-width="0.8"/>
+        <!-- Bedford St : oblique nord-sud -->
+        <line x1="290" y1="290" x2="205" y2="465" stroke="#D2C8B5" stroke-width="0.8"/>
+        <!-- Hudson St : continue 8th Ave en biais -->
+        <line x1="120" y1="280" x2="98"  y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <!-- W 4th St oblique sous WSP (croise W 10th, W 11th !) -->
+        <line x1="395" y1="350" x2="195" y2="455" stroke="#D2C8B5" stroke-width="0.7" stroke-dasharray="2 3" opacity="0.7"/>
+        <!-- Grove St -->
+        <line x1="280" y1="335" x2="155" y2="395" stroke="#D2C8B5" stroke-width="0.7"/>
+        <!-- Commerce St -->
+        <line x1="240" y1="380" x2="170" y2="415" stroke="#D2C8B5" stroke-width="0.6"/>
+
+        <!-- Bleecker St (highlight gold — l'avenue iconique) -->
+        <line x1="195" y1="395" x2="615" y2="438" stroke="#C8A96E" stroke-width="3" opacity="0.85"/>
+
+        <!-- Houston St (limite sud) -->
+        <line x1="100" y1="498" x2="700" y2="498" stroke="#BFB49E" stroke-width="1.1"/>
+
+        <!-- Labels rues (bord droit) -->
+        <text x="705" y="53"  font-size="7.5" fill="#9A8060" font-family="monospace">14th St</text>
+        <text x="705" y="88"  font-size="7.5" fill="#9A8060" font-family="monospace">13th</text>
+        <text x="705" y="118" font-size="7.5" fill="#9A8060" font-family="monospace">12th</text>
+        <text x="705" y="151" font-size="7.5" fill="#9A8060" font-family="monospace">11th</text>
+        <text x="705" y="183" font-size="7.5" fill="#9A8060" font-family="monospace">10th</text>
+        <text x="705" y="218" font-size="7.5" fill="#9A8060" font-family="monospace">9th</text>
+        <text x="705" y="253" font-size="7.5" fill="#9A8060" font-family="monospace">Waverly</text>
+        <text x="705" y="441" font-size="8" fill="#C8A96E" font-family="monospace" font-weight="bold">Bleecker ★</text>
+        <text x="705" y="500" font-size="7.5" fill="#9A8060" font-family="monospace">Houston</text>
+        <!-- Labels avenues (haut) -->
+        <text x="120" y="42" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Hudson</text>
+        <text x="280" y="42" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">7th Av S</text>
+        <text x="370" y="42" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">6th Av</text>
+        <text x="475" y="42" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">5th Av</text>
+        <text x="540" y="42" text-anchor="middle" font-size="7" fill="#9A8060" font-family="monospace">Univ Pl</text>
+        <text x="612" y="42" text-anchor="middle" font-size="7" fill="#9A8060" font-family="monospace">Broadway</text>
+
+        <!-- ──── Ligne de parcours (pointillée dorée, ordre des stops) ──── -->
+        <polyline points="440,320 465,290 510,180 445,115 350,85 370,180 355,200 300,395 265,240 315,235 220,400 235,275 255,420 345,305 453,305 235,365"
+          stroke="#C8A96E" stroke-width="2.2" stroke-dasharray="7 5" fill="none" opacity="0.55" stroke-linejoin="round"/>
+
+        <!-- ──── Restaurants (cercles rust) ──── -->
+        <circle cx="315" cy="405" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="315" y="405" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">A</text>
+        <circle cx="375" cy="140" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="375" y="140" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">B</text>
+        <circle cx="270" cy="430" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="270" y="430" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <circle cx="170" cy="148" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="170" y="148" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <circle cx="290" cy="218" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="290" y="218" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <circle cx="245" cy="385" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="245" y="385" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <circle cx="405" cy="418" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="405" y="418" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <circle cx="305" cy="195" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="305" y="195" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <circle cx="540" cy="438" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="540" y="438" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <circle cx="383" cy="335" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="383" y="335" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">J</text>
+        <circle cx="295" cy="408" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="295" y="408" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">K</text>
+        <circle cx="225" cy="350" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="225" y="350" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">L</text>
+        <circle cx="260" cy="195" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="260" y="195" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">M</text>
+
+        <!-- ──── POI (cercles sage) ──── -->
+        <circle cx="455" cy="360" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="455" y="360" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <circle cx="470" cy="380" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="470" y="380" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <circle cx="450" cy="402" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="450" y="402" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <circle cx="195" cy="412" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="195" y="412" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <circle cx="155" cy="320" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="155" y="320" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">e</text>
+        <circle cx="305" cy="125" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="305" y="125" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">f</text>
+        <circle cx="370" cy="225" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="370" y="225" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">g</text>
+        <circle cx="290" cy="245" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="290" y="245" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">h</text>
+        <circle cx="403" cy="305" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="403" y="305" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">i</text>
+
+        <!-- ──── Étapes numérotées (cercles navy 12px, 5 featured en gold) ──── -->
+        <!-- 1 — Washington Square Park (FEATURED) -->
+        <circle cx="440" cy="320" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="440" y="320" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">1</text>
+        <!-- 2 — Mews -->
+        <circle cx="465" cy="290" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="465" y="290" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">2</text>
+        <!-- 3 — Lockwood -->
+        <circle cx="510" cy="180" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="510" y="180" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">3</text>
+        <!-- 4 — First Presbyterian -->
+        <circle cx="445" cy="115" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="445" y="115" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <!-- 5 — Keith Haring (FEATURED) -->
+        <circle cx="350" cy="85" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="350" y="85" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">5</text>
+        <rect x="367" y="74" width="58" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="370" y="83" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Haring mural</text>
+        <!-- 6 — Jefferson Market -->
+        <circle cx="370" cy="180" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="370" y="180" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="386" y="173" width="58" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="389" y="182" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Jefferson Lib</text>
+        <!-- 7 — Patchin Place -->
+        <circle cx="355" cy="200" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="355" y="200" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">7</text>
+        <!-- 8 — Lunch -->
+        <circle cx="300" cy="395" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="300" y="395" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">8</text>
+        <!-- 9 — Stonewall (FEATURED) -->
+        <circle cx="265" cy="240" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="265" y="240" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">9</text>
+        <rect x="180" y="227" width="58" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="183" y="236" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Stonewall</text>
+        <!-- 10 — Gay St -->
+        <circle cx="320" cy="232" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="320" y="232" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">10</text>
+        <!-- 11 — Bedford Trio (FEATURED) -->
+        <circle cx="220" cy="400" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="220" y="400" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="#1A2744" font-weight="bold" font-family="monospace">11</text>
+        <rect x="158" y="389" width="58" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="161" y="398" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Bedford St</text>
+        <!-- 12 — Triangle de Hess -->
+        <circle cx="235" cy="275" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="235" y="275" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">12</text>
+        <!-- 13 — Bleecker -->
+        <circle cx="255" cy="420" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="255" y="420" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">13</text>
+        <!-- 14 — The Cage -->
+        <circle cx="345" cy="305" r="11" fill="#1A2744" stroke="#EDE5D2" stroke-width="2"/><text x="345" y="305" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="white" font-weight="bold" font-family="monospace">14</text>
+        <!-- 15 — Sunset WSP (FEATURED) -->
+        <circle cx="453" cy="305" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="453" y="305" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="#1A2744" font-weight="bold" font-family="monospace">15</text>
+        <rect x="468" y="295" width="50" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="471" y="304" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Sunset</text>
+        <!-- 16 — Marie's Crisis (FEATURED) -->
+        <circle cx="235" cy="365" r="13" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="235" y="365" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="#1A2744" font-weight="bold" font-family="monospace">16</text>
+        <rect x="158" y="354" width="58" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="161" y="363" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Marie's</text>
+
+        <!-- Boussole nord -->
+        <g transform="translate(680,476)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes du jour · 09h → 22h</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">① Wash. Sq. Park ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Wash. Mews</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Lockwood de Forest</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ First Presbyterian</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑤ Keith Haring ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Jefferson Market</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑦ Patchin Place</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑧ Déjeuner</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑨ Sheridan / Stonewall ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑩ Gay Street</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑪ Bedford Trio ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑫ Triangle de Hess</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑬ Bleecker St</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑭ The Cage</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑮ WSP Golden Hour ★</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑯ Marie's Crisis ★</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants &amp; bars</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">A</span>Pasticceria Rocco <span style="opacity:0.5;">— 243 Bleecker St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">B</span>Murray's Bagels <span style="opacity:0.5;">— 500 6th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>The Grey Dog <span style="opacity:0.5;">— 33 Carmine St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>La Bonbonniere <span style="opacity:0.5;">— 28 8th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>Rosemary's <span style="opacity:0.5;">— 18 Greenwich Ave (Resy)</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>Bleecker Street Pizza <span style="opacity:0.5;">— 69 7th Ave South</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>Tacombi <span style="opacity:0.5;">— 188 Bleecker St (Resy)</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>SMASHED NYC <span style="opacity:0.5;">— Greenwich Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>Pepe Rosso To Go <span style="opacity:0.5;">— 149 Sullivan St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">J</span>Washington Sq Diner <span style="opacity:0.5;">— 150 W 4th St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">K</span>Murray's Cheese Bar <span style="opacity:0.5;">— 254 Bleecker St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">L</span>Magnolia Bakery <span style="opacity:0.5;">— 401 Bleecker St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">M</span>Julius' (bar gay 1860s) <span style="opacity:0.5;">— 159 W 10th St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Points d'intérêt</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>Caffè Reggio (1927) <span style="opacity:0.5;">— 119 MacDougal St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>Café Wha? <span style="opacity:0.5;">— 115 MacDougal St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>Comedy Cellar <span style="opacity:0.5;">— 117 MacDougal St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Cherry Lane Theatre <span style="opacity:0.5;">— 38 Commerce St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">e</span>St Luke in the Fields <span style="opacity:0.5;">— 487 Hudson St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">f</span>NYC AIDS Memorial <span style="opacity:0.5;">— 7th Ave / W 12th</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">g</span>C. O. Bigelow Apothecaries <span style="opacity:0.5;">— 414 6th Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">h</span>Northern Dispensary (1831) <span style="opacity:0.5;">— 165 Waverly Pl</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">i</span>Hangman's Elm (1679) <span style="opacity:0.5;">— angle NW de WSP</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider" style="padding-top:36px;">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- Expand-all toggle -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════ ÉTAPES ══════════════════════════ -->
+
+  <!-- ── STOP 1 : WASHINGTON SQUARE PARK ── -->
+  <article class="stop" id="stop-wsp">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">09:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Parc · Point de départ</div>
+      <h3 class="stop-title">Washington Square Park</h3>
+      <div class="stop-address">5th Ave / Waverly Pl / W 4th St / MacDougal St</div>
+      <p class="stop-desc">
+        L'arche de marbre blanc de Stanford White (1892) marque l'extrémité sud de la Cinquième Avenue et l'entrée nord du Village. Elle célèbre le centenaire de l'investiture de George Washington — une copie miniature de l'Arc de Triomphe parisien, mais en hommage non pas à un empereur, mais à un président qui refusa de l'être. Devant elle, une fontaine ronde où, aux beaux jours, jouent musiciens, jongleurs, joueurs d'échecs, étudiants de NYU, et tous les chiens du quartier.
+      </p>
+      <p class="stop-desc">
+        Le parc lui-même est plus étrange qu'il n'y paraît : avant 1827, ce fut un cimetière de potter's field où furent enterrées entre 20 000 et 25 000 personnes, principalement victimes des épidémies de fièvre jaune. Lors des travaux récents (renovations de 2008), des centaines de squelettes ont été retrouvés sous la fontaine. On marche, littéralement, sur l'histoire de New York. À l'ouest du parc se dresse <em>Hangman's Elm</em>, un orme presque tricentenaire (estimé 1679) — le plus vieil arbre de Manhattan, témoin silencieux de tout cela.
+      </p>
+      <p class="stop-desc">
+        Autour du parc, trois bâtiments imposent leur silhouette : au sud, la <em>Judson Memorial Church</em> (1892) en Renaissance italienne, briques jaunes et vitraux blancs, signée Stanford White lui-même — l'architecte de l'arche juste en face. À l'est, la <em>Elmer Holmes Bobst Library</em> (1967–1973), silhouette rouge cubique de Philip Johnson et Richard Foster, bibliothèque principale de NYU avec son atrium intérieur vertigineux. Au nord, la <em>Row</em> — townhouses fédérales des années 1830 où vécut <em>Edward Hopper</em> au n°3 Washington Square North, pendant plus de 50 ans, jusqu'à sa mort en 1967.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">☕ Démarrage doux</div>
+        <p>Avant d'attaquer, prenez un café-croissant chez <em>Pasticceria Rocco</em> (Bleecker St, à 5 min) ou un petit-déj américain chez <em>The Grey Dog</em> sur Carmine St. Asseyez-vous ensuite sur un banc face à l'arche pour 15 min — c'est le meilleur tableau pour comprendre l'âme du Village.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Arche de Stanford White</span>
+        <span class="tag">Hangman's Elm 1679</span>
+        <span class="tag sage">30–45 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'arche : trois vies, un seul dessin</div>
+            <span class="expand-section-sub">1889 → 1892 — du bois au marbre</span>
+            <p>Une première arche en bois et en plâtre fut élevée en 1889 pour célébrer le centenaire de l'investiture de George Washington. Le succès fut tel que la ville commanda à <em>Stanford White</em> — l'architecte vedette du New York Gilded Age, du Madison Square Garden à la statue de Diana — une version permanente. Inaugurée en 1892, elle est en marbre du Tuckahoe (carrière de Westchester). Les deux statues de Washington qui flanquent l'arche côté nord ont été ajoutées en 1916–1918 : <em>Washington as Commander-in-Chief</em> par Hermon MacNeil (à droite) et <em>Washington as President</em> par Alexander Stirling Calder (à gauche, père du sculpteur Alexander Calder).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le cimetière sous vos pieds</div>
+            <span class="expand-section-sub">Potter's field 1797–1825</span>
+            <p>De 1797 à 1825, le terrain fut le cimetière municipal des indigents et des victimes des grandes épidémies de fièvre jaune (notamment celles de 1797 et 1803). Les estimations vont de <em>20 000 à 25 000 sépultures</em>. Les corps n'ont jamais été déplacés — ils sont simplement restés là, sous le sol, pendant que le terrain devenait place d'armes (1826), puis parc paysager. Lors de la rénovation de 2008, les ouvriers ont mis au jour plusieurs caveaux intacts du XVIIIe siècle. Vous traversez en ce moment 2 mètres au-dessus d'un cimetière colonial.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Hangman's Elm</div>
+            <span class="expand-section-sub">le plus vieil arbre de Manhattan</span>
+            <p>À l'angle nord-ouest du parc se dresse un orme blanc estimé à <em>plus de 340 ans</em> (planté autour de 1679). Son surnom — « Hangman's Elm » — vient d'une légende selon laquelle des pendaisons publiques s'y déroulaient au XIXe siècle. Aucune trace historique ne le confirme, mais le surnom est resté. C'est le plus vieil être vivant connu de Manhattan, et probablement de tout New York. Touchez son tronc : il a connu Washington, Lincoln, Edith Wharton et l'arrivée des trains à vapeur.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Marcel Duchamp escalade l'arche</div>
+            <span class="expand-section-sub">23 janvier 1917 — la République Libre et Indépendante de Washington Square</span>
+            <p>Par une nuit glaciale de janvier 1917, six artistes bohèmes — dont <em>Marcel Duchamp</em>, <em>John Sloan</em> et l'actrice <em>Gertrude Drick</em> — forcèrent la porte intérieure de l'arche, grimpèrent par l'escalier en colimaçon jusqu'au sommet, allumèrent des lanternes chinoises, ouvrirent des bouteilles et lurent une proclamation déclarant Greenwich Village <em>« République libre et indépendante de Washington Square »</em>. Le texte, signé « Woe, Woe, Woe », exigeait la sécession du Village d'avec les États-Unis. Duchamp venait d'arriver à New York depuis Paris, et n'avait pas encore créé son urinoir-fontaine <em>Fountain</em> — celui-ci viendra trois mois plus tard, en avril 1917. L'escapade de l'arche fut, en un sens, son premier geste dada sur le sol américain. L'arche fut fermée au public dès le lendemain, et l'est toujours.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Autour du parc : trois silhouettes</div>
+            <span class="expand-section-sub">Judson, Bobst, et la Row</span>
+            <p>Au sud, la <em>Judson Memorial Church</em> (1892) — signée Stanford White (oui, le même que l'arche), Renaissance italienne, briques jaunes et terre cuite blanche. Elle abrite aujourd'hui à la fois une congrégation libérale progressiste et une scène de théâtre expérimental (le Judson Dance Theater des années 60 fut fondé ici — Yvonne Rainer, Trisha Brown, Steve Paxton). Vitraux de John La Farge à l'intérieur. À l'est, au 70 Washington Square South, se dresse la <em>Elmer Holmes Bobst Library</em> — un bloc rouge de 12 étages signé Philip Johnson et Richard Foster, achevé en 1973. Son atrium intérieur de 45 mètres de haut, avec ses sols en marbre à motifs géométriques, est saisissant (accès réservé aux étudiants, hélas). Au nord, la <em>Row</em> — rangée de townhouses fédérales en brique rouge construites entre 1829 et 1833, où vécurent Edward Hopper (n°3, 1913–1967), <em>John Dos Passos</em> (n°3 également, années 30), et Henry James dont la grand-mère habitait au n°18 (démoli depuis, mais ayant inspiré son roman <em>Washington Square</em>, 1881).</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Bob Dylan, Joan Baez, et la photo qui devint légende</div>
+            <p>Dans les années 60, le parc était l'épicentre de la <em>folk revival</em>. Tous les dimanches, musiciens et chanteurs s'y réunissaient autour de la fontaine pour ce qu'on appelait les <em>Sunday hoots</em>. C'est là que Bob Dylan, jeune émigré du Minnesota, joua pour la première fois en public à New York en 1961. La pochette de son album <em>The Freewheelin' Bob Dylan</em> (1963) le montre marchant dans la neige sur la 4ème Rue, à un block du parc, bras dessus dessous avec sa compagne Suze Rotolo. L'image est devenue une icône de l'Amérique romantique.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Accès libre 6h–minuit</strong>. Pas de toilettes publiques dans le parc — le café-resto <em>Joe Coffee</em> (NYU) ou les boutiques de Bleecker dépanneront. En mai, la fontaine est en service ; les enfants y jouent. Évitez après 23h le week-end (foule étudiante bruyante).</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 2 : WASHINGTON MEWS ── -->
+  <article class="stop" id="stop-mews">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">09:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Ruelle privée · Pavés</div>
+      <h3 class="stop-title">Washington Mews</h3>
+      <div class="stop-address">Entre 5th Ave et University Pl · au nord de Washington Sq</div>
+      <p class="stop-desc">
+        Une ruelle pavée privée d'à peine 150 mètres, entièrement bordée de petites maisons basses peintes — jaune, brique, blanc, vert d'eau. Ces bâtiments sont d'anciennes <em>écuries</em> et remises à voitures (mews), construites au XIXe siècle pour servir les hôtels particuliers donnant sur la 5ème Avenue et Washington Square North. Quand l'automobile a remplacé le cheval dans les années 1910–1930, les écuries furent reconverties en logements pour artistes et écrivains.
+      </p>
+      <p class="stop-desc">
+        Aujourd'hui, l'ensemble appartient à NYU et abrite des résidences pour professeurs, des départements de l'université (Maison Française, Deutsches Haus, Casa Italiana) et quelques logements privés. Le portail est presque toujours ouvert en journée — entrez, marchez doucement, c'est l'une des plus belles ruelles cachées de New York. Le silence y est assourdissant après le bruit de la 5ème Avenue.
+      </p>
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>Les pavés inégaux, les maisons basses peintes, l'absence totale de circulation : c'est une perspective parfaite pour une photo à deux. Visez l'entrée ouest (côté 5th Ave) en début de matinée — la lumière y est rasante et dorée jusqu'à 10h.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Pavés &amp; lumière dorée</span>
+        <span class="tag">Anciennes écuries</span>
+        <span class="tag sage">15 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Du cheval à l'artiste</div>
+            <span class="expand-section-sub">1830 → 1916 — la métamorphose des écuries</span>
+            <p>Au début du XIXe siècle, Washington Square North (la « Row ») était la rue la plus prestigieuse de New York — alignement parfait de townhouses fédérales en brique rouge construites entre 1829 et 1833 pour les grandes familles marchandes. Chaque maison disposait derrière elle, sur Washington Mews, d'une remise à voiture et d'écuries pour ses chevaux et son cocher. Quand l'auto remplaça le cheval, les écuries devinrent inutiles. À partir de 1916, le promoteur William Sloane Coffin les fit reconvertir en logements d'artistes — petites façades rénovées, briques peintes en couleurs vives. <em>Edward Hopper</em>, <em>Walter Lippmann</em>, <em>John Dos Passos</em> y vécurent.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le réseau secret des Mews du Village</div>
+            <span class="expand-section-sub">trois petites sœurs</span>
+            <p>Washington Mews est le plus connu, mais le Village compte deux autres ruelles d'anciennes écuries restées intactes : <em>MacDougal Alley</em> (juste à l'ouest, fermée par un portail mais visible de la rue) et <em>Patchin Place</em> (que vous verrez plus tard, à 10 min). Ce sont les seuls vestiges urbains de la ville pré-automobile. À Londres ce sont les <em>mews</em> ; à Paris les anciennes <em>cours d'attelage</em>. À New York, c'est ici, et seulement ici.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Accès</div>
+            <p><strong>Privé mais ouvert en journée</strong>. Entrée par 5th Avenue ou par University Place. Pas de boutique ni de café à l'intérieur — c'est purement résidentiel. Évitez de filmer les fenêtres des résidents : ce sont des appartements de professeurs NYU.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 3 : LOCKWOOD DE FOREST HOUSE ── -->
+  <article class="stop" id="stop-lockwood">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">10:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Curiosité</div>
+      <h3 class="stop-title">Lockwood de Forest House</h3>
+      <div class="stop-address">7 East 10th St · entre 5th Ave et University Pl</div>
+      <p class="stop-desc">
+        Une façade qui ne ressemble à rien d'autre dans New York. À hauteur d'homme, vous remarquerez d'abord les détails : la baie vitrée du rez-de-chaussée et son cadre sont entièrement recouverts de panneaux de <em>teck sculpté à la main</em> — profusion de feuillages, oiseaux, fleurs, et même quelques <em>petits éléphants</em> discrètement posés aux angles. Motifs indiens d'un raffinement qui n'existe nulle part ailleurs aux États-Unis.
+      </p>
+      <p class="stop-desc">
+        L'auteur de ce délire artistique est <em>Lockwood de Forest</em> (1850–1932), peintre paysagiste et designer américain, ami intime de Louis Comfort Tiffany. Lors de son voyage de noces en 1881 en Inde, il fut bouleversé par l'artisanat indien du teck. À son retour, il fonda à Ahmedabad un atelier qui produisit des panneaux sculptés sur commande pour les intérieurs et façades américains. Sa propre maison new-yorkaise (1887) servit de manifeste : façade cabinet de curiosités, intérieur entièrement orné de teck indien. Le bâtiment est aujourd'hui privé et a été restauré.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📷 À regarder de près</div>
+        <p>La meilleure vue est en se tenant juste devant l'entrée — observez les motifs en frise au-dessus des fenêtres, les petits visages sculptés aux angles, et le contraste avec les townhouses voisines parfaitement conventionnelles. Photo facile, scène silencieuse.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Teck indien sculpté</span>
+        <span class="tag">1887</span>
+        <span class="tag sage">10 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'amitié Tiffany — de Forest</div>
+            <span class="expand-section-sub">le décor de l'âge d'or américain</span>
+            <p>Lockwood de Forest fut un acteur central de l'<em>Aesthetic Movement</em> américain. Avec son ami Louis Comfort Tiffany, Candace Wheeler et Samuel Colman, il fonda en 1879 <em>Associated Artists</em>, l'un des premiers cabinets de design d'intérieur professionnel des États-Unis. Ils décorèrent la Maison Blanche pour le président Chester Arthur (1882), la maison de Mark Twain à Hartford, et nombre de demeures des grandes familles new-yorkaises. De Forest apportait l'expertise indienne ; Tiffany les vitraux. C'est cette collaboration qui produisit la grammaire visuelle du <em>Gilded Age</em> américain.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'atelier d'Ahmedabad</div>
+            <span class="expand-section-sub">artisanat indien et marché américain</span>
+            <p>Pendant son voyage de noces en 1881, de Forest visita la maison de l'industriel Muggunbhai Hutheesing à Ahmedabad — entièrement décorée de panneaux de teck sculpté de tradition gujarati. Ébloui, il fonda sur place un atelier en partenariat avec Hutheesing, employant des artisans locaux pour produire des panneaux destinés au marché américain. Pendant 25 ans, l'atelier expédia régulièrement des caisses entières de bois sculpté vers New York. Le 7 East 10th Street est le seul exemple subsistant de façade entière. À l'intérieur, le hall, les escaliers, les plafonds et les manteaux de cheminée sont tous en teck indien — la maison est aujourd'hui inscrite au registre national des monuments historiques.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Les voisins inconnus du Village</div>
+            <p>10th Street, entre la 5ème Avenue et University Place, est l'un des blocs les plus calmes et les plus historiques de Manhattan. Au n° <em>14</em> vécut <em>Mark Twain</em> en 1900–1901. Au n° <em>21</em>, <em>Sinclair Lewis</em> écrivit une partie de <em>Babbitt</em>. Les façades sont très semblables — fédérales en brique rouge avec frise blanche au-dessus de la porte — sauf celle de Lockwood de Forest, qui détonne et fait sourire de surprise.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p>Maison <strong>strictement privée</strong> — admiration depuis le trottoir uniquement. Le rez-de-chaussée abrite parfois des galeries éphémères ; en cas d'événement public, vous pouvez exceptionnellement entrer.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 4 : FIRST PRESBYTERIAN CHURCH ── -->
+  <article class="stop" id="stop-presby">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">10:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Église · Néo-gothique</div>
+      <h3 class="stop-title">The First Presbyterian Church</h3>
+      <div class="stop-address">12 West 12th St · entre 5th &amp; 6th Avenues</div>
+      <p class="stop-desc">
+        Construite en 1846 par <em>Joseph C. Wells</em>, c'est l'une des plus belles églises néo-gothiques de New York — inspirée de la <em>Magdalen College Chapel</em> d'Oxford, dont elle reprend la silhouette de la tour à créneaux et les fenêtres lancéolées. Elle se dresse au milieu d'un jardin clos d'une grille en fer forgé, avec un grand espace vert ouvert sur la 5ème Avenue. Cet enclos paysager est rarissime à Manhattan : il donne à l'édifice un air de cathédrale anglaise transplantée en pleine ville.
+      </p>
+      <p class="stop-desc">
+        L'intérieur (souvent ouvert en journée) abrite des vitraux remarquables, dont plusieurs réalisés par <em>Louis Comfort Tiffany</em>. La paroisse, fondée en 1716, est l'une des plus anciennes de New York — elle déménagea ici en 1846 quand le quartier devint résidentiel. L'orgue, exceptionnel, accueille des concerts gratuits le dimanche après-midi (vérifier sur firstpresnyc.org).
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🌿 Jardin caché</div>
+        <p>Le « <em>Church Garden</em> » sur le côté est de l'église (entrée par 12th St) est un petit jardin paysagé ouvert au public en journée — bancs, fontaine, arbres centenaires. Quasiment personne ne s'y aventure. Pause idéale pour 10 min de calme.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Vitraux Tiffany</span>
+        <span class="tag">Néo-gothique 1846</span>
+        <span class="tag sage">15–20 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Une cathédrale anglaise dans Manhattan</div>
+            <span class="expand-section-sub">l'inspiration d'Oxford</span>
+            <p>Joseph C. Wells était un architecte britannique fraîchement émigré aux États-Unis, féru de gothique anglais. Quand la paroisse lui commanda l'édifice, il prit pour modèle direct la <em>Magdalen Tower</em> d'Oxford (1492–1509) — l'un des sommets du Gothique Perpendiculaire anglais. La copie est délibérée : tour à créneaux, pinacles aux quatre angles, fenêtres à meneaux de pierre. C'est la première véritable église néo-gothique anglaise construite en Amérique, deux ans avant la Trinity Church de Wall Street (1846, voir circuit Sud Manhattan).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les vitraux de Tiffany</div>
+            <span class="expand-section-sub">le génie du verre opalescent</span>
+            <p>Sept vitraux de l'église sont signés <em>Louis Comfort Tiffany</em> — réalisés entre 1893 et 1925 par le studio Tiffany Studios sur Madison Avenue. Tiffany avait inventé en 1881 un nouveau type de verre, le <em>verre opalescent</em>, dans lequel la couleur et la texture sont incorporées au matériau lui-même (et non peintes en surface comme dans le vitrail médiéval). Le vitrail de la <em>Résurrection</em> derrière le chœur est le plus célèbre — observez la lumière qui le traverse en fin de matinée.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">La sœur d'à côté : Church of the Ascension</div>
+            <p>En descendant la 5ème Avenue sur deux blocs (5th Ave / West 10th St), vous passerez devant une autre église néogothique, plus petite, <em>Church of the Ascension</em> (1841) — signée Richard Upjohn, l'architecte de Trinity Church à Wall Street. C'est en réalité l'aînée de First Presbyterian de quelques années. Façade en grès rouge sombre, vitraux de <em>John La Farge</em> à l'intérieur, fresque murale de l'<em>Ascension</em> derrière l'autel. C'est ici qu'en 1844, le président <em>John Tyler</em> se maria en secret avec Julia Gardiner — premier mariage présidentiel célébré dans une église new-yorkaise. Ouvert en journée, silencieux, peu visité. Vrai complément discret à First Presbyterian.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Église gratuite</strong>, ouverte en journée du lundi au vendredi (heures variables, en général 11h–16h). Concerts d'orgue et choraux le dimanche à 11h et 17h, ouverts au public. <em>Jardin attenant</em> en accès libre.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 5 : KEITH HARING BATHROOM MURAL ── -->
+  <article class="stop" id="stop-haring">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">11:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Art · Pépite cachée</div>
+      <h3 class="stop-title">Keith Haring's Bathroom Mural</h3>
+      <div class="stop-address">208 West 13th St · The Center (LGBT Community Center)</div>
+      <p class="stop-desc">
+        Un Keith Haring de 1989, intact, dans les toilettes d'un centre communautaire. <em>Once Upon a Time</em> est l'une des dernières œuvres murales de l'artiste — peinte gracieusement et bénévolement en mai 1989, à la demande du Center, alors qu'Haring savait avoir peu de temps à vivre. Il est mort onze mois plus tard du sida, à 31 ans. La fresque couvre les quatre murs et le plafond des anciennes toilettes hommes du second étage : centaines de figures sexuelles dansantes, traits noirs sur fond blanc, vitalité électrique, tendresse et provocation indissociables.
+      </p>
+      <p class="stop-desc">
+        L'œuvre est explicite — Haring l'a voulue ainsi, hommage à la sexualité gay libre des années 70 et 80, à un moment où l'épidémie du sida avait commencé à la stigmatiser. Le Center l'a restaurée en 2012, après des décennies d'usure et de moisissures. Elle est aujourd'hui considérée comme un chef-d'œuvre tardif, et l'un des rares Haring intacts dans son contexte d'origine. L'accès est libre et gratuit.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎨 Avant d'entrer</div>
+        <p>Demandez à l'accueil du Center : « <em>Where is the Haring mural?</em> » — on vous indiquera le second étage. La salle est petite, ouverte mais discrète. Photos autorisées sans flash. Œuvre <strong>non recommandée pour de jeunes enfants</strong> — contenu explicite.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Œuvre originale 1989</span>
+        <span class="tag rust">Contenu explicite</span>
+        <span class="tag sage">Gratuit</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Keith Haring et le Center</div>
+            <span class="expand-section-sub">mai 1989, deux jours pour peindre</span>
+            <p>Keith Haring fréquentait le LGBT Community Center depuis sa fondation en 1983 — il y assistait à des réunions d'<em>ACT UP</em>, l'organisation militante contre l'inaction politique face au sida. Quand le Center lui demanda en 1989 d'apporter sa contribution artistique, Haring, déjà gravement malade (diagnostiqué séropositif en 1988), accepta sans hésiter et refusa toute rémunération. Il peignit la fresque en deux jours, seul, dans les anciennes toilettes hommes du second étage. Le titre — <em>Once Upon a Time</em> — fait référence à la sexualité libre d'avant l'épidémie, désormais devenue, pour les jeunes générations gays, une époque mythique inaccessible.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">La restauration de 2012</div>
+            <span class="expand-section-sub">sauver une œuvre qui n'aurait pas dû durer</span>
+            <p>Les anciennes toilettes étaient mal ventilées et la moisissure rongeait progressivement la peinture. En 2012, la <em>Keith Haring Foundation</em> finança une restauration complète : nettoyage, scellage des murs, réinstallation contrôlée d'humidité. La salle a été reconvertie : ce ne sont plus des toilettes en service, mais une <em>salle d'exposition dédiée</em>. Les bancs, les sols, les éclairages ont été pensés pour qu'on s'y attarde. C'est probablement la seule fresque de Haring qui se visite aujourd'hui dans son emplacement original.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">L'année 1989, condensée en deux Haring</div>
+            <p>L'année où il peignit cette fresque, Haring réalisa également <em>Crack is Wack</em>, le grand mur visible depuis le FDR Drive (Harlem), et <em>Tuttomondo</em> à Pise, sa dernière œuvre publique européenne. Trois fresques en huit mois, dans trois pays, sur trois thèmes — la sexualité, la drogue, la paix. Il avait 30 ans, et savait. La fresque du Center est la plus intime et la plus tendre des trois. Vous y êtes en présence de quelqu'un qui peint pour ne pas oublier ce qui a été aimé.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Accès</div>
+            <p><strong>The Center</strong>, 208 W 13th St, ouvert tlj 9h–22h. Entrée libre. Demandez l'accès à la <em>Keith Haring Room</em> à l'accueil. Si une réunion privée s'y tient, on vous demandera de revenir plus tard. Visite : 10–15 min.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 6 : JEFFERSON MARKET LIBRARY ── -->
+  <article class="stop" id="stop-jefferson">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">11:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Bibliothèque · Architecture victorienne</div>
+      <h3 class="stop-title">Jefferson Market Library</h3>
+      <div class="stop-address">425 6th Ave · à l'angle de West 10th St</div>
+      <p class="stop-desc">
+        L'un des plus beaux bâtiments victoriens de Manhattan, et probablement le plus invraisemblable. Dressée comme un château de conte de fées rouge brique au coin de la 6ème Avenue et de la 10ème Rue, sa tour-horloge culmine à 52 mètres. Lors de son inauguration en 1877, des architectes américains la classèrent parmi les <em>cinq plus beaux bâtiments des États-Unis</em>. C'est l'œuvre de <em>Calvert Vaux</em> — le co-créateur de Central Park, ici dans son style le plus exubérant : néo-gothique vénitien, briques polychromes, sculptures néo-médiévales.
+      </p>
+      <p class="stop-desc">
+        Mais le bâtiment fut, à l'origine, un <em>tribunal de police</em>. C'est ici que furent jugés les criminels du quartier pendant 70 ans, et notamment, en 1906, l'architecte <em>Harry K. Thaw</em>, accusé du meurtre de Stanford White (le créateur de l'arche de Washington Square que vous avez vue ce matin). Le tribunal ferma en 1945 ; le bâtiment fut sauvé in extremis de la démolition dans les années 60 par le combat acharné des habitants du Village (notamment l'écrivaine Jane Jacobs). Il rouvrit en 1967 comme bibliothèque publique de la New York Public Library.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📖 À l'intérieur</div>
+        <p>L'entrée est libre — montez au premier étage pour voir la grande salle de lecture avec ses vitraux d'origine, ses balcons en bois sculpté et son escalier en colimaçon en fer forgé. C'est l'un des plus beaux intérieurs publics de Manhattan, et étonnamment peu fréquenté.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Calvert Vaux 1877</span>
+        <span class="tag">Sauvée par les habitants</span>
+        <span class="tag sage">15–20 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Calvert Vaux, l'autre génie de Central Park</div>
+            <span class="expand-section-sub">l'associé oublié de Frederick Law Olmsted</span>
+            <p>Calvert Vaux (prononcer « <em>Vox</em> ») est l'architecte britannique qui co-conçut Central Park avec Olmsted en 1858. C'est à lui qu'on doit l'essentiel de la structure paysagère du parc — les ponts en pierre, le Bethesda Terrace, le tracé des allées. Pourtant, l'histoire ne retient souvent que le nom d'Olmsted. Le Jefferson Market Courthouse est l'un des rares bâtiments où Vaux a pu déployer toute sa fantaisie victorienne, libéré de la contrainte paysagère. C'est peut-être son chef-d'œuvre architectural pur.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le procès Thaw — le « procès du siècle »</div>
+            <span class="expand-section-sub">1906 — l'architecte assassiné de l'arche</span>
+            <p>En juin 1906, le millionnaire <em>Harry K. Thaw</em> tira trois balles sur l'architecte <em>Stanford White</em> au Madison Square Garden, dans le rooftop dîner-théâtre conçu par White lui-même. Le mobile : Thaw était jaloux d'une liaison passée entre White et son épouse <em>Evelyn Nesbit</em>. Le procès, tenu ici à Jefferson Market, fut un événement national — premier « procès du siècle » de l'Amérique moderne, couverture quotidienne par toute la presse, foules massées sur la 6ème Avenue. Thaw fut finalement déclaré <em>non coupable pour cause d'aliénation mentale</em> et interné. Coïncidence troublante : les jurés se rendaient au tribunal en passant <em>devant l'arche de Washington Square</em>, l'œuvre la plus célèbre de l'homme dont ils jugeaient l'assassin.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Sauvée de la démolition par Jane Jacobs</div>
+            <span class="expand-section-sub">1958–1967, le combat des habitants</span>
+            <p>Quand le tribunal ferma en 1945, le bâtiment se délabra. À la fin des années 50, la ville projeta de le démolir pour construire un immeuble moderne. Les habitants du Village, conduits par l'urbaniste-écrivaine <em>Jane Jacobs</em> (auteure du <em>Death and Life of Great American Cities</em>, 1961), se mobilisèrent. Pétitions, articles, manifestations devant le bâtiment, lobbying auprès du maire Wagner. Ils obtinrent gain de cause : le bâtiment fut classé en 1966 et reconverti en bibliothèque par la New York Public Library en 1967. C'est l'une des premières grandes victoires du mouvement de préservation patrimoniale aux États-Unis.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Bibliothèque ouverte au public</strong>, lun-jeu 10h–20h, ven-sam 10h–17h, dim fermé. Accès libre. La grande salle de lecture du 1er étage et l'escalier en colimaçon sont les deux points à ne pas manquer. <em>Pas besoin d'emprunter un livre</em> — vous pouvez simplement entrer, regarder, prendre des photos sans flash.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 7 : PATCHIN PLACE ── -->
+  <article class="stop" id="stop-patchin">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">12:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Ruelle privée · Mémoire littéraire</div>
+      <h3 class="stop-title">Patchin Place</h3>
+      <div class="stop-address">West 10th St · à 30 m à l'ouest de la 6ème Avenue</div>
+      <p class="stop-desc">
+        Une impasse pavée de 25 mètres, fermée par une grille en fer forgé, abritant <em>dix petites maisons en brique rouge</em> de trois étages, identiques, alignées de chaque côté. Construites en 1848 pour loger les serveurs basques travaillant à l'hôtel Brevoort sur la 5ème Avenue, elles sont vite devenues un asile pour artistes et écrivains désargentés. La grille empêche d'entrer, mais on voit tout depuis le portail.
+      </p>
+      <p class="stop-desc">
+        Au n° 4 vécut <em>e.e. cummings</em> de 1923 à sa mort en 1962 — quarante ans dans la même petite maison. Au n° 5 vécut <em>Djuna Barnes</em>, autrice du roman moderniste <em>Nightwood</em> (1936) — elle y resta plus de quarante ans aussi, devenue recluse dans ses dernières années. <em>John Reed</em>, journaliste révolutionnaire et auteur de <em>Ten Days That Shook the World</em> (sur la Révolution russe), y vécut en 1916. <em>Theodore Dreiser</em>, <em>Jane Bowles</em>, <em>Marlon Brando</em> jeune — tous y passèrent. C'est probablement la rue la plus densément habitée par la littérature américaine du XXe siècle.
+      </p>
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>Lisez à Jade le poème <em>« somewhere i have never travelled, gladly beyond »</em> d'e.e. cummings devant la grille. C'est ici qu'il l'a écrit. Cinq vers suffisent — le ton est doux, les voisins n'écoutent pas, et la lumière du milieu de journée filtre joliment entre les arbres.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">e.e. cummings</span>
+        <span class="tag">Djuna Barnes</span>
+        <span class="tag sage">10 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Les serveurs basques de l'hôtel Brevoort</div>
+            <span class="expand-section-sub">1848 — la genèse improbable</span>
+            <p>Aaron D. Patchin, propriétaire foncier, fit construire en 1848 ces dix petites maisons identiques pour servir de <em>dortoirs</em> aux serveurs et garçons d'ascenseur de l'hôtel Brevoort, le grand hôtel de luxe qui se dressait au coin de 5th Avenue et 8th Street. Les ouvriers de l'hôtel — pour la plupart immigrés basques — y logeaient à plusieurs par chambre. Quand l'hôtel ferma au début du XXe siècle, les maisons furent reconverties en logements bon marché. Le quartier devenait alors le repaire des artistes et écrivains attirés par les loyers modiques. La rue n'a jamais cessé d'être propriété privée, ce qui explique son extraordinaire conservation.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">e.e. cummings, locataire éternel du n° 4</div>
+            <span class="expand-section-sub">40 ans dans la même maison</span>
+            <p>Edward Estlin Cummings, le poète qui n'utilisait pas de majuscules à son nom, emménagea au n° 4 Patchin Place en 1923. Il y resta jusqu'à sa mort en 1962 — quarante ans dans le même appartement. Sa femme Marion racontait qu'il refusait absolument de bouger : « <em>Cette rue est mon poème permanent</em> ». Il y écrivit la majeure partie de son œuvre, dont le célèbre <em>« anyone lived in a pretty how town »</em>. Une plaque discrète à l'extérieur de la grille mentionne sa résidence. Le studio rouge, au premier étage, est aujourd'hui occupé par un descendant lointain de la famille — l'appartement n'a presque pas changé depuis 1962.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Djuna Barnes, l'oubliée du modernisme</div>
+            <span class="expand-section-sub">le n° 5, et la solitude des dernières décennies</span>
+            <p>Djuna Barnes, contemporaine et amie de James Joyce, vécut au n° 5 de 1940 à sa mort en 1982 — soit 42 ans. Son grand roman <em>Nightwood</em> (1936), préfacé par T.S. Eliot, est aujourd'hui considéré comme un chef-d'œuvre du modernisme américain. Mais Djuna Barnes traversa le succès très tôt, puis fut oubliée du grand public, sombra dans l'alcoolisme, et passa ses 30 dernières années en recluse à Patchin Place, écrivant et refusant de voir presque tous ses visiteurs (sauf Carson McCullers et Anaïs Nin). Sa célèbre épitaphe à elle-même : « <em>Je suis le dictionnaire des langues mortes</em> ». Elle est enterrée à Storrs, Connecticut.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Le réverbère de gaz</div>
+            <p>Au coin de la grille, on aperçoit un <em>réverbère à gaz</em> du XIXe siècle — l'un des derniers en service dans Manhattan. Il fonctionne encore au gaz et s'allume automatiquement à la tombée du jour. Si vous repassez par là à 21h, c'est une scène tirée d'une nouvelle d'Edith Wharton.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Accès</div>
+            <p><strong>Strictement privé</strong> — la grille est toujours fermée mais on voit toute l'impasse depuis l'extérieur. Pas d'accès officiel aux maisons. Visite : 5–10 min depuis la grille.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 8 : DÉJEUNER ── -->
+  <article class="stop" id="stop-dejeuner">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">13:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Pause · Déjeuner</div>
+      <h3 class="stop-title">Déjeuner dans le Village</h3>
+      <div class="stop-address">Bleecker St · Carmine St · West 4th St</div>
+      <p class="stop-desc">
+        Vous êtes au cœur d'un des meilleurs quartiers de New York pour manger sans cérémonie. Trois pôles selon votre humeur : <em>Bleecker St</em> pour la pizza et l'italien (<em>Bleecker Street Pizza</em>, <em>Pepe Rosso</em>), <em>Carmine St</em> pour l'américain réconfortant (<em>The Grey Dog</em>, <em>SMASHED NYC</em>), ou <em>West 4th St</em> pour le diner authentique (<em>Washington Square Diner</em>). Si vous voulez essayer un classique controversé du quartier : <em>Murray's Bagels</em> sur la 6ème Avenue (Frank Sinatra y commandait son everything bagel).
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">⏱ Stratégie</div>
+        <p>13h-14h, le quartier est plein d'étudiants NYU et de touristes. Visez 12h45 ou 14h15 pour table tranquille. Voir la section restaurants plus bas pour la sélection complète.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">1h–1h15 de pause</span>
+        <span class="tag sage">Bleecker / Carmine / W 4th</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">🍽 Sélection complète des options du quartier</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Pour une vraie pause à deux</div>
+            <span class="expand-section-sub">ambiance, lumière, un peu de temps</span>
+            <p><em>Pepe Rosso</em> (168 Sullivan St) : trattoria italienne familiale, pâtes fraîches faites maison à des prix défiant toute concurrence — on vit comme à Rome pour 15 $. <em>Tacombi</em> (255 Bleecker St) : tacos mexicains servis dans une vieille boulangerie reconvertie, banquettes en bois, ambiance cantine joyeuse — réservation conseillée. <em>Rosemary's</em> (18 Greenwich Ave) : cuisine italienne contemporaine, jardin sur le toit, plus posé et plus cher (à garder éventuellement pour le dîner).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Pour manger vite et bien</div>
+            <span class="expand-section-sub">fast &amp; bon</span>
+            <p><em>Bleecker Street Pizza</em> (69 7th Ave S) : la slice classique du Village, élu meilleur de New York par Food Network, file rapide. <em>SMASHED NYC</em> (516 Hudson St) : smash burgers à l'australienne (le chef vient de Sydney), galette de bœuf écrasée à la spatule, fromage fondu, pickles maison. <em>Murray's Bagels</em> (500 6th Ave) : bagel lox au comptoir, institution du quartier depuis 1996. <em>Menkoi Sao</em> (7 Cornelia St) : bol de ramen japonais, comptoir minimaliste, ~$17.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Pour le diner américain authentique</div>
+            <span class="expand-section-sub">œufs, pancakes, bottomless coffee</span>
+            <p><em>Washington Square Diner</em> (150 W 4th St) : diner de quartier ouvert 24/7, omelette + bacon + pancakes pour ~$15, ambiance films de Woody Allen. <em>The Grey Dog — West Village</em> (49 Carmine St) : café-restaurant, brunchs fameux, intérieur boisé, parfait si vous voulez vous installer 1h.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Petit-déj du matin (si vous démarrez à jeun)</div>
+            <span class="expand-section-sub">avant ou après Washington Square</span>
+            <p><em>Pasticceria Rocco</em> (243 Bleecker St) : pâtisserie italienne, cannoli, sfogliatelle, espresso au comptoir — le matin pur. <em>La Bonbonniere</em> (28 8th Ave) : diner minuscule à 4 tabourets, omelettes et pancakes des années 50, presque caricatural — culte parmi les habitants.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Stratégie timing</div>
+            <p>Le pic de fréquentation est <strong>12h30–14h</strong> sur Bleecker (étudiants NYU + touristes). Avant 12h30 ou après 14h15 : plus calme. Pour Tacombi et Rosemary's, <em>réservation conseillée</em> via Resy. Pour les autres adresses, walk-in.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 9 : SHERIDAN SQUARE & STONEWALL ── -->
+  <article class="stop" id="stop-sheridan">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">14:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Place historique · Stonewall National Monument</div>
+      <h3 class="stop-title">Sheridan Square &amp; Stonewall</h3>
+      <div class="stop-address">Christopher St / 7th Ave S / W 4th St — Christopher Park</div>
+      <p class="stop-desc">
+        Deux petits squares triangulaires se font face de part et d'autre de la 7ème Avenue South : <em>Sheridan Square</em> à l'est (avec une statue équestre du général Philip Sheridan, héros de la guerre de Sécession) et <em>Christopher Park</em> à l'ouest. C'est ce dernier qui compte pour l'histoire mondiale : c'est ici, le 28 juin 1969, que le mouvement contemporain pour les droits LGBT a basculé.
+      </p>
+      <p class="stop-desc">
+        En face du parc, sur Christopher Street, se dresse <em>The Stonewall Inn</em>, bar gay de l'époque (et toujours aujourd'hui). Cette nuit-là, la police de New York mena une descente de routine — elles étaient fréquentes dans les bars gays. Mais cette fois-ci, les clients refusèrent de se laisser embarquer. Six jours d'émeutes éclatèrent autour du bar et dans Christopher Street. L'année suivante, le 28 juin 1970, eut lieu la première Gay Pride de l'histoire — précisément ici, partant de Stonewall et remontant la 6ème Avenue jusqu'à Central Park. En 2016, Barack Obama a classé le site <em>Stonewall National Monument</em> — premier monument national américain dédié à l'histoire LGBT.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">⚐ Dans Christopher Park</div>
+        <p>Au centre du parc, le <em>Gay Liberation Monument</em> du sculpteur George Segal (1992) : quatre figures peintes en blanc, deux couples — un homme/homme debout, deux femmes assises sur un banc — installées comme si elles attendaient simplement, ensemble, dans un parc. Œuvre douce, banale, c'est précisément l'idée. Asseyez-vous à côté d'eux quelques minutes.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Stonewall National Monument</span>
+        <span class="tag rust">28 juin 1969</span>
+        <span class="tag sage">20–30 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">La nuit du 28 juin 1969</div>
+            <span class="expand-section-sub">l'étincelle</span>
+            <p>Au début des années 60, l'homosexualité est <em>illégale</em> dans l'État de New York. Les bars gays sont interdits ; pour exister, ils opèrent sous couverture mafieuse (la famille Genovese gérait Stonewall). Les descentes de police étaient régulières — environ une par mois. Le 28 juin 1969 vers 1h20 du matin, six policiers entrent au Stonewall Inn pour une descente de routine. Mais cette nuit-là, environ 200 clients refusent de fournir leurs papiers et de se laisser embarquer. Une foule se masse à l'extérieur. Les premières pierres et bouteilles volent. L'émeute durera <em>six nuits</em>, de plus en plus organisée. Une figure souvent citée comme déclencheuse : <em>Marsha P. Johnson</em>, femme trans noire, et <em>Sylvia Rivera</em>, femme trans portoricaine, parmi les premières à résister à l'arrestation.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Du soulèvement au mouvement</div>
+            <span class="expand-section-sub">28 juin 1970 — la première Pride</span>
+            <p>Un an jour pour jour après la nuit, le 28 juin 1970, eut lieu la <em>Christopher Street Liberation Day March</em> — la toute première marche des fiertés de l'histoire. Plusieurs milliers de personnes partirent de Stonewall et remontèrent la 6ème Avenue jusqu'à Central Park (où se trouve aujourd'hui le Sheep Meadow). Aucune autorisation officielle n'avait été demandée — on marchait illégalement, en pleine rue. C'est cette marche qui devint la matrice de toutes les <em>Gay Pride</em> du monde. Aujourd'hui, la NYC Pride réunit chaque année 2 à 3 millions de personnes en juin, partant toujours du même endroit.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Stonewall Inn aujourd'hui</div>
+            <span class="expand-section-sub">le bar et le monument</span>
+            <p>Le bar lui-même rouvrit en 2007 après plusieurs années de fermeture, et fonctionne toujours sous le nom de Stonewall Inn — petite salle obscure, banquettes rouges, juke-box, foule mixte et chaleureuse. Vous pouvez y entrer librement (boisson de bienvenue, ambiance simple). En 2015, le bar fut classé monument historique de la ville de New York, premier édifice classé pour son importance LGBT. En 2016, Obama y ajouta le statut fédéral de National Monument — couvrant le bar, le parc en face, et plusieurs rues alentour. <em>Il aura fallu attendre 2019 — un demi-siècle après les émeutes — pour que le chef de la police de NYC présente officiellement des excuses publiques à la communauté LGBT.</em></p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Draft Riots — juillet 1863</div>
+            <span class="expand-section-sub">les émeutes les plus meurtrières de l'histoire américaine</span>
+            <p>Bien avant Stonewall, ces rues ont déjà connu leur insurrection. En pleine guerre de Sécession, le Congrès vote en mars 1863 une loi de conscription militaire : les hommes tirés au sort doivent aller combattre au front — <em>sauf</em> ceux qui peuvent payer 300 dollars pour se faire remplacer (un an de salaire ouvrier). Le 13 juillet 1863, la colère explose dans les quartiers ouvriers irlandais de New York. Les émeutiers — ouvriers blancs, majoritairement irlandais catholiques — s'en prennent d'abord aux bureaux de conscription, puis à la presse abolitionniste, puis à la communauté noire de la ville. Pendant quatre jours, lynchages, incendies, pillages. Bilan : entre <em>120 et 200 morts</em>, près de 2 000 blessés. C'est le pire épisode de violences civiles de toute l'histoire des États-Unis. Greenwich Village et le West Village, alors quartiers d'immigration irlandaise, furent au cœur de l'émeute. Le souvenir en a été largement effacé de la mémoire urbaine — pas un monument, pas une plaque. Mais les rues s'en souviennent.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Julius', l'autre bar de Christopher St</div>
+            <p>Trois minutes de marche au nord, au 159 W 10th St, se trouve <em>Julius'</em>, le plus vieux bar gay continûment ouvert de New York (depuis les années 1860 comme bar tout court, comme bar gay depuis les années 50). C'est ici qu'eut lieu le <em>« Sip-In »</em> du 21 avril 1966 — trois militants de la Mattachine Society s'annoncèrent ouvertement gays au comptoir et exigèrent d'être servis. Le barman refusa. Le geste donna lieu à une jurisprudence qui mettra fin légalement à l'interdiction de servir des gays dans les bars new-yorkais — trois ans avant Stonewall. Si Stonewall fut l'émeute, Julius' fut le procès.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Café Society, 1938 — le jazz brise la ligne de couleur</div>
+            <p>À quelques pas de Sheridan Square, au 2 Sheridan Square (aujourd'hui disparu, remplacé par un immeuble résidentiel), Barney Josephson ouvrit en décembre 1938 le <em>Café Society</em> — <em>premier night-club de New York ouvert aux Noirs et aux Blancs sur un pied d'égalité</em>, artistes comme clients. Slogan : « The wrong place for the Right people ». Sur scène : <em>Billie Holiday</em> (qui y chanta pour la première fois <em>Strange Fruit</em> en mars 1939, poème de protestation contre les lynchages — le public pleurait en silence), <em>Count Basie</em>, <em>Sarah Vaughan</em>, <em>Lena Horne</em>, <em>Nina Simone</em>. Paul Robeson, Lillian Hellman, Langston Hughes y venaient dîner. Le club fut brisé dans les années 50 par la chasse aux sorcières maccarthyste — le frère de Josephson fut cité devant le Comité des activités anti-américaines. Le Café Society est considéré comme l'une des antichambres culturelles du mouvement des droits civiques américain.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Christopher Park</strong> en accès libre. Le <em>Stonewall Inn</em> est ouvert tlj dès 14h, entrée libre. Le <em>Stonewall National Monument Visitor Center</em> (à 50 m, ouvert depuis juin 2024) propose une exposition gratuite sur l'histoire — petits documents, vidéos, archives. Comptez 30–45 min en tout pour le complexe.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 10 : GAY STREET ── -->
+  <article class="stop" id="stop-gay">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">15:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Rue · Curiosité urbaine</div>
+      <h3 class="stop-title">Gay Street</h3>
+      <div class="stop-address">Entre Christopher St et Waverly Pl · à l'ouest de la 6ème Avenue</div>
+      <p class="stop-desc">
+        Une des rues les plus étranges de Manhattan : longue de seulement <em>120 mètres</em>, courbe (rare dans New York où tout est droit), bordée de townhouses fédérales en brique rouge des années 1820. Le nom n'a aucun lien avec le mouvement LGBT — il existe depuis 1833 et viendrait probablement d'un propriétaire foncier nommé Sidney Howard Gay, ou plus probablement encore d'un certain R. Gay qui possédait les écuries du coin. Le nom est devenu doublement évocateur après les événements de Christopher Street voisins.
+      </p>
+      <p class="stop-desc">
+        La rue a servi de décor à de nombreux films — <em>The Lake House</em> (2006) avec Sandra Bullock et Keanu Reeves, mais aussi des scènes des séries <em>Friends</em>, <em>Sex and the City</em>, et beaucoup de pubs. Les habitants tolèrent les promeneurs mais détestent les flashs ; tournez doucement et photographiez sans bruit.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📍 À l'angle</div>
+        <p>L'intersection de Gay St avec <em>Waverly Pl</em> est l'un des rares endroits où Waverly Place croise… elle-même (Waverly croise Waverly !). C'est l'une des oddities du tracé du Village, immortalisée dans le poème de Calvin Trillin sur les rues impossibles de New York.</p>
+      </div>
+      <div class="stop-note">
+        <div class="stop-note-label">🎸 Jimi Hendrix habita ici</div>
+        <p>Fin des années 60, avant de monter à Harlem puis de s'installer au studio Electric Lady sur la 8ème Rue, <em>Jimi Hendrix</em> vécut quelques mois dans un petit appartement de Gay Street. Les voisins se souvenaient d'une silhouette discrète, qui saluait d'un signe de tête, et de la musique qui filtrait parfois à travers les murs.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Townhouses 1820</span>
+        <span class="tag">120 m de long</span>
+        <span class="tag sage">10 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 11 : BEDFORD STREET TRIO ── -->
+  <article class="stop" id="stop-bedford">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">15:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Pop culture · Architecture · Bedford Street</div>
+      <h3 class="stop-title">Le trio de Bedford Street</h3>
+      <div class="stop-address">75½, 90 et 102 Bedford St · à 2 min à pied l'un de l'autre</div>
+      <p class="stop-desc">
+        Trois maisons mythiques alignées sur 200 mètres de Bedford Street, à explorer dans cet ordre :
+      </p>
+      <p class="stop-desc">
+        <strong>1. Friends Apartment Building (90 Bedford St, angle Grove)</strong> — La façade de l'immeuble où vivaient Monica, Rachel, Chandler et Joey. Tournée à l'extérieur uniquement (les intérieurs étaient un studio à Burbank), elle est devenue l'une des adresses les plus photographiées de New York. Cherchez <em>Central Perk</em> au rez-de-chaussée — c'est en réalité un restaurant, <em>The Little Owl</em>, sans rapport avec la série mais aujourd'hui pris dans le mythe.
+      </p>
+      <p class="stop-desc">
+        <strong>2. 75½ Bedford Street</strong> — La <em>maison la plus étroite de New York</em>. Largeur : 2,90 mètres. Construite en 1873 dans une ancienne allée d'écuries. Y vécurent la poétesse <em>Edna St. Vincent Millay</em> en 1923–1924, l'anthropologue <em>Margaret Mead</em>, et l'acteur <em>Cary Grant</em>. Dernière vente connue : 2013, pour 3,25 millions de dollars. Façade rose pâle, balcon en fer forgé.
+      </p>
+      <p class="stop-desc">
+        <strong>3. Twin Peaks (102 Bedford St)</strong> — Une maison comme aucune autre à Manhattan : façade à colombages style chalet alpin, deux pignons pointus identiques (les « twin peaks »). Construite en 1830 comme simple maison fédérale, elle fut entièrement remaniée en 1925 par l'architecte <em>Clifford Reed Daily</em> qui la voulait « <em>maison-manifeste</em> » pour artistes et bohémiens du Village. Aujourd'hui résidence privée.
+      </p>
+      <div class="romantic">
+        <div class="romantic-label">Moment couple</div>
+        <p>L'angle Bedford / Grove — à 50 m du Friends Building — est l'un des plus photogéniques de Manhattan. Lumière de fin d'après-midi en mai : 16h–17h. Posez l'appareil sur la colonne d'éclairage en face, mode retardateur 10 secondes. Évitez les week-ends — touristes par dizaines.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">90 Bedford — Friends</span>
+        <span class="tag gold">75½ — la plus étroite</span>
+        <span class="tag">102 — Twin Peaks</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Edna St. Vincent Millay au 75½</div>
+            <span class="expand-section-sub">la poétesse qui inventa le bohème américain</span>
+            <p>Edna St. Vincent Millay, première femme à recevoir le Pulitzer de poésie (1923), emménagea au 75½ Bedford St avec son mari hollandais Eugen Boissevain en 1923 — quelques mois après son prix. La maison venait juste d'être construite (1873) sur une parcelle de 2,90 m de large dans un passage à chevaux. Millay l'adorait : « <em>une maison aussi étroite que mes vers</em> », écrivit-elle. Ils n'y restèrent qu'un an, mais la résidence devint emblématique. Millay y composa plusieurs sonnets de <em>The Buck in the Snow</em> (1928). Sa figure — femme libre, bisexuelle, alcoolique, magnifique — incarne l'esprit du Village des années 20 mieux que personne.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Twin Peaks, le pari fou de 1925</div>
+            <span class="expand-section-sub">Clifford Reed Daily, le rénovateur visionnaire</span>
+            <p>L'architecte Clifford Reed Daily acheta la modeste maison fédérale en 1925 et la remania de fond en comble. Sa thèse : le Village était devenu trop conservateur architecturalement, il fallait y injecter de la fantaisie. Il transforma la façade en pastiche de chalet alpin (colombages noirs sur enduit blanc, deux pignons pointus, fenêtres en losanges) et baptisa l'ensemble <em>Twin Peaks</em>. Il le destina explicitement à des locataires artistes — peintres, écrivains, danseurs. La maison fut inaugurée par une fête masquée historique, à laquelle assistèrent <em>John Sloan</em>, <em>Jackson Pollock</em> jeune, et <em>Princess Amelie Rives Troubetzkoy</em>. C'est aujourd'hui propriété privée mais l'extérieur reste exactement comme en 1925.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Friends Building — l'adresse fictive</div>
+            <span class="expand-section-sub">90 Bedford, l'immeuble qui n'a pas demandé à devenir célèbre</span>
+            <p>Dans la série <em>Friends</em> (1994–2004), l'adresse mentionnée est <em>495 Grove Street, apt 5</em> — qui n'existe pas. La production utilisa des plans extérieurs du 90 Bedford St (angle Grove) parce que la silhouette du bâtiment, étroit en façade et coiffé d'un toit en pignon, correspondait à l'idée que les Californiens se font d'un immeuble new-yorkais. Les acteurs n'ont jamais tourné une seule scène ici. Aujourd'hui, l'immeuble appartient à un seul propriétaire qui interdit l'accès à la cage d'escalier pour cause d'invasion touristique. Le restaurant en bas, <em>The Little Owl</em>, est une excellente petite table italienne — pas le café Central Perk, malgré ce qu'on lit partout.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Cherry Lane Theatre — à deux pas</div>
+            <p>À 100 mètres au sud (38 Commerce St), le <em>Cherry Lane Theatre</em> est le plus vieux théâtre <em>off-Broadway</em> en activité (1924). Y ont joué pour la première fois <em>Edward Albee</em>, <em>Samuel Beckett</em>, <em>Eugene O'Neill</em>, <em>Sam Shepard</em>. Petit, intime — environ 180 places. Programmation actuelle visible sur cherrylanetheatre.org. Si vous voulez voir une pièce en off, c'est le rendez-vous.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p>Trois maisons <strong>strictement privées</strong> — extérieur uniquement. Pas de café ni de boutique à l'intérieur. La <em>Magnolia Bakery</em> (401 Bleecker St, à 5 min) est l'arrêt cupcake post-Friends si vous y tenez (boutique vue dans <em>Sex and the City</em>). Comptez 25–35 min pour parcourir le trio.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 12 : TRIANGLE DE HESS ── -->
+  <article class="stop" id="stop-hess">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">16:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Pépite microscopique · Acte de défi</div>
+      <h3 class="stop-title">Le Triangle de Hess</h3>
+      <div class="stop-address">110 7th Ave South · à l'angle Christopher St (devant Village Cigars)</div>
+      <p class="stop-desc">
+        La plus petite parcelle privée de New York : un triangle de mosaïque de <em>15 cm de côté</em> incrusté dans le trottoir, avec inscription : « <em>Property of the Hess Estate which has never been dedicated for public purposes</em> ». Date : 27 juillet 1922. C'est un acte de défi pur — l'œuvre involontaire de la famille d'un certain David Hess, qui possédait à cet endroit l'hôtel Voorhis.
+      </p>
+      <p class="stop-desc">
+        L'histoire : en 1913, la ville déclara l'expropriation de plusieurs centaines de bâtiments pour creuser la 7ème Avenue South et étendre le métro. L'hôtel Voorhis fut démoli, mais un minuscule triangle de propriété fut <em>oublié</em> par les expropriateurs. Quand la famille Hess s'en aperçut neuf ans plus tard, la ville lui demanda gentiment de le donner pour le trottoir. Refus catégorique. Pour marquer leur droit de propriété éternelle, ils firent poser cette mosaïque. Personne n'a osé y toucher depuis. Vous marchez probablement dessus sans le voir — c'est minuscule.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🔍 Comment le trouver</div>
+        <p>Devant l'entrée de <em>Village Cigars</em> (boutique rouge à l'angle), regardez le sol côté 7th Ave S. Le triangle est en mosaïque marron foncé sur fond crème. Les passants marchent dessus toute la journée sans le remarquer.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">15 cm de côté</span>
+        <span class="tag">1922</span>
+        <span class="tag sage">2 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 13 : BLEECKER STREET ── -->
+  <article class="stop" id="stop-bleecker">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">16:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Promenade · Disquaires &amp; vintage</div>
+      <h3 class="stop-title">Bleecker Street &amp; alentours</h3>
+      <div class="stop-address">Bleecker St entre 6th Ave et MacDougal St</div>
+      <p class="stop-desc">
+        Bleecker Street est l'épicentre culturel du Village depuis 150 ans. Au n° <em>197</em>, <em>Village Revival Records</em> est l'un des derniers vrais disquaires de Manhattan — vinyles d'occasion, jazz, rock, soul, classique, fonds de catalogue impressionnant et patron passionné. À deux blocs (10 W 13th St), <em>Beacon's Closet</em> est l'institution du <em>vintage</em> new-yorkais — vêtements de seconde main triés avec soin, souvent griffés, aux prix raisonnables.
+      </p>
+      <p class="stop-desc">
+        Si vous remontez Bleecker vers MacDougal Street, vous traversez <em>l'âme bohème</em> du Village des années 50–60 : <em>Café Wha?</em> (à l'angle MacDougal/Minetta Lane), où Bob Dylan donna ses premiers concerts new-yorkais en 1961, où Jimi Hendrix joua avant de devenir Jimi Hendrix. <em>Caffè Reggio</em> (119 MacDougal St) — premier café à servir un cappuccino aux États-Unis (1927), peintures du XVe siècle italien aux murs, machine à café importée d'Italie en 1902 toujours en service. <em>Comedy Cellar</em> (117 MacDougal) — le club de stand-up le plus mythique de New York.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">☕ Pause café</div>
+        <p>Caffè Reggio est <em>obligatoire</em> si vous aimez les cafés. Asseyez-vous sur la banquette de cuir verte au fond — c'est celle où s'asseyait Bob Dylan en 1961. La machine espresso au comptoir est la même qu'à l'ouverture en 1927. Cappuccino : 5 $.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Caffè Reggio 1927</span>
+        <span class="tag">Vinyles &amp; vintage</span>
+        <span class="tag sage">45 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 14 : THE CAGE ── -->
+  <article class="stop" id="stop-cage">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">17:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Sport · Mythe NYC</div>
+      <h3 class="stop-title">The Cage — West 4th Street Courts</h3>
+      <div class="stop-address">6th Ave &amp; W 3rd St · à l'angle de Bleecker St</div>
+      <p class="stop-desc">
+        Un terrain de basket en plein air, entouré d'un grillage à mailles serrées qui donne son nom — <em>The Cage</em>. Mais ce n'est pas n'importe quel terrain : c'est le plus mythique du basketball new-yorkais après celui du Rucker Park de Harlem. Tous les grands joueurs locaux — <em>Stephon Marbury</em>, <em>Ron Artest</em>, <em>Anthony Mason</em>, <em>God Shammgod</em> — y ont fait leurs preuves. Le terrain est tout petit (asphalte, arceaux usés), ce qui rend le jeu plus rapide et plus physique : la légende dit que celui qui résiste à la Cage résiste à n'importe quel terrain de NBA.
+      </p>
+      <p class="stop-desc">
+        Tournoi annuel : le <em>West 4th Street Pro-Am</em>, en juillet-août, attire les meilleurs streetballers de la côte est, des centaines de spectateurs collés au grillage et des recruteurs NBA. En semaine, vous trouverez des matchs de pickup tous les soirs après 17h, principalement entre joueurs locaux et étudiants NYU. Spectateurs bienvenus, photos OK, mais pas de gêne pour les joueurs.
+      </p>
+      <div class="stop-tags">
+        <span class="tag gold">Streetball mythique</span>
+        <span class="tag">Pro-Am en été</span>
+        <span class="tag sage">15–30 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 15 : WASHINGTON SQUARE GOLDEN HOUR ── -->
+  <article class="stop" id="stop-sunset">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">18:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Retour ⭐ · Golden hour</div>
+      <h3 class="stop-title">Washington Square Park — Coucher de soleil</h3>
+      <div class="stop-address">Sous l'arche · côté nord</div>
+      <p class="stop-desc">
+        Revenez à votre point de départ pour la lumière. En mai, le soleil se couche autour de <em>20h05</em> à New York, et la « golden hour » dure de 18h45 à 20h00 — l'arche de marbre se met à briller d'une lumière chaude, presque rose, et la fontaine reflète l'ouest. C'est le moment où le parc bascule : touristes qui partent, étudiants qui sortent dîner, musiciens qui s'installent, danseurs autour de la fontaine.
+      </p>
+      <p class="stop-desc">
+        Asseyez-vous sur les marches au pied de l'arche, côté nord, vers 19h30. Vous serez en plein dans la lumière. C'est l'une des scènes les plus iconiques de New York — celle qui fait que le Village reste, malgré tout (la gentrification, NYU partout, les loyers fous), le quartier le plus vivant et le plus aimable de Manhattan.
+      </p>
+      <div class="romantic">
+        <div class="romantic-label">Le moment de la journée</div>
+        <p>C'est ici. Pas à Brooklyn Bridge, pas à Central Park — ici. La lumière du soir traverse l'arche de Stanford White, les ombres des passants se découpent en silhouettes contre le marbre, un saxophoniste joue généralement à 30 mètres, et la 5ème Avenue file devant vous, parfaitement droite, jusqu'à l'horizon. Restez 30 minutes minimum. La photo se fera toute seule.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Sunset 20h05</span>
+        <span class="tag rust">★ Le moment</span>
+        <span class="tag sage">30–45 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 16 : MARIE'S CRISIS CAFÉ ── -->
+  <article class="stop" id="stop-marie">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">21:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Soirée ⭐ · Piano sing-along</div>
+      <h3 class="stop-title">Marie's Crisis Café</h3>
+      <div class="stop-address">59 Grove St · entre 7th Ave S et Bleecker St</div>
+      <p class="stop-desc">
+        Un sous-sol minuscule, mal éclairé, avec un piano droit au milieu et environ 50 personnes serrées tout autour. Tous chantent — ensemble, à pleins poumons — les comédies musicales de Broadway. <em>West Side Story</em>, <em>Les Misérables</em>, <em>Hamilton</em>, <em>Cabaret</em>, <em>Hairspray</em>, <em>The Sound of Music</em>. Le pianiste enchaîne les morceaux sans pause. Personne n'a de partition. Tout le monde connaît les paroles.
+      </p>
+      <p class="stop-desc">
+        Le bar est ouvert depuis les années 30, dans un bâtiment où vécut <em>Thomas Paine</em> (l'auteur de <em>Common Sense</em>, le pamphlet qui déclencha la Révolution américaine en 1776, mort dans cette maison en 1809). « Marie » était la patronne dans les années 20 ; « Crisis » fait référence aux <em>American Crisis Papers</em> de Paine. Le lieu fut speakeasy pendant la Prohibition, bar gay underground dans les années 50, et est devenu sing-along piano bar à la fin des années 70. Ambiance : ultra mixte, gay-friendly à 100 %, complètement bienveillante. On entre, on chante, on n'a pas le temps d'être gêné.
+      </p>
+      <div class="romantic">
+        <div class="romantic-label">L'autre moment de la soirée</div>
+        <p>Demandez au pianiste « <em>Suddenly Seymour</em> » (Little Shop of Horrors), « <em>I'll Cover You</em> » (Rent) ou « <em>A Whole New World</em> » — vous chanterez en duo avec votre voisin que vous ne connaissez pas, et c'est merveilleux. Ce n'est <em>pas</em> un karaoké : tout le monde chante en même temps, en chœur. Personne ne juge.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Sing-along Broadway</span>
+        <span class="tag rust">Cash only</span>
+        <span class="tag sage">2h+ recommandées</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes &amp; mode d'emploi</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Thomas Paine est mort ici</div>
+            <span class="expand-section-sub">le 8 juin 1809</span>
+            <p>Le bâtiment du 59 Grove Street est l'un des rares édifices du Village où vécut un Père fondateur des États-Unis. Thomas Paine, auteur de <em>Common Sense</em> (1776) et de <em>The American Crisis</em> (les pamphlets que George Washington faisait lire à ses troupes la veille des batailles), passa les dernières années de sa vie à New York dans une grande pauvreté, malade et oublié. Il mourut au 59 Grove le 8 juin 1809. Une plaque discrète à l'extérieur du bâtiment le rappelle. Le nom du bar — <em>Marie's Crisis</em> — reprend le mot « Crisis » de Paine.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Mode d'emploi pratique</div>
+            <span class="expand-section-sub">cash, patience, et joie</span>
+            <p>Ouvert tlj 17h–4h du matin. Le piano commence vers 17h30 et joue sans pause jusqu'à fermeture. <em>Cash uniquement</em> au bar (un ATM dans le bâtiment au cas où). Pas de réservation, pas de droit d'entrée — vous payez vos consos (~$10–14 le cocktail) et vous laissez 1 ou 2 dollars dans la jarre du pianiste à chaque morceau (tip jar bien visible sur le piano). Foule maximale entre 21h et minuit le week-end. <em>Si c'est plein, faites la queue dehors</em> — ça avance vite. Pas de smoking, pas de téléphone (les pianistes le réclament : on est là pour chanter, pas pour filmer).</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Lin-Manuel Miranda et Marie's</div>
+            <p>Lin-Manuel Miranda, créateur de <em>Hamilton</em>, fréquentait Marie's avant son succès. Plusieurs anecdotes circulent : il y aurait fait chanter à des inconnus des morceaux de <em>In the Heights</em> avant que la comédie musicale soit montée. Aujourd'hui, quand <em>« My Shot »</em> ou <em>« You'll Be Back »</em> passent au piano, la foule explose. Si jamais vous tombez sur une soirée exceptionnelle où Lin-Manuel passe (ça arrive), vous le saurez à l'ovation à l'entrée.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Avant d'y aller</div>
+            <p>Si Marie's Crisis vous intimide, l'alternative à 100 mètres est <em>Julius'</em> (159 W 10th St) — bar gay historique, sans piano mais avec burgers cultes (<em>Julius' burger</em>), ambiance plus calme, idéale pour finir doucement. Vous pouvez faire les deux : Julius' à 19h pour dîner, Marie's à 21h pour chanter.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ══════════════════════════ FOOD SECTION ══════════════════════════ -->
+  <section class="food-section">
+    <div class="section-label">Où manger</div>
+    <p class="food-intro">
+      Greenwich Village et le West Village sont, depuis 50 ans, le quartier où les New-Yorkais vont manger pour le plaisir — ni pour la mode (Soho, Tribeca), ni pour l'efficacité (Midtown), ni pour la performance (East Village). Ici on mange dans des troquets italiens, des diners 24/7, des pâtisseries à l'ancienne, des trattorias de quartier. Le piège est l'abondance — chaque rue compte 5 adresses correctes. Voici la sélection essentielle, organisée par moment de la journée.
+    </p>
+
+    <!-- PETIT-DÉJ -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☕</span>
+        <span class="meal-header-title">Petit-déjeuner</span>
+        <span class="meal-header-time">08:00–10:30</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pâtisserie italienne</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Pasticceria Rocco</div>
+          <div class="resto-address">243 Bleecker St</div>
+          <p class="resto-desc">Pâtisserie italienne familiale ouverte depuis 1974, vitrine remplie de cannoli, sfogliatelle, biscotti. L'espresso au comptoir est excellent et coûte 3 $. Ambiance authentique de quartier — les habitués prennent leur cappuccino debout en lisant le journal italien. Petit espace en arrière-salle pour s'asseoir.</p>
+          <p class="resto-note">Cannolo ricotta + cappuccino : ~$10. Parfait avant de descendre vers Washington Square.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Diner</span>
+          </div>
+          <div class="resto-name">La Bonbonniere</div>
+          <div class="resto-address">28 8th Ave</div>
+          <p class="resto-desc">Diner microscopique des années 50 — quatre tabourets au comptoir, deux tables, néon rouge à l'extérieur. Pancakes à la chaîne, omelettes, bacon, café refill gratuit. Tarifs imbattables pour le quartier (~$10–14). Servi par Vassiliki, qui tient la maison depuis trois décennies. Si vous voulez sentir le NYC d'avant la gentrification, c'est ici.</p>
+          <p class="resto-note">Cash uniquement. Souvent plein le week-end vers 10h.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Café · Brunch</span>
+          </div>
+          <div class="resto-name">The Grey Dog — West Village</div>
+          <div class="resto-address">49 Carmine St</div>
+          <p class="resto-desc">Café-restaurant cosy ouvert toute la journée, intérieur boisé, larges tables et banquettes. Brunchs copieux, sandwiches généreux, café en libre-refill. Idéal si vous voulez vous installer une heure avec un livre ou planifier la journée. Wifi gratuit, pas de pression de turn-over.</p>
+          <p class="resto-note">Brunch ~$18–24/personne. Ouverture 6h30, plein dès 9h le week-end.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Bagel</span>
+          </div>
+          <div class="resto-name">Murray's Bagels</div>
+          <div class="resto-address">500 6th Ave</div>
+          <p class="resto-desc">L'institution du bagel dans le Village depuis 1996. Pâte bouillie puis cuite, cream cheese fait maison, lox épais du Maine. Le classique <em>everything bagel + lox</em> est parfait. Frank Sinatra et Robert De Niro y commandaient leur petit-déj quand ils habitaient le quartier. Comptoir, file rapide.</p>
+          <p class="resto-note">Bagel lox complet : ~$14–17. À emporter dans le parc.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÉJEUNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍝</span>
+        <span class="meal-header-title">Déjeuner</span>
+        <span class="meal-header-time">12:30–14:30</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Italien</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Pepe Rosso</div>
+          <div class="resto-address">168 Sullivan St</div>
+          <p class="resto-desc">Trattoria romaine familiale, l'un des meilleurs rapports qualité-prix du Village. Pâtes fraîches faites le matin, sauce tomate San Marzano, pesto au mortier, ravioles maison. Un plat de pâtes à 13–17 $, bouteille de vin maison à 25 $. Petit espace, environ 25 couverts, ambiance chaleureuse italienne — on parle plus fort que les autres tables.</p>
+          <p class="resto-note">Sans réservation, walk-in possible avant 13h. Cash and cards.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pizza à la part</span>
+            <span class="resto-badge badge-insta">À ne pas rater</span>
+          </div>
+          <div class="resto-name">Bleecker Street Pizza</div>
+          <div class="resto-address">69 7th Ave S</div>
+          <p class="resto-desc">Slice classique new-yorkaise, élue meilleure pizza de NY par Food Network plusieurs années de suite. Pâte fine, sauce tomate fraîche, mozzarella fondue à la perfection. La <em>Nonna Maria</em> (sauce vodka, basilic, parmesan) est leur signature. Comptoir debout, à emporter ou bouchée rapide sur place.</p>
+          <p class="resto-note">~$5 la part classique, $7 les spéciales. Plié en deux à la new-yorkaise.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Mexicain</span>
+          </div>
+          <div class="resto-name">Tacombi</div>
+          <div class="resto-address">255 Bleecker St</div>
+          <p class="resto-desc">Tacos mexicains servis dans une vieille boulangerie reconvertie — banquettes en bois, tortillas faites au comptoir devant les clients (recette du Yucatán), jus de pastèque pressé minute. Tacos al pastor, fish, carnitas, baja shrimp — tous à $4–6 pièce. Margaritas de qualité.</p>
+          <p class="resto-note">Réservation conseillée le week-end via Resy. ~$25/personne avec boisson.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Smash burger</span>
+          </div>
+          <div class="resto-name">SMASHED NYC</div>
+          <div class="resto-address">516 Hudson St</div>
+          <p class="resto-desc">Smash burgers à l'australienne (le chef vient de Sydney). Galette de bœuf écrasée à la spatule pour caraméliser la croûte, fromage fondu, pickles maison, pain brioché grillé. Les milkshakes au speculoos sont mythiques dans le quartier.</p>
+          <p class="resto-note">Single smash : $11. Double : $15. Comptoir, à emporter ou debout.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Diner</span>
+          </div>
+          <div class="resto-name">Washington Square Diner</div>
+          <div class="resto-address">150 W 4th St</div>
+          <p class="resto-desc">Diner classique ouvert 24/7, omelettes, pancakes, sandwichs, bière au verre. À deux pas de Washington Square Park. Ambiance Seinfeld / Woody Allen, banquettes en cuir rouge, néon, serveuses qui vous appellent « <em>honey</em> ». Pour un déjeuner sans chichi.</p>
+          <p class="resto-note">~$15–20/personne. Cash and cards. Parfait après une longue marche.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Ramen</span>
+          </div>
+          <div class="resto-name">Menkoi Sao</div>
+          <div class="resto-address">7 Cornelia St</div>
+          <p class="resto-desc">Comptoir de ramen japonais très petit (15 places), bouillon shoyu et tonkotsu, nouilles maison fraîches. Pas de chichi, pas de réservation, pas de carte de cocktails — juste du très bon ramen.</p>
+          <p class="resto-note">Bol ~$17. Si plein : aller manger ailleurs, ça ne tourne pas vite.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÎNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍷</span>
+        <span class="meal-header-title">Dîner</span>
+        <span class="meal-header-time">19:00–21:30</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Italien</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Rosemary's</div>
+          <div class="resto-address">18 Greenwich Ave</div>
+          <p class="resto-desc">L'une des plus belles tables italiennes du Village. Cuisine de saison, légumes du potager sur le toit, pâtes faites maison, antipasti généreux. Décor lumineux, tomettes au sol, panier de focaccia chaude offert. Très demandé : réservation indispensable au moins 5–7 jours à l'avance via Resy.</p>
+          <p class="resto-note">~$60–80/personne hors vin. Demandez la table près de la fenêtre côté Greenwich Ave.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Mexicain</span>
+          </div>
+          <div class="resto-name">Tacombi (en option dîner)</div>
+          <div class="resto-address">255 Bleecker St</div>
+          <p class="resto-desc">Si vous n'y êtes pas allés au déjeuner. Le soir, ambiance plus festive, margaritas et palomas de qualité, tortillas faites devant les clients. Très bon pour un premier dîner dans le quartier sans formalisme.</p>
+          <p class="resto-note">Réservation Resy conseillée. ~$35/personne avec boissons.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARS & SOIRÉE -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍸</span>
+        <span class="meal-header-title">Bars &amp; soirée</span>
+        <span class="meal-header-time">à partir de 20:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Piano sing-along</span>
+            <span class="resto-badge badge-insta">★ Le moment</span>
+          </div>
+          <div class="resto-name">Marie's Crisis Café</div>
+          <div class="resto-address">59 Grove St</div>
+          <p class="resto-desc">Sous-sol minuscule, piano au milieu, foule serrée chantant en chœur les comédies musicales de Broadway sans interruption. Bienveillance totale, ambiance gay-friendly, cash only. Lieu où Thomas Paine mourut en 1809 — la maison la plus chargée d'histoire de Grove St.</p>
+          <p class="resto-note">Cash only. ~$12 le cocktail. Pourboire à laisser dans la jarre du pianiste.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Bar historique</span>
+          </div>
+          <div class="resto-name">Julius'</div>
+          <div class="resto-address">159 W 10th St</div>
+          <p class="resto-desc">Le plus vieux bar gay continûment ouvert de New York (depuis les années 50, dans un bâtiment de 1864). Plancher en bois, juke-box, lumière tamisée, et l'un des meilleurs burgers du Village (<em>Julius' burger</em> : galette épaisse, fromage américain, tomate, oignon, pickle, frites maison). Ambiance mixte, sans prétention. Lieu du <em>Sip-In</em> de 1966.</p>
+          <p class="resto-note">Burger : $14. Bières $7. Bonne option pour dîner avant Marie's.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pub étudiant</span>
+          </div>
+          <div class="resto-name">The Red Lion</div>
+          <div class="resto-address">151 Bleecker St</div>
+          <p class="resto-desc">Pub bondé fréquenté par les étudiants NYU, groupes de rock live tous les soirs sur petite scène à l'arrière. Bières correctes, bruit assourdissant, ambiance jeune et chaude. Pas le meilleur bar du quartier mais l'un des plus animés.</p>
+          <p class="resto-note">Pas de réservation, ça déborde sur la rue. Bières ~$8.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Rooftop / discothèque</span>
+          </div>
+          <div class="resto-name">Le Bain (The Standard)</div>
+          <div class="resto-address">848 Washington St</div>
+          <p class="resto-desc">Rooftop / club au sommet de l'hôtel The Standard High Line. Vue spectaculaire sur l'Hudson et la skyline de Midtown, piscine intérieure (oui, vraie piscine au milieu de la piste), DJ électro de qualité. À la limite du Village (Meatpacking District) mais accessible à pied depuis Bedford St en 10 min. Code vestimentaire chic.</p>
+          <p class="resto-note">Entrée gratuite avant 23h, sélection à la porte le week-end. Cocktail ~$22.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════ POI SUPPLÉMENTAIRES ══════════════════════════ -->
+  <section class="poi-section">
+    <div class="section-label">Pépites &amp; détours</div>
+    <p class="food-intro">Petites adresses, curiosités urbaines, et boutiques qu'on rate facilement si on suit l'itinéraire principal sans regarder à droite et à gauche. À insérer selon votre énergie et votre curiosité.</p>
+
+    <div class="poi-grid">
+
+      <div class="poi-card">
+        <div class="poi-card-icon">📀</div>
+        <div class="poi-card-name">Village Revival Records</div>
+        <div class="poi-card-address">197 Bleecker St #1</div>
+        <p class="poi-card-desc">L'un des derniers vrais disquaires de Manhattan. Vinyles d'occasion soigneusement triés — jazz, rock, soul, classique, B.O. de films — avec un fonds de catalogue impressionnant et un patron passionné qui prend le temps d'expliquer. Si vous ramenez un seul vinyle de New York, c'est ici qu'il faut le trouver.</p>
+        <p class="poi-card-note">Vinyles : $15–60 selon rareté. Cartes acceptées.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">👗</div>
+        <div class="poi-card-name">Beacon's Closet</div>
+        <div class="poi-card-address">10 W 13th St</div>
+        <p class="poi-card-desc">L'institution du <em>vintage</em> new-yorkais — vêtements de seconde main triés avec exigence, souvent griffés, à des prix raisonnables. Manteaux, robes, jeans, pulls cachemire. Très recherché pour les pièces des années 70–90. Mieux vaut y aller en début de journée pour les nouveaux arrivages.</p>
+        <p class="poi-card-note">Tarifs variables. La sélection tourne tous les jours.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">☕</div>
+        <div class="poi-card-name">Caffè Reggio</div>
+        <div class="poi-card-address">119 MacDougal St</div>
+        <p class="poi-card-desc">Premier café à servir un cappuccino aux États-Unis (1927). Machine à café importée d'Italie en 1902, peintures du XVe siècle italien aux murs, banquettes de cuir vert où s'asseyaient Bob Dylan, Jack Kerouac et Allen Ginsberg. Espresso au comptoir comme à Naples. Décor inchangé depuis 100 ans.</p>
+        <p class="poi-card-note">Cappuccino $5,50. Asseyez-vous sur la banquette du fond.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🧁</div>
+        <div class="poi-card-name">Magnolia Bakery</div>
+        <div class="poi-card-address">401 Bleecker St (angle 11th St)</div>
+        <p class="poi-card-desc">La pâtisserie devenue célèbre via <em>Sex and the City</em> (épisode où Carrie et Miranda mangent un cupcake assises dehors). Cupcakes vanille à la crème au beurre, banana pudding mythique. Très touristique mais qualité sincère. Petite boutique, file rapide. Bon souvenir gourmand.</p>
+        <p class="poi-card-note">Cupcake $4,50, banana pudding ~$6. Cash and cards.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎭</div>
+        <div class="poi-card-name">Cherry Lane Theatre</div>
+        <div class="poi-card-address">38 Commerce St</div>
+        <p class="poi-card-desc">Plus vieux théâtre off-Broadway en activité (1924), ~180 places. Y créent ou ont créé Albee, Beckett, O'Neill, Sam Shepard. Petit, intime, programmation actuelle de qualité. Si une pièce vous tente, c'est l'expérience théâtre new-yorkais idéale (à la place de l'écrasant Broadway).</p>
+        <p class="poi-card-note">Billets ~$30–55. Programmation sur cherrylanetheatre.org.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎤</div>
+        <div class="poi-card-name">Café Wha?</div>
+        <div class="poi-card-address">115 MacDougal St</div>
+        <p class="poi-card-desc">Le club mythique où Bob Dylan donna ses premiers concerts new-yorkais en 1961, où Jimi Hendrix joua avant d'être Jimi Hendrix, et où Bruce Springsteen, Bill Cosby, Richard Pryor débutèrent. Aujourd'hui : groupes live tous les soirs, mix de styles, ambiance touristique mais authenticité du lieu intacte.</p>
+        <p class="poi-card-note">Cover ~$15–25 selon soir. Réservation conseillée le week-end.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">😂</div>
+        <div class="poi-card-name">Comedy Cellar</div>
+        <div class="poi-card-address">117 MacDougal St</div>
+        <p class="poi-card-desc">Le club de stand-up le plus mythique de New York. Petits comme Jerry Seinfeld, Chris Rock, Dave Chappelle, Aziz Ansari y ont fait leurs gammes — et viennent encore régulièrement faire des sets surprise. Salle minuscule au sous-sol, plafond bas, ambiance club. Stand-up uniquement en anglais.</p>
+        <p class="poi-card-note">Cover $24–30 + 2 boissons obligatoires. Résa indispensable. 21h ou 22h30.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">St Luke in the Fields</div>
+        <div class="poi-card-address">487 Hudson St</div>
+        <p class="poi-card-desc">Petite église épiscopalienne (1822) entourée d'un jardin clos accessible au public en journée. L'un des secrets les mieux gardés du West Village — bancs, parterres de fleurs, fontaine, silence absolu à 100 m de la 7ème Avenue. Refuge idéal en milieu de journée.</p>
+        <p class="poi-card-note">Jardin ouvert lun-sam 8h–dusk. Gratuit. Discrétion appréciée.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⚭</div>
+        <div class="poi-card-name">NYC AIDS Memorial</div>
+        <div class="poi-card-address">St Vincent's Triangle · 7th Ave / W 12th St</div>
+        <p class="poi-card-desc">Structure triangulaire en acier blanc, ajourée, inaugurée en 2016 à l'emplacement de l'ancien hôpital St Vincent's — là où, dans les années 80, affluèrent les premiers patients atteints du VIH quand personne d'autre ne voulait les soigner. Le sol, gravé d'un poème de Walt Whitman, rend hommage aux 100 000 New-Yorkais morts du sida. Petit parc silencieux. Traverser en silence.</p>
+        <p class="poi-card-note">Accès libre 24h/24. Banc au centre. 5–10 min de recueillement.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">✡</div>
+        <div class="poi-card-name">Second Cemetery, Spanish &amp; Portuguese Synagogue</div>
+        <div class="poi-card-address">72–76 W 11th St · entre 5th et 6th Avenues</div>
+        <p class="poi-card-desc">Minuscule cimetière de moins de 10 mètres de large, coincé entre deux immeubles. C'est l'un des trois cimetières de <em>Shearith Israel</em>, la première congrégation juive de New York (fondée en 1654 par des Sépharades fuyant l'Inquisition portugaise au Brésil). Celui-ci fut en usage de 1805 à 1829. Une vingtaine de pierres tombales en grès, à peine lisibles, entourées d'une grille en fer. Curiosité historique rare : on passe devant sans le voir si on ne sait pas.</p>
+        <p class="poi-card-note">Visible depuis la rue seulement (grille fermée). Ralentir, regarder, passer.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⌂</div>
+        <div class="poi-card-name">Northern Dispensary</div>
+        <div class="poi-card-address">165 Waverly Pl · angle Christopher / Grove</div>
+        <p class="poi-card-desc">Étrange bâtiment triangulaire en brique rouge de 1831 — l'un des plus vieux édifices publics survivants de Manhattan. Construit comme dispensaire gratuit pour les pauvres du Village (d'où le nom), il soigna notamment Edgar Allan Poe d'un rhume en 1837. La géométrie du site est un rare paradoxe new-yorkais : deux côtés du triangle donnent sur la même rue (Waverly Pl), et un seul côté sur deux rues différentes (Christopher + Grove). Aujourd'hui vide, en attente d'une reconversion. À regarder depuis le trottoir.</p>
+        <p class="poi-card-note">Fermé au public. Angle parfait pour photo architecture.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">℞</div>
+        <div class="poi-card-name">C. O. Bigelow Apothecaries</div>
+        <div class="poi-card-address">414 6th Avenue · entre 8th et 9th Streets</div>
+        <p class="poi-card-desc">La plus vieille pharmacie d'Amérique encore en activité — fondée en 1838, au même emplacement depuis 1902. Intérieur d'origine : boiseries de chêne sombre, tiroirs de pharmacien à étiquettes en lettres d'or, vieux récipients en porcelaine. On y trouve encore des remèdes maison (baume au citron, pommade à la lavande), mais aussi cosmétiques contemporains. Mark Twain et Eleanor Roosevelt y venaient. Expérience de temps suspendu.</p>
+        <p class="poi-card-note">Ouvert tlj 7h30–21h (dim 8h30–19h). Entrée libre, curiosité bienvenue.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ INFOS PRATIQUES ══════════════════════════ -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p>Un <strong>vendredi ou samedi</strong> est idéal pour profiter de l'énergie du soir (Marie's, Comedy Cellar, Le Bain). Le <strong>dimanche</strong> est plus tranquille en journée — ambiance brunch, parfait pour Washington Square. <strong>Évitez le lundi</strong> — beaucoup d'adresses culturelles et de bars sont fermés.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🎟 À réserver à l'avance</div>
+        <p><strong>Rosemary's</strong> via Resy (5–7 jours) · <strong>Tacombi</strong> via Resy (3 jours pour le week-end) · <strong>Comedy Cellar</strong> (1–2 semaines obligatoire) · <strong>Cherry Lane Theatre</strong> selon la pièce. Marie's Crisis et Julius' sans réservation, walk-in.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">👟 Confort</div>
+        <p>Beaucoup de marche (~7–9 km sur la journée) sur trottoirs et pavés (Mews, Patchin Place, Bedford). Chaussures plates et confortables obligatoires. Les rues du Village ont peu d'ombre en mai — emportez de l'eau et un chapeau si soleil.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Arche de Washington Square au sunset · pavés de Washington Mews lumière dorée · façade de Lockwood de Forest gros plan · ruelle de Patchin Place depuis la grille · Friends Building angle Bedford/Grove · 75½ Bedford façade rose · Twin Peaks chalet alpin · réverbère à gaz de Patchin Place à la tombée du jour.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transport</div>
+        <p>Accès : <strong>A/B/C/D/E/F/M</strong> à West 4th St – Washington Sq · <strong>1</strong> à Christopher St – Sheridan Sq · <strong>L</strong> à 8th Ave / 14th St · <strong>F/M</strong> à 14th St – 6th Ave. Tout est accessible à pied dans un périmètre de 1,5 km.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Le Village est un quartier <em>résidentiel</em> qui se laisse visiter. Les habitants sont plus calmes que dans le reste de Manhattan, et apprécient qu'on parle bas le soir, qu'on ne photographie pas leurs fenêtres, qu'on ne bloque pas les trottoirs. Discrétion = bienveillance en retour. Tenue : décontractée en journée, légèrement chic le soir pour Le Bain ou un bon dîner.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ──────────────────────────── FOOTER ──────────────────────────── -->
+<footer class="page-footer">
+  <p class="footer-title">« I am the dictionary of the dead languages. » — Djuna Barnes, Patchin Place</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function() {
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function() {
+    var allDetails = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    allDetails.forEach(function(d) { d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

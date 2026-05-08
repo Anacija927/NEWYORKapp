@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sud de Manhattan — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B3A2A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 24px 48px;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+  }
+
+  .hero-meta {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 70px);
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(245,240,232,0.65);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar {
+    background: var(--navy-light);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+
+  .timeline-inner {
+    display: inline-flex;
+    gap: 0;
+  }
+
+  .tl-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.55);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    cursor: default;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── BODY WRAPPER ── */
+  .page-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── INTRO EDITO ── */
+  .intro-block {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .intro-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--navy);
+  }
+
+  .intro-block p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip-box p {
+    font-size: 13.5px;
+    color: rgba(245,240,232,0.8);
+    font-style: normal;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .tip-box strong {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── STOP CARD ── */
+  .stop {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 28px;
+    position: relative;
+  }
+
+  .stop:last-child { border-bottom: none; }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: 39px;
+    top: 76px;
+    bottom: -44px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border), transparent);
+  }
+  .stop:last-child::before { display: none; }
+
+  .stop-time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .stop-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .stop-dot.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+    width: 16px;
+    height: 16px;
+  }
+
+  .stop-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .stop-content {}
+
+  .stop-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .stop-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stop-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .stop-desc {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 12px;
+  }
+
+  .stop-note {
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 14px;
+  }
+  .stop-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 5px;
+  }
+  .stop-note p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .stop-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 2px;
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* ── FOOD SECTION ── */
+  .food-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .food-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+
+  .meal-block {
+    margin-bottom: 36px;
+  }
+  .meal-block:last-child { margin-bottom: 0; }
+
+  .meal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .meal-header-icon {
+    font-size: 18px;
+  }
+  .meal-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+  }
+  .meal-header-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .resto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .resto-grid { grid-template-columns: 1fr; }
+  }
+
+  .resto-card {
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .resto-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 3px 12px rgba(26,39,68,0.07);
+  }
+
+  .resto-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .resto-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+
+  .resto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .resto-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 9px;
+  }
+  .resto-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+  .resto-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    text-align: center;
+    padding: 36px 0 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  /* ── POI GRID ── */
+  .poi-section {
+    padding: 44px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+
+  .poi-card {
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .poi-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.06);
+  }
+  .poi-card-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .poi-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .poi-card-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .poi-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .poi-card-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section {
+    padding: 44px 0;
+  }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .infos-grid { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    padding: 20px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .info-card strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--navy);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── EXPAND / DÉTAILS ── */
+  .stop-expand {
+    margin-top: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .stop-expand[open] {
+    border-color: var(--gold);
+    box-shadow: 0 2px 14px rgba(200,169,110,0.08);
+  }
+  .stop-expand summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    background: var(--cream-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+  }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand summary::marker { display: none; }
+  .stop-expand summary:hover {
+    background: rgba(200,169,110,0.18);
+  }
+  .stop-expand[open] summary {
+    background: var(--navy);
+    color: var(--gold);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow {
+    font-size: 9px;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .stop-expand[open] .stop-expand-arrow {
+    transform: rotate(180deg);
+  }
+  .stop-expand-content {
+    padding: 22px 20px 22px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent 80%);
+  }
+
+  /* ── GUIDE-STYLE ANECDOTE BOX ── */
+  .anecdote {
+    background: var(--rust);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .anecdote-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .anecdote-title::before {
+    content: '❖';
+    font-size: 12px;
+  }
+  .anecdote p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.92);
+    margin: 0 0 9px 0;
+  }
+  .anecdote p:last-child { margin: 0; }
+  .anecdote em, .anecdote strong {
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ── EXPAND SUB-SECTION ── */
+  .expand-section { margin: 16px 0; }
+  .expand-section:first-child { margin-top: 0; }
+  .expand-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .expand-section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .expand-section p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .expand-section em { color: var(--navy); font-style: italic; font-weight: 500; }
+
+  .expand-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 22px 0;
+  }
+
+  /* Practical info inside expand */
+  .expand-practical {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    margin: 14px 0 4px;
+  }
+  .expand-practical-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .expand-practical p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .expand-practical strong { color: var(--navy); }
+
+  /* ── MAP ── */
+  .map-section{padding:44px 0 0;}
+  .map-container{margin-top:20px;border-radius:6px;overflow:hidden;border:1px solid var(--border);line-height:0;}
+  .map-container svg{display:block;width:100%;height:auto;}
+
+  /* ── EXPAND-ALL TOGGLE ── */
+  .expand-all-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 0 0;
+    margin-bottom: -12px;
+  }
+  .expand-all-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .expand-all-btn:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
+  .expand-all-btn-icon {
+    font-size: 11px;
+    transition: transform 0.3s;
+  }
+  .expand-all-btn.is-open .expand-all-btn-icon {
+    transform: rotate(180deg);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .stop {
+      grid-template-columns: 60px 1fr;
+      gap: 0 16px;
+    }
+    .stop::before { left: 29px; }
+    .stop-expand summary { font-size: 9px; padding: 12px 14px; }
+    .stop-expand-content { padding: 18px 14px; }
+    .anecdote { padding: 14px 15px; }
+    .expand-all-btn { font-size: 9px; padding: 9px 12px; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('sud-manhattan');</script>
+
+
+<!-- ──────────────────────────── HERO ──────────────────────────── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Pattern inspired by Lower Manhattan: skyline verticality, financial grid, and 9/11 memorial pools -->
+    <defs>
+      <!-- Skyline vertical columns -->
+      <pattern id="skyline" x="0" y="0" width="60" height="340" patternUnits="userSpaceOnUse">
+        <rect x="0" y="180" width="8" height="160" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+        <rect x="12" y="120" width="10" height="220" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+        <rect x="26" y="220" width="7" height="120" fill="none" stroke="#C8A96E" stroke-width="0.4"/>
+        <rect x="37" y="80" width="12" height="260" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+        <!-- Window dots -->
+        <circle cx="4" cy="200" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="4" cy="220" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="4" cy="240" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="17" cy="150" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="17" cy="180" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="17" cy="210" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="43" cy="120" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="43" cy="150" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="43" cy="180" r="0.5" fill="#C8A96E" opacity="0.6"/>
+        <circle cx="43" cy="210" r="0.5" fill="#C8A96E" opacity="0.6"/>
+      </pattern>
+      <!-- Financial grid overlay -->
+      <pattern id="finGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="20" x2="40" y2="20" stroke="#C8A96E" stroke-width="0.15" stroke-dasharray="2 5"/>
+        <line x1="20" y1="0" x2="20" y2="40" stroke="#C8A96E" stroke-width="0.15" stroke-dasharray="2 5"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#skyline)"/>
+    <rect width="100%" height="100%" fill="url(#finGrid)" opacity="0.4"/>
+    <!-- 9/11 Memorial: two concentric squares on either side -->
+    <g opacity="0.12">
+      <rect x="180" y="120" width="80" height="80" fill="none" stroke="#C8A96E" stroke-width="1"/>
+      <rect x="195" y="135" width="50" height="50" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <rect x="540" y="120" width="80" height="80" fill="none" stroke="#C8A96E" stroke-width="1"/>
+      <rect x="555" y="135" width="50" height="50" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+    </g>
+    <!-- Horizon line suggesting water / harbor -->
+    <line x1="0" y1="320" x2="800" y2="320" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="10 5" opacity="0.5"/>
+    <!-- Compass-rose hints in corners (colonial map feel) -->
+    <g opacity="0.08">
+      <circle cx="60" cy="60" r="22" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="60" y1="38" x2="60" y2="82" stroke="#C8A96E" stroke-width="0.4"/>
+      <line x1="38" y1="60" x2="82" y2="60" stroke="#C8A96E" stroke-width="0.4"/>
+      <circle cx="740" cy="60" r="22" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="740" y1="38" x2="740" y2="82" stroke="#C8A96E" stroke-width="0.4"/>
+      <line x1="718" y1="60" x2="762" y2="60" stroke="#C8A96E" stroke-width="0.4"/>
+    </g>
+  </svg>
+
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">Sud de Manhattan</h1>
+    <p class="hero-subtitle">Les Fondations de l'Amérique</p>
+    <p class="hero-tagline">De la pointe de l'île aux ruelles pavées de la vieille Nouvelle-Amsterdam, du temple de la finance au mémorial des Tours — une journée à l'endroit exact où New York est née, et où elle s'est relevée.</p>
+  </div>
+</header>
+
+<!-- ──────────────────────────── TIMELINE BAR ──────────────────────────── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-battery"><span class="tl-dot"></span>09:00 · Battery Park</a>
+    <a class="tl-item" href="#stop-bull"><span class="tl-dot"></span>09:45 · Charging Bull</a>
+    <a class="tl-item" href="#stop-stone"><span class="tl-dot"></span>10:15 · Stone Street</a>
+    <a class="tl-item" href="#stop-fraunces"><span class="tl-dot"></span>10:45 · Fraunces Tavern</a>
+    <a class="tl-item" href="#stop-wall"><span class="tl-dot"></span>11:30 · Wall Street</a>
+    <a class="tl-item" href="#stop-trinity"><span class="tl-dot"></span>12:15 · Trinity</a>
+    <a class="tl-item" href="#stop-dejeuner"><span class="tl-dot"></span>13:00 · Déjeuner</a>
+    <a class="tl-item" href="#stop-fed"><span class="tl-dot"></span>14:15 · Fed Reserve</a>
+    <a class="tl-item" href="#stop-stpaul"><span class="tl-dot"></span>14:45 · St Paul's</a>
+    <a class="tl-item" href="#stop-911"><span class="tl-dot"></span>15:30 · 11-Septembre</a>
+    <a class="tl-item" href="#stop-oculus"><span class="tl-dot"></span>16:45 · Oculus</a>
+    <a class="tl-item" href="#stop-woolworth"><span class="tl-dot"></span>17:30 · Woolworth</a>
+    <a class="tl-item" href="#stop-seaport"><span class="tl-dot"></span>18:15 · Seaport</a>
+    <a class="tl-item" href="#stop-deadrabbit"><span class="tl-dot"></span>19:30 · Dead Rabbit</a>
+  </div>
+</nav>
+
+<!-- ──────────────────────────── BODY ──────────────────────────── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Là où tout a commencé — et là où tout a failli s'arrêter</h2>
+    <p>Le sud de Manhattan, c'est New York dans son épaisseur maximale. Sous vos pieds se superposent quatre siècles : le comptoir hollandais de Nouvelle-Amsterdam (1625), la ville anglaise coloniale, le berceau de la République américaine, la capitale financière du monde, et la cicatrice du 11 septembre 2001.</p>
+    <p>Le quartier est dense mais compact. Tout se fait à pied dans un périmètre de huit blocs. Les rues y sont étroites — elles épousent le tracé des chemins hollandais d'avant le Commissioners' Plan de 1811, et c'est la seule partie de Manhattan où la grille rationnelle cède à la géographie humaine. On s'y perd volontiers.</p>
+    <div class="tip-box">
+      <strong>Avant de partir</strong>
+      <p>Trois réservations à anticiper : le billet horodaté du <em>9/11 Memorial Museum</em>, le <em>One World Observatory</em> si vous voulez monter, et une table chez <em>The Dead Rabbit</em> pour la fin de journée. Tout le reste se visite librement.</p>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── CARTE SVG ──────────────────────────── -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 510" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte du sud de Manhattan">
+        <!-- Fond extérieur -->
+        <rect width="740" height="510" fill="#F0EAD8"/>
+        <!-- Fond eau (Hudson + East River + harbor) -->
+        <rect x="55" y="30" width="648" height="468" fill="#D5E2EA" rx="2"/>
+
+        <!-- Ondulations subtiles dans l'eau -->
+        <g opacity="0.35" stroke="#A8BCC8" stroke-width="0.4" fill="none">
+          <path d="M 80 80 Q 100 76, 120 80 T 160 80"/>
+          <path d="M 90 110 Q 110 106, 130 110 T 170 110"/>
+          <path d="M 75 200 Q 95 196, 115 200 T 155 200"/>
+          <path d="M 85 280 Q 105 276, 125 280 T 165 280"/>
+          <path d="M 100 360 Q 120 356, 140 360 T 180 360"/>
+          <path d="M 90 430 Q 110 426, 130 430 T 170 430"/>
+          <path d="M 220 470 Q 240 466, 260 470 T 300 470"/>
+          <path d="M 480 470 Q 500 466, 520 470 T 560 470"/>
+          <path d="M 620 280 Q 640 276, 660 280 T 690 280"/>
+          <path d="M 615 360 Q 635 356, 655 360 T 685 360"/>
+          <path d="M 625 430 Q 645 426, 665 430 T 690 430"/>
+        </g>
+
+        <!-- Brooklyn (coin nord-est, terre ferme) -->
+        <path d="M 615 30 L 703 30 L 703 245 Q 670 230, 640 215 Q 615 190, 612 150 Q 610 90, 615 30 Z"
+              fill="#E5DCC4" stroke="#C6BAA6" stroke-width="0.5"/>
+        <text x="660" y="125" text-anchor="middle" font-size="9" fill="#9A8060" font-family="Georgia,serif" font-style="italic" letter-spacing="1.5">BROOKLYN</text>
+
+        <!-- Manhattan (péninsule sud) -->
+        <path d="M 90 30
+                 L 565 30
+                 Q 580 80, 580 150
+                 Q 590 220, 575 280
+                 Q 555 340, 510 395
+                 Q 470 435, 435 460
+                 Q 410 478, 390 480
+                 Q 365 478, 340 460
+                 Q 300 430, 275 385
+                 Q 240 320, 215 245
+                 Q 185 165, 140 95
+                 Q 115 60, 90 30 Z"
+              fill="#EDE5D2" stroke="#C6BAA6" stroke-width="0.7"/>
+
+        <!-- Pont de Brooklyn -->
+        <g>
+          <line x1="568" y1="180" x2="615" y2="155" stroke="#9A8060" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M 568 180 Q 591 165, 615 155" stroke="#C8A96E" stroke-width="0.6" fill="none"/>
+          <path d="M 568 180 Q 591 172, 615 155" stroke="#C8A96E" stroke-width="0.6" fill="none"/>
+          <line x1="582" y1="172" x2="582" y2="178" stroke="#7A6850" stroke-width="1.5"/>
+          <line x1="601" y1="161" x2="601" y2="167" stroke="#7A6850" stroke-width="1.5"/>
+          <text x="592" y="148" text-anchor="middle" font-size="6.5" fill="#9A8060" font-family="Georgia,serif" font-style="italic">Brooklyn Bridge</text>
+        </g>
+
+        <!-- Labels rivières -->
+        <text x="115" y="270" text-anchor="middle" font-size="9" fill="#7A95A8" font-family="Georgia,serif" font-style="italic" letter-spacing="2" transform="rotate(-90 115 270)">HUDSON RIVER</text>
+        <text x="660" y="380" text-anchor="middle" font-size="9" fill="#7A95A8" font-family="Georgia,serif" font-style="italic" letter-spacing="2" transform="rotate(-90 660 380)">EAST RIVER</text>
+        <text x="395" y="495" text-anchor="middle" font-size="8" fill="#7A95A8" font-family="Georgia,serif" font-style="italic" letter-spacing="2.5">UPPER NEW YORK BAY</text>
+
+        <!-- Battery Park (zone verte) -->
+        <path d="M 360 458 Q 380 478, 410 470 Q 420 462, 415 450 Q 395 445, 375 448 Q 365 452, 360 458 Z"
+              fill="#D8E8C8" stroke="#B0C898" stroke-width="0.5"/>
+        <text x="385" y="488" text-anchor="middle" font-size="6.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">The Battery</text>
+
+        <!-- Bowling Green -->
+        <ellipse cx="395" cy="425" rx="10" ry="6" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.4"/>
+        <text x="395" y="442" text-anchor="middle" font-size="5.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">Bowling Gn</text>
+
+        <!-- WTC Memorial (zone) -->
+        <rect x="290" y="252" width="50" height="40" fill="rgba(216,232,200,0.45)" stroke="#B0C898" stroke-width="0.4" stroke-dasharray="2 2" rx="2"/>
+
+        <!-- City Hall Park -->
+        <ellipse cx="395" cy="170" rx="22" ry="13" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.4"/>
+        <text x="395" y="172" text-anchor="middle" font-size="5.5" fill="#62826A" font-family="Georgia,serif" font-style="italic">City Hall Pk</text>
+
+        <!-- Castle Clinton -->
+        <circle cx="378" cy="465" r="3" fill="none" stroke="#9A8060" stroke-width="0.6"/>
+
+        <!-- ══ RUES PRINCIPALES ══ -->
+        <!-- Broadway -->
+        <path d="M 95 35 Q 200 90, 320 160 Q 360 195, 380 235 Q 395 290, 400 360 Q 402 420, 395 460"
+              stroke="#C8A96E" stroke-width="2.8" fill="none" opacity="0.55"/>
+        <text x="160" y="75" font-size="6.5" fill="#A6843E" font-family="monospace" font-weight="bold" transform="rotate(28 160 75)">BROADWAY</text>
+
+        <!-- Wall Street -->
+        <line x1="345" y1="350" x2="495" y2="370" stroke="#C8A96E" stroke-width="2.6" opacity="0.65"/>
+        <text x="475" y="378" font-size="6.5" fill="#A6843E" font-family="monospace" font-weight="bold">WALL ST</text>
+
+        <!-- West Side Highway -->
+        <path d="M 165 60 Q 200 160, 235 260 Q 260 350, 295 420 Q 320 455, 350 470" stroke="#BFB49E" stroke-width="1.1" fill="none"/>
+        <text x="225" y="190" font-size="5.5" fill="#9A8060" font-family="monospace" transform="rotate(72 225 190)">West St</text>
+
+        <!-- Pearl/Water St -->
+        <path d="M 565 80 Q 575 180, 555 260 Q 530 340, 490 400 Q 460 440, 430 460" stroke="#BFB49E" stroke-width="1.1" fill="none"/>
+        <text x="555" y="200" font-size="5.5" fill="#9A8060" font-family="monospace" transform="rotate(80 555 200)">Pearl/Water St</text>
+
+        <!-- Greenwich St -->
+        <path d="M 130 50 Q 220 140, 290 240 Q 320 305, 335 380 Q 345 430, 350 465" stroke="#D2C8B5" stroke-width="0.8" fill="none"/>
+
+        <!-- Nassau/William St -->
+        <path d="M 270 60 Q 360 155, 415 240 Q 440 305, 445 390 Q 445 430, 440 460" stroke="#D2C8B5" stroke-width="0.8" fill="none"/>
+
+        <!-- Chambers St -->
+        <line x1="200" y1="135" x2="555" y2="170" stroke="#D2C8B5" stroke-width="0.8"/>
+        <text x="245" y="130" font-size="5.5" fill="#9A8060" font-family="monospace">Chambers</text>
+
+        <!-- Fulton St -->
+        <line x1="240" y1="270" x2="535" y2="295" stroke="#D2C8B5" stroke-width="0.8"/>
+        <text x="465" y="290" font-size="5.5" fill="#9A8060" font-family="monospace">Fulton St</text>
+
+        <!-- Liberty St -->
+        <line x1="250" y1="310" x2="525" y2="332" stroke="#D2C8B5" stroke-width="0.8"/>
+
+        <!-- Pine St / Stone St -->
+        <line x1="320" y1="395" x2="490" y2="415" stroke="#D2C8B5" stroke-width="0.8"/>
+        <line x1="335" y1="425" x2="475" y2="442" stroke="#D2C8B5" stroke-width="0.8"/>
+
+        <!-- ══ ROUTE ══ -->
+        <polyline points="395,470 390,425 425,395 445,410 415,350 370,350 425,395 405,305 370,270 320,270 300,245 370,195 505,285 445,445"
+                  stroke="#C8A96E" stroke-width="2.4" stroke-dasharray="7 5" fill="none" opacity="0.7" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- ══ RESTAURANTS ══ -->
+        <circle cx="408" cy="402" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="408" y="402" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">A</text>
+        <circle cx="438" cy="388" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="438" y="388" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">B</text>
+        <circle cx="430" cy="290" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="430" y="290" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <circle cx="455" cy="395" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="455" y="395" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <circle cx="445" cy="305" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="445" y="305" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <circle cx="395" cy="295" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="395" y="295" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <circle cx="450" cy="365" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="450" y="365" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <circle cx="320" cy="375" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="320" y="375" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <circle cx="465" cy="385" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="465" y="385" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <circle cx="335" cy="305" r="7" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.4"/><text x="335" y="305" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">J</text>
+
+        <!-- ══ POI ══ -->
+        <circle cx="385" cy="320" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="385" y="320" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <circle cx="245" cy="370" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="245" y="370" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <circle cx="510" cy="305" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="510" y="305" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <circle cx="400" cy="180" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="400" y="180" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">d</text>
+        <circle cx="490" cy="385" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="490" y="385" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">e</text>
+        <circle cx="420" cy="468" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="420" y="468" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">f</text>
+        <circle cx="367" cy="455" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="367" y="455" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">g</text>
+        <circle cx="335" cy="278" r="6.5" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.4"/><text x="335" y="278" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="white" font-weight="bold" font-family="monospace">h</text>
+
+        <!-- ══ ÉTAPES NUMÉROTÉES ══ -->
+        <circle cx="395" cy="470" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="395" y="470" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">1</text>
+        <rect x="282" y="464" width="98" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="284" y="473" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Battery Park · départ</text>
+
+        <circle cx="390" cy="425" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="390" y="425" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">2</text>
+        <rect x="287" y="419" width="92" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="289" y="428" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Charging Bull</text>
+
+        <circle cx="425" cy="395" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="425" y="395" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">3</text>
+        <rect x="441" y="370" width="68" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="443" y="379" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Stone Street</text>
+
+        <circle cx="445" cy="425" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="445" y="425" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <rect x="461" y="419" width="84" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="463" y="428" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Fraunces Tavern</text>
+
+        <circle cx="415" cy="350" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="415" y="350" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">5</text>
+        <rect x="431" y="338" width="118" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="433" y="347" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">NYSE &amp; Federal Hall</text>
+
+        <circle cx="370" cy="350" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="370" y="350" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="280" y="338" width="78" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="282" y="347" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Trinity Church</text>
+
+        <!-- 7. Déjeuner (gold, plus petit) -->
+        <circle cx="425" cy="395" r="9" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2"/><text x="425" y="395" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#1A2744" font-weight="bold" font-family="monospace">7</text>
+
+        <circle cx="405" cy="305" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="405" y="305" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">8</text>
+        <rect x="335" y="318" width="100" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="337" y="327" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Federal Reserve</text>
+
+        <circle cx="370" cy="270" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="370" y="270" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">9</text>
+        <rect x="386" y="264" width="62" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="388" y="273" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">St. Paul's</text>
+
+        <circle cx="320" cy="270" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="320" y="270" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="white" font-weight="bold" font-family="monospace">10</text>
+        <rect x="218" y="258" width="92" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="220" y="267" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">9/11 Memorial</text>
+
+        <circle cx="300" cy="245" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="300" y="245" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="white" font-weight="bold" font-family="monospace">11</text>
+        <rect x="200" y="233" width="92" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="202" y="242" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Oculus / One WTC</text>
+
+        <circle cx="370" cy="195" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="370" y="195" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="white" font-weight="bold" font-family="monospace">12</text>
+        <rect x="386" y="189" width="72" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="388" y="198" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Woolworth</text>
+
+        <circle cx="505" cy="285" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="505" y="285" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="white" font-weight="bold" font-family="monospace">13</text>
+        <rect x="521" y="279" width="78" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="523" y="288" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Seaport / Pier 17</text>
+
+        <!-- 14. Dead Rabbit ★ — étape signature -->
+        <circle cx="445" cy="445" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="445" y="445" text-anchor="middle" dominant-baseline="middle" font-size="9.5" fill="#1A2744" font-weight="bold" font-family="monospace">14</text>
+        <rect x="461" y="439" width="82" height="11" fill="rgba(237,229,210,0.92)" rx="1"/><text x="463" y="448" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Dead Rabbit</text>
+        <polygon points="540,445 541.2,447.4 543.8,447.6 541.8,449.3 542.4,451.9 540,450.5 537.6,451.9 538.2,449.3 536.2,447.6 538.8,447.4" fill="#C8A96E"/>
+
+        <!-- ══ COMPASS ══ -->
+        <g transform="translate(682,476)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes du jour</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Battery Park</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">② Charging Bull</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Stone Street</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ Fraunces Tavern</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑤ NYSE &amp; Federal Hall</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Trinity Church</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑦ Déjeuner</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑧ Federal Reserve</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑨ St. Paul's</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑩ 9/11 Memorial</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑪ Oculus / One WTC</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑫ Woolworth</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑬ Seaport / Pier 17</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑭ Dead Rabbit ★</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">A</span>Adrienne's Pizzabar <span style="opacity:0.5;">— 54 Stone St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">B</span>Stone Street Tavern <span style="opacity:0.5;">— 52 Stone St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>Joe's Pizza <span style="opacity:0.5;">— 124 Fulton St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>Luke's Lobster <span style="opacity:0.5;">— 26 S William St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>Kuu Ramen <span style="opacity:0.5;">— 20 John St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>Pisillo Italian Panini <span style="opacity:0.5;">— 97 Nassau St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>sweetgreen <span style="opacity:0.5;">— 67 Wall St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>George's Diner <span style="opacity:0.5;">— 89 Greenwich St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>Leo's Bagels <span style="opacity:0.5;">— 3 Hanover Square</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">J</span>O'Hara's Pub <span style="opacity:0.5;">— 120 Cedar St</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Points d'intérêt</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>Barthman's Sidewalk Clock <span style="opacity:0.5;">— Broadway &amp; Maiden Ln</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>Mur de Berlin <span style="opacity:0.5;">— 393 South End Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>Bowne &amp; Co. Stationers <span style="opacity:0.5;">— 211 Water St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Old City Hall Station <span style="opacity:0.5;">— ligne 6 terminus</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">e</span>Elevated Acre <span style="opacity:0.5;">— 55 Water St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">f</span>Staten Island Ferry <span style="opacity:0.5;">— 4 South St (gratuit)</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">g</span>SeaGlass Carousel <span style="opacity:0.5;">— Battery Park</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">h</span>Survivor Tree <span style="opacity:0.5;">— 9/11 Memorial</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- Expand-all toggle -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════ ÉTAPES ══════════════════════════ -->
+
+  <!-- ── STOP 1 : BATTERY PARK ── -->
+  <article class="stop" id="stop-battery">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">09:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Parc · Point de départ</div>
+      <h3 class="stop-title">Battery Park</h3>
+      <div class="stop-address">Pointe sud de Manhattan · entre State St et l'Hudson</div>
+      <p class="stop-desc">
+        Le nom vient des batteries d'artillerie qui défendaient la pointe de Manhattan aux XVIIe et XVIIIe siècles. C'est ici, face à la baie, que l'histoire de New York commence : les navires hollandais s'y amarraient, puis anglais, puis ceux des millions d'immigrants qui arrivaient à Castle Clinton avant que la station d'accueil ne déménage à Ellis Island en 1892.
+      </p>
+      <p class="stop-desc">
+        Aujourd'hui, le parc est un long balcon sur la statue de la Liberté, Ellis Island, le New Jersey et Brooklyn. Prenez le temps d'en faire le tour : le <em>East Coast Memorial</em> (quatre stèles de granit noir avec un aigle américain, en mémoire des marins disparus en Atlantique pendant la Seconde Guerre mondiale) ; <em>Castle Clinton</em>, fort circulaire en grès rouge (1811) aujourd'hui site historique national ; et le <em>SeaGlass Carousel</em>, carrousel de verre habité de poissons lumineux — kitsch de bon goût, étrange et poétique.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🚢 Statue & Ellis Island</div>
+        <p>C'est d'ici que partent les ferries pour Liberty Island et Ellis Island (quai devant Castle Clinton). Cette visite est traitée sur une page dédiée — elle mérite sa propre demi-journée. À défaut, le <strong>Staten Island Ferry</strong> (embarcadère 100 m à l'est, gratuit, toutes les 15–30 min) passe à 200 m de la statue et offre le même panorama pour $0 et 25 minutes aller-retour.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Vue sur la Statue</span>
+        <span class="tag">Castle Clinton 1811</span>
+        <span class="tag sage">30–45 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Castle Clinton, la porte oubliée</div>
+            <span class="expand-section-sub">1811 — de fort militaire à salle de concert</span>
+            <p>Fort circulaire en grès rouge construit en 1811 sur un îlot artificiel face à Manhattan (relié ensuite à la terre par remblai). Il n'a jamais servi à tirer un coup de canon. Au XIXe, il se transforme en salle de spectacle — <em>Castle Garden</em> — où la soprano Jenny Lind chante devant 6 000 New-Yorkais en 1850. Puis, de 1855 à 1890, il devient la <em>station d'accueil des immigrants</em> avant Ellis Island : plus de 8 millions de nouveaux arrivants y passent, deux fois plus que ne le fera Ellis Island ensuite. Aujourd'hui, c'est un National Monument géré par le Park Service, libre d'accès.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Broadway, « Canyon des Héros »</div>
+            <span class="expand-section-sub">Lower Broadway · parades triomphales</span>
+            <p>L'extrémité sud de Broadway, qui monte de Bowling Green, est surnommée le <em>Canyon des Héros</em>. C'est ici que se déroulent les parades monumentales célébrant les héros de la Nation, sous une pluie de confettis (<em>ticker-tape parades</em>). Des plaques commémoratives, serties dans le trottoir, rappellent chaque événement célébré.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Funeste vestige</div>
+            <p>En 1931, le maréchal Pétain, vainqueur de Verdun, défila ici aux côtés de Pierre Laval, président du Conseil, et du général américain John Pershing. Une plaque commémorative fut alors scellée dans le trottoir de Broadway — avec au passage <em>2 « l » à Philippe</em>, coquille restée gravée depuis.</p>
+            <p>En 2017, dans la foulée d'un projet visant à retirer de l'espace public de New York les symboles de haine et de racisme, le maire Bill de Blasio souhaita enlever cette « marque d'honneur faite à un collaborateur nazi ». Elle sera finalement <em>conservée à titre historique</em>. Baissez les yeux en remontant Broadway — vous pourriez tomber dessus.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Ferry Staten Island</div>
+            <p><strong>Gratuit, toutes les 15–30 min</strong>, départ de Whitehall Terminal (100 m à l'est de Castle Clinton). 25 min aller, 25 min retour. Passe à 200 m de la statue de la Liberté. Alternative parfaite si vous ne faites pas la visite complète de Liberty Island &amp; Ellis Island.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 2 : CHARGING BULL & FEARLESS GIRL ── -->
+  <article class="stop" id="stop-bull">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">09:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Icônes · Sculpture publique</div>
+      <h3 class="stop-title">Charging Bull &amp; Fearless Girl</h3>
+      <div class="stop-address">Bowling Green (Bull) · angle Broad St &amp; Wall St (Fearless Girl)</div>
+      <p class="stop-desc">
+        Le <em>Charging Bull</em>, bronze de 3,5 tonnes sculpté par Arturo Di Modica, est une œuvre pirate. En décembre 1989, l'artiste l'a déposé clandestinement devant la New York Stock Exchange une nuit, comme cadeau spontané aux New-Yorkais après le krach de 1987 — symbole d'optimisme et de résilience du capitalisme américain. La police a voulu le retirer ; la pression publique a obtenu qu'il soit déplacé à Bowling Green, où il est depuis. La légende dit que toucher ses cornes — ou ses testicules — porte chance financière. Les deux parties sont polies par des décennies de mains.
+      </p>
+      <p class="stop-desc">
+        La <em>Fearless Girl</em>, beaucoup plus récente (mars 2017, Kristen Visbal), a été installée face au Bull par la société State Street Global Advisors pour la journée internationale des droits des femmes, accompagnée d'une plaque appelant à davantage de femmes dans les conseils d'administration. Le dialogue entre les deux œuvres — fillette défiant le taureau — est devenu instantanément viral. Elle a été déplacée en décembre 2018 face à la New York Stock Exchange, où elle se trouve aujourd'hui. Le Bull est resté seul à Bowling Green.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>Le Bull est assiégé toute la journée. Pour une photo sans foule, il faut arriver avant 9h ou attendre après 19h. La Fearless Girl est plus accessible, et la NYSE en arrière-plan fait une composition forte.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Bull : 1989</span>
+        <span class="tag gold">Fearless Girl : 2017</span>
+        <span class="tag rust">Icône absolue</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="anecdote">
+            <div class="anecdote-title">So bullish !</div>
+            <p>Sur le terre-plein central de Bowling Green, le <em>Charging Bull</em> — bronze massif d'un taureau en position d'attaque, signé en 1989 par l'artiste italo-américain Arturo Di Modica — est la mascotte du quartier de Wall Street.</p>
+            <p>Dans le jargon boursier, quand on est <em>bullish</em> (de <em>bull</em> : taureau), on est positif et optimiste sur l'avenir. Inversement, on est <em>bearish</em> (de <em>bear</em> : ours) quand on est pessimiste sur la conjoncture ou l'état d'une entreprise. Pourquoi ces deux animaux ? Le taureau attaque en lançant ses cornes <em>vers le haut</em>. L'ours frappe en baissant ses pattes <em>vers le bas</em>. Le bronze capture très exactement l'instant de la charge haussière.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Pour tous les moyens !</div>
+            <p>Pour connaître au plus tôt les mouvements du marché, les premiers investisseurs ne manquaient pas d'imagination. Ils employaient des <em>pigeons voyageurs</em> relayés depuis les bateaux transatlantiques à Liverpool — il fallait 5 jours à l'un d'entre eux pour traverser d'Europe à New York. Sur place, des <em>signaux lumineux</em> étaient émis depuis le sommet des immeubles. Puis vinrent les courriers à cheval entre Philadelphie et Wall Street, avant l'avènement du <em>télégraphe</em>, qui transforma la vitesse de l'information financière à jamais.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Di Modica, le geste pirate</div>
+            <span class="expand-section-sub">Décembre 1989 · art de guérilla</span>
+            <p>Arturo Di Modica (1941–2021), artiste sculpteur installé à SoHo, a financé lui-même la fonte des 3,5 tonnes de bronze — près de 360 000 $ de sa poche. Dans la nuit du 15 décembre 1989, il a déposé clandestinement l'œuvre devant la New York Stock Exchange, comme un cadeau offert aux New-Yorkais après le krach de 1987. La police l'a aussitôt retiré. Devant l'émotion populaire, la ville a consenti à le réinstaller à Bowling Green, où il trône depuis. Le Bull est donc l'une des rares œuvres d'art public de Manhattan installées sans autorisation — et toujours là.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Fearless Girl, la réponse</div>
+            <span class="expand-section-sub">Mars 2017 · Kristen Visbal</span>
+            <p>Statue de bronze commandée par la société de gestion d'actifs State Street Global Advisors pour la Journée internationale des droits des femmes. Objectif affiché : appeler à plus de femmes dans les conseils d'administration des entreprises cotées. D'abord placée face au Bull, elle créait un dialogue visuel puissant — mais Di Modica a protesté publiquement, reprochant que son œuvre, symbole d'optimisme collectif, soit détournée en figure agressive. En décembre 2018, la Fearless Girl a été déplacée devant la NYSE. Sculptée par Kristen Visbal, la fillette a une posture délibérément calme — pieds plantés, poings aux hanches, menton relevé.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 3 : STONE STREET ── -->
+  <article class="stop" id="stop-stone">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">10:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Rue historique · Atmosphère</div>
+      <h3 class="stop-title">Stone Street</h3>
+      <div class="stop-address">Stone St · entre Broad St et Coenties Slip</div>
+      <p class="stop-desc">
+        La plus vieille rue pavée de New York. Tracée par les Hollandais sous le nom de <em>Hoogh Straet</em> vers 1640, elle a été la première rue de la ville à être pavée (1658) — d'où son nom actuel. Détruite par l'incendie de 1835, reconstruite, puis oubliée pendant un siècle, elle a été ressuscitée dans les années 1990 et classée Historic District. Aujourd'hui c'est une rue piétonne, entièrement pavée, bordée d'immeubles en grès brun du XIXe et de façades d'avant-guerre.
+      </p>
+      <p class="stop-desc">
+        Aux beaux jours (donc très certainement en mai), toute la rue se transforme en terrasse géante — tables en bois à perte de vue, traders en costume côtoyant les touristes, pintes qui circulent. <em>Stone Street Tavern</em>, <em>Adrienne's Pizzabar</em>, <em>Ulysses' Folk House</em> déploient leurs tables sur le pavé. C'est le lieu de déjeuner évident pour ce parcours — marquez-le mentalement, on y revient dans trois heures.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🚶 Trajet</div>
+        <p>De Stone Street on continue directement à <em>Fraunces Tavern</em> à 100 m (coin Pearl &amp; Broad) — une continuité historique naturelle : vieux pavés hollandais puis vieille taverne coloniale. Deux bâtiments, trois siècles.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Plus vieille rue de NYC</span>
+        <span class="tag">Pavés hollandais</span>
+        <span class="tag rust">Atmosphère unique</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Nieuw Amsterdam, la ville d'avant</div>
+            <span class="expand-section-sub">XVIIe siècle · origines hollandaises</span>
+            <p>Au XVIIe siècle, ce qui est aujourd'hui le Financial District s'appelait <em>Nieuw Amsterdam</em>, comptoir commercial de la Compagnie des Indes occidentales hollandaises fondé en 1625. Wall Street marquait la frontière nord de la ville — littéralement « la rue du mur », celui bâti en 1653 pour protéger la colonie des Anglais et des Amérindiens. Au-delà, c'était la campagne. En deçà, la vie grouillait entre des ruelles et des canaux, remblayés depuis pour gagner du terrain.</p>
+            <p>Broad Street, par exemple, est très large comme son nom l'indique — car elle a remplacé un canal. La ville s'est étendue vers le nord et l'est grâce au commerce maritime, jusqu'à Pearl, Front et South Streets — des rues dont les noms racontent la géographie d'origine, quand l'eau y battait les quais.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'invention du gratte-ciel</div>
+            <span class="expand-section-sub">Fin du XIXe siècle</span>
+            <p>Au XIXe siècle, ce quartier très actif s'avère rapidement trop petit pour loger financiers et négociants. Le problème trouve sa solution dans une <em>révolution architecturale</em> : le <em>building</em>. La course au gigantisme commence dès la fin du XIXe siècle au sud de Broadway. À l'est, le Brooklyn Bridge est érigé (1883) pour relier l'île au continent. Lower Manhattan devient alors le laboratoire mondial du gratte-ciel.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 4 : FRAUNCES TAVERN ── -->
+  <article class="stop" id="stop-fraunces">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">10:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Révolution américaine · Musée</div>
+      <h3 class="stop-title">Fraunces Tavern</h3>
+      <div class="stop-address">54 Pearl St · angle Broad St</div>
+      <p class="stop-desc">
+        Le plus vieux bâtiment de Manhattan. Cette belle bâtisse en brique rouge de style géorgien a été érigée en 1719 — reconstruite ensuite à l'identique après un incendie. Elle doit son nom à <em>Samuel Fraunces</em>, maître d'hôtel de George Washington, qui s'y installa dès 1762. Devenue populaire auprès des jeunes révolutionnaires, elle ouvrit ses salles aux troupes de Washington après la défaite des Anglais.
+      </p>
+      <p class="stop-desc">
+        C'est ici, le 4 décembre 1783, que Washington fit ses adieux à ses officiers dans la <em>Long Room</em> à l'étage — scène emblématique de la fondation de la République américaine. La taverne est aujourd'hui à la fois un musée de la Guerre d'Indépendance (portraits, drapeaux, manuscrits, mobilier d'époque), un restaurant et un bar à whiskies (plus de 200 références). L'ambiance intérieure, lourde de bois sombre et de pierres brutes, est celle d'un siècle qui ne reviendra pas.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Pratique</div>
+        <p><strong>Musée : $10, 12h–17h</strong> (fermé 25 déc. et Nouvel An). Visites guidées gratuites en anglais le week-end. Le restaurant sert au déjeuner et au dîner — c'est une option possible pour notre pause si l'atmosphère historique vous attire plus que la terrasse de Stone Street.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Plus vieux bâtiment de NYC</span>
+        <span class="tag">Géorgien 1719</span>
+        <span class="tag rust">Adieux de Washington 1783</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Samuel Fraunces, l'hôtelier de Washington</div>
+            <span class="expand-section-sub">Le nom derrière la taverne</span>
+            <p>Samuel Fraunces, probablement né aux Antilles et possiblement d'ascendance mêlée, tenait l'auberge avant que la Révolution n'éclate. Il devint ensuite majordome de Washington à la présidence. Dans le musée, la <em>Long Room</em> reconstituée avec la table mise évoque la scène du 4 décembre 1783 — Washington y lève son verre et dit à ses officiers : « Avec un cœur plein d'amour et de reconnaissance, je prends maintenant congé de vous ». Fin d'une guerre, début d'un pays.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les salles du musée</div>
+            <span class="expand-section-sub">À voir à l'étage</span>
+            <p>La <em>Long Room</em> reconstituée à l'étage, lieu du discours d'adieu. La <em>Clinton Dining Room</em>, en l'honneur de George Clinton, premier gouverneur américain de l'État de New York. Plusieurs salles d'exposition permanente autour de la Révolution américaine, de la guerre d'Indépendance aux débuts de la République. Collections de drapeaux, sabres, manuscrits, mobilier XVIIIe.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">La dent de l'Indépendance</div>
+            <p>Dans le musée, essayez de repérer l'extrémité d'une dent de George Washington montée en pendentif. Lorsqu'il prêta serment comme 1er président le 30 avril 1789, Washington n'avait plus qu'une seule de ses dents d'origine. Il souffrait de dentiers disgracieux — râteliers aux lèvres jaunies, taillés en <em>ivoire d'hippopotame</em> et parfois renforcés de <em>dents humaines</em> issues d'esclaves à qui elles étaient rachetées.</p>
+            <p>Ces dentiers seraient visibles sur le portrait de Gilbert Stuart (1796) — justement celui qui figure sur le billet de 1 $. Regardez bien la bouche fermée et rigide du président : ce n'est pas un choix esthétique, c'est le seul moyen de tenir son appareil en place.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Adresse :</strong> 54 Pearl St (angle Broad St) · Métro : Bowling Green ou South Ferry · <strong>Horaires musée :</strong> Tlj 12h–17h (fermé 25 déc. + 1er janv.) · <strong>Tarif :</strong> 10 $ adulte, réductions enfants · <strong>Visites guidées</strong> gratuites en anglais le week-end · frauncestavernmuseum.org</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 5 : WALL STREET (NYSE + FEDERAL HALL) ── -->
+  <article class="stop" id="stop-wall">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">11:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Finance · Révolution américaine</div>
+      <h3 class="stop-title">Wall Street : NYSE &amp; Federal Hall</h3>
+      <div class="stop-address">Wall St · entre Broadway et William St</div>
+      <p class="stop-desc">
+        Wall Street tire son nom d'un mur de bois bâti en 1653 par les colons hollandais pour protéger Nieuw Amsterdam des Anglais et des Amérindiens. Le mur a disparu au XVIIIe siècle mais la rue a gardé le nom — et l'instinct défensif. En 1792, 24 courtiers se réunissent sous un platane au numéro 68 et signent le <em>Buttonwood Agreement</em>, acte de naissance de la Bourse de New York.
+      </p>
+      <p class="stop-desc">
+        La <em>New York Stock Exchange</em> actuelle (11 Wall St, 1903, George B. Post) est un temple corinthien à six colonnes surmonté d'un fronton allégorique — « L'Intégrité protégeant les œuvres de l'Homme ». Depuis le 11 septembre 2001, l'intérieur est fermé au public ; on ne visite que la façade. C'est face à elle que la <em>Fearless Girl</em> se dresse.
+      </p>
+      <p class="stop-desc">
+        De l'autre côté de la rue, le <em>Federal Hall National Memorial</em> (26 Wall St) occupe l'emplacement du premier Capitole des États-Unis. C'est ici que George Washington a prêté serment comme premier président le 30 avril 1789, que le Bill of Rights a été débattu, et que le Congrès a siégé avant de déménager à Philadelphie puis à Washington. Le bâtiment actuel (1842) est un temple grec dorique — sa statue de Washington devant la façade est l'un des monuments les plus émouvants de New York.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Federal Hall</div>
+        <p><strong>Entrée gratuite</strong>, géré par le National Park Service. Rotonde monumentale, salle de prestation de serment reconstituée, exposition sur les débuts de la République. 20–30 min de visite. Fermé week-end. Si fermé, la statue de Washington devant les marches suffit pour le moment de gravité.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Premier Capitole US</span>
+        <span class="tag">NYSE 1903</span>
+        <span class="tag sage">Federal Hall gratuit</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le Buttonwood Agreement</div>
+            <span class="expand-section-sub">17 mai 1792 · sous un platane</span>
+            <p>En 1792, 24 courtiers se réunissent sous un platane (<em>buttonwood tree</em>) au 68 Wall Street et signent un pacte : ils s'engagent à ne traiter qu'entre eux, à une commission minimale de 0,25 %. C'est l'acte de naissance du <em>New York Stock &amp; Exchange Board</em>, future New York Stock Exchange. L'arbre est mort depuis longtemps mais une plaque sur le trottoir en rappelle l'emplacement. De l'arbre au temple corinthien qui se dresse aujourd'hui : deux siècles exacts séparent ces deux images.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Black Monday · 19 octobre 1987</div>
+            <span class="expand-section-sub">Dates gravées dans l'histoire</span>
+            <p>Wall Street a connu ses heures les plus sombres certains lundis. Le <em>Black Monday</em> du 19 octobre 1987 reste la plus brutale chute en séance depuis 1929 — le Dow Jones a perdu 22,6 % en une journée. La crise de 1929, le krach des dot-coms de 2001, la faillite de Lehman Brothers en 2008, la panique COVID de mars 2020 : toutes les secousses de l'économie mondiale passent par ces quelques blocs.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Federal Hall en détail</div>
+            <span class="expand-section-sub">26 Wall Street · National Park Service</span>
+            <p>Le bâtiment actuel date de 1842, dans un superbe style <em>Greek Revival</em> (néo-grec). Sur son fronton, la remarquable statue en bronze de George Washington, sculptée par John Quincy Adams Ward en 1883, marque l'emplacement exact où le 30 avril 1789, Washington prêta son serment d'investiture comme premier Président des États-Unis.</p>
+            <p>Le site a aussi servi, à partir de 1785, de siège au jeune gouvernement américain et d'Independence Hall quand New York était la capitale du pays. Le Bill of Rights y fut débattu. Dans la rotonde intérieure : salle de prestation de serment reconstituée, exposition permanente sur les débuts de la République, documents originaux.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite gratuite en français !</div>
+            <p>Federal Hall est géré par le <strong>National Park Service : entrée gratuite</strong>, ouvert <strong>10h–17h</strong> en semaine (fermé week-end). Des <strong>visites guidées gratuites en français</strong> sont parfois proposées — vérifier sur nps.gov/feha. Sinon, l'anglais des rangers est accessible et la scénographie très bien faite en autonomie (30 min).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Immeubles remarquables sur Wall Street</div>
+            <span class="expand-section-sub">À lever les yeux en remontant la rue</span>
+            <p><em>Au n° 48</em> — superbe immeuble néo-Renaissance (1928) de l'ancienne et prestigieuse <em>Bank of New York</em>, établissement fondé en 1784 par Alexander Hamilton lui-même, le même homme qui repose dans le cimetière de Trinity Church à cent mètres. Banque et banquier réunis dans la rue : c'est très « Wall Street ».</p>
+            <p><em>Au n° 55</em> — façade à double rangée de colonnes néoclassiques issue d'une construction de 1841 qui abrita notamment la National City Bank.</p>
+            <p><em>Au n° 67</em> — cherchez l'arche voûtée sculptée d'ancres, de bateaux et de créatures marines : c'est l'entrée de l'ancienne <em>Seamen's Bank for Savings</em>, œuvre d'inspiration française au symbolisme maritime intense. Ce genre de détail disparaît à la vitesse de la marche pressée des traders — levez les yeux.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 6 : TRINITY CHURCH ── -->
+  <article class="stop" id="stop-trinity">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">12:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Église · Cimetière historique</div>
+      <h3 class="stop-title">Trinity Church</h3>
+      <div class="stop-address">89 Broadway · à l'extrémité ouest de Wall Street</div>
+      <p class="stop-desc">
+        L'église actuelle (1846, Richard Upjohn) est la troisième à occuper ce site — les deux précédentes avaient brûlé en 1776 et 1839. Avec son clocher de 85 mètres, Trinity Church fut le plus haut bâtiment des États-Unis jusqu'en 1890. C'est un chef-d'œuvre du néo-gothique américain, et l'un des rares édifices anciens de Manhattan à n'avoir jamais été éclipsé par ses voisins — car son cimetière, classé monument, empêche toute construction alentour.
+      </p>
+      <p class="stop-desc">
+        Le cimetière est ce qui rend Trinity spéciale. On y trouve les tombes d'<em>Alexander Hamilton</em> (père fondateur, premier secrétaire au Trésor, tué en duel par Aaron Burr en 1804) et de sa femme <em>Eliza</em>, de <em>Robert Fulton</em> (l'inventeur du bateau à vapeur), et de dizaines de New-Yorkais des XVIIIe et XIXe siècles. La tombe d'Hamilton, la plus visitée depuis le succès de la comédie musicale de Lin-Manuel Miranda, est un obélisque de marbre blanc à gauche de l'église. Pavillon du souvenir, silence relatif au milieu du bruit du quartier.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎶 Référence</div>
+        <p>Si Jade ou toi êtes fans de <em>Hamilton</em> : la tombe d'Alexander + Eliza côte à côte, c'est littéralement la scène finale du spectacle. Moment surprenant d'émotion pour qui connaît l'histoire.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Tombe d'Hamilton</span>
+        <span class="tag">Néo-gothique 1846</span>
+        <span class="tag sage">Accès libre</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le scandale du grès rouge</div>
+            <span class="expand-section-sub">1846 · polémique architecturale</span>
+            <p>Sa façade a fait scandale à son inauguration : le grès rouge (<em>brownstone</em>) n'était pas considéré comme un matériau « noble » pour une église aussi importante — on lui reprochait un air trop provincial, trop rural, trop modeste pour Manhattan. Le cimetière à sa droite n'arrangeait rien : il lui donnait <em>l'allure d'une église de campagne</em> qui détonne avec l'environnement des gratte-ciel qui allait bientôt l'encercler. Aujourd'hui, c'est précisément ce contraste — petite église néogothique calée entre les tours de verre — qui fait son charme iconique.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Un clocher qui battait des records</div>
+            <span class="expand-section-sub">Plus haut bâtiment des USA jusqu'en 1890</span>
+            <p>Avec ses <em>85 mètres</em> de flèche, Trinity Church fut le bâtiment le plus haut des États-Unis pendant près d'un demi-siècle (1846–1890). Le clocher abrite un bourdon et plusieurs cloches — concerts d'orgue et récitals ont lieu régulièrement à l'intérieur (voir trinitychurchnyc.org pour le programme).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le cimetière — qui d'autre y repose</div>
+            <span class="expand-section-sub">Pères fondateurs &amp; pionniers</span>
+            <p>Au-delà d'Alexander Hamilton et d'Eliza Schuyler Hamilton : <em>Robert Fulton</em>, l'ingénieur-inventeur du bateau à vapeur commercial, qui connecta le continent par l'eau. <em>Albert Gallatin</em>, secrétaire au Trésor sous Jefferson et Madison, diplomate et fondateur de NYU. Des dizaines de tombes d'avant la Révolution, illisibles sous les mousses, posent un décor de cimetière victorien discret au cœur de la finance mondiale.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Accès libre</strong>, <strong>tlj 8h30–18h</strong>. Concerts réguliers (vérifier trinitychurchnyc.org). Le cimetière est ouvert aux heures d'église. L'intérieur : orgue monumental, vitraux victoriens, autel en marbre blanc. Comptez 15–25 minutes pour l'église + cimetière.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 7 : DÉJEUNER ── -->
+  <article class="stop" id="stop-dejeuner">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">13:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Pause · Déjeuner</div>
+      <h3 class="stop-title">Déjeuner à Stone Street</h3>
+      <div class="stop-address">Retour sur Stone Street · ou alternatives FiDi</div>
+      <p class="stop-desc">
+        Retour sur Stone Street pour un déjeuner sur les pavés — <em>Adrienne's Pizzabar</em> pour une pizza romaine à la coupe, <em>Stone Street Tavern</em> pour un burger + pinte dans le brouhaha des traders, ou <em>Ulysses'</em> si vous voulez une pinte irlandaise à l'intérieur. Pour une option plus rapide et moins chère : <em>Leo's Bagels</em> à 3 Hanover Square (à 100 m), <em>Pisillo Italian Panini</em> pour un sandwich italien surdimensionné sur Nassau St, ou un bol chez <em>sweetgreen</em> sur Wall Street.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">⏱ Timing</div>
+        <p>Stone Street est le plus animé entre 12h30 et 14h. Y arriver à 13h, c'est être en plein cœur de l'ambiance. Voir la section restaurants plus bas pour la sélection complète.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">1h–1h15 de pause</span>
+        <span class="tag sage">Ambiance pavés</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">🍽 Sélection complète des options du quartier</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Pour une vraie pause à deux</div>
+            <span class="expand-section-sub">ambiance, lumière, un peu de temps</span>
+            <p><em>Adrienne's Pizzabar</em> (54 Stone St) : pizza romaine à la coupe sur les pavés de Stone Street, la plus belle terrasse du quartier. <em>Fraunces Tavern</em> (54 Pearl St) : déjeuner historique dans le plus vieux bâtiment de Manhattan — cuisine coloniale revisitée, bar à plus de 200 whiskies, cadre boisé du XVIIIe siècle. Réservation conseillée dans les deux cas si vous y allez en plein pic du midi (12h30–13h30).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Pour manger vite et bien</div>
+            <span class="expand-section-sub">fast &amp; bon</span>
+            <p><em>Luke's Lobster</em> (26 S William St) : l'un des meilleurs lobster rolls de NYC, ~$28. <em>Leo's Bagels</em> (3 Hanover Square) : bagel lox au comptoir, 10 min chrono. <em>Pisillo Italian Panini</em> (97 Nassau St) : sandwichs italiens démesurés à partager, ~$14. <em>Joe's Pizza</em> (124 Fulton St) : la slice classique new-yorkaise à $4,50.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Pour l'ambiance pub</div>
+            <span class="expand-section-sub">traders &amp; pintes</span>
+            <p><em>Stone Street Tavern</em> (52 Stone St) : le pub de la rue, burgers honnêtes + Guinness. <em>Ulysses' Folk House</em> (coin Stone &amp; Pearl St) : autre pub irlandais, plus sobre, plus local. <em>O'Hara's</em> (120 Cedar St) : pub historique près du Mémorial, QG informel des pompiers après le 11-Septembre, murs tapissés de patchs des unités de secours du monde entier.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Autres options cuisine du monde</div>
+            <span class="expand-section-sub">la diversité du FiDi</span>
+            <p><em>Kuu</em> (20 John St) : ramen japonais de comptoir, bouillon tonkotsu réconfortant, $15–20. <em>sweetgreen</em> (67 Wall St) : salades composées, option santé si vous voulez rester léger, commander sur l'app pour éviter la file du lunch rush.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Stratégie timing</div>
+            <p>Stone Street est au pic entre <strong>12h30 et 14h</strong> — ambiance au top mais tables difficiles. Avant 12h30 ou après 14h30 : plus calme, plus détendu. Si vous voulez l'énergie des traders en costume qui mangent dehors, visez 13h pile. Si vous préférez un déjeuner à deux plus posé, visez 14h15 et privilégiez Fraunces Tavern.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 8 : FEDERAL RESERVE ── -->
+  <article class="stop" id="stop-fed">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">14:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Finance · Architecture forteresse</div>
+      <h3 class="stop-title">Federal Reserve Bank of New York</h3>
+      <div class="stop-address">33 Liberty St · entre Nassau et William St</div>
+      <p class="stop-desc">
+        Une forteresse florentine au cœur de Manhattan. Construit en 1924 par York &amp; Sawyer, le bâtiment est volontairement inspiré du Palazzo Strozzi de Florence — pierre taillée massive, grilles en fer forgé, fenêtres hautes et étroites. L'effet voulu : stabilité, inviolabilité, durée. Le message fonctionne encore cent ans plus tard.
+      </p>
+      <p class="stop-desc">
+        Sous vos pieds à 25 mètres de profondeur, dans la roche-mère de Manhattan, repose l'un des plus grands stocks d'or au monde — environ 6 000 tonnes appartenant à 36 gouvernements étrangers et à plusieurs institutions internationales. Plus que Fort Knox. La visite gratuite de la <em>Gold Vault</em> permet de voir littéralement des piles de lingots d'or au travers d'une grille blindée. C'est spectaculaire et surréaliste.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🔒 Réservation obligatoire</div>
+        <p>La visite est <strong>gratuite mais doit être réservée 1 à 2 mois à l'avance</strong> sur le site de la NY Fed. Durée 1h, passeport obligatoire, photos interdites. <strong>Si vous n'avez pas réservé</strong>, contentez-vous de la façade — à voir depuis Liberty St ou William St — et passez à la suite.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Réservation indispensable</span>
+        <span class="tag gold">6000 tonnes d'or</span>
+        <span class="tag">Palazzo Strozzi</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="anecdote">
+            <div class="anecdote-title">Pour tout l'or du monde</div>
+            <p>La Federal Reserve Bank abrite, gratuitement mais sur réservation obligatoire, et sauf vacances scolaires, <em>la plus importante réserve d'or de la planète</em> — plus importante que celles de Fort Knox. À plus de 15 mètres sous le niveau de la mer, dans la roche-mère de Manhattan, sont cachés près de <em>500 000 lingots d'or</em>, représentant environ 20 % des réserves mondiales, et détenus par les banques centrales de 36 pays.</p>
+            <p>Le coffre-fort ultra-sécurisé compte près de <em>49 000 compartiments</em> sous la responsabilité collective de seulement 3 personnes — qui supervisent également plus de 300 millions de pièces de monnaie. L'entrée principale est fermée par une rondelle de 90 tonnes, et chaque <em>changement d'ampoule</em> dans le coffre nécessite lui aussi un protocole sécurisé. Ambiance de film.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'architecture-forteresse</div>
+            <span class="expand-section-sub">York &amp; Sawyer · 1924</span>
+            <p>Le bâtiment s'inspire du <em>Palazzo Strozzi</em> de Florence (XVe siècle) — pierre taillée irrégulière, fenêtres hautes et étroites, grilles de fer forgé monumentales. Le message architectural est limpide : <em>stabilité, inviolabilité, durée</em>. Au moment de sa construction, les architectes voulaient affirmer visuellement que cette jeune institution (la Fed vient d'être créée en 1913) avait l'autorité millénaire d'un palais Renaissance.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visiter le Gold Vault</div>
+            <p><strong>Réservation obligatoire 1–2 mois à l'avance</strong> sur newyorkfed.org · <strong>Gratuit</strong> · <strong>1h</strong> de visite guidée · Passeport obligatoire, photos &amp; téléphones interdits · Sac à dos interdit. Si pas de réservation : admirez la façade depuis Liberty St ou William St et imaginez ce qui se passe à 25 m sous vos pieds.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 9 : CHAPELLE SAINT-PAUL ── -->
+  <article class="stop" id="stop-stpaul">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">14:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Chapelle · Mémoire du 11-Septembre</div>
+      <h3 class="stop-title">St. Paul's Chapel</h3>
+      <div class="stop-address">209 Broadway · angle Fulton St · face à Ground Zero</div>
+      <p class="stop-desc">
+        Construite en 1766, c'est le plus vieux bâtiment public en usage continu de Manhattan. George Washington y priait le jour de son investiture le 30 avril 1789 — son banc est marqué. L'architecture, d'un néoclassicisme géorgien élégant, est inspirée de St Martin-in-the-Fields à Londres. Clocher, colonnes, plafond rose pâle, lustres en cristal.
+      </p>
+      <p class="stop-desc">
+        Mais St. Paul's est entrée dans l'histoire contemporaine le 11 septembre 2001. Située à l'ombre directe des Tours Jumelles — à moins de 100 mètres — la chapelle a échappé miraculeusement aux chutes de débris (un seul sycomore centenaire à l'arrière a été abattu par le souffle et a fait écran). Pendant les huit mois suivants, elle a servi de centre de repos et de soutien aux pompiers, policiers et secouristes travaillant sur le site. Les bancs étaient des lits, les tables des buffets, les murs se sont couverts de messages, photos, badges. Beaucoup de ces artefacts sont conservés à l'intérieur aujourd'hui — c'est un mémorial vivant.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">💡 Émotion</div>
+        <p>Entrée libre. Prévoir 20–30 min. Le contraste entre la paix du XVIIIe siècle et les objets des secouristes de 2001 est saisissant. C'est la préparation idéale avant le Mémorial du 11-Septembre juste en face.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag sage">Gratuit</span>
+        <span class="tag">Plus vieux bâtiment public de NYC</span>
+        <span class="tag rust">Mémorial vivant</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">L'église la plus ancienne de New York</div>
+            <span class="expand-section-sub">1766 · style géorgien anglican</span>
+            <p>Avec son fronton en grès taillé en forme de temple grec et ses colonnes, l'architecture surprend au milieu des gratte-ciel. C'est la plus ancienne église de New York — construite quand l'île était encore une colonie britannique. Elle est directement inspirée de <em>St Martin-in-the-Fields</em> à Londres. À l'intérieur : plafond rose pâle, lustres en cristal, banquettes en bois sombre, fenêtres en arche. Rien n'a été transformé en profondeur en 260 ans.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le banc de Washington</div>
+            <span class="expand-section-sub">30 avril 1789 · jour de l'investiture</span>
+            <p>George Washington y célébra sa <em>nomination de premier Président</em> des États-Unis, juste après avoir prêté serment au Federal Hall. Son <em>prie-Dieu</em> est préservé et exposé — marqué par une plaque discrète. C'est l'un des rares objets tangibles, à Manhattan, qui a été directement touché par le premier président.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le cimetière surréaliste</div>
+            <span class="expand-section-sub">Un village XVIIIe au milieu des tours</span>
+            <p>En plein Financial District, le petit cimetière au milieu des buildings, orné d'une <em>cloche offerte par les Britanniques en 2002</em> en signe de solidarité après les attentats, apparaît complètement surréel. Tombes inclinées, noms illisibles, herbe haute par endroits — un village XVIIIe encastré entre le One WTC et l'Oculus.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">2001 : centre stratégique des secours</div>
+            <span class="expand-section-sub">À l'intérieur · objets et reliques</span>
+            <p>Suite aux attentats du 11 septembre 2001, l'église est devenue <em>lieu de mémoire</em>. Centre stratégique des secours à proximité, on a conservé à l'intérieur un banc portant les marques laissées par les pompiers et sauveteurs qui venaient s'y nourrir, se soigner, se reposer pendant les huit mois qui ont suivi. Photos, vidéos, témoignages, ex-voto et reliques en tout genre — badges de pompiers du monde entier, drapeaux, lettres d'enfants — sont exposés devant lesquels viennent se recueillir les New-Yorkais.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Visite</div>
+            <p><strong>Gratuit · tlj 8h30–18h</strong> · trinitychurchnyc.org · concerts réguliers (programme en ligne) · prévoir 20–30 min</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 10 : 9/11 MEMORIAL ── -->
+  <article class="stop" id="stop-911">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">15:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Mémorial &amp; Musée</div>
+      <h3 class="stop-title">Mémorial du 11-Septembre</h3>
+      <div class="stop-address">180 Greenwich St · sur l'emprise des Tours Jumelles</div>
+      <p class="stop-desc">
+        Deux piscines carrées, exactement à l'emplacement des empreintes des Tours Nord et Sud. L'eau s'écoule en silence vers le centre, aspirée dans un trou dont on ne voit pas le fond. Sur les parements de bronze du rebord, gravés en creux, les noms des 2 977 victimes du 11 septembre 2001 et des six victimes de l'attentat raté de 1993. Les noms sont regroupés non pas alphabétiquement, mais par <em>affinités</em> : collègues, membres d'une même équipe de pompiers, amis, couples. Chaque groupement est le fruit d'un travail de reconstitution sociale.
+      </p>
+      <p class="stop-desc">
+        Le design signé Michael Arad et Peter Walker s'appelle <em>Reflecting Absence</em>. Les piscines sont les plus grandes cascades artificielles d'Amérique du Nord. Tout autour, 400 chênes blancs — et un seul poirier de Callery, le <em>Survivor Tree</em>, retrouvé calciné dans les décombres en octobre 2001, soigné pendant huit ans en pépinière, replanté ici en 2010. Il fleurit chaque printemps. En mai, vous le verrez en pleine feuillaison.
+      </p>
+      <p class="stop-desc">
+        Le <em>9/11 Memorial Museum</em>, enterré à 21 mètres sous les piscines, expose les artefacts : un camion de pompier écrasé, la Survivor Stair, le Last Column, des objets personnels retrouvés. C'est bouleversant et lourd — compter 2 à 3 heures et de l'énergie émotionnelle.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Pratique</div>
+        <p><strong>Les piscines extérieures sont gratuites et accessibles 24h/24.</strong> Le musée souterrain coûte $33/adulte et nécessite un billet horodaté (réserver 1–2 semaines à l'avance). Les mardis soir à partir de 17h, l'entrée du musée est gratuite (file longue). À vous de décider : piscines seules (45 min) ou ajouter le musée (2h30).</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag rust">Moment fort</span>
+        <span class="tag gold">Gratuit (extérieur)</span>
+        <span class="tag">2977 noms gravés</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">« Reflecting Absence »</div>
+            <span class="expand-section-sub">Michael Arad &amp; Peter Walker · 2011</span>
+            <p>L'architecte israélo-américain <em>Michael Arad</em>, alors jeune et inconnu, a remporté le concours international de 2004 (plus de 5 000 propositions reçues). Son concept — nommé <em>Reflecting Absence</em> — repose sur une idée radicale : <em>l'absence et le silence</em>. Deux vides carrés, exactement à l'emplacement des empreintes des tours. L'eau y tombe en cascade, aspirée dans un puits central qui semble sans fond. Malgré le passage du temps, l'eau ne remplit jamais les bassins — comme si les vies détruites ici ne pouvaient jamais être remplacées.</p>
+            <p>Tous les 11 septembre au matin, le mémorial est inondé de lumière : <em>aucune ombre ne doit passer ce jour-là</em>. L'ensemble du site, y compris la hauteur décroissante des différentes tours du nouveau WTC, les reflets, les circulations, tout a été étudié au millimètre dans ce but.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les noms — et les roses blanches</div>
+            <span class="expand-section-sub">Gravés sur les pourtours de bronze</span>
+            <p>Les noms des 2 983 victimes des attentats de 2001 et de l'attentat de 1993 sont gravés sur les pourtours de bronze des bassins, <em>non pas par ordre alphabétique, mais en fonction du lien qui unissait les disparus</em>. Les collègues d'un même étage, les pompiers d'une même caserne, les couples, les amis, les voyageurs d'un même vol — regroupés comme ils ont vécu et sont morts, ensemble.</p>
+            <p>Chaque nom est marqué d'une touchante <em>rose blanche</em> déposée par le personnel du mémorial le matin du jour anniversaire de la victime. Si vous êtes là le jour de l'anniversaire d'un inconnu, vous verrez cette rose blanche isolée, frappante.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Le miraculé du 11 septembre</div>
+            <p>Entre les deux bassins du mémorial se tient un poirier encerclé d'une barrière métallique. Aujourd'hui seul au milieu de la « forêt » de chênes blancs d'Amérique, il s'élevait jadis contre la cathédrale du World Trade Center. Retrouvé <em>carbonisé sous les décombres</em> en octobre 2001, il fut chouchouté dans une pépinière du Bronx pendant près de dix ans — jusqu'à ce qu'il reprenne vie et soit replanté ici.</p>
+            <p>Le <em>Survivor Tree</em> est devenu pour les New-Yorkais un véritable symbole de vie et de renouveau. Il fleurit chaque printemps — en mai, vous le trouverez en pleine feuillaison, ses cicatrices encore visibles sur le tronc. Chaque année, des boutures sont offertes aux communautés ayant subi un drame, aux quatre coins du monde.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">Sur un fil</div>
+            <p>Le 7 août 1974, le funambule français <em>Philippe Petit</em> réalisa sa plus célèbre traversée entre les Twin Towers, <em>à 420 m du sol</em>, devant des New-Yorkais médusés ! Un tour de force tout à fait illégal, déjouant les services de sécurité de l'ouvrage tout neuf.</p>
+            <p>L'acte lui valut une nuit au poste et surtout la postérité : deux films l'ont immortalisé, <em>Man on Wire</em> (James Marsh, 2008, Oscar du meilleur documentaire 2009) et <em>The Walk</em> (Robert Zemeckis, 2015). Quand Petit revint sur le site vingt-sept ans plus tard, il dit simplement : « Je ne peux pas croire qu'elles ne sont plus là. »</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'œuvre de Spencer Finch</div>
+            <span class="expand-section-sub">Dans le musée · 2 983 aquarelles bleues</span>
+            <p>À l'entrée du musée, passé les portiques de sécurité et la descente dans l'immense cathédrale souterraine où apparaissent les fondations d'origine des tours, le visiteur découvre la saisissante œuvre de <em>Spencer Finch (2014)</em> : 2 983 aquarelles — <em>une par victime</em> — dans un camaïeu de tons bleus, pour tenter de se rappeler la couleur du ciel ce matin-là.</p>
+            <p>Derrière ce mur est gravée une citation de Virgile : <em>« Aucun jour ne vous effacera jamais de la mémoire du temps. »</em> Derrière cette inscription reposent les <em>8 000 restes non identifiés de 1 100 victimes</em> que les experts continuent aujourd'hui encore d'essayer de rattacher à un nom. Le fait que ces restes humains soient dans un musée est contesté — certaines familles ont mal accepté cette décision.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'église grecque orthodoxe St Nicholas</div>
+            <span class="expand-section-sub">Liberty Park · ressuscitée par Calatrava</span>
+            <p>Côté sud de l'esplanade, petite église orthodoxe au dôme blanc qui paraît étrangement futuriste. La St Nicholas Greek Orthodox Church d'origine, pudique chapelle de quartier construite en 1916, fut détruite dans l'effondrement des Tours — le seul édifice religieux à avoir disparu ce jour-là. Reconstruite et inaugurée en 2022 sous la houlette de <em>Santiago Calatrava</em>, également architecte de l'Oculus, elle a adopté une silhouette immaculée qui la fait dialoguer à travers la plaza avec son grand frère de verre.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Piscines extérieures · Mémorial</div>
+            <p><strong>Gratuit, accès libre 24h/24</strong> · 911memorial.org · Prévoir 30–45 min · À voir : le Survivor Tree côté sud-ouest, les noms des victimes au fur et à mesure du tour des bassins.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Musée souterrain</div>
+            <p><strong>Tlj sauf mar 9h–19h</strong> (dernière admission 1h30 avant fermeture) · <strong>36 $ adulte</strong>, forfait famille 108 $ (2 adultes + 3 enfants 7–17) · <strong>Gratuit mardi à partir de 17h</strong> (places limitées) · <strong>Inclus dans le CityPass</strong> · Appli smartphone gratuite à télécharger · Résa en ligne obligatoire · <strong>Prévoir 2h à 2h30 minimum</strong>. Très riche, très lourd — pas à visiter à la légère.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 11 : OCULUS, ONE WTC & THE SPHERE ── -->
+  <article class="stop" id="stop-oculus">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">16:45</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture contemporaine</div>
+      <h3 class="stop-title">Oculus, One WTC &amp; The Sphere</h3>
+      <div class="stop-address">Greenwich St &amp; Fulton St · World Trade Center</div>
+      <p class="stop-desc">
+        L'<em>Oculus</em>, inauguré en 2016, est le chef-d'œuvre controversé de l'architecte Santiago Calatrava. Structure blanche faite de côtes d'acier incurvées, qui évoque une colombe prenant son envol — ou une carcasse de baleine, selon les commentateurs. À l'intérieur, un hall de marbre blanc inondé de lumière zénithale, et en dessous, une gare (WTC Path Station) + un centre commercial. Chaque 11 septembre à 10h28, la skylight est alignée pour laisser passer un rayon de soleil commémorant l'effondrement de la Tour Nord. Budget final : 4 milliards de dollars. C'est le hall de gare le plus cher de l'histoire.
+      </p>
+      <p class="stop-desc">
+        En sortant, levez les yeux vers le <em>One World Trade Center</em> (David Childs, 2014) : 541 mètres de haut, soit 1 776 pieds — allusion à l'année de l'Indépendance. Plus haut bâtiment de l'hémisphère occidental. Le sommet, en spire, est souvent dans les nuages. Le <em>One World Observatory</em> au 100e étage offre le panorama le plus haut de New York — $43/adulte, réservation recommandée.
+      </p>
+      <p class="stop-desc">
+        Enfin, dans Liberty Park au sud du Mémorial, cherchez <em>The Sphere</em>. Cette sculpture de bronze massive signée Fritz Koenig trônait dans la cour centrale entre les Tours Jumelles de 1971 à 2001. Elle a été retrouvée percée, tordue, mais presque intacte dans les décombres. Restaurée, réinstallée à son emplacement actuel en 2017, elle porte encore ses cicatrices visiblement — monument accidentel devenu intentionnel.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🌆 One World Observatory</div>
+        <p>Si vous tenez à monter, préférez cette vue à l'Empire State pour une raison simple : d'ici on <em>voit</em> l'Empire State et Manhattan dans sa longueur, alors que de l'ESB on ne voit pas l'ESB. Ouvert jusqu'à 21h. Comptez 1h15 sur place.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Calatrava 2016</span>
+        <span class="tag gold">541 m (1776 ft)</span>
+        <span class="tag rust">The Sphere restaurée</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Oculus : « la gare la plus chère du monde »</div>
+            <span class="expand-section-sub">Calatrava · 4 milliards de dollars · 2016</span>
+            <p>Budget final : <em>4 milliards de dollars au lieu de 2</em>, et <em>7 ans de retard</em>. Derrière cette silhouette filiforme blanche se cache une véritable prouesse architecturale. L'Oculus est un hall central ovale aux dimensions de cathédrale — <em>111 m × 49 m, plus grand encore que celui de Grand Central</em> — coiffé d'un peigne de poutrelles d'acier lancées vers le ciel, semblables aux ailes d'une colombe ou à une carène de navire renversée.</p>
+            <p>Depuis 2016, environ <em>200 000 commuters</em> transitent chaque jour par ce hub qui relie les trains de banlieue desservant le New Jersey (<em>PATH</em>) à <em>11 lignes de métro</em>, avec des passages souterrains vers toutes les tours du World Trade Center — et, bien sûr, quantité de boutiques et de restaurants. La nuit, cette structure illuminée sert de phare au quartier.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">One World Trade Center</div>
+            <span class="expand-section-sub">David Childs · 2014 · 541 m</span>
+            <p>Rebaptisée <em>One World Trade Center</em>, la tour a été posée symboliquement le 4 juillet 2004. Le plan initial de <em>Daniel Libeskind</em> a finalement été modifié en raison des intérêts contradictoires des familles de victimes, des architectes, des promoteurs, de la police et des pompiers de New York. La maîtrise d'œuvre fut confiée à l'architecte américain <em>David Childs</em> (cabinet Skidmore, Owings &amp; Merrill).</p>
+            <p>La hauteur de <em>1 776 pieds</em> (541 m, dont 124 m d'antenne), chiffre symbolique de la date de l'indépendance américaine, a été maintenue. La tour fait écho à la torche de la statue de la Liberté. C'est une « tour-forteresse » à facettes, conçue pour résister à l'impact d'un Boeing et aux attaques de camions piégés. Brièvement la plus haute tour du monde habité, elle a été détrônée par la <em>Burj Khalifa</em> de Dubaï (828 m) — mais conserve son statut de plus haute tour des États-Unis et du monde occidental.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">One World Observatory</div>
+            <p><strong>117 West St</strong> (accès angle Vesey St) · oneworldobservatory.com · <strong>Tlj 9h–21h</strong> (dernière admission 45 min avant) · <strong>Billet standard 38 $</strong> (enfants 6–12 : 32 $ · gratuit moins de 6 ans) · Billet coupe-file avec tablette-audio 44 $ · <strong>Résa en ligne très conseillée</strong> · 3,50 $ de frais · Changement de jour possible si la visibilité est mauvaise. Prévoir 30 min avant l'arrivée au sommet (contrôle d'accès sécurisé).</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">L'ascenseur-capsule temporelle</div>
+            <span class="expand-section-sub">102e étage en 47 secondes (37 km/h !)</span>
+            <p>On accède au 102e étage par l'un des ascenseurs les plus rapides du monde, conçus comme des capsules pour <em>voyager dans le temps</em> : pendant la montée (47 secondes, 37 km/h), des vidéos défilent sur les parois, retraçant l'histoire de New York depuis la forêt primaire jusqu'à la forêt de gratte-ciel actuelle. Le voyage est une attraction en soi.</p>
+            <p>Une fois là-haut, l'observatoire se déploie sur trois niveaux (100e, 101e, 102e) : panorama à 360° à travers les baies vitrées, sans terrasse extérieure. Différent de l'Empire State ou Top of the Rock : ici on embrasse <em>seulement la pointe sud de Manhattan</em>, ce qui permet de comprendre d'un seul coup la géographie de cette île entourée d'eau. Par beau temps, le regard porte à 80 km à la ronde — et, dit la légende, on pourrait commencer à distinguer la courbure de la Terre.</p>
+            <p><em>Restaurants panoramiques</em> au 101e étage : le chic <em>One Dine</em>, doublé du bar-lounge <em>One Mix</em>. Forfaits de 75 $ (siège au bar, 2 boissons + amuse-bouche) à 155 $ (dîner, entrée au site comprise). Magique au coucher du soleil, mais pas donné.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">The Sphere — monument accidentel</div>
+            <span class="expand-section-sub">Fritz Koenig · 1971 · Liberty Park</span>
+            <p>Globe de cuivre monumental de 7,6 m de diamètre et 20 tonnes, signé par le sculpteur allemand Fritz Koenig. De 1971 à 2001, il trônait au milieu de la plaza entre les Twin Towers, au centre d'une fontaine circulaire. Symbole de paix mondiale par le commerce. Retrouvé percé, tordu mais presque intact sous les décombres, il a été réinstallé temporairement à Battery Park en 2002, puis définitivement à Liberty Park en 2017 — à quelques mètres seulement de son emplacement d'origine. <em>Encore dans ses tôles tordues, le souvenir de ce jour dramatique.</em></p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Perelman Performing Arts Center (PAC)</div>
+            <span class="expand-section-sub">2023 · Joshua Prince-Ramus · cube de marbre translucide</span>
+            <p>Dernière addition au site en date, achevée en 2023 : un surprenant cube lumineux de <em>42 m de hauteur, habillé en marbre translucide du Vermont</em>. Il abrite le Perelman Performing Arts Center (pacnyc.org), salle de 800 places dédiée au théâtre, à la danse, au cinéma et aux concerts. Signé par la « starchitect » américaine Joshua Prince-Ramus (cabinet REX). Le jour, c'est une boîte opaque beige. La nuit, le marbre translucide s'illumine de l'intérieur et le cube devient une lanterne géante. Effet saisissant en fin de journée.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les Twin Towers avant le 11 septembre</div>
+            <span class="expand-section-sub">Mini-ville dans la ville</span>
+            <p>Les Twins étaient la porte d'entrée de Manhattan et le symbole de la prospérité économique américaine. En arrivant par avion, c'était la première vision de New York, ouverte sur le ciel. Avec près de 500 entreprises, 50 000 salariés, 250 000 visiteurs quotidiens et 80 000 clients des centres commerciaux, le World Trade Center symbolisait <em>l'adresse mythique</em> des grandes sociétés multinationales. Le complexe possédait même son propre code postal — 10048. Au sommet, une immense maquette animée représentait l'île de Manhattan, entourée d'eau.</p>
+            <p>Avec 417 et 415 m respectivement et leurs 110 étages chacune, les Twin Towers étaient les plus hauts gratte-ciel de New York. Érigées au début des années 1970, elles avaient nécessité le rasage de 164 bâtiments et occupaient 16 blocs. Elles étaient conçues pour résister aux rafales de vent, aux séismes, et même — en principe — à l'impact d'un Boeing 707 lancé à 950 km/h. On avait omis un facteur fondamental : la fusion des structures métalliques résultant de la chaleur extrême dégagée par l'explosion du kérosène.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 12 : WOOLWORTH BUILDING ── -->
+  <article class="stop" id="stop-woolworth">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">17:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Architecture · Gratte-ciel néo-gothique</div>
+      <h3 class="stop-title">The Woolworth Building</h3>
+      <div class="stop-address">233 Broadway · face à City Hall Park</div>
+      <p class="stop-desc">
+        Surnommé la « cathédrale du commerce » par son client F.W. Woolworth, roi des magasins à 5 cents. Construit en 1913 par Cass Gilbert (le même architecte que le U.S. Custom House et le New York Life Building de Madison Square), c'est un gratte-ciel de 241 mètres habillé en cathédrale néo-gothique — arcs-boutants en terre cuite, flèches, gargouilles. Plus haut bâtiment du monde de 1913 à 1930, détrôné par le Chrysler Building. Woolworth a payé le bâtiment cash : 13,5 millions de dollars de l'époque, en liquide.
+      </p>
+      <p class="stop-desc">
+        Le hall d'entrée intérieur est l'un des plus spectaculaires de New York : mosaïques byzantines, plafonds voûtés dorés à la feuille, gargouilles sculptées représentant l'architecte Gilbert tenant une maquette du bâtiment et Woolworth comptant ses pièces. Normalement fermé au public depuis 2001 — mais des <em>visites guidées</em> (30, 60 ou 90 min, $20–45) permettent d'y accéder, à réserver sur woolworthtours.com.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">📸 Photo</div>
+        <p>La meilleure vue d'ensemble est depuis City Hall Park en face — recul de 100 m, on embrasse la verticalité. La flèche éclairée à la nuit tombée (dès 19h en mai) est magnifique.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag">Gilbert 1913</span>
+        <span class="tag gold">Cathédrale du commerce</span>
+        <span class="tag">Hall sur rendez-vous</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">« La cathédrale du commerce »</div>
+            <span class="expand-section-sub">Surnom donné par le pasteur à l'inauguration</span>
+            <p>Lors de l'inauguration en 1913, un pasteur de Trinity Church, impressionné par l'intérieur, surnomma le bâtiment la <em>« Cathedral of Commerce »</em>. L'expression est restée. C'est une <em>cathédrale laïque dédiée au commerce</em> : mosaïques byzantines aux plafonds dorés à la feuille, voûtes peintes, ascenseurs rococo-gothiques, sculptures humoristiques dans le hall. Cass Gilbert s'est représenté lui-même en gargouille tenant une maquette du bâtiment ; Woolworth en gargouille comptant ses pièces.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Frank Woolworth, roi des 5 &amp; 10 cents</div>
+            <span class="expand-section-sub">Il a payé le building cash</span>
+            <p>F.W. Woolworth avait fait fortune en inventant le concept du magasin à prix uniques (5 cents puis 5 et 10 cents) à la fin du XIXe siècle. Ses <em>Five-and-Dime Stores</em> se comptaient par milliers aux États-Unis. En 1913, il a payé les <em>13,5 millions de dollars</em> de son building <em>en liquide</em> — refusant tout emprunt. Aujourd'hui, les « dollar stores » sont les héritiers directs de son modèle commercial.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Néo-gothique flamboyant</div>
+            <span class="expand-section-sub">Cass Gilbert · 241 m · plus haut du monde 1913–1930</span>
+            <p>Le Woolworth Building fut le plus haut bâtiment du monde de 1913 à 1930, détrôné par le Chrysler Building. Style <em>néogothique flamboyant</em> — arcs-boutants en terre cuite polychrome, flèches, gargouilles, contreforts. C'est un gratte-ciel habillé en cathédrale médiévale. Cass Gilbert voulait traduire la verticalité de l'industrie américaine moderne dans le vocabulaire sacré de l'Europe.</p>
+            <p>Depuis 2001, le hall est <em>fermé au public sauf visite guidée</em> (woolworthtours.com, 20–45 $, 30 à 90 min). Si l'intérieur vous tente, c'est à réserver à l'avance.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Equitable Building · à deux pas</div>
+            <span class="expand-section-sub">120 Broadway (Cedar &amp; Pine St) · bonus d'architecture</span>
+            <p>En descendant Broadway depuis le Woolworth, au n° 120 (entre Cedar et Pine St), l'<em>Equitable Building</em> semble avoir été <em>coupé en deux</em>. Sa construction au début du XXe siècle a déchaîné les passions : sa hauteur massive privait de soleil et d'air les rues alentour sur plusieurs blocs. En forme de « H » et élevé sur un socle, ce bâtiment néo-Renaissance possède 4 entrées en pierre et près de <em>5 000 fenêtres</em>.</p>
+            <p>Après son inauguration, un <em>texte de loi historique fut adopté (1916 Zoning Resolution)</em> pour réglementer la taille et la forme des buildings afin de préserver l'air et la lumière des autres rues. C'est ce texte qui a donné naissance à la silhouette « en marches d'escalier » des gratte-ciel Art Déco de New York — d'Empire State Building à Chrysler. L'Equitable Building est le coupable de toute l'esthétique new-yorkaise qui a suivi.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 13 : SEAPORT & BROOKLYN BRIDGE VIEW ── -->
+  <article class="stop" id="stop-seaport">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">18:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Port historique · Vue</div>
+      <h3 class="stop-title">South Street Seaport &amp; vue Brooklyn Bridge</h3>
+      <div class="stop-address">Pier 17 · Fulton St à l'East River</div>
+      <p class="stop-desc">
+        Direction l'East River, quelques blocs à l'est. Le <em>South Street Seaport</em> est l'ancien port maritime de New York — l'endroit où les clippers arrivaient au XIXe siècle, où Herman Melville a travaillé comme douanier, et où le marché aux poissons Fulton a résonné pendant 180 ans avant de déménager au Bronx en 2005. Le quartier conserve des façades en brique rouge, des pavés, et quelques navires historiques amarrés au quai — notamment le <em>Wavertree</em> (1885) et l'<em>Ambrose Lightship</em>.
+      </p>
+      <p class="stop-desc">
+        L'intérêt du détour, au-delà de l'atmosphère portuaire, c'est la vue. Depuis <em>Pier 17</em> ou le rooftop du Seaport, le Brooklyn Bridge apparaît dans toute sa longueur — ses câbles gothiques, ses piliers en granit, l'eau grise de l'East River en dessous. En fin d'après-midi, la lumière bascule derrière Manhattan et dore le pont côté Brooklyn. C'est une vue de carte postale, rarement surchargée de touristes (qui sont du côté DUMBO, plus photogénique mais plus lointain).
+      </p>
+      <p class="stop-desc">
+        Au 211 Water St, <em>Bowne &amp; Co. Stationers</em> est la plus vieille imprimerie encore en activité à New York (1775). C'est une boutique-musée du South Street Seaport Museum où l'on imprime encore sur des presses du XIXe siècle. Cartes, affiches, livres d'art — un souvenir unique à rapporter.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎨 Option nocturne</div>
+        <p>Pier 17 accueille des concerts en plein air tout l'été (dès mai parfois). Le rooftop est libre d'accès, le bar ouvre vers 17h. Si vous êtes fatigués, sautez Oculus/Observatory et venez ici directement après le Mémorial pour respirer.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Vue sur le Brooklyn Bridge</span>
+        <span class="tag">Bowne &amp; Co. 1775</span>
+        <span class="tag sage">Fin de journée tranquille</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Le port perdu de Manhattan</div>
+            <span class="expand-section-sub">XIXe siècle · clippers &amp; marchandises</span>
+            <p>Au XIXe siècle, le South Street Seaport était le <em>premier port des États-Unis</em> — les clippers y accostaient chargés de thé de Chine, d'épices d'Inde, de coton du Sud, de rhum des Antilles. Les mâts des voiliers formaient une forêt dense à l'horizon. <em>Herman Melville</em>, l'auteur de <em>Moby Dick</em>, a travaillé ici comme douanier pendant près de vingt ans (1866–1885) dans l'obscurité administrative, bien après l'échec commercial de ses romans et avant leur redécouverte posthume.</p>
+            <p>Le déplacement du commerce maritime vers les docks plus profonds de Brooklyn et du New Jersey a provoqué le déclin du quartier dès le début du XXe siècle. Il a été en grande partie préservé de la démolition grâce à la création du <em>South Street Seaport Historic District</em> en 1977. Aujourd'hui, on y trouve des façades en brique rouge miraculeusement intactes, des pavés authentiques et quelques navires historiques amarrés au quai.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Navires à voir au quai</div>
+            <span class="expand-section-sub">Pier 16 · Street Seaport Museum</span>
+            <p>Le <em>Wavertree</em> (1885) : grand voilier à coque de fer britannique, parfaitement restauré, représentatif des cargos commerciaux de la fin du XIXe. L'<em>Ambrose Lightship</em> (1908) : bateau-phare rouge vif qui signalait l'entrée du port de New York aux navires arrivants. Tous deux visitables (billet unique du South Street Seaport Museum). Le <em>Peking</em>, autre grand voilier emblématique, a été rapatrié à Hambourg en 2017.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Mini-croisière en vieux clipper</div>
+            <p>Depuis <strong>Pier 17</strong> ou <strong>North Cove Marina</strong> (à côté du One WTC), <em>Manhattan by Sail</em> propose des croisières en voilier ancien (1h30). <strong>Départs : 3/jour, à partir de 68 $</strong> (35 $ pour les moins de 12 ans). Option magique au coucher du soleil — voiles ouvertes, skyline de Manhattan qui défile, Statue de la Liberté au passage. <em>manhattanbysail.com</em></p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Bowne &amp; Co. Stationers — plus en détail</div>
+            <span class="expand-section-sub">211 Water St · imprimerie vivante depuis 1775</span>
+            <p>La plus vieille imprimerie encore en activité à New York. Fondée par Robert Bowne en 1775 — juste avant la Déclaration d'Indépendance. L'entreprise existe toujours ailleurs sous forme de société de services financiers, mais la boutique-musée de Water St fait vivre le métier d'origine : <em>presses typographiques du XIXe siècle</em> encore utilisées quotidiennement par des compositeurs bénévoles, caractères de plomb rangés dans d'innombrables casses. Les odeurs d'encre grasse et de papier humide sont inchangées depuis 250 ans.</p>
+            <p>Vente de cartes de correspondance imprimées à la main (5–15 $), affiches typographiques (30–60 $), livres d'art. Le souvenir de New York le plus noble, le plus tactile et le plus durable qu'on puisse rapporter. Ouvert de 11h à 18h, fermé le lundi.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 14 : THE DEAD RABBIT ── -->
+  <article class="stop" id="stop-deadrabbit" style="margin-top: 32px;">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">19:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Cocktails · Bar légendaire</div>
+      <h3 class="stop-title">The Dead Rabbit</h3>
+      <div class="stop-address">30 Water St · à trois blocs au sud du Seaport</div>
+      <p class="stop-desc">
+        Régulièrement classé parmi les trois meilleurs bars du monde depuis son ouverture en 2013 (World's 50 Best Bars, Tales of the Cocktail). Fondé par deux barmen irlandais — Sean Muldoon et Jack McGarry — le Dead Rabbit ressuscite l'héritage des gangs irlandais du Lower Manhattan du XIXe siècle. Le nom vient d'un véritable gang de Five Points immortalisé par le film <em>Gangs of New York</em> de Scorsese.
+      </p>
+      <p class="stop-desc">
+        Le bar se répartit sur trois étages. Le <em>Taproom</em> au rez-de-chaussée : bois brut, carreaux de ciment, pintes de Guinness, sol jonché de sciure — ambiance pub irlandais du XIXe. Le <em>Parlor</em> au premier étage : velours rouge, lustres, carte de cocktails élaborée (le <em>Dead Rabbit</em> éponyme, signature maison, est imbattable), plus calme, plus romantique. Le <em>Occasional</em> au sommet, réservable, accueille des événements spéciaux.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">💡 Recommandation</div>
+        <p>Pour une ambiance romantique à deux, <strong>montez au Parlor directement</strong>. La liste de cocktails y est sublime, le service impeccable, et on est loin du bruit du Taproom. Réservation fortement recommandée via Resy. Budget $18–24/cocktail.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Top 3 mondial</span>
+        <span class="tag rust">Moment fort</span>
+        <span class="tag">Réservation via Resy</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Anecdotes, histoire &amp; détails</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+          <div class="expand-section">
+            <div class="expand-section-title">Les Dead Rabbits, gang historique</div>
+            <span class="expand-section-sub">Five Points · 1850</span>
+            <p>Le nom vient d'un véritable gang irlando-américain actif à Five Points (quartier sinistre de Lower Manhattan, aujourd'hui Chinatown) dans les années 1850. Les Dead Rabbits étaient l'un des gangs irlandais majeurs de la ville, rivaux des Bowery Boys protestants nativistes. Leur symbole : un lapin mort porté sur une lance à l'avant des bagarres de rue. Le film de Scorsese <em>Gangs of New York</em> (2002) s'inspire très directement de leur époque.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Muldoon &amp; McGarry</div>
+            <span class="expand-section-sub">Les Irlandais qui ont réinventé le cocktail</span>
+            <p>Sean Muldoon et Jack McGarry, deux amis barmen de Belfast, arrivent à New York en 2012 avec une obsession : reconstituer un bar du XIXe siècle new-yorkais, dans son décor, son service, et surtout sa carte — avec des recherches bibliographiques de plusieurs années dans des manuels de cocktail anciens. Le Dead Rabbit ouvre en 2013 et rafle instantanément les prix : <em>World's Best Bar</em> en 2015 et 2016 (les World's 50 Best Bars), et <em>Best American Cocktail Bar</em> aux Tales of the Cocktail à cinq reprises. Muldoon et McGarry ont depuis quitté Dead Rabbit mais leur formule perdure.</p>
+          </div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Le cocktail signature</div>
+            <span class="expand-section-sub">À demander au Parlor</span>
+            <p>Le cocktail <em>Dead Rabbit</em> éponyme est un punch trouble, généralement servi dans une grande coupe avec glace pilée : whiskey irlandais, pommeau, miel, citron, bitters maison, décoration d'herbes. Complexe, légèrement médicinal, parfaitement équilibré. C'est la signature à commander. La carte complète change chaque année et chaque édition est publiée dans un petit livre en vente au bar — de la vraie bibliophilie barmanesque.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Stratégie pour ce soir</div>
+            <p><strong>Taproom (rez-de-chaussée) :</strong> pub irlandais bruyant, pintes de Guinness, sciure au sol, accessible sans réservation mais bondé. <strong>Parlor (1er étage) :</strong> velours rouge, lustres, service à table, ambiance romantique — <strong>réservation Resy indispensable</strong> (3–7 jours à l'avance). Pour vous deux : <em>directement le Parlor</em>. Budget : ~22 $ par cocktail, prévoir 2 tournées + un petit plat à partager (fish &amp; chips, oysters). Ambiance idéale pour clôturer la journée à deux.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ RESTAURANTS ══════════════════════════ -->
+  <section class="food-section">
+    <div class="section-label">Où manger</div>
+    <p class="food-intro">
+      Le Financial District est un cas particulier : quartier ultra-dense en semaine (traders, employés, touristes), désert le dimanche soir. La restauration s'est adaptée — on y trouve une offre énorme de déjeuners rapides et de bons pubs, mais peu de grandes tables. L'idéal ici : un déjeuner décontracté à Stone Street, quelques snacks savoureux pendant la visite, et un grand dîner ailleurs. The Dead Rabbit est l'exception — une destination qui justifie de rester pour la soirée.
+    </p>
+
+    <!-- PETIT-DÉJ -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☕</span>
+        <span class="meal-header-title">Petit-déjeuner</span>
+        <span class="meal-header-time">08:00–10:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Petit-déjeuner</span>
+          </div>
+          <div class="resto-name">George's</div>
+          <div class="resto-address">89 Greenwich St</div>
+          <p class="resto-desc">Diner classique du FiDi qui sert des petits-déjeuners américains généreux depuis des décennies — pancakes, œufs bacon, sandwiches, café refill gratuit. Rien de branché, tout de réconfortant. C'est le genre d'adresse où les pompiers du coin viennent manger avant leur garde.</p>
+          <p class="resto-note">Commencez ici à 8h30 avant d'attaquer Battery Park. $12–18 pour un petit-déj complet.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Bagel</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Leo's Bagels</div>
+          <div class="resto-address">3 Hanover Square</div>
+          <p class="resto-desc">L'un des meilleurs bagels du quartier — pâte bouillie puis cuite à l'ancienne, cream cheese onctueux, lox épais. Le classique lox-capers-onion-tomate sur everything bagel est une institution du matin FiDi. Petit comptoir, commande à emporter, file rapide.</p>
+          <p class="resto-note">Parfait à emporter pour déjeuner à Battery Park si vous voulez commencer par Castle Clinton.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÉJEUNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍽</span>
+        <span class="meal-header-title">Déjeuner</span>
+        <span class="meal-header-time">12:30–14:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pizza</span>
+            <span class="resto-badge badge-insta">Stone Street</span>
+          </div>
+          <div class="resto-name">Adrienne's Pizzabar</div>
+          <div class="resto-address">54 Stone St</div>
+          <p class="resto-desc">Pizza romaine rectangulaire à la coupe, cuite au four à bois, vendue à l'assiette ou au poids. Pâte fine, bord croustillant, garnitures soignées. Mais le vrai intérêt est la terrasse : tables en bois alignées sur les pavés de Stone Street, aux beaux jours, avec de la bière bien fraîche et le brouhaha des traders du coin.</p>
+          <p class="resto-note">Arrivez avant 13h ou après 14h30 pour éviter la foule du déjeuner. $18–25/personne.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pub · Burgers</span>
+            <span class="resto-badge badge-insta">Stone Street</span>
+          </div>
+          <div class="resto-name">Stone Street Tavern</div>
+          <div class="resto-address">52 Stone St</div>
+          <p class="resto-desc">Pub classique sur la plus vieille rue pavée de New York. Burgers honnêtes, wings, fish &amp; chips, bonne carte de bières pression. L'ambiance est son atout principal : tables en terrasse dès que le temps le permet, clientèle de traders qui relâche la cravate, accent irlando-new-yorkais omniprésent.</p>
+          <p class="resto-note">Le rendez-vous des traders du quartier — foule entre 12h30 et 14h. $20–30/personne.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pizza</span>
+          </div>
+          <div class="resto-name">Joe's Pizza</div>
+          <div class="resto-address">124 Fulton St</div>
+          <p class="resto-desc">Succursale FiDi du légendaire Joe's Pizza de Greenwich Village (1975). Pizza new-yorkaise à la part : pâte fine, sauce tomate, mozzarella, parmesan — la slice classique, rien à inventer. Service au comptoir, debout ou à emporter, plié en deux à la new-yorkaise. Une bouchée rapide entre deux visites.</p>
+          <p class="resto-note">$4,50 la part. En 10 min c'est mangé. Parfait pour un déjeuner express.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Lobster rolls</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Luke's Lobster FiDi</div>
+          <div class="resto-address">26 S William St</div>
+          <p class="resto-desc">L'une des meilleures adresses de lobster roll à New York. Pain brioché grillé au beurre, chair de homard du Maine froide, mayonnaise citronnée, ciboulette. Rien de superflu. Luke's est l'anti-restaurant : comptoir debout, décor en planches de chantier, tout concentré sur le produit. ~$25–30 le roll.</p>
+          <p class="resto-note">Le combo « half &amp; half » permet de goûter lobster + crab roll. File rapide même à midi.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Ramen</span>
+          </div>
+          <div class="resto-name">Kuu</div>
+          <div class="resto-address">20 John St</div>
+          <p class="resto-desc">Comptoir de ramen japonais du FiDi. Bouillon tonkotsu ou shoyu, nouilles maison, chashu (porc mijoté), œuf mollet, menma. C'est honnête, rapide et réconfortant — particulièrement si vous avez eu froid à Battery Park le matin.</p>
+          <p class="resto-note">Petit espace, comptoir. $15–20 le bol.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Sandwich italien</span>
+            <span class="resto-badge badge-insta">Très copieux</span>
+          </div>
+          <div class="resto-name">Pisillo Italian Panini</div>
+          <div class="resto-address">97 Nassau St</div>
+          <p class="resto-desc">Sandwichs italiens monumentaux — pain italien croustillant, charcuterie importée (mortadelle, prosciutto, capocollo), mozzarella di bufala, poivrons grillés, huile d'olive. Les portions sont gigantesques et à partager facilement. L'un des secrets du quartier pour déjeuner bon et peu cher.</p>
+          <p class="resto-note">Un sandwich suffit pour deux. $14–18 le panini XL. À emporter idéalement.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Salades · Bowls</span>
+          </div>
+          <div class="resto-name">sweetgreen</div>
+          <div class="resto-address">67 Wall St</div>
+          <p class="resto-desc">La chaîne préférée des employés du FiDi. Salades composées, bowls grains + protéine + légumes, dressings maison. Pas original mais fiable, frais, rapide. Utile quand on veut manger léger entre deux visites denses.</p>
+          <p class="resto-note">Commandez sur l'app pour éviter la file du lunch rush (12h30–13h30). $15–20 le bowl.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Américain · Histoire</span>
+            <span class="resto-badge badge-insta">Historique</span>
+          </div>
+          <div class="resto-name">Fraunces Tavern</div>
+          <div class="resto-address">54 Pearl St</div>
+          <p class="resto-desc">Le plus vieux bâtiment de Manhattan (1719) et la taverne où George Washington a fait ses adieux à ses officiers le 4 décembre 1783. C'est à la fois un restaurant, un musée de la Révolution américaine ($7), et un bar avec plus de 200 whiskies. Cuisine coloniale revisitée : short ribs, pot pies, fish &amp; chips. L'ambiance est le plat principal.</p>
+          <p class="resto-note">Pour un déjeuner historique à deux. $35–50/personne. Réservation conseillée.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAR / SOIR -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍸</span>
+        <span class="meal-header-title">Bars &amp; fin de journée</span>
+        <span class="meal-header-time">17:00–23:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Cocktails</span>
+            <span class="resto-badge badge-insta">Top 3 mondial</span>
+          </div>
+          <div class="resto-name">The Dead Rabbit</div>
+          <div class="resto-address">30 Water St</div>
+          <p class="resto-desc">Classé parmi les trois meilleurs bars du monde. Trois étages : Taproom (pub irlandais, Guinness, sciure au sol), Parlor (cocktails élaborés, velours rouge, romantique), Occasional (privé). Le cocktail signature éponyme est un must. Service impeccable, liste de cocktails parmi les plus créatives de la planète.</p>
+          <p class="resto-note">Montez directement au Parlor pour une ambiance à deux. Réservation Resy fortement recommandée. $18–24/cocktail.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Pub irlandais</span>
+          </div>
+          <div class="resto-name">O'Hara's Restaurant and Pub</div>
+          <div class="resto-address">120 Cedar St</div>
+          <p class="resto-desc">Pub historique à deux pas du Mémorial du 11-Septembre. A servi de QG informel aux pompiers et secouristes pendant les semaines suivant les attentats — les murs sont tapissés de patchs, d'écussons et de photos laissés par les unités du monde entier venues prêter main-forte. Burgers, Guinness, karaoké certains soirs.</p>
+          <p class="resto-note">Lieu de mémoire autant que pub. Bien pour une pinte simple après le Mémorial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ── POI SUPPLÉMENTAIRES ── -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+    <p style="font-size:14px; color:var(--text-muted); font-style:italic; margin-bottom:4px;">Curiosités discrètes, détours d'amateur, et quelques secrets du Lower Manhattan à glisser dans la journée si le temps le permet.</p>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🕰</div>
+        <div class="poi-card-name">Barthman's Sidewalk Clock</div>
+        <div class="poi-card-address">Broadway &amp; Maiden Ln</div>
+        <p class="poi-card-desc">Une horloge de trottoir encastrée dans la chaussée. Installée en 1899 par le bijoutier William Barthman comme publicité astucieuse — les passants devaient baisser les yeux pour la consulter, et tombaient sur la vitrine du magasin juste à côté. Le mécanisme d'origine a tenu jusqu'en 2018, rénové discrètement. Une des curiosités les plus aimées du FiDi.</p>
+        <p class="poi-card-note">À regarder en marchant — ne la ratez pas à l'intersection.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🧱</div>
+        <div class="poi-card-name">Fragment du Mur de Berlin</div>
+        <div class="poi-card-address">393 South End Ave · Battery Park City</div>
+        <p class="poi-card-desc">Cinq panneaux authentiques du Mur de Berlin exposés en plein air dans Kowsky Plaza, à Battery Park City. Don de l'Allemagne aux États-Unis en 2004. Les panneaux sont graffés côté ouest (côté Berlin-Ouest, on peignait sur le mur) et vierges côté est. Détour de 10 min depuis Battery Park en longeant l'Hudson.</p>
+        <p class="poi-card-note">Peu fréquenté. À combiner avec une promenade sur l'Esplanade de Battery Park City.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🖨</div>
+        <div class="poi-card-name">Bowne &amp; Co. Stationers</div>
+        <div class="poi-card-address">211 Water St · South Street Seaport</div>
+        <p class="poi-card-desc">Plus vieille imprimerie de New York encore en activité (1775). Boutique-musée du South Street Seaport Museum où l'on imprime sur des presses typographiques du XIXe siècle — cartes, affiches, livres d'art. Les odeurs d'encre et de papier sont inchangées depuis 250 ans. Le souvenir le plus authentique que l'on puisse ramener de New York.</p>
+        <p class="poi-card-note">Petite boutique, ouvert 11h–18h. Cartes à 5–15 $, affiches 30–60 $.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🚇</div>
+        <div class="poi-card-name">Old City Hall Station</div>
+        <div class="poi-card-address">Ligne 6 · terminus Brooklyn Bridge–City Hall</div>
+        <p class="poi-card-desc">Station de métro fantôme datant de 1904 (inauguration du subway new-yorkais). Abandonnée en 1945 pour cause de rames trop longues, elle est restée quasi intacte : voûtes en tuile verte, verrières colorées, lustres en bronze. On ne peut pas y descendre, mais il est possible de la traverser en restant dans la rame 6 (downtown) <strong>au terminus Brooklyn Bridge</strong> pendant son demi-tour. Regardez par les vitres côté gauche.</p>
+        <p class="poi-card-note">Expérience gratuite. Restez discret, ne descendez pas. 2 min de féérie Beaux-Arts souterraine.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌿</div>
+        <div class="poi-card-name">Elevated Acre</div>
+        <div class="poi-card-address">55 Water St · accès par l'escalator extérieur</div>
+        <p class="poi-card-desc">Jardin suspendu secret d'un demi-hectare au-dessus du FiDi, accessible par un escalator extérieur qui monte depuis Water St. Gazon, bancs, coin belvédère avec vue sur l'East River et le Brooklyn Bridge. Quasi personne n'y monte — c'est le genre d'endroit où les employés du coin fument leur cigarette à l'abri. Ouvert en 2005.</p>
+        <p class="poi-card-note">Gratuit, ouvert 7h–22h. Parfait pour une pause loin du tumulte.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⛴</div>
+        <div class="poi-card-name">Staten Island Ferry</div>
+        <div class="poi-card-address">Whitehall Terminal · 4 South St</div>
+        <p class="poi-card-desc">Ferry gratuit qui traverse la baie de New York toutes les 15–30 min, passe à 200 m de la Statue de la Liberté, et offre un panorama imprenable sur Ellis Island, le skyline de Manhattan et le Verrazzano Bridge. Aller simple 25 min, descendre à Staten Island puis repartir immédiatement (25 min retour). Une heure, gratuit.</p>
+        <p class="poi-card-note">Alternative parfaite pour ceux qui ne feront pas Liberty Island. Départ depuis Whitehall, retour au même endroit.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🎡</div>
+        <div class="poi-card-name">SeaGlass Carousel</div>
+        <div class="poi-card-address">Battery Park · côté nord</div>
+        <p class="poi-card-desc">Carrousel futuriste de Battery Park : au lieu de chevaux, 30 poissons lumineux en fibre de verre qui tournent sur trois plateaux différents, dans un dôme de verre. Inspiré de l'aquarium historique qui occupait Castle Clinton au début du XXe siècle. Poétique, légèrement étrange, parfait pour une pause tendre. $5 le tour.</p>
+        <p class="poi-card-note">Opérationnel de mai à octobre. 3 min de balade.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">Survivor Tree</div>
+        <div class="poi-card-address">Mémorial du 11-Septembre · côté sud-ouest</div>
+        <p class="poi-card-desc">Un unique poirier de Callery au milieu des 400 chênes blancs du Mémorial. Retrouvé calciné dans les décombres des Tours en octobre 2001, soigné pendant huit ans dans une pépinière du Bronx, replanté ici en décembre 2010. Il fleurit chaque printemps. En mai, il sera en pleine feuillaison — on le distingue par sa silhouette plus fine et ses cicatrices sur le tronc.</p>
+        <p class="poi-card-note">Symbole silencieux. Ne manquez pas le petit panneau explicatif à ses pieds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INFOS PRATIQUES ── -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p>Un <strong>samedi</strong> est idéal : le FiDi est moins stressé en semaine, moins mort que le dimanche, et Stone Street est en pleine ambiance. <strong>Éviter le dimanche soir</strong> — le quartier se vide et beaucoup de restos ferment tôt. <strong>En semaine</strong>, Stone Street bouillonne au déjeuner (12h30–14h).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🎟 À réserver à l'avance</div>
+        <p><strong>9/11 Memorial Museum</strong> (1–2 semaines) · <strong>One World Observatory</strong> (3–7 jours) · <strong>Federal Reserve Gold Vault</strong> (1–2 <em>mois</em>) · <strong>The Dead Rabbit</strong> via Resy (3–7 jours). Les piscines extérieures du Mémorial sont libres d'accès sans ticket.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">👟 Confort</div>
+        <p>Beaucoup de pavés (Stone Street), beaucoup de marche (8–10 km sur la journée). Chaussures plates obligatoires — pas de talons, pas de baskets neuves. Le vent peut être vif près de l'eau à Battery Park même en mai : prévoir une petite couche.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Fearless Girl devant NYSE · Stone Street pavée et terrasses · Piscines du 9/11 Memorial en plongée · Oculus vu de l'intérieur avec skylight · Vue du Brooklyn Bridge depuis Pier 17 · Trinity Church encastrée dans les gratte-ciel · Woolworth Building depuis City Hall Park au coucher.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transport</div>
+        <p>Accès : lignes <strong>1</strong> (South Ferry), <strong>4/5</strong> (Bowling Green ou Wall St), <strong>R/W</strong> (Whitehall), <strong>2/3</strong> (Wall St), <strong>A/C/E</strong> (World Trade Center). Fin de journée : retourner au logement depuis Fulton St (toutes lignes) ou Wall St.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>Le FiDi est un quartier de contrastes : rues étroites et hautes façades qui forment des canyons sombres en semaine, mais qui s'ouvrent sur des squares lumineux (Bowling Green, Zuccotti Park, City Hall Park). L'énergie est <em>business</em> en journée, plus détendue en soirée. Tenue libre, mais les grandes tables apprécient la mise.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ──────────────────────────── FOOTER ──────────────────────────── -->
+<footer class="page-footer">
+  <p class="footer-title">« New York is the meeting place of the peoples, the only city where you can hardly find a typical American. » — Djuna Barnes</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function() {
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function() {
+    var allDetails = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    allDetails.forEach(function(d) { d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>

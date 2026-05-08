@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upper East Side — Journée à New York</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D6;
+    --navy: #1A2744;
+    --navy-light: #243356;
+    --gold: #C8A96E;
+    --gold-light: #E8C98A;
+    --rust: #8B3A2A;
+    --sage: #5A7A5A;
+    --text: #2A2018;
+    --text-muted: #6B5D4A;
+    --border: rgba(26,39,68,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 24px 48px;
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.14;
+  }
+
+  .hero-meta {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 9vw, 70px);
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(245,240,232,0.65);
+    max-width: 460px;
+    line-height: 1.6;
+  }
+
+  /* ── TIMELINE BAR ── */
+  .timeline-bar {
+    background: var(--navy-light);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(200,169,110,0.3);
+  }
+  .timeline-bar::-webkit-scrollbar { display: none; }
+
+  .timeline-inner {
+    display: inline-flex;
+    gap: 0;
+  }
+
+  .tl-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.55);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    cursor: default;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .tl-item:hover { color: var(--gold); }
+  .tl-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ── BODY WRAPPER ── */
+  .page-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── INTRO EDITO ── */
+  .intro-block {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0.5;
+  }
+
+  .intro-block h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--navy);
+  }
+
+  .intro-block p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .tip-box {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    margin-top: 24px;
+    border-radius: 0 4px 4px 0;
+  }
+  .tip-box p {
+    font-size: 13.5px;
+    color: rgba(245,240,232,0.8);
+    font-style: normal;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .tip-box strong {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ── STOP CARD ── */
+  .stop {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 28px;
+    position: relative;
+  }
+
+  .stop:last-child { border-bottom: none; }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: 39px;
+    top: 76px;
+    bottom: -44px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border), transparent);
+  }
+  .stop:last-child::before { display: none; }
+
+  .stop-time-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .stop-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--navy);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .stop-dot.featured {
+    background: var(--gold);
+    border-color: var(--gold);
+    width: 16px;
+    height: 16px;
+  }
+
+  .stop-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .stop-content {}
+
+  .stop-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .stop-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stop-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .stop-desc {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.72;
+    margin-bottom: 12px;
+  }
+
+  .stop-note {
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 14px;
+  }
+  .stop-note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 5px;
+  }
+  .stop-note p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+  }
+
+  .stop-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 2px;
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold); }
+  .tag.rust { border-color: var(--rust); color: var(--rust); }
+  .tag.sage { border-color: var(--sage); color: var(--sage); }
+
+  /* ── FOOD SECTION ── */
+  .food-section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .food-intro {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+
+  .meal-block {
+    margin-bottom: 36px;
+  }
+  .meal-block:last-child { margin-bottom: 0; }
+
+  .meal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .meal-header-icon {
+    font-size: 18px;
+  }
+  .meal-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+  }
+  .meal-header-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .resto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) {
+    .resto-grid { grid-template-columns: 1fr; }
+  }
+
+  .resto-card {
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .resto-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 3px 12px rgba(26,39,68,0.07);
+  }
+
+  .resto-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .resto-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .badge-cheap { background: rgba(90,122,90,0.12); color: var(--sage); border: 1px solid rgba(90,122,90,0.3); }
+  .badge-mid { background: rgba(200,169,110,0.12); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+  .badge-cuisine { background: rgba(26,39,68,0.06); color: var(--text-muted); border: 1px solid var(--border); }
+  .badge-insta { background: rgba(139,58,42,0.1); color: var(--rust); border: 1px solid rgba(139,58,42,0.25); }
+  .badge-near { background: rgba(26,39,68,0.85); color: var(--gold-light); border: 1px solid var(--navy); }
+
+  .resto-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+  .resto-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 9px;
+  }
+  .resto-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 7px;
+  }
+  .resto-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── MAP ── */
+  .map-section{padding:44px 0 0;}
+  .map-container{margin-top:20px;border-radius:6px;overflow:hidden;border:1px solid var(--border);line-height:0;}
+  .map-container svg{display:block;width:100%;height:auto;}
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    text-align: center;
+    padding: 36px 0 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+  }
+
+  /* ── POI GRID ── */
+  .poi-section {
+    padding: 44px 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+
+  .poi-card {
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .poi-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(26,39,68,0.06);
+  }
+  .poi-card-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .poi-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .poi-card-address {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .poi-card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .poi-card-note {
+    font-size: 11.5px;
+    color: var(--rust);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── INFOS PRATIQUES ── */
+  .infos-section {
+    padding: 44px 0;
+  }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 28px;
+  }
+  @media (max-width: 500px) {
+    .infos-grid { grid-template-columns: 1fr; }
+  }
+  .info-card {
+    padding: 20px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .info-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .info-card strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--navy);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── EXPAND / DÉTAILS ── */
+  .stop-expand {
+    margin-top: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .stop-expand[open] {
+    border-color: var(--gold);
+    box-shadow: 0 2px 14px rgba(200,169,110,0.08);
+  }
+  .stop-expand summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    background: var(--cream-dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+  }
+  .stop-expand summary::-webkit-details-marker { display: none; }
+  .stop-expand summary::marker { display: none; }
+  .stop-expand summary:hover {
+    background: rgba(200,169,110,0.18);
+  }
+  .stop-expand[open] summary {
+    background: var(--navy);
+    color: var(--gold);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .stop-expand-label { flex: 1; }
+  .stop-expand-arrow {
+    font-size: 9px;
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .stop-expand[open] .stop-expand-arrow {
+    transform: rotate(180deg);
+  }
+  .stop-expand-content {
+    padding: 22px 20px 22px;
+    background: linear-gradient(to bottom, rgba(245,240,232,0.5), transparent 80%);
+  }
+
+  /* ── DEPARTMENTAL EXPAND (per-department, lighter) ── */
+  .dept-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 18px 0 4px;
+  }
+  .dept-expand {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .dept-expand[open] {
+    border-color: var(--gold);
+    box-shadow: 0 2px 10px rgba(200,169,110,0.06);
+  }
+  .dept-expand summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s;
+    background: var(--cream);
+  }
+  .dept-expand summary::-webkit-details-marker { display: none; }
+  .dept-expand summary::marker { display: none; }
+  .dept-expand summary:hover { background: rgba(200,169,110,0.10); }
+  .dept-expand[open] summary {
+    background: var(--cream-dark);
+    border-bottom: 1px solid var(--border);
+  }
+  .dept-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16.5px;
+    font-weight: 500;
+    color: var(--navy);
+    flex: 1;
+    line-height: 1.25;
+  }
+  .dept-floor {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .dept-arrow {
+    font-size: 9px;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .dept-expand[open] .dept-arrow { transform: rotate(180deg); color: var(--gold); }
+  .dept-expand-content { padding: 16px 16px 18px; }
+  .dept-expand-content p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .dept-expand-content p:last-child { margin: 0; }
+  .dept-expand-content em { color: var(--navy); font-style: italic; font-weight: 500; }
+  .dept-expand-content strong { color: var(--navy); font-weight: 500; }
+  .dept-room {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--rust);
+    background: rgba(139,58,42,0.06);
+    padding: 1px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .anecdote-mini {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--rust);
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+  }
+  .anecdote-mini-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 5px;
+  }
+  .anecdote-mini p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ── GUIDE-STYLE ANECDOTE BOX ── */
+  .anecdote {
+    background: var(--rust);
+    padding: 16px 18px;
+    border-radius: 4px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .anecdote-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .anecdote-title::before {
+    content: '❖';
+    font-size: 12px;
+  }
+  .anecdote p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.92);
+    margin: 0 0 9px 0;
+  }
+  .anecdote p:last-child { margin: 0; }
+  .anecdote em, .anecdote strong {
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* Romantic moment - couple highlight */
+  .couple-moment {
+    background: linear-gradient(135deg, rgba(200,169,110,0.18), rgba(232,201,138,0.08));
+    border: 1px solid rgba(200,169,110,0.4);
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin: 16px 0;
+  }
+  .couple-moment-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .couple-moment-title::before {
+    content: '♥';
+    font-size: 11px;
+  }
+  .couple-moment p {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0;
+    font-style: italic;
+  }
+  .couple-moment strong {
+    color: var(--rust);
+    font-style: normal;
+  }
+
+  /* ── EXPAND SUB-SECTION ── */
+  .expand-section { margin: 16px 0; }
+  .expand-section:first-child { margin-top: 0; }
+  .expand-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .expand-section-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .expand-section p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .expand-section p:last-child { margin-bottom: 0; }
+  .expand-section em { color: var(--navy); font-style: italic; font-weight: 500; }
+
+  .expand-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border) 20%, var(--border) 80%, transparent);
+    margin: 22px 0;
+  }
+
+  /* Practical info inside expand */
+  .expand-practical {
+    background: var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 4px 4px 0;
+    margin: 14px 0 4px;
+  }
+  .expand-practical-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .expand-practical p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .expand-practical strong { color: var(--navy); }
+
+  /* Highlights list inside expand */
+  .highlights-list {
+    list-style: none;
+    margin: 12px 0;
+    padding: 0;
+  }
+  .highlights-list li {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+  }
+  .highlights-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 9px;
+    line-height: 1.9;
+  }
+  .highlights-list li strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .highlights-list li em {
+    color: var(--rust);
+    font-style: italic;
+  }
+
+  /* ── EXPAND-ALL TOGGLE ── */
+  .expand-all-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px 0 0;
+    margin-bottom: -12px;
+  }
+  .expand-all-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cream-dark);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .expand-all-btn:hover {
+    background: var(--navy);
+    color: var(--gold);
+    border-color: var(--navy);
+  }
+  .expand-all-btn-icon {
+    font-size: 11px;
+    transition: transform 0.3s;
+  }
+  .expand-all-btn.is-open .expand-all-btn-icon {
+    transform: rotate(180deg);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 520px) {
+    .stop {
+      grid-template-columns: 60px 1fr;
+      gap: 0 16px;
+    }
+    .stop::before { left: 29px; }
+    .stop-expand summary { font-size: 9px; padding: 12px 14px; }
+    .stop-expand-content { padding: 18px 14px; }
+    .anecdote { padding: 14px 15px; }
+    .expand-all-btn { font-size: 9px; padding: 9px 12px; }
+  }
+</style>
+</head>
+<body>
+<script src="assets/password-gate.js"></script>
+<script>requireGate('upper-east-side');</script>
+
+
+<!-- ──────────────────────────── HERO ──────────────────────────── -->
+<header class="hero">
+  <svg class="hero-pattern" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Pattern inspired by Upper East Side: Guggenheim spiral, Beaux-Arts columns of the Met, Museum Mile, Central Park canopy -->
+    <defs>
+      <!-- Beaux-Arts column verticals (Met facade) -->
+      <pattern id="columns" x="0" y="0" width="80" height="340" patternUnits="userSpaceOnUse">
+        <line x1="10" y1="60" x2="10" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="14" y1="60" x2="14" y2="280" stroke="#C8A96E" stroke-width="0.3"/>
+        <line x1="36" y1="60" x2="36" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="40" y1="60" x2="40" y2="280" stroke="#C8A96E" stroke-width="0.3"/>
+        <line x1="62" y1="60" x2="62" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="66" y1="60" x2="66" y2="280" stroke="#C8A96E" stroke-width="0.3"/>
+        <!-- Capital and base -->
+        <line x1="6" y1="60" x2="18" y2="60" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="6" y1="280" x2="18" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="32" y1="60" x2="44" y2="60" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="32" y1="280" x2="44" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="58" y1="60" x2="70" y2="60" stroke="#C8A96E" stroke-width="0.4"/>
+        <line x1="58" y1="280" x2="70" y2="280" stroke="#C8A96E" stroke-width="0.4"/>
+      </pattern>
+      <!-- 5th Avenue grid -->
+      <pattern id="aveGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="20" x2="40" y2="20" stroke="#C8A96E" stroke-width="0.12" stroke-dasharray="3 6"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#columns)"/>
+    <rect width="100%" height="100%" fill="url(#aveGrid)" opacity="0.5"/>
+
+    <!-- Guggenheim spiral - signature motif, off-center left -->
+    <g transform="translate(180, 170)" opacity="0.42">
+      <circle cx="0" cy="0" r="78" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="62" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="46" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#C8A96E" stroke-width="0.6"/>
+      <!-- Ramp suggestion -->
+      <path d="M -78 0 A 78 78 0 0 1 78 0" fill="none" stroke="#C8A96E" stroke-width="0.4" opacity="0.6"/>
+      <path d="M -62 0 A 62 62 0 0 1 62 0" fill="none" stroke="#C8A96E" stroke-width="0.4" opacity="0.6"/>
+    </g>
+
+    <!-- Met pediment - classical triangle, right side -->
+    <g transform="translate(620, 170)" opacity="0.30">
+      <!-- Triangular pediment -->
+      <polygon points="-90,30 0,-50 90,30" fill="none" stroke="#C8A96E" stroke-width="0.7"/>
+      <line x1="-90" y1="30" x2="90" y2="30" stroke="#C8A96E" stroke-width="0.5"/>
+      <!-- Columns under pediment -->
+      <line x1="-70" y1="30" x2="-70" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="-40" y1="30" x2="-40" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="-10" y1="30" x2="-10" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="20" y1="30" x2="20" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="50" y1="30" x2="50" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <!-- Steps -->
+      <line x1="-95" y1="120" x2="95" y2="120" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="-100" y1="128" x2="100" y2="128" stroke="#C8A96E" stroke-width="0.4"/>
+    </g>
+
+    <!-- Museum Mile horizontal axis (5th Avenue line) -->
+    <line x1="0" y1="170" x2="800" y2="170" stroke="#C8A96E" stroke-width="0.3" stroke-dasharray="14 6" opacity="0.45"/>
+
+    <!-- Picture frames floating - art motif -->
+    <g opacity="0.22">
+      <rect x="60" y="50" width="36" height="46" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="64" y="54" width="28" height="38" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <rect x="730" y="60" width="32" height="42" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="734" y="64" width="24" height="34" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+      <rect x="380" y="40" width="40" height="30" fill="none" stroke="#C8A96E" stroke-width="0.5"/>
+      <rect x="384" y="44" width="32" height="22" fill="none" stroke="#C8A96E" stroke-width="0.3"/>
+    </g>
+
+    <!-- Central Park leaf hints, top right -->
+    <g opacity="0.16">
+      <ellipse cx="430" cy="280" rx="3" ry="6" fill="#C8A96E" transform="rotate(20 430 280)"/>
+      <ellipse cx="450" cy="290" rx="3" ry="6" fill="#C8A96E" transform="rotate(-15 450 290)"/>
+      <ellipse cx="470" cy="278" rx="3" ry="6" fill="#C8A96E" transform="rotate(35 470 278)"/>
+      <ellipse cx="500" cy="300" rx="3" ry="6" fill="#C8A96E" transform="rotate(-25 500 300)"/>
+    </g>
+  </svg>
+
+  <div class="hero-meta">
+    <div class="hero-eyebrow">New York, mai 2026</div>
+    <h1 class="hero-title">Upper East Side</h1>
+    <p class="hero-subtitle">Le Mile des Musées</p>
+    <p class="hero-tagline">Sur 1,5 km de Cinquième Avenue, entre Central Park et les anciens hôtels particuliers des Astor et des Carnegie, se déroule la plus grande concentration de chefs-d'œuvre du monde — du temple de Dendur à Klimt, de Vermeer à Kandinsky.</p>
+  </div>
+</header>
+
+<!-- ──────────────────────────── TIMELINE BAR ──────────────────────────── -->
+<nav class="timeline-bar">
+  <div class="timeline-inner">
+    <a class="tl-item" href="#stop-petitdej"><span class="tl-dot"></span>09:00 · Petit-déj</a>
+    <a class="tl-item" href="#stop-guggenheim"><span class="tl-dot"></span>10:30 · Guggenheim</a>
+    <a class="tl-item" href="#stop-dejeuner"><span class="tl-dot"></span>12:30 · Déjeuner</a>
+    <a class="tl-item" href="#stop-neue"><span class="tl-dot"></span>13:30 · Neue Galerie</a>
+    <a class="tl-item" href="#stop-met"><span class="tl-dot"></span>14:15 · Le Met</a>
+    <a class="tl-item" href="#stop-mile"><span class="tl-dot"></span>17:30 · Museum Mile</a>
+    <a class="tl-item" href="#stop-apero"><span class="tl-dot"></span>18:30 · Apéro</a>
+    <a class="tl-item" href="#stop-soir"><span class="tl-dot"></span>20:00 · Brandy's</a>
+  </div>
+</nav>
+
+<!-- ──────────────────────────── BODY ──────────────────────────── -->
+<main class="page-body">
+
+  <!-- INTRO -->
+  <section class="intro-block">
+    <div class="section-label">Note éditoriale</div>
+    <h2>Une journée d'art pur, en bord de parc</h2>
+    <p>Jusqu'à la fin de la Seconde Guerre mondiale, l'Upper East Side était un lieu de villégiature estivale pour les New-Yorkais. L'urbanisation y gagne aux XVIIIᵉ et XIXᵉ siècles, et le quartier devient celui des grandes fortunes industrielles : les hôtels particuliers des familles <em>Carnegie, Vanderbilt, Whitney, Frick</em> s'alignent sur la 5ᵉ Avenue, face à Central Park. Quand ces familles disparaissent, leurs maisons deviennent musées — c'est ainsi que naît, sans plan, le <em>Museum Mile</em>.</p>
+    <p>Plus tard, c'est le coin des stars du cinéma et de la musique : <em>Greta Garbo, Marilyn Monroe, Marlene Dietrich, Elia Kazan, George Gershwin, Paul Newman</em> y habitent. Les jazzmen <em>Charlie Parker</em> et <em>Benny Goodman</em> y passent leurs dernières années. <em>Scorsese, Madonna, Woody Allen</em> y vivent encore. Plus à l'est, sur 1ʳᵉ et 2ᵉ Avenues, le quartier devient plus populaire — bouchers, barbiers, <em>delis</em>, bars de quartier — et au coin coincé contre l'East River, entre la 80ᵉ et la 90ᵉ rue, on trouve toujours <em>Yorkville</em>, ancienne enclave allemande dont il reste quelques traces.</p>
+    <p>Cette journée se concentre sur les deux géants du Mile — le Guggenheim le matin (frais, contenu, court), le Met l'après-midi (immense, demande de l'endurance) — avec une pause Neue Galerie entre les deux pour Klimt. Journée lente, contemplative, à ne pas chercher à remplir.</p>
+    <div class="tip-box">
+      <strong>Avant de partir</strong>
+      <p>Trois choses à anticiper : (1) <em>billets horodatés</em> en ligne pour Guggenheim ($30) et Met ($30) — réservés 3–7 jours avant. (2) <strong>Ne PAS programmer cette journée un mercredi</strong> — le Met est fermé. Le Guggenheim, lui, est ouvert tous les jours en mai 2026. (3) Le ticket d'entrée du Met donne aussi accès le même jour aux <em>Met Cloisters</em> (médiéval, au nord de Harlem) — bon à savoir.</p>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- CARTE SVG -->
+  <section class="map-section">
+    <div class="section-label">Carte de la journée</div>
+    <div class="map-container">
+      <svg viewBox="0 0 740 510" xmlns="http://www.w3.org/2000/svg" width="100%" aria-label="Carte de l'Upper East Side">
+        <!-- Fond -->
+        <rect width="740" height="510" fill="#F0EAD8"/>
+        <rect x="55" y="30" width="648" height="468" fill="#EDE5D2" rx="2"/>
+
+        <!-- Central Park (côté ouest) -->
+        <rect x="55" y="30" width="55" height="468" fill="#D8E8C8" stroke="#B0C898" stroke-width="0.5"/>
+        <text x="82" y="240" text-anchor="middle" font-size="9" fill="#62826A" font-family="Georgia,serif" font-style="italic" transform="rotate(-90, 82, 240)">Central Park</text>
+
+        <!-- Réservoir dans Central Park (à hauteur 86ᵗʰ–96ᵗʰ) -->
+        <ellipse cx="82" cy="80" rx="18" ry="35" fill="#A8C4D8" stroke="#7BA0BC" stroke-width="0.5" opacity="0.7"/>
+        <text x="82" y="82" text-anchor="middle" font-size="5.5" fill="#4A6680" font-family="Georgia,serif" font-style="italic">Reservoir</text>
+
+        <!-- Conservatory Water (à hauteur 74ᵗʰ) -->
+        <ellipse cx="82" cy="277" rx="8" ry="6" fill="#A8C4D8" stroke="#7BA0BC" stroke-width="0.4" opacity="0.7"/>
+
+        <!-- Streets horizontales (chaque 5 rues plus marquées) -->
+        <line x1="110" y1="480" x2="703" y2="480" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="483" font-size="7.5" fill="#9A8060" font-family="monospace">60th</text>
+        <line x1="110" y1="466" x2="703" y2="466" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="451" x2="703" y2="451" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="437" x2="703" y2="437" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="422" x2="703" y2="422" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="408" x2="703" y2="408" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="411" font-size="7.5" fill="#9A8060" font-family="monospace">65th</text>
+        <line x1="110" y1="393" x2="703" y2="393" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="379" x2="703" y2="379" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="364" x2="703" y2="364" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="350" x2="703" y2="350" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="335" x2="703" y2="335" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="338" font-size="7.5" fill="#9A8060" font-family="monospace">70th</text>
+        <line x1="110" y1="321" x2="703" y2="321" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="306" x2="703" y2="306" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="292" x2="703" y2="292" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="277" x2="703" y2="277" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="263" x2="703" y2="263" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="266" font-size="7.5" fill="#9A8060" font-family="monospace">75th</text>
+        <line x1="110" y1="248" x2="703" y2="248" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="234" x2="703" y2="234" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="219" x2="703" y2="219" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="205" x2="703" y2="205" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="190" x2="703" y2="190" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="193" font-size="7.5" fill="#9A8060" font-family="monospace">80th</text>
+        <line x1="110" y1="176" x2="703" y2="176" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="161" x2="703" y2="161" stroke="#D2C8B5" stroke-width="0.7"/>
+        <text x="708" y="163" font-size="7" fill="#C8A96E" font-family="monospace" font-weight="bold">82ⁿᵈ ★</text>
+        <line x1="110" y1="147" x2="703" y2="147" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="132" x2="703" y2="132" stroke="#D2C8B5" stroke-width="0.7"/>
+        <text x="708" y="135" font-size="7.5" fill="#9A8060" font-family="monospace">84th</text>
+        <line x1="110" y1="118" x2="703" y2="118" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="115" font-size="7" fill="#C8A96E" font-family="monospace" font-weight="bold">85th</text>
+        <line x1="110" y1="103" x2="703" y2="103" stroke="#D2C8B5" stroke-width="0.7"/>
+        <text x="708" y="106" font-size="7" fill="#C8A96E" font-family="monospace" font-weight="bold">86ᵗʰ ★</text>
+        <line x1="110" y1="89" x2="703" y2="89" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="74" x2="703" y2="74" stroke="#D2C8B5" stroke-width="0.7"/>
+        <line x1="110" y1="59" x2="703" y2="59" stroke="#D2C8B5" stroke-width="0.7"/>
+        <text x="708" y="62" font-size="7" fill="#C8A96E" font-family="monospace" font-weight="bold">89ᵗʰ ★</text>
+        <line x1="110" y1="44" x2="703" y2="44" stroke="#BFB49E" stroke-width="1.1"/>
+        <text x="708" y="42" font-size="7.5" fill="#9A8060" font-family="monospace">90th</text>
+
+        <!-- Avenues verticales -->
+        <line x1="110" y1="30" x2="110" y2="498" stroke="#C8A96E" stroke-width="2.2"/>
+        <text x="110" y="22" text-anchor="middle" font-size="7.5" fill="#C8A96E" font-family="monospace" font-weight="bold">5ᵗʰ Ave</text>
+        <line x1="200" y1="30" x2="200" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="200" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Madison</text>
+        <line x1="290" y1="30" x2="290" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="290" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Park</text>
+        <line x1="380" y1="30" x2="380" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="380" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">Lexington</text>
+        <line x1="470" y1="30" x2="470" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="470" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">3ʳᵈ Ave</text>
+        <line x1="560" y1="30" x2="560" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="560" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">2ⁿᵈ Ave</text>
+        <line x1="650" y1="30" x2="650" y2="498" stroke="#C6BAA6" stroke-width="1.2"/>
+        <text x="650" y="22" text-anchor="middle" font-size="7" fill="#6A5E50" font-family="monospace">1ˢᵗ Ave</text>
+
+        <!-- Ligne de parcours (Lexington/83 → Gugg → Sabarsky/Neue → Met → descente Mile → Ethyl's → Brandy's) -->
+        <polyline points="380,143 110,59 110,103 110,161 110,480 560,132 515,132"
+          stroke="#C8A96E" stroke-width="2.2" stroke-dasharray="7 5" fill="none" opacity="0.65" stroke-linejoin="round"/>
+
+        <!-- POI verts (lettres minuscules) -->
+        <circle cx="110" cy="335" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="110" y="335" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">a</text>
+        <circle cx="82" cy="277" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="82" y="277" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">b</text>
+        <circle cx="125" cy="155" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="125" y="155" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">c</text>
+        <circle cx="82" cy="306" r="7" fill="#5A7A5A" stroke="#EDE5D2" stroke-width="1.5"/><text x="82" y="306" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">d</text>
+
+        <!-- Restaurants lettrés (majuscules rouges) -->
+        <circle cx="200" cy="219" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="200" y="219" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">C</text>
+        <circle cx="200" cy="183" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="200" y="183" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">D</text>
+        <circle cx="380" cy="212" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="380" y="212" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">E</text>
+        <circle cx="160" cy="234" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="160" y="234" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">F</text>
+        <circle cx="125" cy="72" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="125" y="72" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">G</text>
+        <circle cx="610" cy="219" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="610" y="219" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">H</text>
+        <circle cx="470" cy="248" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="470" y="248" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">I</text>
+        <circle cx="650" cy="451" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="650" y="451" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">K</text>
+        <circle cx="560" cy="125" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="560" y="125" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">L</text>
+        <circle cx="135" cy="44" r="7.5" fill="#8B3A2A" stroke="#EDE5D2" stroke-width="1.5"/><text x="135" y="44" text-anchor="middle" dominant-baseline="middle" font-size="7.5" fill="white" font-weight="bold" font-family="monospace">M</text>
+
+        <!-- Stops numérotés (1–8) -->
+        <circle cx="380" cy="143" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="380" y="143" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">1</text>
+        <rect x="396" y="132" width="84" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="398" y="141" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Lexington Candy</text>
+
+        <circle cx="110" cy="59" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="110" y="59" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">2</text>
+        <rect x="126" y="48" width="68" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="128" y="57" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Guggenheim ★</text>
+
+        <circle cx="110" cy="103" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="110" y="103" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">3</text>
+        <rect x="126" y="92" width="68" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="128" y="101" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Café Sabarsky</text>
+
+        <circle cx="110" cy="118" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="110" y="118" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">4</text>
+        <rect x="126" y="118" width="64" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="128" y="127" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Neue Galerie</text>
+
+        <circle cx="110" cy="161" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="110" y="161" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">5</text>
+        <rect x="126" y="161" width="76" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="128" y="170" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">The Met ★</text>
+
+        <circle cx="110" cy="408" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="110" y="408" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">6</text>
+        <rect x="126" y="397" width="76" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="128" y="406" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Museum Mile</text>
+
+        <circle cx="560" cy="132" r="12" fill="#1A2744" stroke="#EDE5D2" stroke-width="2.5"/><text x="560" y="132" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="white" font-weight="bold" font-family="monospace">7</text>
+        <rect x="576" y="121" width="50" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="578" y="130" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Ethyl's</text>
+
+        <circle cx="515" cy="132" r="12" fill="#C8A96E" stroke="#EDE5D2" stroke-width="2.5"/><text x="515" y="132" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="#1A2744" font-weight="bold" font-family="monospace">8</text>
+        <rect x="453" y="148" width="56" height="11" fill="rgba(237,229,210,0.9)" rx="1"/><text x="455" y="157" font-size="7" fill="#1A2744" font-family="Georgia,serif" font-style="italic">Brandy's ★</text>
+
+        <!-- Boussole Nord -->
+        <g transform="translate(682,476)">
+          <circle r="14" fill="rgba(26,39,68,0.08)" stroke="#C6BAA6" stroke-width="0.8"/>
+          <polygon points="0,-9 -3.5,-1 3.5,-1" fill="#1A2744"/>
+          <polygon points="0,9 -3.5,1 3.5,1" fill="#C6BAA6"/>
+          <line x1="0" y1="-9" x2="0" y2="9" stroke="#1A2744" stroke-width="0.5"/>
+          <text x="0" y="-13" text-anchor="middle" font-size="7" fill="#1A2744" font-family="monospace" font-weight="bold">N</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Clé de lecture -->
+    <div style="margin-top:16px;border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--navy);padding:10px 14px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Étapes du jour</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 14px;">
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">① Lexington Candy</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">② Guggenheim ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">③ Café Sabarsky</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">④ Neue Galerie</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑤ The Met ★</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑥ Museum Mile</span>
+          <span style="font-size:11px;color:rgba(245,240,232,0.75);font-family:'DM Mono',monospace;">⑦ Ethyl's (apéro)</span>
+          <span style="font-size:11px;color:var(--gold);font-family:'DM Mono',monospace;">⑧ Brandy's Piano ★</span>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Restaurants — Petit-déj &amp; déjeuner</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">C</span>Sant Ambroeus <span style="opacity:0.5;">— 1000 Madison Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">D</span>E.A.T. by Eli Zabar <span style="opacity:0.5;">— 1064 Madison Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">E</span>Pastrami Queen <span style="opacity:0.5;">— 1125 Lexington Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">F</span>The Mark Hot Dog <span style="opacity:0.5;">— 25 E 77ᵗʰ St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">G</span>Café Rebay <span style="opacity:0.5;">— Guggenheim, 3ᵉ étage</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">H</span>Orwashers Bakery <span style="opacity:0.5;">— 308 E 78ᵗʰ St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">I</span>Sable's Smoked Fish <span style="opacity:0.5;">— 1330 3ʳᵈ Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">M</span>Heavenly Rest Café <span style="opacity:0.5;">— 1085 5ᵗʰ Ave</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;">Bars &amp; soirée</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">K</span>Treadwell Park <span style="opacity:0.5;">— 1125 1ˢᵗ Ave</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#8B3A2A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">L</span>Ethyl's Bar &amp; Restaurant <span style="opacity:0.5;">— 1629 2ⁿᵈ Ave</span></div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Points d'intérêt</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">a</span>Frick Collection <span style="opacity:0.5;">— 1 E 70ᵗʰ St</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">b</span>Conservatory Water <span style="opacity:0.5;">— Central Park, 74ᵗʰ</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">c</span>Cantor Roof Garden <span style="opacity:0.5;">— sommet du Met</span></div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:11px;font-family:'DM Mono',monospace;color:var(--text-muted);"><span style="background:#5A7A5A;color:white;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:bold;flex-shrink:0;">d</span>Bethesda Fountain <span style="opacity:0.5;">— Central Park, 72ᵗʰ</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- Expand-all toggle -->
+  <div class="expand-all-bar">
+    <button type="button" class="expand-all-btn" id="expandAllBtn" aria-expanded="false">
+      <span class="expand-all-btn-label">Tout déplier</span>
+      <span class="expand-all-btn-icon">▼</span>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════ ÉTAPES ══════════════════════════ -->
+
+  <!-- ── STOP 1 : PETIT-DÉJEUNER ── -->
+  <article class="stop" id="stop-petitdej">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">09:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Mise en route · diner d'époque</div>
+      <h3 class="stop-title">Lexington Candy Shop</h3>
+      <div class="stop-address">1226 Lexington Ave (entre 83ʳᵈ et 84ᵗʰ St) · 5 min du Guggenheim</div>
+      <p class="stop-desc">
+        Ouvert en 1925, c'est l'un des rares <em>luncheonettes</em> d'avant-guerre encore en activité à New York. Comptoir en formica, tabourets vissés au sol, distributeur Coca-Cola d'époque, milkshakes mélangés à la main au shaker en métal. Le menu n'a quasiment pas changé en cent ans : œufs au plat, pancakes, French toast, egg cream maison (boisson new-yorkaise au lait, sirop de chocolat et eau gazeuse — sans œuf ni crème, contrairement au nom).
+      </p>
+      <p class="stop-desc">
+        C'est le bon endroit pour caler un solide petit-déjeuner avant le marathon muséal. Comptez 20–30 min, $15–20 par personne. Arrivez avant 9h30 — le brunch tardif fait monter la file.
+      </p>
+      <div class="couple-moment">
+        <div class="couple-moment-title">Moment couple</div>
+        <p>Asseyez-vous au comptoir plutôt qu'en table. C'est l'une de ces images de New York qu'on a vues mille fois sans jamais y être. Demandez un <strong>chocolate egg cream</strong> à partager — et regardez le serveur le shaker à la main, technique inchangée depuis l'avant-guerre.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Diner historique</span>
+        <span class="tag">1925</span>
+        <span class="tag sage">$15–20</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 2 : GUGGENHEIM ── -->
+  <article class="stop" id="stop-guggenheim">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">10:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Musée majeur · architecture-œuvre</div>
+      <h3 class="stop-title">Solomon R. Guggenheim Museum</h3>
+      <div class="stop-address">1071 5th Ave (entre 88ᵗʰ et 89ᵗʰ) · architecte Frank Lloyd Wright</div>
+      <p class="stop-desc">
+        Frank Lloyd Wright a 80 ans quand il commence à dessiner le Guggenheim, et 92 quand le bâtiment ouvre, six mois après sa mort. C'est sa dernière œuvre majeure. Il l'avait voulu rouge écarlate — <em>« la couleur de la création »</em>, selon ses propres mots — Solomon Guggenheim a imposé le blanc. Vingt-et-un peintres new-yorkais signèrent en 1956 une pétition publiée dans le <em>New York Times</em> contre ce bâtiment qui, disaient-ils, écraserait leurs œuvres. Soixante-cinq ans plus tard, le Guggenheim est inscrit à l'<em>UNESCO</em> (2019), parmi les huit constructions de Wright classées au patrimoine mondial.
+      </p>
+      <p class="stop-desc">
+        Une rampe de 800 mètres en spirale ascendante, sur six étages, autour d'un atrium central éclairé par une coupole de lumière. Wright voulait qu'on prenne l'ascenseur jusqu'en haut, et qu'on redescende lentement, à pied, en arc de cercle. <em>Le bâtiment est l'œuvre. Les peintures sont les invitées.</em>
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Stratégie</div>
+        <p>Ascenseur jusqu'au 6ᵉ niveau, puis on descend à pied — c'est la <em>seule</em> bonne manière de visiter, conformément à la volonté de Wright. La rampe est consacrée aux <strong>expos temporaires</strong> (le cœur du musée). La <em>Thannhauser Collection</em> permanente (Picasso, Van Gogh, Cézanne, Renoir, Manet) est dans une annexe au 1ᵉʳ étage — souvent oubliée par les visiteurs pressés. Comptez 1h30 au total.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">FLW · 1959</span>
+        <span class="tag">UNESCO 2019</span>
+        <span class="tag rust">$30</span>
+        <span class="tag sage">1h30</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Le bâtiment, les collections, les anecdotes</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+
+          <div class="dept-list">
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Le bâtiment — Frank Lloyd Wright et la spirale</span>
+                <span class="dept-floor">Édifié 1951–1959</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Wright n'aimait pas New York. <em>« Il faut détruire cette ville et la reconstruire »</em>, disait-il. Sa réponse à Manhattan : un bâtiment qui ne se conforme à <em>aucune</em> des règles de la ville. Pas de façade plate, pas d'angles droits, pas d'étages superposés. Un cône inversé blanc, posé entre des immeubles bruns. Plus violent qu'on ne le réalise.</p>
+                <p>Sources d'inspiration multiples : les <em>ziggourats mésopotamiennes</em> (mais inversées, plus larges en haut), la <em>coquille de nautile</em>, la rampe d'accès des constructions automobiles modernes. Wright a choisi la spirale parce qu'elle « est partout dans la nature et nulle part dans l'architecture humaine ». Au-delà des gratte-ciel qu'il bannissait, il déplorait aussi les maisons américaines XIXᵉ « en forme de boîtes » — il préférait les constructions <em>basses et courbes</em>, dont la forme découle de la fonction.</p>
+                <p>Construction délicate qui dura près de dix ans. Solomon Guggenheim meurt en 1949, sans avoir vu son musée terminé. Wright meurt le 9 avril 1959, six mois avant l'inauguration du 21 octobre.</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">La pétition des 21</div>
+                  <p>En décembre 1956, vingt-et-un peintres américains, dont <em>Willem de Kooning</em>, <em>Robert Motherwell</em>, <em>Adolph Gottlieb</em> et <em>Philip Guston</em>, signent une lettre ouverte : « les murs incurvés et inclinés du bâtiment de Mr. Wright sont impropres à l'exposition d'œuvres d'art ». Wright, alors âgé de 89 ans, répond : « Si vos peintures ne supportent pas la rampe, ce sont vos peintures qui ne supportent pas la rampe. » Plusieurs des signataires sont aujourd'hui accrochés à l'intérieur. <em>Wright a eu le dernier mot.</em></p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Thannhauser Collection — Picasso, Van Gogh, Kandinsky</span>
+                <span class="dept-floor">1ᵉʳ étage</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Au 1ᵉʳ étage, dans une annexe latérale, la <em>collection permanente</em> du musée. La Thannhauser Gallery est célèbre pour posséder la plus importante collection mondiale de <em>Wassily Kandinsky</em> (195 tableaux). Solomon Guggenheim, magnat américain des mines, l'a réunie de 1930 à 1937 avec l'aide d'<em>Hilla Rebay</em>, baronne abstractionniste allemande qui le convertit à l'art « non-objectif » et lui acheta directement à Kandinsky une centaine d'œuvres.</p>
+                <p>Très peu sont exposées en même temps — la Thannhauser Gallery est petite et tourne. N'y venez pas en attendant un mur de Kandinsky : vous seriez frustré. En revanche, vous y trouverez un échantillon d'œuvres choisies parmi : <strong>Renoir, Cézanne, Monet, Degas, Pissarro, Toulouse-Lautrec, Van Gogh, Chagall, Mondrian, Léger, Brancusi, Picasso, Manet, Gauguin, Braque, Pollock</strong>.</p>
+                <p>Œuvres-phares à guetter : <strong>Picasso, <em>Femme aux cheveux jaunes</em></strong> (Marie-Thérèse Walter, 1931) ; <strong>Van Gogh, <em>Montagnes à Saint-Rémy</em></strong> (juillet 1889, peint depuis l'asile, juste avant la <em>Nuit étoilée</em>) ; <strong>Renoir, <em>Femme à la perruche</em></strong> ; <strong>Modigliani, <em>Jeanne Hébuterne</em></strong> (l'amante du peintre, qui se suicidera deux jours après sa mort en 1920).</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Précieux articles…</div>
+                  <p>Peggy Guggenheim, célèbre héritière américaine et <em>« art addict »</em>, déménage à Paris en 1939. Elle rencontre Picasso, Delaunay, et leur achète des œuvres. Quand l'armée allemande avance en France, elle décide de rentrer aux États-Unis — mais il lui faut un stratagème pour rapporter les tableaux. Elle a alors l'idée de les mélanger à des casseroles et autres objets sans valeur, et d'étiqueter le tout <em>« Articles immobiliers »</em>. C'est grâce à elle qu'on peut aujourd'hui admirer ces « casseroles » inestimables.</p>
+                </div>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Une mécène très avisée</div>
+                  <p>En 1943, le peintre <em>Jackson Pollock</em> se retrouve au chômage pour cause d'alcoolisme. Peggy Guggenheim, nièce de Solomon, le prend sous son aile en lui faisant signer un contrat qui le rémunère <em>$150 par mois</em> en échange de 60% de ses tableaux. Quelques années plus tard, sa toile <em>No. 5</em> sera vendue <strong>$140 millions</strong>.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Expositions temporaires — la rotonde</span>
+                <span class="dept-floor">Rampe principale</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>L'essentiel du Guggenheim, c'est cette galerie longue de 800 m grimpant en spirale, dominée par une coupole de lumière. C'est là que le musée organise ses grandes monographies : Hilma af Klint, Picasso, Frank Stella, Maurizio Cattelan… Les expos changent toutes les trois à six mois. Vérifiez le programme avant d'y aller.</p>
+                <p>Le prix d'entrée ($30) peut être dissuasif si le thème de l'expo ne vous parle pas vraiment et si vous n'êtes pas branché architecture. À l'inverse, si l'expo en cours vous intéresse, c'est un budget bien dépensé : on n'a pas une telle relation au bâtiment dans aucun autre musée du monde.</p>
+                <div class="expand-practical">
+                  <div class="expand-practical-label">Vérifier l'expo en cours</div>
+                  <p>Programme à jour sur <strong>guggenheim.org</strong>. Si plusieurs expos cohabitent (rotonde + niveaux annexes), tout est inclus dans le billet.</p>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Infos pratiques</div>
+            <p><strong>Horaires</strong> : tous les jours 10h30–17h30 (en mai 2026). <strong>Tarif</strong> : $30 adulte, $19 étudiant/senior, gratuit moins de 12 ans. <strong>NY City Pass</strong> accepté. <strong>Pay-What-You-Wish</strong> : samedi 16h–17h30 (réservation indispensable). <strong>Audioguide</strong> : application <em>Bloomberg Connects</em> gratuite, audio en français pour le bâtiment et la collection. <strong>Visite architecturale</strong> : 30 min, lun–sam 14h, gratuite (incluse dans le billet). <strong>Café Rebay</strong> sur place (3ᵉ étage), face au lac-réservoir de Central Park.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 3 : DÉJEUNER ── -->
+  <article class="stop" id="stop-dejeuner">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">12:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Pause déjeuner</div>
+      <h3 class="stop-title">Café Sabarsky</h3>
+      <div class="stop-address">1048 5th Ave (RDC de la Neue Galerie, 86ᵉ) · à 200 m au sud du Guggenheim</div>
+      <p class="stop-desc">
+        Le déjeuner naturel après le Guggenheim, c'est <strong>Café Sabarsky</strong>, le café viennois installé au rez-de-chaussée de la Neue Galerie. Boiseries sombres, banquettes en velours, lustre d'époque, ambiance <em>Wiener Kaffeehaus</em> qu'on jurerait transposée de Vienne 1900. Cuisine du chef Kurt Gutenbrunner : Wiener Schnitzel, goulash, <em>Kavalierspitz</em> (bœuf bouilli sauce raifort), tartes à la rhubarbe, Sachertorte, <em>Einspänner</em> (espresso surmonté de crème fouettée). Pas d'autre adresse new-yorkaise plus proche du Mile, et pas d'autre déjeuner plus en cohérence avec la journée.
+      </p>
+      <p class="stop-desc">
+        Si Sabarsky a la file (réelle, surtout 12h30–13h30, pas de réservation), repli sur <strong>E.A.T.</strong> (Madison/80ᵉ — sandwiches solides), <strong>Sant Ambroeus</strong> (Madison/78ᵉ — italien chic) ou <strong>Pastrami Queen</strong> (Lexington/78ᵉ — sandwich pastrami juif). Toutes ces adresses sont à 5 min à pied.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">⏱ Stratégie</div>
+        <p>Ne pas s'attarder au-delà d'une heure. Le Met est l'après-midi, et c'est là que vos jambes vont parler. Si vous prenez Sabarsky, le passage par la Neue Galerie juste après est gratuit visuellement (vous êtes déjà dans le bâtiment).</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Sabarsky · Vienne 1900</span>
+        <span class="tag">$25–40/pers</span>
+        <span class="tag sage">1h max</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 4 : NEUE GALERIE ── -->
+  <article class="stop" id="stop-neue">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">13:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Détour discret · à passer ou à pousser</div>
+      <h3 class="stop-title">Neue Galerie</h3>
+      <div class="stop-address">1048 5th Ave (à hauteur de la 86ᵉ) · ancienne maison Vanderbilt</div>
+      <p class="stop-desc">
+        Petit musée intime — 12 salles seulement — installé dans un hôtel particulier Beaux-Arts (1914) signé Carrère &amp; Hastings (les architectes de la <em>New York Public Library</em>), racheté en 2001 par Ronald Lauder, héritier d'Estée Lauder, qui en fait le musée de l'art viennois et allemand entre 1890 et 1940. La collection (présentée au 2ᵉ étage, par roulement) tourne autour de <em>Klimt, Schiele, Kokoschka, Kandinsky, August Macke, Ernst Ludwig Kirchner, Otto Dix</em>.
+      </p>
+      <p class="stop-desc">
+        Le clou du musée : <em>Adèle Bloch-Bauer I</em> de Gustav Klimt (1907), la <strong>Femme en or</strong>. Œuvre spoliée par les nazis à Vienne en 1938, restituée en 2006 à l'héritière Maria Altmann après huit ans de procès. Lauder l'achète à Altmann pour <em>$135 millions</em> — record mondial à l'époque. Visite courte (45 min), tarif $28.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">💎 Notre conseil</div>
+        <p>Si votre énergie le permet, <strong>poussez la porte</strong>. La <em>Femme en or</em> seule justifie le détour : la feuille d'or vibre en vrai. Quarante-cinq minutes, pas plus, et on file vers le Met. Sinon, passez devant — vous avez déjà déjeuné dans la maison.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Klimt · Femme en or</span>
+        <span class="tag">$28</span>
+        <span class="tag rust">Fermé mar–mer</span>
+        <span class="tag sage">45 min</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 La Femme en or — histoire d'une spoliation</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+
+          <div class="expand-section">
+            <div class="expand-section-title">Vienne, 1907 — Klimt peint Adèle</div>
+            <span class="expand-section-sub">Une commande du mari, un tableau-icône</span>
+            <p>Adèle Bloch-Bauer est la femme du sucrier Ferdinand Bloch-Bauer, mécène et collectionneur viennois. Klimt, alors 45 ans, en est obsédé. Le tableau, commandé par le mari, prend trois ans : feuille d'or, motifs byzantins, hiératisme égyptien. C'est la seule toile pour laquelle Klimt aura été aussi loin dans le doré. Adèle meurt en 1925 à 43 ans (méningite). Dans son testament, elle demande à son mari de léguer la toile à la Galerie nationale autrichienne <em>après sa propre mort</em>.</p>
+          </div>
+
+          <div class="anecdote">
+            <div class="anecdote-title">1938 — la spoliation</div>
+            <p>Mars 1938 : <em>Anschluss</em>. Les nazis annexent l'Autriche. Ferdinand Bloch-Bauer, juif, fuit en Suisse en abandonnant ses biens. Sa collection (dont six Klimt) est confisquée par le Reich. La <em>Femme en or</em> est rebaptisée <em>Portrait d'une dame</em> pour effacer son nom juif, et accrochée au Belvédère de Vienne, où elle restera 60 ans, célébrée comme « Mona Lisa autrichienne ».</p>
+            <p>1998 : Maria Altmann, nièce d'Adèle réfugiée à Los Angeles depuis 1938, attaque l'Autriche. Huit ans de procédure jusqu'à la Cour suprême américaine. <em>2006</em> : l'Autriche est condamnée à restituer cinq tableaux. Quelques mois plus tard, Ronald Lauder achète la <em>Femme en or</em> à Altmann pour <em>$135 millions</em> — record mondial pour un tableau.</p>
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Pratique</div>
+            <p><strong>Horaires</strong> : tlj sauf mar–mer 11h–18h. <strong>Tarif</strong> : $28 adulte. Photos interdites (gardiens stricts). Interdit aux moins de 12 ans. <strong>Café Sabarsky</strong> au RDC : ouvert même sans billet.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <!-- ── STOP 5 : METROPOLITAN MUSEUM ── -->
+  <article class="stop" id="stop-met">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">14:15</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Musée majeur · 5 000 ans d'art</div>
+      <h3 class="stop-title">The Metropolitan Museum of Art</h3>
+      <div class="stop-address">1000 5th Ave (à hauteur de la 82ᵉ rue) · entrée principale par les marches</div>
+      <p class="stop-desc">
+        S'il n'y a qu'un musée à visiter à New York, c'est celui-là. Seuls le Louvre, le British Museum, le V&amp;A et l'Hermitage rivalisent avec lui. <em>250 000 œuvres exposées</em> (sur 2 millions que compte le musée), 180 000 m², six mille ans d'histoire et de culture humaine, plus de cinq millions de visiteurs par an. Fondé en 1866 par un groupe d'Américains visionnaires inspirés par les musées parisiens, ouvert en 1880 dans son bâtiment néoclassique actuel.
+      </p>
+      <p class="stop-desc">
+        L'erreur du visiteur français est de vouloir tout voir. Impossible. <strong>Choisissez deux à trois départements maximum</strong>. Marchez lentement. Asseyez-vous régulièrement. Pour cette journée (3 h, déjà bien fatigué après Guggenheim et déjeuner), on suggère un trio classique : <em>Égypte (Temple de Dendur) → Peinture européenne (Vermeer, Caravage, Rembrandt) → American Wing (Sargent, Tiffany, Frank Lloyd Wright)</em>. Toutes les autres sections sont décrites en détail ci-dessous, à déplier selon vos goûts.
+      </p>
+      <div class="stop-note">
+        <div class="stop-note-label">🎟 Billet, entrée &amp; bonus Cloisters</div>
+        <p><strong>$30 adulte plein tarif</strong> pour les visiteurs non-résidents. Le ticket donne aussi accès, <em>le même jour seulement</em>, aux <strong>Met Cloisters</strong> (collection médiévale au nord de Harlem, dans Fort Tryon Park) — bon plan pour un autre jour. Évitez l'entrée principale (les marches) et passez par <strong>l'entrée 81st Street</strong>, sur le côté sud, presque toujours moins peuplée.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Indispensable</span>
+        <span class="tag">2 M œuvres</span>
+        <span class="tag rust">Fermé mercredi</span>
+        <span class="tag sage">3h minimum</span>
+      </div>
+
+      <details class="stop-expand">
+        <summary>
+          <span class="stop-expand-label">📚 Histoire, parcours conseillé &amp; départements</span>
+          <span class="stop-expand-arrow">▼</span>
+        </summary>
+        <div class="stop-expand-content">
+
+          <div class="expand-section">
+            <div class="expand-section-title">Naissance d'un musée — 1866, en réaction à Paris</div>
+            <span class="expand-section-sub">Founders' Day, 13 avril 1870</span>
+            <p>L'idée naît à Paris en 1866. Le diplomate américain John Jay (petit-fils du premier Chief Justice) prononce un discours au club Pré-Catelan : il est temps que les États-Unis aient un grand musée d'art. Subventions philanthropiques, mécènes éclairés. Le 13 avril 1870, l'État de New York signe l'acte de naissance du Met. Première collection : 174 tableaux européens achetés à Paris en 1871. Ouverture en 1880 dans le bâtiment néoclassique actuel, en plein centre de Manhattan.</p>
+            <p>Curieuse structure de propriété : le <em>bâtiment</em> appartient à la ville de New York, mais les <em>collections</em> appartiennent au musée lui-même. Autre originalité : sur les 3 000 personnes qui travaillent au Met, la moitié sont bénévoles (et il y a une longue liste d'attente). C'est un lieu vivant, riche d'un réseau de mécènes financièrement puissant — le musée peut acheter et vendre des œuvres à sa guise.</p>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Parcours conseillé en 3 heures</div>
+            <span class="expand-section-sub">Trio classique pour première visite</span>
+            <p><strong>1. Antiquités égyptiennes &amp; Temple de Dendur</strong> (60 min, 1ᵉʳ Floor) — entrée par le grand hall, droite. Lumière de fin d'après-midi sur le Temple : magique.</p>
+            <p><strong>2. Peinture européenne 1250–1800</strong> (75 min, 2ᵉ Floor) — Caravage, Vermeer (3 toiles, sur les ~40 connues du maître hollandais), Bruegel l'Ancien, Velázquez, Rembrandt. Aile centrale.</p>
+            <p><strong>3. American Wing</strong> (45 min, 1ᵉʳ Floor, aile sud) — Sargent (<em>Madame X</em>), Tiffany (vitraux, salon emblématique), Frank Lloyd Wright (reconstitution d'un salon, salle 745), Hopper, Charles Engelhard Court (atrium vitré).</p>
+            <p><em>Pause Cantor Roof Garden Bar</em> entre les deux (mai–octobre, accès inclus dans le billet) : cocktail avec vue Central Park 270°. Détour de 20 min, retour ensuite à l'aile.</p>
+          </div>
+
+          <div class="expand-divider"></div>
+
+          <div class="expand-section">
+            <div class="expand-section-title">Les départements en détail</div>
+            <span class="expand-section-sub">Choisissez selon vos goûts</span>
+            <p style="font-style:italic; color:var(--text-muted);">Cliquez sur chaque département pour en savoir plus. Tout est plié par défaut : le Met est immense, le but n'est pas de tout lire.</p>
+          </div>
+
+          <!-- ═══ DEPARTMENTAL EXPANDS ═══ -->
+          <div class="dept-list">
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Égypte ancienne &amp; Temple de Dendur</span>
+                <span class="dept-floor">1ˢᵗ Floor</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>L'une des plus importantes collections d'art de l'Égypte ancienne en dehors du pays des pharaons. Sarcophages polychromes, bandelettes, mobilier funéraire, papyrus, statues de granit. Maquettes en bois trouvées dans la tombe du pharaon <em>Meketré</em>, censées être impressionnantes représentations de sa vie : la boulangerie, la brasserie, le grenier à grain, l'étable, les barques sur le Nil. La nécropole de <em>Saqqarah</em> (tombe de Perneb) reconstituée à différents moments du XVᵉ s. av. J.-C. Et un impressionnant <em>Livre des Morts</em> sur papyrus.</p>
+                <p><strong>Le clou du département :</strong> le <em>Temple de Dendur</em> <span class="dept-room">salle 131</span>. Dans cette immense salle vitrée donnant sur Central Park, on remonte la pièce par pièce un véritable temple égyptien du Iᵉʳ siècle av. J.-C. Donné par le gouvernement égyptien en 1965 en remerciement de l'aide américaine au sauvetage des temples nubiens menacés par le barrage d'Assouan. Sans cet effort, le temple serait aujourd'hui englouti dans le lac Nasser. L'empereur romain Auguste fit édifier ce temple en 15 av. J.-C., dédié à la déesse <em>Isis</em>.</p>
+                <p>Ne manquez pas, sur l'extérieur du temple, les bas-reliefs colorés (souvent montés avec un astucieux jeu de lumière) : postures d'offrande, scènes votives, divinités <em>Osiris</em> et <em>Horus-Harpocrate</em>, parfois avec un doigt dans la bouche… On observe aussi des graffitis du XIXᵉ s., datant des débuts du tourisme moderne en Égypte. La pièce d'eau au pied du temple, qui figure le Nil, est apaisante. Si vous ne visitez qu'une seule salle de l'Égypte, c'est celle-ci.</p>
+                <div class="couple-moment">
+                  <div class="couple-moment-title">Moment couple</div>
+                  <p>Si vous arrivez vers 14h30, la lumière du début d'après-midi traverse les baies vitrées et tombe en oblique sur les pierres du temple. Asseyez-vous quelques minutes sur le banc bas qui borde le bassin. <strong>L'un des plus beaux silences du Met.</strong></p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Peinture européenne 1250–1800 — Vermeer, Caravage, Rembrandt</span>
+                <span class="dept-floor">2ⁿᵈ Floor</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Une des plus formidables galeries de chefs-d'œuvre au monde. Plus de 5 millions de visiteurs viennent ici, pour les grands maîtres des écoles européennes — italienne, espagnole, française, flamande, hollandaise, anglaise.</p>
+                <p><strong>École italienne</strong> (XIIIᵉ–XVIIIᵉ) : Giotto, Fra Angelico, Luca Signorelli, Duccio (XIIIᵉ–début XIVᵉ), Fra Filippo Lippi, Botticelli, Mantegna, Bellini, Raphaël, Titien, Véronèse, <strong>Le Caravage</strong> <span class="dept-room">salle 621</span> (les <em>Musiciens</em>, première œuvre majeure du peintre, 1597), Carrache, Le Corrège, Bassano, Le Sodoma, Le Dominiquin, Tintoret, Le Guerchin, Guido Reni.</p>
+                <p><strong>Écoles espagnole et française</strong> : Le Greco, Murillo, Ribera, <strong>Velázquez</strong> (le <em>Juan de Pareja</em>, portrait de l'esclave-assistant du peintre), David, Greuze, Chardin, Fragonard, Boucher, Watteau, Georges de La Tour, Poussin, Lorrain.</p>
+                <p><strong>Écoles flamande et allemande</strong> : Van Eyck, Gérard David, Joos Van Cleve, Quentin Metsys, Jérôme Bosch, <strong>Bruegel l'Ancien</strong> <span class="dept-room">salle 643</span> (<em>Les Moissonneurs</em>, 1565, chef-d'œuvre des cycles des saisons), Lucas Cranach, Rubens, Antoine Van Dyck, Hans Memling, Frans Hals, Albrecht Dürer, Hans Holbein.</p>
+                <p><strong>École hollandaise &amp; Rembrandt</strong> <span class="dept-room">salle 616</span> — autoportrait, et le célèbre <em>Aristote contemplant le buste d'Homère</em> (1660), acheté <em>$5 millions en 1961</em>, ce qui semblait alors un prix astronomique.</p>
+                <p><strong>Vermeer</strong> <span class="dept-room">salle 614</span> : <em>3 tableaux</em>, sur la quarantaine de toiles connues du maître hollandais. La <em>Jeune Femme à l'aiguière</em>, et l'énigmatique <em>Étude d'une jeune femme</em>. <em>Curieux, énigmatiques, hymne à la lumière.</em></p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Aile entièrement repensée en 2023</div>
+                  <p>Les galeries de peinture européenne ont été remaniées en 2023 : grand parcours chronologique remis à plat, signalétique épurée, accrochage refondu. Visite plus fluide qu'auparavant.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Impressionnistes &amp; post-impressionnistes — Van Gogh, Monet, Degas</span>
+                <span class="dept-floor">2ⁿᵈ Floor · salles 800–830</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Fabuleuse collection d'œuvres impressionnistes, acquises par les Américains à un moment où l'Europe ne s'y intéressait pas — il y a plus de 60 ans, juste avant que ces toiles ne soient considérées comme essentielles. Aujourd'hui, c'est l'un des trésors discrets du Met.</p>
+                <p><strong>Van Gogh</strong> <span class="dept-room">salle 825</span> : plusieurs toiles, dont des paysages de Provence, l'<em>Autoportrait</em> au chapeau de paille, et les <em>Cyprès</em> de Saint-Rémy peints des deux côtés de la toile. Soyez attentifs à voir les deux faces.</p>
+                <p><strong>Degas</strong> <span class="dept-room">salles 814–817</span> : la célèbre <em>Classe de danse</em>, <em>Femmes sortant du bain</em>, ses statuettes de danseuses en bronze (les fameuses <em>Petites Danseuses</em>).</p>
+                <p><strong>Renoir</strong> : portraits de femmes par Renoir, dont <em>Madame Charpentier</em> <span class="dept-room">salle 821</span>, ou <em>Les Trois Filles de Catulle Mendès</em>.</p>
+                <p><strong>Manet</strong> : <em>La Femme au perroquet</em> (1866), pendant pâle au scandale du <em>Déjeuner sur l'herbe</em>.</p>
+                <p><strong>Monet</strong> : <em>5 versions</em> des <em>Nymphéas</em> de Giverny <span class="dept-room">salle 819</span>, ainsi que des paysages de <em>Cézanne</em> dont <em>Sainte-Victoire</em>.</p>
+                <p>Sans oublier <em>Toulouse-Lautrec, Daumier, Millet, Corot, Sisley, Bonnard, Pissarro, Seurat, Ingres, Caillebotte, Munch, Derain, Delacroix</em>, et 2 <em>Klimt</em>. <strong>Rodin</strong> : sculptures, bronzes, marbres, statuettes — la salle qui clôt le parcours impressionniste, en transition vers la modernité.</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Multitâche — Mary Cassatt</div>
+                  <p>La <em>seule peintre américaine</em> affiliée au mouvement impressionniste. Vécut près de 60 ans en France, fut très proche d'Edgar Degas. Elle joua un rôle majeur en faisant découvrir les Impressionnistes aux marchands d'art américains : c'est en grande partie grâce à elle si l'on doit la 1ʳᵉ série massive d'œuvres impressionnistes des musées américains. Toutes les toiles que vous voyez ici en sont, indirectement, son héritage.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">American Wing — Sargent, Tiffany, Frank Lloyd Wright</span>
+                <span class="dept-floor">1ˢᵗ–3ʳᵈ Floor</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Vaste section sur trois niveaux qui couvre 300 ans d'histoire nationale. C'est la véritable école américaine, à travers ses chefs de file : la <em>Hudson River School</em> <span class="dept-room">salles 759–761</span> avec Frederic Edwin Church, <strong>Albert Bierstadt</strong> <span class="dept-room">salle 760</span> et son <em>Lander's Peak</em> (paysage des Alpes Suisse, peut-être le mont Cervin). <strong>John Singleton Copley</strong> <span class="dept-room">salle 748</span>, le meilleur portraitiste de son époque coloniale.</p>
+                <p><strong>Augustus Saint-Gaudens</strong> <span class="dept-room">salle 762</span> — admirable miniature en bronze d'<em>Abraham Lincoln</em>. <strong>Thomas Eakins</strong>, <strong>John F. Peto</strong> (collage dadaïste avant l'heure, salle 763). <strong>Frederic Remington</strong> — bronzes de Native Americans à cheval, art mythique du Grand Ouest.</p>
+                <p><strong>John Singer Sargent</strong> — <em>Madame X</em> (1884), scandale au Salon parisien (épaule dénudée), retiré, vendu à Boston, finalement acquis par le Met. Et de splendides portraits de femmes par <strong>William Merritt Chase</strong>, <strong>Childe Hassam</strong>, <strong>Mary Cassatt</strong> <span class="dept-room">salles 766–769</span>.</p>
+                <p><strong>Native Americans</strong> <span class="dept-room">salles fin XVIIIᵉ–début XXᵉ</span> : objets autochtones, costumes, bijoux, poteries, tressage des paniers, jusqu'aux céramiques apaches et navajos. L'aile américaine consacre <em>plusieurs salles à l'art des Peuples Autochtones</em> — c'était temps que le Met leur rende hommage.</p>
+                <p><strong>Charles Engelhard Court</strong> <span class="dept-room">salle 700</span> — immense patio vitré, atrium baigné de lumière naturelle, peuplé de statues, vitraux Tiffany &amp; LaFarge. <em>L'un des plus beaux espaces du Met, et personne ne s'y arrête.</em></p>
+                <p><strong>Tiffany</strong> — salle de salon emblématique avec mobilier et vitraux de Louis Comfort Tiffany, fils du célèbre joaillier de la Cinquième Avenue. Tiffany a révolutionné le verre et la lumière à la fin du XIXᵉ s., en superposant 2 ou 3 plis pour donner profondeur et textures.</p>
+                <p><strong>Frank Lloyd Wright Living Room</strong> <span class="dept-room">salle 745</span> — reconstitution complète d'un salon emblématique conçu par Wright en 1914 (la <em>Francis W. Little House</em> de Wayzata, Minnesota). Murs et cloisons s'effacent, immenses baies vitrées ouvertes sur l'extérieur, mezzanine, mobilier intégré. Il le concevait comme l'une de ses « organic houses » — plan ouvert, anti-conformiste.</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Frank Lloyd Wright, l'architecture américaine par nature</div>
+                  <p>Pour Wright, les volumes intérieurs devaient déterminer la forme des maisons et non l'inverse. Il réalisa ainsi quelque 300 <em>Prairie Houses</em> aux murs et cloisons s'effaçant pour laisser entrer la nature. Ses constructions étaient totales : il concevait tout — mobilier, luminaires, objets de déco. Aujourd'hui, c'est encore l'architecture américaine qui domine. Ses réalisations sont d'une étonnante modernité.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Sculptures &amp; arts décoratifs — period rooms européens</span>
+                <span class="dept-floor">1ˢᵗ Floor · salles 500–547</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>L'une des sections les plus époustouflantes : des salles entières d'hôtels particuliers et chambres parisiennes du XVIIIᵉ s. ont été démontées en France, transportées à New York et remontées ici, à l'identique, avec leurs lambris, trumeaux et mobilier d'époque. On passe d'un salon à un autre, d'un courant à un autre, d'une époque à une autre.</p>
+                <p>Pièces remarquables : <strong>les fastueux salons du Crillon</strong> <span class="dept-room">salle 545</span> ; la <strong>chambre de Lauzun</strong> <span class="dept-room">salle 525</span>, parée de velours rouge ; la <strong>chambre Louis XIV</strong> <span class="dept-room">salle 531</span>, château de Rambouillet ; la <strong>chambre à coucher baroque du palais Sagredo de Venise</strong> <span class="dept-room">salle 507</span>, dotée d'un incroyable plafond peuplé d'angelots ; le <strong>cabinet du palais ducal de Gubbio</strong> <span class="dept-room">salle 501</span>, en marqueterie florentine — un trompe-l'œil studieux, on s'y croit.</p>
+                <p>Aussi : <strong>galerie de sculptures</strong> <span class="dept-room">salle 548</span> — Bourdelle (<em>Héraclès archer</em>), Carpeaux (<em>La Nuit, L'Été</em>), Maillol, Rodin et ses fameux <em>Bourgeois de Calais</em>.</p>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Galerie des armes et armures</span>
+                <span class="dept-floor">1ˢᵗ Floor · salles 371–377</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Aux amateurs d'armures de guerre et de parade, riche collection. Au cœur de la galerie, <strong>4 chevaliers caparaçonnés</strong> montés sur leurs chevaux, en armures fièrement décorées de scènes légendaires. On peut admirer l'<strong>armure d'Henri VIII</strong> <span class="dept-room">salle 371</span>, l'<strong>armure d'Henri II</strong> roi de France <span class="dept-room">salle 374</span>, l'<strong>armure de l'Empereur Ferdinand I</strong> <span class="dept-room">salle 377</span>, sans oublier les <strong>casques helléniques en bronze</strong> et les armures japonaises samouraïs.</p>
+                <div class="couple-moment">
+                  <div class="couple-moment-title">Moment couple</div>
+                  <p>L'alignement des chevaliers à cheval dans la grande salle est <strong>l'un des plus beaux <em>shots</em> photo du Met</strong>. Position basse, lumière oblique. Pour quelques instants, on est dans une cour médiévale.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Antiquités grecques et romaines</span>
+                <span class="dept-floor">1ˢᵗ &amp; 2ⁿᵈ Floor · salles 151–174</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Salles consacrées aux <em>objets de la vie quotidienne</em> en Grèce antique, mis au jour dans les tombes — encore une rare colonne et chapiteau de marbre du Temple d'Artémis de Sardis. <span class="dept-room">salle 153</span>, superbe bas-relief de Dionysos dansant avec une foule de naïades. <span class="dept-room">salle 154</span>, stèle de marbre <em>jeune homme et petite fille</em> (530 av. J.-C.). <span class="dept-room">salle 161</span>, fascinante <em>armure complète d'un guerrier grec</em> du IVᵉ s. av. J.-C. (casque, thorax, cnémides).</p>
+                <p><span class="dept-room">salle 158</span> (Ganymède jewelry) : couronne d'olivier, raffinement orfèvre. Statue de Dionysos sur fontaine centrale (salle 162) : patio à la grec. <span class="dept-room">salle 168</span>, <em>lit romain</em> incrusté dans une chambre reconstituée de fresques, à se croire dans une villa pompéienne.</p>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Art médiéval &amp; Robert Lehman Collection</span>
+                <span class="dept-floor">1ˢᵗ Floor · salles 305–307, 950–957</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p><strong>Art médiéval</strong> <span class="dept-room">salle 305</span> — l'énorme salle évoque l'intérieur d'une église, où s'élève la majestueuse <em>grille de Valladolid</em> (1763) qui séparait le chœur de la nef de la cathédrale. Tout autour, remarquable sélection de retables et statues polychromes, deux représentations de la Vierge en majesté à 250 ans d'écart : l'une en pleine époque romane (raide et hiératique) et l'autre en plein gothique international, beaucoup plus maternelle. <span class="dept-room">salle 306</span> le « <em>trésor médiéval</em> », pièce de 1515, débauche d'orfèvrerie : reliquaires, ciboires, encensoirs, calices, crucifix, triptyques en ivoire ciselé. <span class="dept-room">salle 307</span> les <em>lambris provenant de la chartreuse de Pavie</em> (Lombardie), festival de délicats motifs en os gravé et bois ciselé.</p>
+                <p><strong>Collection Robert Lehman</strong> — On y atteint après avoir traversé la salle médiévale. La collection Lehman échappe à la règle d'organisation par périodes, pays, etc. — la donation a été faite à condition expresse que <em>l'intégrité de la collection personnelle</em> de M. Lehman soit respectée. D'où le côté intimiste : dans certaines salles, on se croirait dans sa demeure. Au passage, <strong>la <em>Princesse de Broglie</em> par Ingres</strong> <span class="dept-room">salle 952</span>, chef-d'œuvre impressionnant, drapée dans un taffetas bleu étincelant. Et la <strong>petite <em>Annonciation</em> de Botticelli</strong>.</p>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Art moderne &amp; contemporain</span>
+                <span class="dept-floor">1ˢᵗ &amp; 2ⁿᵈ Floor</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Encore une demi-journée. Bien moins de monde qu'au MoMA, et c'est tant mieux — ici, les chefs-d'œuvre sont moins surveillés. <strong>Hopper</strong> et le magnétisme de la femme contemporaine. Peintures de Thomas Hart Benton et fresque <em>America Today</em> de Reginald Marsh.</p>
+                <p><strong>Surréalistes</strong> : toiles rêveuses de De Chirico, expérimentations Dali, Paul Delvaux, Jean Arp, Max Ernst, Magritte, Yves Tanguy. <strong>Cubistes</strong> : Braque, Léger, Gris. Picasso (multiple), Matisse (de la famille Lauder), Klee, Kandinsky, Miró, Mondrian. <strong>Avant-garde</strong> abstraite : Chagall, Dubuffet, Man Ray.</p>
+                <p>Au 2ᵉ étage, <em>collection pop art</em> exceptionnelle. Les maîtres du genre : Rothko, Joan Mitchell, Willem de Kooning, <strong>Jackson Pollock</strong>, Lichtenstein, Jasper Johns et son <em>White Flag</em> (la version Met, vs MoMA). <strong>Andy Warhol</strong> : sérigraphies emblématiques + sa série moins connue de chaises électriques (sur la peine de mort).</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Choc artistique &amp; gros sous</div>
+                  <p>Plus connu pour ses sérigraphies de bouteilles de Coca, boîtes de soupe Campbell's et portraits de stars, Andy Warhol a aussi représenté la peine de mort. Sa série de <em>chaises électriques</em> dénonce la saturation médiatique des annonces d'exécutions, geste indigné qui fait encore réfléchir aujourd'hui : <em>le moindre de ses Marilyn vaut $200 millions</em>.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Art islamique &amp; Proche-Orient ancien</span>
+                <span class="dept-floor">2ⁿᵈ Floor · salles 450–463</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Une des collections d'art islamique les plus complètes au monde — <em>12 000 pièces</em>, datant du VIIᵉ au XXᵉ s. Carte civilisationnelle et historique du champ culturel islamique, basée sur trois caractéristiques : la <em>calligraphie</em>, les <em>ornements végétaux</em> et le <em>figuratif</em> (animales ou humaines, mais seulement en dehors du champ religieux).</p>
+                <p>Ne pas manquer les calligraphies du IXᵉ–XIIIᵉ s. <span class="dept-room">salles 450–451</span>, les mosaïques polychromes <span class="dept-room">salle 455</span>, céramiques, astrolabes (pratiques pour connaître l'heure de la prière et la direction de La Mecque). Importante collection de <em>tapis</em>, taille démesurée. <span class="dept-room">salle 461</span> est une reconstitution d'une <em>salle de réception syrienne à Damas</em> (1767) pendant la période ottomane, avec fontaine polychrome. <span class="dept-room">salle 456</span>, on se croirait à l'Alhambra : reconstitution d'une cour marocaine avec fontaine, réalisée par des artisans de Fès en 2011.</p>
+                <p><strong>Art ancien du Proche-Orient</strong> : impressionnants monuments et bas-reliefs néo-assyriens du <em>palais reconstitué d'Ashurnasirpal II de Nimrod</em> (883 av. J.-C.).</p>
+                <div class="anecdote-mini">
+                  <div class="anecdote-mini-title">Game of Thrones</div>
+                  <p>Salle 453, ne manquez pas le <em>jeu d'échecs iranien du XIIᵉ s.</em>, peut-être le plus ancien au monde, aux pièces étrangement abstraites et design. La légende raconte qu'il fut introduit en Iran lorsqu'un souverain d'Inde l'envoya à un roi iranien en déclarant que la poursuite du paiement de son tribut dépendait de la capacité du roi à comprendre les règles. Les échecs connurent un vrai succès jusque dans les mosquées ; voilà pourquoi, dans le cas présent, les pièces ne sont pas figuratives.</p>
+                </div>
+              </div>
+            </details>
+
+            <details class="dept-expand">
+              <summary>
+                <span class="dept-name">Cantor Roof Garden Bar — pause cocktail</span>
+                <span class="dept-floor">Toit · mai–octobre</span>
+                <span class="dept-arrow">▼</span>
+              </summary>
+              <div class="dept-expand-content">
+                <p>Au sommet de l'aile sud, un toit-terrasse ouvert de mi-avril à fin octobre. Bar à cocktails, <em>vue superbe sur la skyline entourant Central Park</em>. Une sculpture contemporaine y est installée chaque année (commande spéciale). Les riches donateurs exigent même que leurs sculptures figurent sur le toit du musée quand ils descendent à NYC, histoire de les apercevoir depuis leurs terrasses des immeubles environnants…</p>
+                <p>L'accès est inclus dans le billet du Met, mais beaucoup de visiteurs ne le savent pas et passent à côté. <em>L'un des plus beaux secrets du Met.</em></p>
+                <div class="couple-moment">
+                  <div class="couple-moment-title">Moment couple</div>
+                  <p>Faites une vraie pause au <strong>Cantor Roof Garden</strong> entre les peintures européennes et l'American Wing. En mai, le ciel est encore frais, Central Park est en pleine feuillaison vert tendre. Cocktail, dix minutes de silence, et puis on reprend. Si vous y allez un vendredi ou samedi, le bar reste ouvert jusqu'à 20h — coucher de soleil sur le parc inclus.</p>
+                </div>
+                <div class="expand-practical">
+                  <div class="expand-practical-label">Horaires Cantor</div>
+                  <p><strong>Tlj sauf lundi 11h–16h</strong>, ouvert <em>jusqu'à 20h les ven–sam</em>. Cocktails $18–22, vin au verre $15. Pas de réservation, file possible le week-end. Fermé novembre–avril.</p>
+                </div>
+              </div>
+            </details>
+
+          </div>
+
+          <div class="expand-practical">
+            <div class="expand-practical-label">Le Met pratique</div>
+            <p><strong>Accès</strong> : 1000 5ᵗʰ Ave (et 82ⁿᵈ), métro 86ᵗʰ St (4/5/6/Q). <strong>Infos &amp; résa</strong> : metmuseum.org. <strong>Horaires</strong> : tlj sauf mercredi 10h–17h (21h ven–sam). <strong>Entrée</strong> : $30, réduc, gratuit moins de 12 ans. Ce ticket donne aussi accès <em>la même journée seulement</em> au <strong>Met Cloisters</strong>, au nord de Harlem. <strong>Plan</strong> détaillé du musée gratuit. <strong>Family guides</strong> pour les enfants. <strong>Audioguide</strong> via QR Code (Met App). <strong>Visites guidées</strong> en anglais : thématiques, gratuites, durée 1h.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+
+  <!-- ── STOP 7 : MUSEUM MILE ── -->
+  <article class="stop" id="stop-mile">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">17:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Promenade · architecture &amp; mansion row</div>
+      <h3 class="stop-title">Cinquième Avenue, 89ᵉ → 60ᵉ</h3>
+      <div class="stop-address">5th Ave entre la 89ᵉ et la 60ᵉ rue · 30 blocks, ~30 min</div>
+      <p class="stop-desc">
+        En sortant du Guggenheim, descendez la 5ᵉ Avenue à pied jusqu'à la 60ᵉ rue (où commence Central Park South). Trente blocs, trente minutes. À votre droite, Central Park en pleine feuillaison de mai. À votre gauche, l'enfilade des anciens hôtels particuliers Beaux-Arts des grandes familles new-yorkaises de la <em>Gilded Age</em> — nichés entre les immeubles d'appartements de luxe construits à partir des années 1920.
+      </p>
+      <p class="stop-desc">
+        Repérages : à la <strong>91ᵉ rue</strong>, le <em>Cooper Hewitt Smithsonian Design Museum</em>, ancienne demeure d'Andrew Carnegie (1902), bâtie en granit gris dans un style Georgian Revival ; le roi de l'acier voulait « la maison la plus modeste, la plus solide et la plus confortable de New York ». À la <strong>92ᵉ rue</strong>, le <em>Jewish Museum</em>, ancien hôtel particulier de Felix Warburg (1908). À la <strong>78ᵉ rue</strong>, l'ancienne <em>James B. Duke House</em> (1912), aujourd'hui Institut des Beaux-Arts de NYU. À la <strong>70ᵉ rue</strong> et 5ᵉ Avenue, la <em>Frick Collection</em> — la maison du magnat de l'acier Henry Clay Frick, transformée en musée à la mort de sa femme en 1931. Réouverte en avril 2025 après cinq ans de rénovation. Vermeer, Bellini, Rembrandt, El Greco, Whistler, Fragonard. Visite à prévoir un autre jour, mais la façade vaut le coup d'œil.
+      </p>
+      <div class="couple-moment">
+        <div class="couple-moment-title">Moment couple</div>
+        <p>Cette promenade descendante en fin de journée, lumière dorée de mai sur les façades, est <strong>l'un des plus beaux moments du Museum Mile</strong>. Pas de musées à visiter — juste marcher, regarder, parler. Quand vous arrivez à la 60ᵉ rue, vous êtes à 5 minutes du <em>Plaza Hotel</em> et de Central Park South. Le bord du parc est à pic — un dernier banc avant l'apéro.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Mansion row</span>
+        <span class="tag">~30 min</span>
+        <span class="tag sage">Lumière dorée</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 8 : APÉRO ── -->
+  <article class="stop" id="stop-apero">
+    <div class="stop-time-col">
+      <div class="stop-dot"></div>
+      <span class="stop-time">18:30</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Apéro · ambiance new-yorkaise</div>
+      <h3 class="stop-title">Treadwell Park ou Ethyl's</h3>
+      <div class="stop-address">UES — voir adresses dans la section <em>Manger</em></div>
+      <p class="stop-desc">
+        Pour l'apéro, deux options selon l'humeur. <strong>Treadwell Park</strong> (1125 1st Ave) si vous voulez bière artisanale et grande salle ouverte — terrasse à l'arrière, longue carte de bières américaines pression, ambiance UES jeune et détendue. <strong>Ethyl's Bar &amp; Restaurant</strong> (1629 2nd Ave) si vous voulez un bar UES plus typé, années 1970-80, lumière tamisée, banquettes en cuir, cocktails classiques.
+      </p>
+      <p class="stop-desc">
+        Pas trop d'alcool — vous avez encore le dîner et l'éventuel piano-bar. Une bière ou un cocktail simple, plus une planche à partager. Quarante minutes, et vous filez.
+      </p>
+      <div class="stop-tags">
+        <span class="tag">$15–25/pers</span>
+        <span class="tag sage">40 min</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── STOP 9 : DÎNER & SOIRÉE ── -->
+  <article class="stop" id="stop-soir">
+    <div class="stop-time-col">
+      <div class="stop-dot featured"></div>
+      <span class="stop-time">20:00</span>
+    </div>
+    <div class="stop-content">
+      <div class="stop-category">Soirée · piano-bar new-yorkais</div>
+      <h3 class="stop-title">Brandy's Piano Bar</h3>
+      <div class="stop-address">235 E 84th St (entre 2nd et 3rd Ave)</div>
+      <p class="stop-desc">
+        Petit bar feutré, ouvert depuis 1979, à mi-chemin entre le saloon et le cabaret de quartier. Piano au fond, banquettes rouges, lumière chaude. Particularité : <em>les serveurs et barmen sont tous chanteurs</em> — étudiants des écoles de comédie musicale de New York, qui prennent à tour de rôle le micro et chantent du <em>Sondheim</em>, du <em>Gershwin</em>, du Broadway, sur le piano d'un musicien attitré. Personne n'oublie son service. Aucun spectacle annoncé, aucune réservation, juste l'énergie d'une soirée new-yorkaise classique qu'on ne trouve plus beaucoup à Manhattan.
+      </p>
+      <p class="stop-desc">
+        Cuisine simple — burgers, salades, planches —, l'intérêt n'est pas là. Le show commence vers 21h, monte en intensité jusqu'à 23h, et la dernière chanson est presque toujours <em>New York, New York</em>, debout, tout le monde reprend en chœur. C'est kitsch, c'est touchant, c'est New York.
+      </p>
+      <div class="couple-moment">
+        <div class="couple-moment-title">Moment couple</div>
+        <p>Réservez (ou plutôt arrivez) <strong>vers 20h, table proche du piano</strong>. Si vous voulez intensifier le truc : payez le pianiste $20 pour qu'il joue votre chanson (les habitués font ça). Demande discrète au comptoir, et trente minutes plus tard, votre titre passe — c'est un moment qui restera. Sortie autour de 23h, taxi pour rentrer.</p>
+      </div>
+      <div class="stop-tags">
+        <span class="tag gold">Piano bar 1979</span>
+        <span class="tag rust">Show 21h–23h</span>
+        <span class="tag sage">$40–60/pers</span>
+      </div>
+    </div>
+  </article>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ══════════════════════════ MANGER ══════════════════════════ -->
+  <section class="food-section" id="food">
+    <div class="section-label">Manger sur l'Upper East Side</div>
+    <p class="food-intro">L'UES est moins dense en restauration que Midtown ou le Village. Les bonnes adresses sont dispersées et souvent installées depuis longtemps. Ci-dessous, sélection éprouvée, organisée par moment de la journée. Les adresses <strong style="color:var(--gold-light); background:var(--navy); padding:1px 6px; font-family:'DM Mono'; font-size:9px; letter-spacing:0.1em;">PROCHE MUSÉES</strong> sont à moins de 5 min à pied du Met ou du Guggenheim.</p>
+
+    <!-- PETIT-DÉJ -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">☕</span>
+        <span class="meal-header-title">Petit-déjeuner &amp; café</span>
+        <span class="meal-header-time">07:30–10:30</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Diner</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+            <span class="resto-badge badge-insta">1925</span>
+          </div>
+          <div class="resto-name">Lexington Candy Shop</div>
+          <div class="resto-address">1226 Lexington Ave</div>
+          <p class="resto-desc">Luncheonette d'avant-guerre encore en activité. Comptoir formica, milkshakes shakés à la main, egg cream maison (boisson new-yorkaise). Le menu n'a pas changé en 100 ans. L'archétype du diner new-yorkais — pour le matin, pas la peine d'aller plus loin.</p>
+          <p class="resto-note">$15–20/pers. Comptoir + tabourets. Avant 9h30 idéalement.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Boulangerie</span>
+          </div>
+          <div class="resto-name">Orwashers Bakery</div>
+          <div class="resto-address">308 E 78th St</div>
+          <p class="resto-desc">Boulangerie historique fondée en 1916 par un immigrant hongrois. Pain au levain, bagels artisanaux, pâtisseries d'Europe centrale (rugelach, hamantaschen, babka chocolat). Repris en 2008 par Keith Cohen, qui a ressuscité les recettes anciennes. Fournisseur de Per Se et du Carlyle.</p>
+          <p class="resto-note">Sur le pouce. Un bagel + café = $8–12. Idéal à emporter dans Central Park.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Café · Calme</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+          </div>
+          <div class="resto-name">Church of Heavenly Rest Café</div>
+          <div class="resto-address">1085 5th Ave (entrée par la 90ᵉ)</div>
+          <p class="resto-desc">Petit café installé dans l'enceinte d'une église épiscopalienne, juste en face du Guggenheim. Lumière douce, tables en bois, peu de monde, c'est l'antithèse de l'UES branché. Café, viennoiseries, sandwiches, soupes simples. Service tenu par les bénévoles de la paroisse.</p>
+          <p class="resto-note">$8–15/pers. Pause silencieuse après le Guggenheim si l'énergie a baissé.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Bagel · Saumon</span>
+            <span class="resto-badge badge-insta">Institution</span>
+          </div>
+          <div class="resto-name">Sable's Smoked Fish</div>
+          <div class="resto-address">1330 3rd Ave</div>
+          <p class="resto-desc">Comptoir de saumon fumé tenu par un ancien employé de Zabar's (institution de l'UWS) qui a ouvert son propre lieu en 1992. Saumon fumé maison, sturgeon (esturgeon fumé), whitefish salad, bagels Brooklyn. Le bagel-saumon le plus consensuel d'UES.</p>
+          <p class="resto-note">À emporter exclusivement. $12–18 le bagel garni.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÉJEUNER -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🥪</span>
+        <span class="meal-header-title">Déjeuner</span>
+        <span class="meal-header-time">12:30–14:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Café viennois</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Café Sabarsky</div>
+          <div class="resto-address">1048 5ᵗʰ Ave (RDC de la Neue Galerie)</div>
+          <p class="resto-desc">Café viennois 1900 transposé tel quel : boiseries sombres, banquettes en velours, lustre d'époque, journaux pendus aux râteliers. Cuisine du chef Kurt Gutenbrunner — Wiener Schnitzel, goulash, <em>Kavalierspitz</em> sauce raifort, tartes à la rhubarbe, Sachertorte. Un Einspänner (espresso, crème fouettée) et le Mile défile lentement.</p>
+          <p class="resto-note">$25–40/pers. Fermé mar–mer. File réelle 12h30–13h30, pas de résa.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Italien chic</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+          </div>
+          <div class="resto-name">Sant Ambroeus</div>
+          <div class="resto-address">1000 Madison Ave (78ᵗʰ)</div>
+          <p class="resto-desc">Café-restaurant italien Milan-style, ouvert en 1936 dans la Brera et arrivé sur Madison en 1982. Comptoir à pâtisseries en marbre rose, espresso machine en cuivre, serveurs en blazer. Vitello tonnato, pasta du jour, panini truffés, gelati maison. L'élégance italienne à l'UES.</p>
+          <p class="resto-note">$30–55/pers. Réservation conseillée pour la salle. Bar à panini debout sans résa.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Sandwiches · Bakery</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+          </div>
+          <div class="resto-name">E.A.T. by Eli Zabar</div>
+          <div class="resto-address">1064 Madison Ave (80ᵗʰ–81ˢᵗ)</div>
+          <p class="resto-desc">Institution UES d'Eli Zabar (fils du fondateur de Zabar's UWS), ouverte en 1973. Sandwiches gastronomiques sur pain maison, salades composées, soupes du jour, BLT historique, éclairs au chocolat. Le client UES y est en uniforme : assistante de galerie, mère de famille, vieille dame élégante.</p>
+          <p class="resto-note">$20–35/pers. Décor sans charme mais cuisine fiable. Take-away possible.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Café · Guggenheim</span>
+            <span class="resto-badge badge-near">Sur place</span>
+          </div>
+          <div class="resto-name">Café Rebay</div>
+          <div class="resto-address">1071 5ᵗʰ Ave (3ᵉ étage du Guggenheim)</div>
+          <p class="resto-desc">Café-restaurant intégré au Guggenheim, nommé d'après Hilla Rebay (la baronne qui conseilla Solomon). Pause-café face au lac-réservoir de Central Park. Sandwiches, salades, viennoiseries, espresso. Pas du gourmand-gourmand, mais sur-place et avec une vue. 10 % de réduction sur la note avec un CityPASS.</p>
+          <p class="resto-note">$15–25/pers. Mer–dim 10h30–16h. Option si vous ne quittez pas le Guggenheim.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-cheap">$</span>
+            <span class="resto-badge badge-cuisine">Deli juif</span>
+          </div>
+          <div class="resto-name">Pastrami Queen</div>
+          <div class="resto-address">1125 Lexington Ave #2 (78ᵗʰ–79ᵗʰ)</div>
+          <p class="resto-desc">L'un des derniers <em>kosher delis</em> traditionnels d'UES. Sandwich pastrami sur pain de seigle, moutarde forte, pickle au vinaigre. Viande tranchée à la main devant vous. Comptoir étroit, pas d'ambiance — on n'est pas là pour ça. Ouvert depuis 1956, recettes inchangées.</p>
+          <p class="resto-note">$22–28 le sandwich. Énorme — partageable à deux.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Hot dog · Hôtel</span>
+            <span class="resto-badge badge-near">Proche musées</span>
+          </div>
+          <div class="resto-name">The Mark Hot Dog</div>
+          <div class="resto-address">25 E 77ᵗʰ St</div>
+          <p class="resto-desc">Stand discret du chef Jean-Georges Vongerichten, devant l'hôtel The Mark — un des hôtels les plus luxueux d'UES. Hot dog gourmet sur pain brioché, choucroute maison, moutarde Dijon, oignons confits. Servi sur une assiette en argent. Image typiquement new-yorkaise : un hot dog à $14 devant un palace.</p>
+          <p class="resto-note">$14 le hot dog. Ouvert mai–septembre, 12h–17h.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARS -->
+    <div class="meal-block">
+      <div class="meal-header">
+        <span class="meal-header-icon">🍸</span>
+        <span class="meal-header-title">Bars &amp; soirée</span>
+        <span class="meal-header-time">17:30–24:00</span>
+      </div>
+      <div class="resto-grid">
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Piano bar</span>
+            <span class="resto-badge badge-insta">Recommandé</span>
+          </div>
+          <div class="resto-name">Brandy's Piano Bar</div>
+          <div class="resto-address">235 E 84th St</div>
+          <p class="resto-desc">Piano-bar de quartier ouvert en 1979, où les serveurs et barmen sont tous étudiants des écoles de comédie musicale et chantent à tour de rôle. Sondheim, Gershwin, Broadway, classiques jazz. Le show monte en intensité de 21h à 23h, et la dernière chanson est presque toujours <em>New York, New York</em>, debout, tout le monde reprise. Cuisine basique (l'intérêt n'est pas là).</p>
+          <p class="resto-note">$40–60/pers. Pas de réservation — arrivez vers 20h pour une table près du piano. Une tradition new-yorkaise.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Bar à bière</span>
+          </div>
+          <div class="resto-name">Treadwell Park</div>
+          <div class="resto-address">1125 1st Ave</div>
+          <p class="resto-desc">Brasserie urbaine ouverte en 2014 dans un ancien garage, grande salle aux poutres apparentes, terrasse arrière dès que le temps le permet. Vingt-quatre bières pression américaines, planches à partager (charcuterie, fromages, bretzels), burgers solides. Ambiance UES jeune et détendue, sans guindage.</p>
+          <p class="resto-note">$30–45/pers. Bar bondé après 20h. Loin de la 5ᵉ — privilégier en taxi.</p>
+        </div>
+        <div class="resto-card">
+          <div class="resto-badges">
+            <span class="resto-badge badge-mid">$$</span>
+            <span class="resto-badge badge-cuisine">Bar UES</span>
+          </div>
+          <div class="resto-name">Ethyl's Bar &amp; Restaurant</div>
+          <div class="resto-address">1629 2nd Ave</div>
+          <p class="resto-desc">Bar-restaurant années 1970-80 dans son jus : banquettes en cuir rouge, lustre en cristal, juke-box en état de marche, photos disco aux murs. Cocktails classiques (negroni, manhattan, espresso martini), planches américaines, burgers. Le contre-pied parfait du bar-cocktail trendy, à l'opposé du Lower East Side.</p>
+          <p class="resto-note">$25–40/pers. Ouvert tard les week-ends (jusqu'à 2h).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">◆ &nbsp; ◆ &nbsp; ◆</div>
+
+  <!-- ── POI SUPPLÉMENTAIRES ── -->
+  <section class="poi-section">
+    <div class="section-label">Points d'intérêt complémentaires</div>
+    <p style="font-size:14px; color:var(--text-muted); font-style:italic; margin-bottom:4px;">Détours discrets, curiosités d'amateur, et quelques échappées du Museum Mile à glisser dans la journée si l'énergie le permet.</p>
+
+    <div class="poi-grid">
+      <div class="poi-card">
+        <div class="poi-card-icon">🌍</div>
+        <div class="poi-card-name">George Glazer Gallery</div>
+        <div class="poi-card-address">308 E 94th St · sur rendez-vous</div>
+        <p class="poi-card-desc">Galerie d'antiquités scientifiques tenue par George Glazer depuis 1989 : globes terrestres et célestes XVIIIᵉ–XXᵉ, instruments de marine, gravures astronomiques. C'est moins une galerie qu'un cabinet de curiosités — couloirs bordés de globes des années 1900, sextants, cartes anciennes. Pas un musée mais ouvert aux visiteurs sur rendez-vous.</p>
+        <p class="poi-card-note">Visite libre, gratuite, sur rendez-vous (formulaire site web). 30 min suffisent.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🏛</div>
+        <div class="poi-card-name">Cooper Hewitt, Smithsonian Design</div>
+        <div class="poi-card-address">2 E 91st St · ancienne maison Carnegie</div>
+        <p class="poi-card-desc">Musée du design installé dans l'ancienne demeure d'Andrew Carnegie (1902), seul des grands hôtels particuliers du Museum Mile à conserver son jardin privé. Collections d'arts décoratifs, expositions de design contemporain. La maison vaut la visite à elle seule : escalier d'apparat en chêne sculpté, parquets marquetés, salle de musique avec orgue intégré dans les murs.</p>
+        <p class="poi-card-note">$22 adulte. À garder pour un autre jour — trop pour une seule journée.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🌳</div>
+        <div class="poi-card-name">Conservatory Garden</div>
+        <div class="poi-card-address">Central Park · 105ᵉ rue, entrée Vanderbilt Gate</div>
+        <p class="poi-card-desc">Le seul jardin formel à la française de Central Park. Trois jardins en un (italien, français, anglais) sur 2,5 hectares, derrière une grille en fer forgé qui ornait jadis l'hôtel particulier Vanderbilt. En mai, magnolias et tulipes. C'est le coin le plus secret du parc. Rares touristes, beaucoup de New-Yorkais.</p>
+        <p class="poi-card-note">Gratuit. À 15 min à pied au nord du Guggenheim — détour si vous avez le temps.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">🏛</div>
+        <div class="poi-card-name">Frick Collection</div>
+        <div class="poi-card-address">1 E 70th St · 5ᵉ Avenue, à hauteur de la 70ᵉ</div>
+        <p class="poi-card-desc">Maison-musée du magnat de l'acier Henry Clay Frick (1914), collection privée transformée en musée à la mort de sa femme en 1931. Vermeer, Bellini, Rembrandt, El Greco, Whistler, Fragonard. Réouverte en avril 2025 après cinq ans de rénovation. Une des collections privées les plus parfaites au monde — petite, dense, intemporelle.</p>
+        <p class="poi-card-note">$30. À garder pour un autre jour. Façade visible depuis la 5ᵉ.</p>
+      </div>
+
+      <div class="poi-card">
+        <div class="poi-card-icon">⛲</div>
+        <div class="poi-card-name">Bethesda Fountain &amp; Terrace</div>
+        <div class="poi-card-address">Central Park · niveau 72ᵉ rue</div>
+        <p class="poi-card-desc">La terrasse Bethesda et sa fontaine surmontée de l'<em>Angel of the Waters</em> (Emma Stebbins, 1873, première grande commande à une femme sculpteur à NY) sont le cœur du parc. Voûte sous l'arcade en faïence Minton (15 000 carreaux importés d'Angleterre, restaurés en 2007). À 10 min à pied à l'ouest depuis le Met. Acoustique miraculeuse — musiciens de rue toute l'année.</p>
+        <p class="poi-card-note">Gratuit. Détour de 30 min depuis le Met si vous avez l'énergie.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INFOS PRATIQUES ── -->
+  <section class="infos-section">
+    <div class="section-label">Infos pratiques</div>
+
+    <div class="infos-grid">
+      <div class="info-card">
+        <div class="info-card-label">📅 Meilleur jour</div>
+        <p><strong>NE PAS faire cette journée le mercredi 27 mai</strong> — le Met est fermé tous les mercredis. Le Guggenheim, lui, est ouvert tous les jours en mai 2026. <strong>Vendredi 29 ou samedi 30 mai</strong> sont les meilleurs jours : le Met reste ouvert jusqu'à 21h, le Cantor Roof Garden jusqu'à 20h, et vous gardez l'option de revenir le soir si l'après-midi a été trop court. Éviter le dimanche après-midi (Met saturé).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🎟 À réserver à l'avance</div>
+        <p><strong>Met</strong> : billet horodaté en ligne 3–7 jours avant ($30 adulte non-résident). <strong>Guggenheim</strong> : pareil, 3–7 jours avant ($30 adulte). <strong>Neue Galerie</strong> : possible le jour même si capacité limitée. <strong>Brandy's Piano Bar</strong> : pas de réservation, arrivée vers 20h pour table près du piano.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">👟 Confort &amp; énergie</div>
+        <p>Deux musées dans la journée = beaucoup de marche sur sols durs. Chaussures plates impératives. Prévoir une bouteille d'eau (les fontaines à l'intérieur des deux musées sont fiables). <strong>Ordre conseillé</strong> : Guggenheim le matin (frais, court, contenu), Met l'après-midi (immense, demande l'endurance qu'on n'a plus en fin de journée). Si vraiment épuisé après le Guggenheim et le déjeuner, sauter la Neue Galerie et entrer directement au Met.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">📸 Spots photo</div>
+        <p>Façade du Guggenheim depuis le trottoir d'en face (5ᵉ Ave et 89ᵉ) · Spirale du Guggenheim depuis le rez-de-chaussée (vue plongeante haute) · Salon Klimt à la Neue Galerie (façade depuis 5ᵉ Ave) · Marches du Met (façade Beaux-Arts) · Temple de Dendur en lumière oblique d'après-midi · Cantor Roof Garden Bar (Central Park 270° en mai) · Cavaliers caparaçonnés de la salle des armures.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">🚇 Transport</div>
+        <p>Pour arriver : ligne <strong>4/5/6</strong> à <em>86th St</em> (puis 5 min de marche jusqu'à la 5ᵉ Ave) · ligne <strong>Q</strong> (nouvelle, 2017) à <em>86th St / 2nd Ave</em>. Pour repartir le soir : ligne 4/5/6 à 86th St ou 77th St, ou taxi (Brandy's est sur la 84ᵉ entre 2nd et 3rd, hors zone subway directe).</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">💬 Ambiance</div>
+        <p>L'UES est résidentiel, polished, <em>old money</em>. Rythme plus lent que Midtown ou Downtown. Tenue libre mais propre — c'est un quartier où on remarque les détails. Madison Avenue (un bloc à l'est de la 5ᵉ) concentre les boutiques de luxe (Hermès, Cartier, Tom Ford, Ralph Lauren) si vous voulez du window-shopping entre les musées.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ──────────────────────────── FOOTER ──────────────────────────── -->
+<footer class="page-footer">
+  <p class="footer-title">« A man should hear a little music, read a little poetry, and see a fine picture every day of his life. » — Goethe (cité par John Pierpont Morgan, dont la collection fonda en partie le Met)</p>
+  <p class="footer-sub">NYC · Arthur &amp; Jade · Mai 2026</p>
+</footer>
+
+<script>
+(function() {
+  var btn = document.getElementById('expandAllBtn');
+  if (!btn) return;
+  var label = btn.querySelector('.expand-all-btn-label');
+  btn.addEventListener('click', function() {
+    var allDetails = document.querySelectorAll('details.stop-expand');
+    var isOpen = btn.classList.contains('is-open');
+    allDetails.forEach(function(d) { d.open = !isOpen; });
+    btn.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    label.textContent = !isOpen ? 'Tout replier' : 'Tout déplier';
+  });
+})();
+</script>
+
+<script src="assets/nav-buttons.js"></script>
+</body>
+</html>
