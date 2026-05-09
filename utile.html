@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pratique — Outils Utiles</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
   --cream: #FAF7F2;
@@ -890,6 +890,65 @@ body {
     <div class="tip-rule"><span class="tip-rule-label">Any food or agriculture items?</span><span class="tip-rule-pct">No</span></div>
   </div>
 </div>
+
+<!-- ====== Reset section (discreet) ====== -->
+<div id="resetSection" style="max-width:760px;margin:48px auto 24px;padding:32px 20px;text-align:center;border-top:1px solid var(--border);">
+  <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:14px;">Recommencer l'aventure</div>
+  <p style="font-family:'Lora',serif;font-style:italic;font-size:13.5px;color:var(--text-muted);max-width:420px;margin:0 auto 18px;line-height:1.6;">
+    Tous les quartiers déjà découverts seront verrouillés à nouveau, et leurs mots de passe seront à retrouver une seconde fois.
+  </p>
+  <button id="resetBtn" type="button" style="background:transparent;border:1px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;padding:11px 22px;cursor:pointer;border-radius:2px;transition:all 0.2s ease;-webkit-tap-highlight-color:transparent;">
+    Réinitialiser mes découvertes
+  </button>
+</div>
+
+<!-- Reset confirmation modal -->
+<div id="resetModal" style="display:none;position:fixed;inset:0;background:rgba(27,42,74,0.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:24px;animation:resetFadeIn 0.25s ease;">
+  <div style="max-width:380px;width:100%;background:var(--cream);padding:36px 28px;text-align:center;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,0.3);">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;">Confirmation</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:26px;color:var(--navy);margin:0 0 14px;line-height:1.2;">Tout réinitialiser ?</h3>
+    <p style="font-family:'Lora',serif;font-style:italic;font-size:14px;color:var(--text-muted);line-height:1.6;margin:0 0 28px;">
+      Cette action est irréversible. Tous les quartiers redeviendront verrouillés.
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button id="resetCancel" type="button" style="background:transparent;border:1px solid var(--border);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 18px;cursor:pointer;border-radius:2px;-webkit-tap-highlight-color:transparent;">Annuler</button>
+      <button id="resetConfirm" type="button" style="background:var(--navy);border:1px solid var(--navy);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:11px 18px;cursor:pointer;border-radius:2px;-webkit-tap-highlight-color:transparent;">Réinitialiser</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes resetFadeIn { from { opacity: 0; } to { opacity: 1; } }
+  #resetBtn:hover { border-color: var(--navy); color: var(--navy); }
+  #resetCancel:hover { border-color: var(--navy); color: var(--navy); }
+  #resetConfirm:hover { background: var(--navy-light); border-color: var(--navy-light); }
+</style>
+
+<script>
+  (function () {
+    var btn = document.getElementById('resetBtn');
+    var modal = document.getElementById('resetModal');
+    var cancel = document.getElementById('resetCancel');
+    var confirm = document.getElementById('resetConfirm');
+    if (!btn || !modal) return;
+
+    function openModal() { modal.style.display = 'flex'; }
+    function closeModal() { modal.style.display = 'none'; }
+
+    btn.addEventListener('click', openModal);
+    cancel.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    confirm.addEventListener('click', function () {
+      try { localStorage.removeItem('nyc-unlocked-v1'); } catch(e) {}
+      // Brief feedback then redirect home
+      confirm.textContent = 'Fait';
+      confirm.disabled = true;
+      setTimeout(function () { window.location.href = 'index.html'; }, 600);
+    });
+  })();
+</script>
 
 <script>
 // Tab navigation

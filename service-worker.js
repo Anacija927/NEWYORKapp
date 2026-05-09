@@ -11,7 +11,7 @@
 // Pour invalider le cache (après modif d'un fichier), bumper CACHE_VERSION.
 // ============================================================================
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v3';
 const PRECACHE = `nyc-precache-${CACHE_VERSION}`;
 const RUNTIME  = `nyc-runtime-${CACHE_VERSION}`;
 
